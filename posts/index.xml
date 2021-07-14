@@ -5,19 +5,13 @@
         <description>所有文章 | 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>hugo 快速发布 1</title>
-    <link>http://sugarless.top/posts/hugo-fast-publish-1/</link>
+    <title>hugo 一键部署</title>
+    <link>http://sugarless.top/posts/hugo-one-click-deployment/</link>
     <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-fast-publish-1/</guid>
-    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作。1</p>]]></description>
-</item><item>
-    <title>hugo 快速发布 2</title>
-    <link>http://sugarless.top/posts/hugo-fast-publish-2/</link>
-    <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-fast-publish-2/</guid>
-    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作。2</p>]]></description>
+    </author><guid>http://sugarless.top/posts/hugo-one-click-deployment/</guid>
+    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>
+<p>真正的一键部署。</p>]]></description>
 </item><item>
     <title>关于博客</title>
     <link>http://sugarless.top/posts/about-this-blog/</link>
