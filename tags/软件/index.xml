@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>软件 - 标签 - 無糖的小宇宙</title>
+        <link>http://sugarless.top/tags/%E8%BD%AF%E4%BB%B6/</link>
+        <description>软件 - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/%E8%BD%AF%E4%BB%B6/" rel="self" type="application/rss+xml" /><item>
+    <title>WizTree - 最快的磁盘空间分析器</title>
+    <link>http://sugarless.top/posts/wiztree/</link>
+    <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/wiztree/</guid>
+    <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>]]></description>
+</item></channel>
+</rss>
