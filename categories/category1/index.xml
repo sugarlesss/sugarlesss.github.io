@@ -5,18 +5,25 @@
         <description>category1 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/category1/" rel="self" type="application/rss+xml" /><item>
-    <title>关于博客</title>
-    <link>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</link>
+    <title>hugo 快速发布</title>
+    <link>http://sugarless.top/posts/hugo-fast-publish/</link>
     <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</guid>
+    </author><guid>http://sugarless.top/posts/hugo-fast-publish/</guid>
+    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作。</p>]]></description>
+</item><item>
+    <title>关于博客</title>
+    <link>http://sugarless.top/posts/about-this-blog/</link>
+    <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/about-this-blog/</guid>
     <description><![CDATA[<p>关于内容和工具</p>]]></description>
 </item><item>
-    <title>开篇</title>
-    <link>http://sugarless.top/posts/%E5%BC%80%E7%AF%87/</link>
+    <title>开篇词</title>
+    <link>http://sugarless.top/posts/opening-statement/</link>
     <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E5%BC%80%E7%AF%87/</guid>
+    </author><guid>http://sugarless.top/posts/opening-statement/</guid>
     <description><![CDATA[<p>markdown 格式</p>]]></description>
 </item></channel>
 </rss>
