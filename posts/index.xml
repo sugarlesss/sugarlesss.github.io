@@ -10,8 +10,7 @@
     <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/hugo-one-click-deployment/</guid>
-    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>
-<p>真正的一键部署。</p>]]></description>
+    <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>关于博客</title>
     <link>http://sugarless.top/posts/about-this-blog/</link>
