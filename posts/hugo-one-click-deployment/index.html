@@ -152,7 +152,7 @@
 └─themes
 </code></pre><p>将 git 仓库（xxx.github.io）的  .git 文件夹和 CNAME 文件复制一份到博客根目录的 public 文件夹中，使 public 目录成为一个仓库。</p>
 <p>配置 git alias 别名，这里我将 git blog 这个命令作为以后日常一键部署的命令，注意，此处的博客根目录不要填写错误。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global alias.blog <span class="s1">&#39;!hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git config --global alias.blog <span class="s1">&#39;!hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>  
 </code></pre></div><p>以后写好文章之后，就可以使用这个命令：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git blog
 </code></pre></div><p>一键渲染、推送到 github 上了，配合 git pages 使用更佳。</p></div><div class="post-footer" id="post-footer">
