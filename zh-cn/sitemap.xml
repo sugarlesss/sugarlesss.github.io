@@ -2,9 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://sugarless.top/about/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/friends/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>http://sugarless.top/categories/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://sugarless.top/en/categories/"
@@ -13,14 +11,10 @@
                     hreflang="zh-cn"
                     href="http://sugarless.top/categories/"
                     /></url><url>
-            <loc>http://sugarless.top/categories/category1/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories/category2/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/hugo/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts/hugo-one-click-deployment/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/tag1/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/tag2/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>http://sugarless.top/tags/hugo/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/posts/hugo-one-click-deployment/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/posts/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/tags/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://sugarless.top/en/tags/"
@@ -29,10 +23,8 @@
                     hreflang="zh-cn"
                     href="http://sugarless.top/tags/"
                     /></url><url>
-            <loc>http://sugarless.top/posts/about-this-blog/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts/opening-statement/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories/%E6%8A%98%E8%85%BE/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>http://sugarless.top/categories/%E6%8A%98%E8%85%BE/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://sugarless.top/en/"
@@ -40,4 +32,12 @@
                     rel="alternate"
                     hreflang="zh-cn"
                     href="http://sugarless.top/"
-                    /></url></urlset>
+                    /></url><url>
+            <loc>http://sugarless.top/about/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/friends/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/categories/category1/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/categories/category2/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/tags/tag1/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/tags/tag2/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/posts/about-this-blog/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/posts/opening-statement/</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url></urlset>
