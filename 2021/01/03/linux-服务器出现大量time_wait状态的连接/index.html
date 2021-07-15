@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>python爬取百度实时热点 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="python爬取百度实时热点" />
-<meta property="og:description" content="此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。" />
+    <title>Linux 服务器出现大量TIME_WAIT状态的连接 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Linux 服务器出现大量TIME_WAIT状态的连接" />
+<meta property="og:description" content="在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-01-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-01-11T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-03T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="python爬取百度实时热点"/>
-<meta name="twitter:description" content="此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。"/>
+<meta name="twitter:title" content="Linux 服务器出现大量TIME_WAIT状态的连接"/>
+<meta name="twitter:description" content="在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" /><link rel="prev" href="http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" /><link rel="next" href="http://sugarless.top/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" /><link rel="prev" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "python爬取百度实时热点",
+        "headline": "Linux 服务器出现大量TIME_WAIT状态的连接",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/2021\/01\/11\/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9\/"
-        },"genre": "posts","wordcount":  669 ,
-        "url": "http:\/\/sugarless.top\/2021\/01\/11\/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9\/","datePublished": "2021-01-11T00:00:00+00:00","dateModified": "2021-01-11T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/2021\/01\/03\/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5\/"
+        },"genre": "posts","wordcount":  401 ,
+        "url": "http:\/\/sugarless.top\/2021\/01\/03\/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5\/","datePublished": "2021-01-03T00:00:00+00:00","dateModified": "2021-01-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,12 +123,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">python爬取百度实时热点</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux 服务器出现大量TIME_WAIT状态的连接</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-11">2021-01-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 669 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-03">2021-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 401 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -136,84 +136,44 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#源码">源码</a></li>
-    <li><a href="#输出">输出</a></li>
+    <li><a href="#查看默认-timewait-时长">查看默认 timewait 时长</a></li>
+    <li><a href="#查看连接状态统计">查看连接状态统计</a></li>
+    <li><a href="#优化内核参数">优化内核参数</a></li>
+    <li><a href="#释义">释义</a></li>
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>
-<h1 id="源码">源码</h1>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*- #</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+            </div><div class="content" id="content"><p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>
+<p>高并发可以让服务器在短时间范围内同时占用大量端口，而端口有个 0~65535 的范围，并不是很多，刨除系统和其他服务要用的，剩下的就更少了。</p>
+<p>在这个场景中，短连接表示 “业务处理 + 传输数据的时间 远远小于 TIMEWAIT 超时的时间” 的连接。Linux 默认的 TIME_WAIT 时长一般是 60 秒。</p>
+<h1 id="查看默认-timewait-时长">查看默认 timewait 时长</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /proc/sys/net/ipv4/tcp_fin_timeout
+</code></pre></div><h1 id="查看连接状态统计">查看连接状态统计</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">netstat -an <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
+</code></pre></div><h1 id="优化内核参数">优化内核参数</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vim /etc/sysctl.conf
 
-<span class="k">def</span> <span class="nf">get_headers</span><span class="p">():</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;content-type&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;text/html;&#34;</span>
-    <span class="n">headers</span><span class="p">[</span>
-        <span class="s2">&#34;user-agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&#34;</span>
-    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;host&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;top.baidu.com&#34;</span>
-    <span class="k">return</span> <span class="n">headers</span>
- 
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://top.baidu.com/buzz?b=1&#39;</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">get_headers</span><span class="p">())</span>
-<span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gbk&#39;</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
- 
-<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;返回状态码：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 调用HTML类进行初始化</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
-
-<span class="c1"># 提取该页面所有标题</span>
-<span class="n">result_all</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&#34;main&#34;]/div[2]/div/table/tr/td[2]/a[1]&#39;</span><span class="p">)</span>
-
-<span class="c1"># 　打印所有提取出的新闻标题</span>
-<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">result_all</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div><blockquote>
-<p>在开发时遇到一个有意思的坑，如果你测试时使用浏览器复制的热点标题的 title xpath，你会发现获取不到标题。你只需要把 tbody 标签去掉，就可以正常获取到标题了。</p>
-</blockquote>
-<h1 id="输出">输出</h1>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">31省新增本土病例85例:河北82例
-佩洛西:众议院将第二次弹劾特朗普
-河北新增49例本地无症状感染者
-金正恩被推举为朝鲜劳动党总书记
-北京新增1例确诊 4例无症状感染者
-百度宣布组建智能汽车公司
-美发生连环枪击案 一留学生身亡
-日本发现新型变异新冠病毒
-死刑!曾春亮案一审宣判
-青藏高原云南等地降温雨雪来了
-拼多多回应员工匿名发帖被辞退
-石家庄新增确诊曾去过武汉汉正街
-吉林新增4例本土无症状:2对夫妻
-袁咏仪 送包给我是张智霖的福分
-宋小女:这个结局也挺好
-2020年CPI较上年上涨2.5%
-全棉时代道歉疑似打广告
-韩媒:韩军发现朝鲜举行阅兵式迹象
-国会骚乱后特朗普没联系过彭斯
-天津处罚过马路的低头族
-被放生秃鹫赖警局每天伙食费150
-比特币暴跌超10%
-20岁小姐姐当汽车兵驰骋川藏线
-北京乘出租车网约车需扫健康宝
-网上买菜莫名被开通美团月付
-自低风险区返乡要检测?多地出通知
-车厘子价格腰斩
-山东长岛海边现冰冻奇观似鸳鸯锅
-武汉向石家庄捐赠50吨蔬菜
-康辉说和21岁最大差别是脸的宽度
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://blog.csdn.net/qq_36523839/article/details/79992002">https://blog.csdn.net/qq_36523839/article/details/79992002</a></p></div><div class="post-footer" id="post-footer">
+<span class="c1">#追加内容</span>
+net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+</code></pre></div><h1 id="释义">释义</h1>
+<p>开启 SYN Cookies。当出现 SYN 等待队列溢出时，启用 cookies 来处理，可防范少量 SYN 攻击，默认为 0，表示关闭。<br>
+net.ipv4.tcp_syncookies = 1</p>
+<p>开启重用。允许将 TIME-WAIT sockets 重新用于新的 TCP 连接，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_reuse = 1</p>
+<p>开启 TCP 连接中 TIME-WAIT sockets 的快速回收，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_recycle = 1</p>
+<p>修改系統默认的 TIMEOUT 时间（FIN_WAIT_2 状态的时长）<br>
+net.ipv4.tcp_fin_timeout</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.cnblogs.com/apanly/p/12431902.html">https://www.cnblogs.com/apanly/p/12431902.html</a><br>
+<a href="https://zhuanlan.zhihu.com/p/79507132">https://zhuanlan.zhihu.com/p/79507132</a></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-01-11</span>
+                <span>更新于 2021-01-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -232,8 +192,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" class="prev" rel="prev" title="Linux 服务器出现大量TIME_WAIT状态的连接"><i class="fas fa-angle-left fa-fw"></i>Linux 服务器出现大量TIME_WAIT状态的连接</a>
-            <a href="/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/" class="next" rel="next" title="php 计算当天剩余秒数最方便和最快的方法">php 计算当天剩余秒数最方便和最快的方法<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" class="next" rel="next" title="python爬取百度实时热点">python爬取百度实时热点<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
