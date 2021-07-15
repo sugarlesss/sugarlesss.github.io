@@ -70,11 +70,11 @@
     </author><guid>http://sugarless.top/2020/12/01/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-systemd-service/</guid>
     <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
 </item><item>
-    <title>关于博客</title>
-    <link>http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</link>
-    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
+    <title>CentOS SSH 登录太慢的解决方法</title>
+    <link>http://sugarless.top/2020/11/28/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+    <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</guid>
-    <description><![CDATA[<p>关于内容和工具</p>]]></description>
+    </author><guid>http://sugarless.top/2020/11/28/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+    <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>]]></description>
 </item></channel>
 </rss>
