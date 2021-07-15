@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Python 批量去除文件固定前缀 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Python 批量去除文件固定前缀" />
-<meta property="og:description" content="问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。" />
+    <title>Python 导出 or 安装 requirements.txt 依赖 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Python 导出 or 安装 requirements.txt 依赖" />
+<meta property="og:description" content="在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-06-21T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-06-21T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-17T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python 批量去除文件固定前缀"/>
-<meta name="twitter:description" content="问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。"/>
+<meta name="twitter:title" content="Python 导出 or 安装 requirements.txt 依赖"/>
+<meta name="twitter:description" content="在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/" /><link rel="prev" href="http://sugarless.top/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/" /><link rel="next" href="http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/" /><link rel="prev" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2020/11/17/python-pip%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Python 批量去除文件固定前缀",
+        "headline": "Python 导出 or 安装 requirements.txt 依赖",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/2021\/06\/21\/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80\/"
-        },"genre": "posts","wordcount":  242 ,
-        "url": "http:\/\/sugarless.top\/2021\/06\/21\/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80\/","datePublished": "2021-06-21T00:00:00+00:00","dateModified": "2021-06-21T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/2020\/11\/17\/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96\/"
+        },"genre": "posts","wordcount":  99 ,
+        "url": "http:\/\/sugarless.top\/2020\/11\/17\/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96\/","datePublished": "2020-11-17T00:00:00+00:00","dateModified": "2020-11-17T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,57 +123,29 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python 批量去除文件固定前缀</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python 导出 or 安装 requirements.txt 依赖</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/python/"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-06-21">2021-06-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 242 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-17">2020-11-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 99 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#源码">源码</a></li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>
-<p>场景：在 “D:\纪录片\中国通史” 路径下有 100 集视频文件，每个文件都带有固定前缀 “www.baidu.com 出品 微信公众号 xxx” 字样。</p>
-<h1 id="源码">源码</h1>
-<p>RemoveFixedPrefix.py ，因为源码使用了 python fstring 的特性，需要在 python &gt;= 3.6 的版本中使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># coding=utf-8</span>
- 
-<span class="kn">import</span> <span class="nn">os</span>
- 
-<span class="c1"># 目标路径</span>
-<span class="n">srcPath</span> <span class="o">=</span> <span class="s2">&#34;D:\纪录片\中国通史&#34;</span>
-<span class="n">fileList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">srcPath</span><span class="p">)</span>
- 
-<span class="c1"># 固定前缀</span>
-<span class="n">FixedPrefix</span> <span class="o">=</span> <span class="s2">&#34;www.baidu.com出品 微信公众号xxx&#34;</span>
- 
-<span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
-    <span class="n">oldFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fileName</span><span class="si">}</span><span class="s2">&#34;</span>
- 
-    <span class="c1"># 跳过目录</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">):</span>
-        <span class="k">continue</span>
- 
-    <span class="n">newFileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">FixedPrefix</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="n">newFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">newFileName</span><span class="si">}</span><span class="s2">&#34;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">,</span> <span class="n">newFilePath</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
- 
-    <span class="nb">print</span><span class="p">(</span><span class="n">newFileName</span><span class="p">)</span>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 导出依赖</span>
+<span class="n">pip</span> <span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># 安装依赖</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-06-21</span>
+                <span>更新于 2020-11-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -192,8 +164,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/" class="prev" rel="prev" title="PHP计算当天剩余秒数最方便和最快的方法"><i class="fas fa-angle-left fa-fw"></i>PHP计算当天剩余秒数最方便和最快的方法</a>
-            <a href="/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/" class="next" rel="next" title="如何下载 ts 流媒体视频">如何下载 ts 流媒体视频<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/2020/11/17/python-pip%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85/" class="next" rel="next" title="Python pip 指定源安装">Python pip 指定源安装<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
