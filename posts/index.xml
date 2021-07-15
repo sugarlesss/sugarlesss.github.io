@@ -6,31 +6,38 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/posts/" rel="self" type="application/rss+xml" /><item>
     <title>hugo 一键部署</title>
-    <link>http://sugarless.top/posts/hugo-one-click-deployment/</link>
+    <link>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-one-click-deployment/</guid>
+    </author><guid>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/</guid>
     <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>WizTree - 最快的磁盘空间分析器</title>
-    <link>http://sugarless.top/posts/wiztree/</link>
+    <link>http://sugarless.top/posts/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/wiztree/</guid>
+    </author><guid>http://sugarless.top/posts/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/</guid>
     <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/posts/how-to-download-ts-streaming-video/</link>
+    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/how-to-download-ts-streaming-video/</guid>
+    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item><item>
     <title>关于博客</title>
-    <link>http://sugarless.top/posts/about-this-blog/</link>
+    <link>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</link>
     <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/about-this-blog/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</guid>
+    <description><![CDATA[<p>关于内容和工具</p>]]></description>
+</item><item>
+    <title>关于博客</title>
+    <link>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</link>
+    <pubDate>Sun, 11 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</guid>
     <description><![CDATA[<p>关于内容和工具</p>]]></description>
 </item></channel>
 </rss>
