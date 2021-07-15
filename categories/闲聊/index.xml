@@ -4,19 +4,12 @@
         <link>http://sugarless.top/categories/%E9%97%B2%E8%81%8A/</link>
         <description>闲聊 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E9%97%B2%E8%81%8A/" rel="self" type="application/rss+xml" /><item>
-    <title>python爬取百度实时热点</title>
-    <link>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</link>
-    <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</guid>
-    <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
-</item><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E9%97%B2%E8%81%8A/" rel="self" type="application/rss+xml" /><item>
     <title>关于博客</title>
-    <link>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</link>
+    <link>http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</guid>
+    </author><guid>http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/</guid>
     <description><![CDATA[<p>关于内容和工具</p>]]></description>
 </item></channel>
 </rss>
