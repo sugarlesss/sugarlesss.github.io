@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MySQL5.7 生产环境推荐参数配置 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="MySQL5.7 生产环境推荐参数配置" />
+<meta property="og:description" content="隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL5.7 生产环境推荐参数配置"/>
+<meta name="twitter:description" content="隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" /><link rel="prev" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "MySQL5.7 生产环境推荐参数配置",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/sugarless.top\/2020\/11\/07\/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE\/"
+        },"genre": "posts","wordcount":  2579 ,
+        "url": "http:\/\/sugarless.top\/2020\/11\/07\/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE\/","datePublished": "2020-11-07T00:00:00+00:00","dateModified": "2020-11-07T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++)
+                if (metas[i].getAttribute('name') === metaName)
+                    return metas[i];
+            return '';
+        }
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('auto' === 'light' || 'auto' === 'dark' || 'auto' === 'black') setTheme('auto'), saveTheme('auto'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MySQL5.7 生产环境推荐参数配置</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-07">2020-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2579 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一表相关">一、表相关</a>
+      <ul>
+        <li><a href="#表数据独立存储">表数据独立存储</a></li>
+      </ul>
+    </li>
+    <li><a href="#二日志相关">二、日志相关</a>
+      <ul>
+        <li><a href="#bin-log-格式">bin log 格式</a></li>
+        <li><a href="#bin-log-文件体积限制--自动过期">bin log 文件体积限制 / 自动过期</a></li>
+        <li><a href="#双-1-配置">双 “1” 配置</a></li>
+        <li><a href="#redo-log-文件体积--个数">redo log 文件体积 / 个数</a></li>
+      </ul>
+    </li>
+    <li><a href="#三buffer-相关">三、buffer 相关</a>
+      <ul>
+        <li><a href="#缓冲池大小">缓冲池大小</a></li>
+        <li><a href="#join-联表查询缓冲池大小">join 联表查询缓冲池大小</a></li>
+      </ul>
+    </li>
+    <li><a href="#四硬盘-io-相关">四、硬盘 IO 相关</a>
+      <ul>
+        <li><a href="#io-读写能力">IO 读写能力</a></li>
+        <li><a href="#脏页刷写连坐机制">脏页刷写连坐机制</a></li>
+      </ul>
+    </li>
+    <li><a href="#五线程相关">五、线程相关</a>
+      <ul>
+        <li><a href="#并发线程上限数">并发线程上限数</a></li>
+      </ul>
+    </li>
+    <li><a href="#六锁相关">六、锁相关</a>
+      <ul>
+        <li><a href="#自增锁模式">自增锁模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#七sql-部分">七、SQL 部分</a>
+      <ul>
+        <li><a href="#安全模式">安全模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#配置模板">配置模板</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。</p>
+<p>查看当前所有配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h1 id="一表相关">一、表相关</h1>
+<h2 id="表数据独立存储">表数据独立存储</h2>
+<p>表数据既可以存在共享表空间里，也可以是单独的文件。这个行为是由参数 innodb_file_per_table 控制的，从 MySQL 5.6.6 版本开始，它的默认值就是 ON 了。</p>
+<p>这个参数设置为 OFF 表示的是，表的数据放在系统共享表空间，也就是跟数据字典放在一起；</p>
+<p>这个参数设置为 ON 表示的是，每个 InnoDB 表数据存储在一个以 .ibd 为后缀的文件中。</p>
+<p>我建议你不论使用 MySQL 的哪个版本，都将这个值设置为 ON。</p>
+<p>因为，一个表单独存储为一个文件更容易管理，而且在你不需要这个表的时候，通过 drop/truncate table 命令，系统就会直接删除这个文件。而如果是放在共享表空间中，即使表删掉了，空间也是不会回收的。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_file_per_table = ON
+</code></pre><h1 id="二日志相关">二、日志相关</h1>
+<h2 id="bin-log-格式">bin log 格式</h2>
+<p>如果是使用 delete 语句误删了数据行，可以用 Flashback 工具通过闪回把数据恢复回来。Flashback 恢复数据的原理，是修改 binlog 的内容，拿回原库重放。而能够使用这个方案的前提是，需要确保以下两个配置。</p>
+<pre><code class="language-conf" data-lang="conf">binlog_format=row
+binlog_row_image=FULL
+</code></pre><h2 id="bin-log-文件体积限制--自动过期">bin log 文件体积限制 / 自动过期</h2>
+<p>row 格式记录的数据更完整，在数据恢复方面有极大优势，但缺点是生成的日志量大。因此需要根据业务需求和服务器配置对 binlog 设置单个文件最大体积限制和保留时长的限制。</p>
+<pre><code class="language-conf" data-lang="conf">expire_logs_days = 30
+max_binlog_size = 512M
+</code></pre><h2 id="双-1-配置">双 “1” 配置</h2>
+<p>一个事务完整提交前，需要等待两次刷盘，一次是 redo log（prepare 阶段），一次是 binlog。
+sync_binlog 这个参数设置成 1 的时候，表示每次事务的 binlog 都持久化到磁盘。这个参数我也建议你设置成 1，这样可以保证 MySQL 异常重启之后 binlog 不丢失。</p>
+<p>redo log 用于保证 crash-safe 能力，innodb_flush_log_at_trx_commit 这个参数设置成 1 的时候，表示每次事务的 redo log 都直接持久化到磁盘。这个参数我建议你设置成 1，这样可以保证 MySQL 异常重启之后 redo log 数据不丢失。</p>
+<pre><code class="language-conf" data-lang="conf">sync_binlog = 1
+innodb_flush_log_at_trx_commit = 1
+</code></pre><h2 id="redo-log-文件体积--个数">redo log 文件体积 / 个数</h2>
+<p>利用 WAL 技术，MySQL 将随机写转换成了顺序写，大大提升了数据库的性能。但是，由此也带来了内存脏页的问题。脏页会被后台线程自动 flush，也会由于数据页淘汰而触发 flush，而刷脏页的过程由于会占用资源，可能会让你的更新和查询语句的响应时间长一些，造成性能的间歇性下降。</p>
+<p>“redo log 写满了，要 flush 脏页”，这种情况是 InnoDB 要尽量避免的。因为出现这种情况的时候，整个系统就不能再接受更新了，所有的更新都必须堵住。如果你从监控上看，这时候更新数会跌为 0。
+一个内存配置为 128GB、innodb_io_capacity 设置为 20000 的大规格实例，正常会建议你将 redo log 设置成 4 个 1GB 的文件。</p>
+<p>这两个属性是只读的，需要通过修改配置文件并重启 MySQL 生效。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_log_file_size=512M
+innodb_log_files_in_group=2
+</code></pre><h1 id="三buffer-相关">三、buffer 相关</h1>
+<h2 id="缓冲池大小">缓冲池大小</h2>
+<p>缓冲池内存大小不够，意味着可用的数据页少，脏页比例容易接近 75%，造成性能间歇性抖动。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_buffer_pool_size=1G
+</code></pre><h2 id="join-联表查询缓冲池大小">join 联表查询缓冲池大小</h2>
+<p>join_buffer 的大小是由参数 join_buffer_size 设定的，默认值是 256k。如果放不下表 t1 的所有数据话，策略很简单，就是分段放。如果 join 语句较慢，有可能是因为缓冲池过小。</p>
+<pre><code class="language-conf" data-lang="conf">join_buffer_size=32M
+</code></pre><h1 id="四硬盘-io-相关">四、硬盘 IO 相关</h1>
+<h2 id="io-读写能力">IO 读写能力</h2>
+<p>如果没能合理地设置 innodb_io_capacity 参数，会导致一些性能问题。比如 MySQL 的写入速度很慢，TPS 很低，但是数据库主机的 IO 压力并不大。</p>
+<p>如果主机磁盘用的是 SSD，但是 innodb_io_capacity 的值设置的是 300。于是，InnoDB 认为这个系统的能力就这么差，所以刷脏页刷得特别慢，甚至比脏页生成的速度还慢，这样就造成了脏页累积，影响了查询和更新性能。</p>
+<p>测试完成后可以得到服务器硬盘的 IOPS，根据这个值来设置：（200 是默认值）</p>
+<pre><code class="language-conf" data-lang="conf">innodb_io_capacity = 200
+</code></pre><p>centos 安装 fio，测试硬盘 io</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install -y libaio-devel fio
+<span class="nb">cd</span> /<span class="p">;</span>mkdir test<span class="p">;</span><span class="nb">cd</span> /test<span class="p">;</span>touch file<span class="p">;</span>fio -filename<span class="o">=</span>/test/file -direct<span class="o">=</span><span class="m">1</span> -iodepth <span class="m">1</span> -thread -rw<span class="o">=</span>randrw -ioengine<span class="o">=</span>psync -bs<span class="o">=</span>4k -size<span class="o">=</span>500M -numjobs<span class="o">=</span><span class="m">10</span> -runtime<span class="o">=</span><span class="m">10</span> -group_reporting -name<span class="o">=</span>mytest
+</code></pre></div><p>windows 可以使用 AS SSD 软件测试 IOPS</p>
+<h2 id="脏页刷写连坐机制">脏页刷写连坐机制</h2>
+<p>一旦一个查询请求需要在执行过程中先 flush 掉一个脏页时，这个查询就可能要比平时慢了。而 MySQL 中的一个机制，可能让你的查询会更慢：在准备刷一个脏页的时候，如果这个数据页旁边的数据页刚好是脏页，就会把这个 “邻居” 也带着一起刷掉；而且这个把 “邻居” 拖下水的逻辑还可以继续蔓延，也就是对于每个邻居数据页，如果跟它相邻的数据页也还是脏页的话，也会被放到一起刷。在 InnoDB 中，innodb_flush_neighbors 参数就是用来控制这个行为的，值为 1 的时候会有上述的 “连坐” 机制，值为 0 时表示不找邻居，自己刷自己的。</p>
+<p>找 “邻居” 这个优化在机械硬盘时代是很有意义的，可以减少很多随机 IO。机械硬盘的随机 IOPS 一般只有几百，相同的逻辑操作减少随机 IO 就意味着系统性能的大幅度提升。</p>
+<p>而如果使用的是 SSD 这类 IOPS 比较高的设备的话，建议把 innodb_flush_neighbors 的值设置成 0：</p>
+<p>因为这时候 IOPS 往往不是瓶颈，而 “只刷自己”，就能更快地执行完必要的刷脏页操作，减少 SQL 语句响应时间。在 MySQL 8.0 中，innodb_flush_neighbors 参数的默认值已经是 0 了。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_flush_neighbors = 0
+</code></pre><h1 id="五线程相关">五、线程相关</h1>
+<h2 id="并发线程上限数">并发线程上限数</h2>
+<p>通常情况下，我们建议把 innodb_thread_concurrency 设置为 64~128 之间的值。并发连接和并发查询并不是同一个概念，你在 show processlist 的结果里，看到的几千个连接，指的就是并发连接。而 “当前正在执行” 的语句，才是我们所说的并发查询。</p>
+<p>并发连接数达到几千个影响并不大，就是多占一些内存而已。我们应该关注的是并发查询，因为并发查询太高才是 CPU 杀手。这也是为什么我们需要设置 innodb_thread_concurrency 参数的原因。</p>
+<p>在线程进入锁等待以后，并发线程的计数会减一，也就是说等行锁（也包括间隙锁）的线程是不算在 128 里面的。MySQL 这样设计是非常有意义的。因为，进入锁等待的线程已经不吃 CPU 了；更重要的是，必须这么设计，才能避免整个系统锁死。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_thread_concurrency=128
+</code></pre><h1 id="六锁相关">六、锁相关</h1>
+<h2 id="自增锁模式">自增锁模式</h2>
+<p>MySQL 5.1.22 版本引入了一个新策略，新增参数 innodb_autoinc_lock_mode，默认值是 1。</p>
+<p>这个参数的值被设置为 0 时，表示采用之前 MySQL 5.0 版本的策略，即语句执行结束后才释放锁；</p>
+<p>这个参数的值被设置为 1 时：普通 insert 语句，自增锁在申请之后就马上释放；类似 insert … select 这样的批量插入数据的语句，自增锁还是要等语句结束后才被释放；</p>
+<p>这个参数的值被设置为 2 时，所有的申请自增主键的动作都是申请后就释放锁。</p>
+<p>在生产上，尤其是有 insert … select 这种批量插入数据的场景时，从并发插入数据性能的角度考虑，我建议你这样设置：
+innodb_autoinc_lock_mode=2 ，并且 binlog_format=row. 这样做，既能提升并发性，又不会出现数据一致性问题。</p>
+<pre><code class="language-conf" data-lang="conf">innodb_autoinc_lock_mode=2
+</code></pre><h1 id="七sql-部分">七、SQL 部分</h1>
+<h2 id="安全模式">安全模式</h2>
+<p>为了防止忘记在 delete 或者 update 语句中写 where 条件、where 条件里面没有包含索引字段、没有加入 limit 限制引起的非安全 SQL 语句造成数据误删等，写入该配置后，这些非安全语句执行就会报错。</p>
+<pre><code class="language-conf" data-lang="conf">sql_safe_updates = ON
+</code></pre><h1 id="配置模板">配置模板</h1>
+<pre><code class="language-conf" data-lang="conf">innodb_file_per_table = ON
+ 
+binlog_format=row
+binlog_row_image=FULL
+ 
+expire_logs_days = 30
+max_binlog_size = 512M
+ 
+sync_binlog = 1
+innodb_flush_log_at_trx_commit = 1
+ 
+innodb_log_file_size=512M
+innodb_log_files_in_group=2
+ 
+innodb_buffer_pool_size=1G
+join_buffer_size=32M
+ 
+innodb_io_capacity = 300
+innodb_flush_neighbors = 0
+ 
+innodb_thread_concurrency=128
+ 
+innodb_autoinc_lock_mode=2
+</code></pre></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-11-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/" class="next" rel="next" title="Python 如何创建一个 Excel 文件并向其写入内容？">Python 如何创建一个 Excel 文件并向其写入内容？<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨，无需多言。</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":100},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        </body>
+
+</html>

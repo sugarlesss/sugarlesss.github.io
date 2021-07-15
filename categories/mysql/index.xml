@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>MySQL - 分类 - 無糖的小宇宙</title>
+        <link>http://sugarless.top/categories/mysql/</link>
+        <description>MySQL - 分类 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/mysql/" rel="self" type="application/rss+xml" /><item>
+    <title>MySQL5.7 生产环境推荐参数配置</title>
+    <link>http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</link>
+    <pubDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</guid>
+    <description><![CDATA[<p>隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。</p>]]></description>
+</item></channel>
+</rss>
