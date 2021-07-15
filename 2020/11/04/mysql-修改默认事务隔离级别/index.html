@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>关于博客 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="关于博客" />
-<meta property="og:description" content="关于内容和工具" />
+    <title>MySQL 修改默认事务隔离级别 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="MySQL 修改默认事务隔离级别" />
+<meta property="og:description" content="MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-05-18T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-11-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-11-04T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="关于博客"/>
-<meta name="twitter:description" content="关于内容和工具"/>
+<meta name="twitter:title" content="MySQL 修改默认事务隔离级别"/>
+<meta name="twitter:description" content="MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" /><link rel="prev" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2020/11/05/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "关于博客",
+        "headline": "MySQL 修改默认事务隔离级别",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/2019\/05\/18\/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2\/"
-        },"genre": "posts","wordcount":  225 ,
-        "url": "http:\/\/sugarless.top\/2019\/05\/18\/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2\/","datePublished": "2019-05-18T00:00:00+00:00","dateModified": "2019-05-18T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/2020\/11\/04\/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB\/"
+        },"genre": "posts","wordcount":  713 ,
+        "url": "http:\/\/sugarless.top\/2020\/11\/04\/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB\/","datePublished": "2020-11-04T00:00:00+00:00","dateModified": "2020-11-04T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,26 +123,68 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">关于博客</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MySQL 修改默认事务隔离级别</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%97%B2%E8%81%8A/"><i class="far fa-folder fa-fw"></i>闲聊</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-18">2019-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 225 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/mysql/"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-04">2020-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 713 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>关于内容和工具</p>
-<p>大概在半年前，尝试并且使用了一些笔记软件，于是逐渐陷入寻找的沼泽里，一发不可收拾，开始体验各种笔记软件，这似乎是陷入了一个不应该存在的怪圈：找笔记APP，体验，找下一个笔记APP。而我们本心不该是这样的，本来是想找个称手的兵器打仗，最后却变成了武器商店的店长。</p>
-<p>近期逐渐意识到了，应该逐渐回归初心，想到什么内容，就找合适的地方马上开始写，内容远比载体重要的多。</p>
-<p>不再去把大量的时间花在寻找好工具上了，专注于内容产出，提升自己，显然更加重要。</p></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一查看当前-mysql-版本号">一、查看当前 MySQL 版本号</a></li>
+    <li><a href="#二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</a>
+      <ul>
+        <li><a href="#21mysql56-及其更早的版本">2.1、MySQL5.6 及其更早的版本</a></li>
+        <li><a href="#22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#三mysql-的四个事务隔离级别">三、MySQL 的四个事务隔离级别</a></li>
+    <li><a href="#四修改-mysql-全局默认事务隔离级别">四、修改 MySQL 全局默认事务隔离级别</a>
+      <ul>
+        <li><a href="#41mysql56-及其更早的版本">4.1、MySQL5.6 及其更早的版本</a></li>
+        <li><a href="#42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p>
+<h1 id="一查看当前-mysql-版本号">一、查看当前 MySQL 版本号</h1>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">version</span><span class="p">();</span><span class="w">
+</span></code></pre></div><h1 id="二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</h1>
+<h2 id="21mysql56-及其更早的版本">2.1、MySQL5.6 及其更早的版本</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h2 id="22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">transaction_isolation</span><span class="p">;</span><span class="w">
+</span></code></pre></div><p>1、MySQL5.7 引入了 transaction_isolation 用来代替 tx_isolation，并在 MySQL8.0.3 去掉了 tx_isolation，在 MySQL5.7 及更高版本中建议使用 transaction_isolation</p>
+<p>2、若要查看当前会话的事务隔离级别，可以去掉 global. 使用 SELECT @@transaction_isolation。同理，若只想针对当前 session 设置事务隔离级别，可将 global 关键字替换为 session</p>
+<h1 id="三mysql-的四个事务隔离级别">三、MySQL 的四个事务隔离级别</h1>
+<p>|  事务隔离级别   | 脏读  | 不可重复读  | 幻读  |
+|  &mdash;-  | &mdash;-  |
+| 读未提交（read-uncommitted）  | 是 | 是 | 是 |
+| 读提交（read-committed）  | 否 | 是 | 是 |
+| 可重复读（repeatable-read）  | 否 | 否 | 是 |
+| 串行化（serializable）  | 否 | 否 | 否 |</p>
+<h1 id="四修改-mysql-全局默认事务隔离级别">四、修改 MySQL 全局默认事务隔离级别</h1>
+<h2 id="41mysql56-及其更早的版本">4.1、MySQL5.6 及其更早的版本</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></div><h2 id="42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-05-18</span>
+                <span>更新于 2020-11-04</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -161,8 +203,8 @@
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" class="next" rel="next" title="MySQL 修改默认事务隔离级别">MySQL 修改默认事务隔离级别<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/2020/11/05/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5/" class="next" rel="next" title="MySQL 的常用维护语句">MySQL 的常用维护语句<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
