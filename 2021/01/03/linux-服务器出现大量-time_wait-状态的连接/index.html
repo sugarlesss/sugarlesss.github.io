@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>WizTree-最快的磁盘空间分析器 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="WizTree-最快的磁盘空间分析器" />
-<meta property="og:description" content="WizeTree 是一款 Windows 平台下的磁盘空间分析器。" />
+    <title>Linux服务器出现大量TIME_WAIT状态的连接 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Linux服务器出现大量TIME_WAIT状态的连接" />
+<meta property="og:description" content="在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-07-14T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-07-14T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-01-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-03T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="WizTree-最快的磁盘空间分析器"/>
-<meta name="twitter:description" content="WizeTree 是一款 Windows 平台下的磁盘空间分析器。"/>
+<meta name="twitter:title" content="Linux服务器出现大量TIME_WAIT状态的连接"/>
+<meta name="twitter:description" content="在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/" /><link rel="prev" href="http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/" /><link rel="next" href="http://sugarless.top/2021/07/14/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" /><link rel="prev" href="http://sugarless.top/2019/05/18/php-%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91/" /><link rel="next" href="http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "WizTree-最快的磁盘空间分析器",
+        "headline": "Linux服务器出现大量TIME_WAIT状态的连接",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/2021\/07\/14\/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8\/"
-        },"genre": "posts","keywords": "软件","wordcount":  177 ,
-        "url": "http:\/\/sugarless.top\/2021\/07\/14\/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8\/","datePublished": "2021-07-14T00:00:00+00:00","dateModified": "2021-07-14T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/2021\/01\/03\/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5\/"
+        },"genre": "posts","wordcount":  401 ,
+        "url": "http:\/\/sugarless.top\/2021\/01\/03\/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5\/","datePublished": "2021-01-03T00:00:00+00:00","dateModified": "2021-01-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,35 +123,57 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">WizTree-最快的磁盘空间分析器</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux服务器出现大量TIME_WAIT状态的连接</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-14">2021-07-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 177 字&nbsp;
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux/"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-01-03">2021-01-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 401 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>
-<p>通过可视化（图形化、树形化）的布局，你可以直观地看到在你硬盘上大的文件和文件夹。</p>
-<p>内置文件管理器，支持查看文件树、文件夹大小排序、文件类型分析 wiztree 使用 NTFS 文件系统的 MFT 进行文件分析 (与著名的软件 everything 原理相同) 比 spacesniffer 的速度快数十倍，几秒钟就能完成全盘文件大小分析。</p>
-<p>官网：https://www.diskanalyzer.com/</p>
-<p>预览图</p>
-<p><img
-        class="lazyload"
-        data-src="/post_images/1624256177888-236a6fe8-59e8-4353-b61e-856a1438f9bd.png"
-        data-srcset="/post_images/1624256177888-236a6fe8-59e8-4353-b61e-856a1438f9bd.png, /post_images/1624256177888-236a6fe8-59e8-4353-b61e-856a1438f9bd.png 1.5x, /post_images/1624256177888-236a6fe8-59e8-4353-b61e-856a1438f9bd.png 2x"
-        data-sizes="auto"
-        alt="/post_images/1624256177888-236a6fe8-59e8-4353-b61e-856a1438f9bd.png"
-        title="image.png"
-    /></p></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#查看默认-timewait-时长">查看默认 timewait 时长</a></li>
+    <li><a href="#查看连接状态统计">查看连接状态统计</a></li>
+    <li><a href="#优化内核参数">优化内核参数</a></li>
+    <li><a href="#释义">释义</a></li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>
+<p>高并发可以让服务器在短时间范围内同时占用大量端口，而端口有个 0~65535 的范围，并不是很多，刨除系统和其他服务要用的，剩下的就更少了。</p>
+<p>在这个场景中，短连接表示 “业务处理 + 传输数据的时间 远远小于 TIMEWAIT 超时的时间” 的连接。Linux 默认的 TIME_WAIT 时长一般是 60 秒。</p>
+<h1 id="查看默认-timewait-时长">查看默认 timewait 时长</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat /proc/sys/net/ipv4/tcp_fin_timeout
+</code></pre></div><h1 id="查看连接状态统计">查看连接状态统计</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">netstat -an <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
+</code></pre></div><h1 id="优化内核参数">优化内核参数</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vim /etc/sysctl.conf
+
+<span class="c1">#追加内容</span>
+net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+</code></pre></div><h1 id="释义">释义</h1>
+<p>开启 SYN Cookies。当出现 SYN 等待队列溢出时，启用 cookies 来处理，可防范少量 SYN 攻击，默认为 0，表示关闭。<br>
+net.ipv4.tcp_syncookies = 1</p>
+<p>开启重用。允许将 TIME-WAIT sockets 重新用于新的 TCP 连接，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_reuse = 1</p>
+<p>开启 TCP 连接中 TIME-WAIT sockets 的快速回收，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_recycle = 1</p>
+<p>修改系統默认的 TIMEOUT 时间（FIN_WAIT_2 状态的时长）<br>
+net.ipv4.tcp_fin_timeout</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.cnblogs.com/apanly/p/12431902.html">https://www.cnblogs.com/apanly/p/12431902.html</a><br>
+<a href="https://zhuanlan.zhihu.com/p/79507132">https://zhuanlan.zhihu.com/p/79507132</a></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-07-14</span>
+                <span>更新于 2021-01-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -164,14 +186,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E8%BD%AF%E4%BB%B6/">软件</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/" class="prev" rel="prev" title="如何下载 ts 流媒体视频"><i class="fas fa-angle-left fa-fw"></i>如何下载 ts 流媒体视频</a>
-            <a href="/2021/07/14/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/" class="next" rel="next" title="hugo 一键部署">hugo 一键部署<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2019/05/18/php-%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91/" class="prev" rel="prev" title="PHP基于引用特性实现的无限级分类树"><i class="fas fa-angle-left fa-fw"></i>PHP基于引用特性实现的无限级分类树</a>
+            <a href="/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/" class="next" rel="next" title="Python爬取百度实时热点">Python爬取百度实时热点<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
