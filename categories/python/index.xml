@@ -39,5 +39,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/</guid>
     <description><![CDATA[<p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>]]></description>
+</item><item>
+    <title>PyCharm 使用 Anaconda 管理多版本 Python 环境</title>
+    <link>http://sugarless.top/2020/11/13/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83/</link>
+    <pubDate>Fri, 13 Nov 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2020/11/13/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83/</guid>
+    <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>]]></description>
 </item></channel>
 </rss>
