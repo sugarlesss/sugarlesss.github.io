@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nginx 针对特定路径或入口文件限流 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Nginx 针对特定路径或入口文件限流" />
-<meta property="og:description" content="使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。" />
+    <title>Nginx 根据特定请求参数做限流 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Nginx 根据特定请求参数做限流" />
+<meta property="og:description" content="我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-05-18T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-09-17T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-17T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Nginx 针对特定路径或入口文件限流"/>
-<meta name="twitter:description" content="使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。"/>
+<meta name="twitter:title" content="Nginx 根据特定请求参数做限流"/>
+<meta name="twitter:description" content="我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" /><link rel="prev" href="http://sugarless.top/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" /><link rel="next" href="http://sugarless.top/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" /><link rel="prev" href="http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" /><link rel="next" href="http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Nginx 针对特定路径或入口文件限流",
+        "headline": "Nginx 根据特定请求参数做限流",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/2019\/05\/18\/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81\/"
-        },"genre": "posts","keywords": "限流","wordcount":  774 ,
-        "url": "http:\/\/sugarless.top\/2019\/05\/18\/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81\/","datePublished": "2019-05-18T00:00:00+00:00","dateModified": "2019-05-18T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/2020\/09\/17\/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81\/"
+        },"genre": "posts","keywords": "限流","wordcount":  695 ,
+        "url": "http:\/\/sugarless.top\/2020\/09\/17\/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81\/","datePublished": "2020-09-17T00:00:00+00:00","dateModified": "2020-09-17T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +123,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nginx 针对特定路径或入口文件限流</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nginx 根据特定请求参数做限流</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/nginx/"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-18">2019-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 774 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-17">2020-09-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 695 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -136,50 +136,49 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一编写-location-规则">一、编写 location 规则</a></li>
-    <li><a href="#二限制并发量">二、限制并发量</a></li>
+    <li><a href="#二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</a></li>
+    <li><a href="#三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</a></li>
+    <li><a href="#四原理">四、原理</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>
-<p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
-<h1 id="一编写-location-规则">一、编写 location 规则</h1>
-<p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+            </div><div class="content" id="content"><p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>
+<p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from=wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
+<h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
+<p>在 nginx 的 http 部分写入：</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
+<span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
+  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
-<h1 id="二限制并发量">二、限制并发量</h1>
-<p>在 nginx 的 http 部分添加：</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
-<span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
 </code></pre></div><blockquote>
-<p>$binary_remote_addr 是二进制格式的 IPv4 地址，这个 IP 是请求者的 IP。将远程客户端的 IP 地址作为 zone 的 key，目的是为了对单个客户端做并发限制。<br>
-$server_name 指的是当前站点的名称，将这个作为 zone 的 key，目的是为了对某个站点做总体的并发限制。</p>
+<p>这里的 rate 我设为了每秒处理 30 个请求，如果 limit_req 没有设置 burst，则默认为 0。<br>
+rate 支持 r/s 和 r/m 两种模式。</p>
 </blockquote>
-<p>稍稍修改一下上面的 location 规则，设置为站点并发量为 300，单个 IP 并发量限制 25：</p>
+<p>在 server 部分写入：</p>
 <div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">limit_conn</span> <span class="s">perserver</span> <span class="mi">300</span><span class="p">;</span>
-  <span class="kn">limit_conn</span> <span class="s">perip</span> <span class="mi">25</span><span class="p">;</span>
-  <span class="kn">limit_rate</span> <span class="mi">128k</span><span class="p">;</span>
-  
-  <span class="c1">#宝塔面板默认的 enable-php-56.conf 规则，对php文件的响应处理
+  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
+  <span class="c1">#limit_rate 512k;
+</span><span class="c1"></span>  
+  <span class="c1">#宝塔PHP文件处理
 </span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
   <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
   <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
   <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
   <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div><blockquote>
-<p>limit_conn 的作用是，在某个 zone 下的并发限制为多少。<br>
-limit_rate 限制的是 nginx 向客户端传送响应的速率。<br>
-limit_conn 和 limit_req 不能设置在 if 指令中，所以如果针对不同的 URL 进行限流，只能通过不同的 location 实现。<br>
-limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不同 URL 的限流。</p>
-</blockquote>
-<p>使用 jmeter 等相关并发测试工具可以测到，确实对 /app/index.php/ 请求做了并发量的限制，超出并发量的部分 nginx 会默认返回 503。</p></div><div class="post-footer" id="post-footer">
+</code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
+<p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
+<h1 id="四原理">四、原理</h1>
+<p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>
+<p>但两者有本质上的区别，request 和 connection 是不同的，在实际应用中应注意区别。</p>
+<ul>
+<li>connection 是连接，即常说的 tcp 连接，通过三次握手而建立的。</li>
+<li>request 是指请求，即 http 请求，（注意，tcp 连接是有状态的，而构建在 tcp 之上的 http 却是无状态的协议）。</li>
+</ul>
+<p>limit_req_zone 或是 limit_conn_zone 对请求的限制有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。但 IP 是针对全体用户做的限流，显然不能满足我们的需求。所以我们需要使用 map 模块来匹配特定的请求参数生成一个变量，将这个变量作为 limit_req_zone 或是 limit_conn_zone 的 key，这样就可以实现我们的需求了。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-05-18</span>
+                <span>更新于 2020-09-17</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -198,8 +197,8 @@ limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不�
         </section>
     </div>
 
-    <div class="post-nav"><a href="/2019/05/18/%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2/" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
-            <a href="/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/" class="next" rel="next" title="Nginx 根据特定请求参数做限流">Nginx 根据特定请求参数做限流<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/" class="prev" rel="prev" title="Nginx 针对特定路径或入口文件限流"><i class="fas fa-angle-left fa-fw"></i>Nginx 针对特定路径或入口文件限流</a>
+            <a href="/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/" class="next" rel="next" title="MySQL 修改默认事务隔离级别">MySQL 修改默认事务隔离级别<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">

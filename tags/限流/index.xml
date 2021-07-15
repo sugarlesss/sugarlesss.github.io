@@ -4,7 +4,14 @@
         <link>http://sugarless.top/tags/%E9%99%90%E6%B5%81/</link>
         <description>限流 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/%E9%99%90%E6%B5%81/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/%E9%99%90%E6%B5%81/" rel="self" type="application/rss+xml" /><item>
+    <title>Nginx 根据特定请求参数做限流</title>
+    <link>http://sugarless.top/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/</link>
+    <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2020/09/17/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81/</guid>
+    <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>]]></description>
+</item><item>
     <title>Nginx 针对特定路径或入口文件限流</title>
     <link>http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
