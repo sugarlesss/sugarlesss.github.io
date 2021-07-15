@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Nginx - 分类 - 無糖的小宇宙</title>
+        <link>http://sugarless.top/categories/nginx/</link>
+        <description>Nginx - 分类 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/nginx/" rel="self" type="application/rss+xml" /><item>
+    <title>Nginx 针对特定路径或入口文件限流</title>
+    <link>http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/</link>
+    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2019/05/18/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/</guid>
+    <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>]]></description>
+</item></channel>
+</rss>
