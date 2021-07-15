@@ -46,5 +46,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/2020/11/13/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83/</guid>
     <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>]]></description>
+</item><item>
+    <title>Python 如何创建一个 Excel 文件并向其写入内容？</title>
+    <link>http://sugarless.top/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/</link>
+    <pubDate>Wed, 11 Nov 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/</guid>
+    <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>]]></description>
 </item></channel>
 </rss>
