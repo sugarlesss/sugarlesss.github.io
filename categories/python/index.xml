@@ -5,11 +5,11 @@
         <description>Python - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/python/" rel="self" type="application/rss+xml" /><item>
-    <title>如何使用 Python 白嫖腾讯云的语音转文字</title>
-    <link>http://sugarless.top/2021/07/16/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-python-%E7%99%BD%E5%AB%96%E8%85%BE%E8%AE%AF%E4%BA%91%E7%9A%84%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97/</link>
+    <title>关于音视频文案提取</title>
+    <link>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</link>
     <pubDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/16/%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-python-%E7%99%BD%E5%AB%96%E8%85%BE%E8%AE%AF%E4%BA%91%E7%9A%84%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97/</guid>
+    </author><guid>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</guid>
     <description><![CDATA[<p>长时间的电话会议 / 录音 / 演讲视频之类的各种音视频信息存储体积太大，转成文字，整理成文字稿后无论是存储还是整理归档都更方便些。</p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
