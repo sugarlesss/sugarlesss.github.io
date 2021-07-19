@@ -4,7 +4,14 @@
         <link>http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html</link>
         <description>闲聊 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 22 Nov 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html" rel="self" type="application/rss+xml" /><item>
+    <title>Windows 使用 .bat 批处理脚本设置 IP、DNS </title>
+    <link>http://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</link>
+    <pubDate>Fri, 22 Nov 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</guid>
+    <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>]]></description>
+</item><item>
     <title>关于博客</title>
     <link>http://sugarless.top/posts/about-this-blog-site.html</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
