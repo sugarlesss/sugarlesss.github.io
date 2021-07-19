@@ -2,6 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>http://sugarless.top/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/categories.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -84,5 +85,5 @@
             <loc>http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/categories/redis.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/posts/thinkphp5.1-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-redis-%E5%AE%9E%E7%8E%B0%E6%82%B2%E8%A7%82%E9%94%81.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/about-this-blog-site.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>http://sugarless.top/posts/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/tags/%E6%82%B2%E8%A7%82%E9%94%81.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
