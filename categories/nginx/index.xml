@@ -18,5 +18,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/2020/09/16/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81/</guid>
     <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>]]></description>
+</item><item>
+    <title>基于 nginx 实现的负载均衡</title>
+    <link>http://sugarless.top/2020/08/24/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</link>
+    <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/2020/08/24/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/</guid>
+    <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>]]></description>
 </item></channel>
 </rss>
