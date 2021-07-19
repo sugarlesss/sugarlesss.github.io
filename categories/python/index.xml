@@ -1,64 +1,64 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Python - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/python/</link>
+        <link>http://sugarless.top/categories/python.html</link>
         <description>Python - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/python/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/python.html" rel="self" type="application/rss+xml" /><item>
     <title>关于音视频文案提取</title>
-    <link>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</link>
-    <pubDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+    <link>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</guid>
+    </author><guid>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
-    <link>http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</link>
+    <link>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80.html</guid>
     <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>]]></description>
 </item><item>
     <title>Python 爬取百度实时热点</title>
-    <link>http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</link>
+    <link>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9.html</link>
     <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
 </item><item>
     <title>Python 中文分词，根据词频和背景图片生成词云</title>
-    <link>http://sugarless.top/2020/11/18/python%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91/</link>
+    <link>http://sugarless.top/posts/python-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91.html</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/18/python%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91.html</guid>
     <description><![CDATA[<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>]]></description>
 </item><item>
     <title>Python pip 指定源安装</title>
-    <link>http://sugarless.top/2020/11/17/python-pip%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85/</link>
+    <link>http://sugarless.top/posts/python-pip-%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/17/python-pip%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85/</guid>
+    </author><guid>http://sugarless.top/posts/python-pip-%E6%8C%87%E5%AE%9A%E6%BA%90%E5%AE%89%E8%A3%85.html</guid>
     <description><![CDATA[<p>有时 pip 不指定源安装会比较慢，甚至会安装失败。</p>]]></description>
 </item><item>
     <title>Python 导出 or 安装 requirements.txt 依赖</title>
-    <link>http://sugarless.top/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/</link>
+    <link>http://sugarless.top/posts/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/17/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E5%AF%BC%E5%87%BA-or-%E5%AE%89%E8%A3%85-requirements.txt-%E4%BE%9D%E8%B5%96.html</guid>
     <description><![CDATA[<p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>]]></description>
 </item><item>
     <title>PyCharm 使用 Anaconda 管理多版本 Python 环境</title>
-    <link>http://sugarless.top/2020/11/13/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83/</link>
+    <link>http://sugarless.top/posts/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83.html</link>
     <pubDate>Fri, 13 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/13/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83/</guid>
+    </author><guid>http://sugarless.top/posts/pycharm-%E4%BD%BF%E7%94%A8-anaconda-%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%AC-python-%E7%8E%AF%E5%A2%83.html</guid>
     <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>]]></description>
 </item><item>
     <title>Python 如何创建一个 Excel 文件并向其写入内容？</title>
-    <link>http://sugarless.top/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/</link>
+    <link>http://sugarless.top/posts/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9.html</link>
     <pubDate>Wed, 11 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/11/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9.html</guid>
     <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>]]></description>
 </item></channel>
 </rss>

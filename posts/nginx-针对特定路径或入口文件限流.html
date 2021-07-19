@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nginx 针对特定路径或入口文件限流 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Nginx 针对特定路径或入口文件限流" />
+<meta property="og:description" content="使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugarless.top/posts/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-09-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-09-16T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Nginx 针对特定路径或入口文件限流"/>
+<meta name="twitter:description" content="使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html" /><link rel="prev" href="http://sugarless.top/posts/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html" /><link rel="next" href="http://sugarless.top/posts/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Nginx 针对特定路径或入口文件限流",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/sugarless.top\/posts\/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html"
+        },"genre": "posts","keywords": "限流","wordcount":  774 ,
+        "url": "http:\/\/sugarless.top\/posts\/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html","datePublished": "2020-09-16T00:00:00+00:00","dateModified": "2020-09-16T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++)
+                if (metas[i].getAttribute('name') === metaName)
+                    return metas[i];
+            return '';
+        }
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/nginx-%E9%92%88%E5%AF%B9%E7%89%B9%E5%AE%9A%E8%B7%AF%E5%BE%84%E6%88%96%E5%85%A5%E5%8F%A3%E6%96%87%E4%BB%B6%E9%99%90%E6%B5%81.html" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Nginx 针对特定路径或入口文件限流</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/nginx.html"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-16">2020-09-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 774 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一编写-location-规则">一、编写 location 规则</a></li>
+    <li><a href="#二限制并发量">二、限制并发量</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>
+<p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
+<h1 id="一编写-location-规则">一、编写 location 规则</h1>
+<p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
+<h1 id="二限制并发量">二、限制并发量</h1>
+<p>在 nginx 的 http 部分添加：</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
+<span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
+</code></pre></div><blockquote>
+<p>$binary_remote_addr 是二进制格式的 IPv4 地址，这个 IP 是请求者的 IP。将远程客户端的 IP 地址作为 zone 的 key，目的是为了对单个客户端做并发限制。<br>
+$server_name 指的是当前站点的名称，将这个作为 zone 的 key，目的是为了对某个站点做总体的并发限制。</p>
+</blockquote>
+<p>稍稍修改一下上面的 location 规则，设置为站点并发量为 300，单个 IP 并发量限制 25：</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+  <span class="kn">limit_conn</span> <span class="s">perserver</span> <span class="mi">300</span><span class="p">;</span>
+  <span class="kn">limit_conn</span> <span class="s">perip</span> <span class="mi">25</span><span class="p">;</span>
+  <span class="kn">limit_rate</span> <span class="mi">128k</span><span class="p">;</span>
+  
+  <span class="c1">#宝塔面板默认的 enable-php-56.conf 规则，对php文件的响应处理
+</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p>limit_conn 的作用是，在某个 zone 下的并发限制为多少。<br>
+limit_rate 限制的是 nginx 向客户端传送响应的速率。<br>
+limit_conn 和 limit_req 不能设置在 if 指令中，所以如果针对不同的 URL 进行限流，只能通过不同的 location 实现。<br>
+limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不同 URL 的限流。</p>
+</blockquote>
+<p>使用 jmeter 等相关并发测试工具可以测到，确实对 /app/index.php/ 请求做了并发量的限制，超出并发量的部分 nginx 会默认返回 503。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-09-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/%E9%99%90%E6%B5%81.html">限流</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html" class="prev" rel="prev" title="基于 nginx 实现的负载均衡"><i class="fas fa-angle-left fa-fw"></i>基于 nginx 实现的负载均衡</a>
+            <a href="/posts/nginx-%E6%A0%B9%E6%8D%AE%E7%89%B9%E5%AE%9A%E8%AF%B7%E6%B1%82%E5%8F%82%E6%95%B0%E5%81%9A%E9%99%90%E6%B5%81.html" class="next" rel="next" title="Nginx 根据特定请求参数做限流">Nginx 根据特定请求参数做限流<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨，无需多言。</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        </body>
+
+</html>

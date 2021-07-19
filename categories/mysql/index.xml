@@ -1,29 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>MySQL - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/mysql/</link>
+        <link>http://sugarless.top/categories/mysql.html</link>
         <description>MySQL - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/mysql/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/mysql.html" rel="self" type="application/rss+xml" /><item>
     <title>MySQL5.7 生产环境推荐参数配置</title>
-    <link>http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</link>
+    <link>http://sugarless.top/posts/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE.html</link>
     <pubDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/07/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE/</guid>
+    </author><guid>http://sugarless.top/posts/mysql5.7-%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%8E%A8%E8%8D%90%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE.html</guid>
     <description><![CDATA[<p>隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。</p>]]></description>
 </item><item>
     <title>MySQL 的常用维护语句</title>
-    <link>http://sugarless.top/2020/11/05/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5/</link>
+    <link>http://sugarless.top/posts/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5.html</link>
     <pubDate>Thu, 05 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/05/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5/</guid>
+    </author><guid>http://sugarless.top/posts/mysql-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%BB%B4%E6%8A%A4%E8%AF%AD%E5%8F%A5.html</guid>
     <description><![CDATA[<p>在日常开发中遇到的一些问题。</p>]]></description>
 </item><item>
     <title>MySQL 修改默认事务隔离级别</title>
-    <link>http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</link>
+    <link>http://sugarless.top/posts/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.html</link>
     <pubDate>Wed, 04 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/04/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB/</guid>
+    </author><guid>http://sugarless.top/posts/mysql-%E4%BF%AE%E6%94%B9%E9%BB%98%E8%AE%A4%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB.html</guid>
     <description><![CDATA[<p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p>]]></description>
 </item></channel>
 </rss>

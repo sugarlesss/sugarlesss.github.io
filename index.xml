@@ -4,77 +4,77 @@
         <link>http://sugarless.top/</link>
         <description>关于 LoveIt 主题</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="http://sugarless.top/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>关于音视频文案提取</title>
-    <link>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</link>
-    <pubDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+    <link>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</guid>
+    </author><guid>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>http://sugarless.top/2021/07/14/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/</link>
+    <link>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/14/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2/</guid>
+    </author><guid>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</guid>
     <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>WizTree - 最快的磁盘空间分析器</title>
-    <link>http://sugarless.top/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/</link>
+    <link>http://sugarless.top/posts/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/14/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8/</guid>
+    </author><guid>http://sugarless.top/posts/wiztree-%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A3%81%E7%9B%98%E7%A9%BA%E9%97%B4%E5%88%86%E6%9E%90%E5%99%A8.html</guid>
     <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</link>
+    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</guid>
+    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
-    <link>http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</link>
+    <link>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/06/21/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E6%89%B9%E9%87%8F%E5%8E%BB%E9%99%A4%E6%96%87%E4%BB%B6%E5%9B%BA%E5%AE%9A%E5%89%8D%E7%BC%80.html</guid>
     <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>]]></description>
 </item><item>
     <title>PHP计算当天剩余秒数最方便和最快的方法</title>
-    <link>http://sugarless.top/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/</link>
+    <link>http://sugarless.top/posts/php%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95.html</link>
     <pubDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/01/12/php-%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95/</guid>
+    </author><guid>http://sugarless.top/posts/php%E8%AE%A1%E7%AE%97%E5%BD%93%E5%A4%A9%E5%89%A9%E4%BD%99%E7%A7%92%E6%95%B0%E6%9C%80%E6%96%B9%E4%BE%BF%E5%92%8C%E6%9C%80%E5%BF%AB%E7%9A%84%E6%96%B9%E6%B3%95.html</guid>
     <description><![CDATA[<p>结论推导</p>]]></description>
 </item><item>
     <title>Python 爬取百度实时热点</title>
-    <link>http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</link>
+    <link>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9.html</link>
     <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/01/11/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9/</guid>
+    </author><guid>http://sugarless.top/posts/python-%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E5%AE%9E%E6%97%B6%E7%83%AD%E7%82%B9.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
 </item><item>
     <title>Linux服务器出现大量TIME_WAIT状态的连接</title>
-    <link>http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</link>
+    <link>http://sugarless.top/posts/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5.html</link>
     <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</guid>
+    </author><guid>http://sugarless.top/posts/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5.html</guid>
     <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>]]></description>
 </item><item>
     <title>PHP基于引用特性实现的无限级分类树</title>
-    <link>http://sugarless.top/2020/12/16/php-%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91/</link>
+    <link>http://sugarless.top/posts/php%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91.html</link>
     <pubDate>Wed, 16 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/12/16/php-%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91/</guid>
+    </author><guid>http://sugarless.top/posts/php%E5%9F%BA%E4%BA%8E%E5%BC%95%E7%94%A8%E7%89%B9%E6%80%A7%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%97%A0%E9%99%90%E7%BA%A7%E5%88%86%E7%B1%BB%E6%A0%91.html</guid>
     <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>]]></description>
 </item><item>
     <title>如何编写一个 Linux Systemd Service？</title>
-    <link>http://sugarless.top/2020/12/01/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service/</link>
+    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html</link>
     <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/12/01/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service/</guid>
+    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html</guid>
     <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
 </item></channel>
 </rss>

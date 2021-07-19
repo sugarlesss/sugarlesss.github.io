@@ -1,22 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>FFmpeg - 标签 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/tags/ffmpeg/</link>
+        <link>http://sugarless.top/tags/ffmpeg.html</link>
         <description>FFmpeg - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/ffmpeg/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/ffmpeg.html" rel="self" type="application/rss+xml" /><item>
     <title>关于音视频文案提取</title>
-    <link>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</link>
-    <pubDate>Fri, 16 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+    <link>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/16/%E5%85%B3%E4%BA%8E%E9%9F%B3%E8%A7%86%E9%A2%91%E6%96%87%E6%A1%88%E6%8F%90%E5%8F%96/</guid>
+    </author><guid>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</link>
+    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/07/13/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91/</guid>
+    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item></channel>
 </rss>

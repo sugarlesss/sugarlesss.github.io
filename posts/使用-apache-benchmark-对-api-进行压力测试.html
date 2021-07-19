@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>使用 apache benchmark 对 API 进行压力测试 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="使用 apache benchmark 对 API 进行压力测试" />
+<meta property="og:description" content="在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugarless.top/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-06-13T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-06-13T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="使用 apache benchmark 对 API 进行压力测试"/>
+<meta name="twitter:description" content="在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html" /><link rel="prev" href="http://sugarless.top/posts/nginx-log-auto-chunk-script.html" /><link rel="next" href="http://sugarless.top/posts/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "使用 apache benchmark 对 API 进行压力测试",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/sugarless.top\/posts\/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html"
+        },"genre": "posts","keywords": "ab","wordcount":  481 ,
+        "url": "http:\/\/sugarless.top\/posts\/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html","datePublished": "2020-06-13T00:00:00+00:00","dateModified": "2020-06-13T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++)
+                if (metas[i].getAttribute('name') === metaName)
+                    return metas[i];
+            return '';
+        }
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 apache benchmark 对 API 进行压力测试</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%8A%98%E8%85%BE.html"><i class="far fa-folder fa-fw"></i>折腾</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-13">2020-06-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 481 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 ab</span>
+yum -y install httpd-tools
+
+<span class="c1"># 显示可选的参数列表及说明</span>
+ab -help
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 测试 </span>
+<span class="c1"># c：并发数量</span>
+<span class="c1"># n：总计请求数量</span>
+ab -c <span class="m">100</span> -n <span class="m">10000</span> https://yourdomain.com/getUserInfo?id<span class="o">=</span>36<span class="p">&amp;</span><span class="nv">token</span><span class="o">=</span>6vPgUT0gG1RyzBRKxYsSNBgwFwM1mQLz
+</code></pre></div><p>耐心等待测试完毕，以下是测试报告</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Server Software: nginx
+Server Hostname: yourdomain.com
+Server Port: <span class="m">443</span>
+SSL/TLS Protocol: TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+ 
+Document Path: getUserInfo?id<span class="o">=</span>36<span class="p">&amp;</span><span class="nv">token</span><span class="o">=</span>6vPgUT0gG1RyzBRKxYsSNBgwFwM1mQLz
+Document Length: <span class="m">41</span> bytes
+ 
+Concurrency Level: <span class="m">200</span>
+Time taken <span class="k">for</span> tests: 187.546 seconds
+Complete requests: <span class="m">30000</span>
+Failed requests: <span class="m">53</span>
+<span class="o">(</span>Connect: 0, Receive: 0, Length: 53, Exceptions: 0<span class="o">)</span>
+Write errors: <span class="m">0</span>
+Non-2xx responses: <span class="m">47</span>
+Total transferred: <span class="m">11695535</span> bytes
+HTML transferred: <span class="m">1235123</span> bytes
+Requests per second: 159.96 <span class="o">[</span><span class="c1">#/sec] (mean)</span>
+Time per request: 1250.304 <span class="o">[</span>ms<span class="o">]</span> <span class="o">(</span>mean<span class="o">)</span>
+Time per request: 6.252 <span class="o">[</span>ms<span class="o">]</span> <span class="o">(</span>mean, across all concurrent requests<span class="o">)</span>
+Transfer rate: 60.90 <span class="o">[</span>Kbytes/sec<span class="o">]</span> received
+ 
+Connection Times <span class="o">(</span>ms<span class="o">)</span>
+min mean<span class="o">[</span>+/-sd<span class="o">]</span> median max
+Connect: <span class="m">0</span> <span class="m">420</span> 1078.0 <span class="m">286</span> <span class="m">63684</span>
+Processing: <span class="m">50</span> <span class="m">640</span> 996.0 <span class="m">609</span> <span class="m">69848</span>
+Waiting: <span class="m">50</span> <span class="m">625</span> 248.5 <span class="m">608</span> <span class="m">1796</span>
+Total: <span class="m">217</span> <span class="m">1060</span> 1452.9 <span class="m">951</span> <span class="m">69848</span>
+ 
+Percentage of the requests served within a certain <span class="nb">time</span> <span class="o">(</span>ms<span class="o">)</span>
+50% <span class="m">951</span> <span class="c1"># 50%的请求在951ms内返回</span>
+66% <span class="m">1074</span>
+75% <span class="m">1152</span>
+80% <span class="m">1205</span>
+90% <span class="m">1391</span> <span class="c1"># 90%的请求在1391ms内返回</span>
+95% <span class="m">1660</span>
+98% <span class="m">2043</span>
+99% <span class="m">2928</span> <span class="c1"># 99%的请求在2928ms内返回</span>
+100% <span class="m">69848</span> <span class="o">(</span>longest request<span class="o">)</span>
+</code></pre></div><p>比较重要的也就是最后这部分的 percent line 了，jmeter 只有 90%、95%、99% 这三个量级，ab 从 50% 到 100% 都有。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-06-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ab.html">ab</a></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/nginx-log-auto-chunk-script.html" class="prev" rel="prev" title="Nginx 日志全自动切割脚本"><i class="fas fa-angle-left fa-fw"></i>Nginx 日志全自动切割脚本</a>
+            <a href="/posts/%E5%9F%BA%E4%BA%8E-nginx-%E5%AE%9E%E7%8E%B0%E7%9A%84%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html" class="next" rel="next" title="基于 nginx 实现的负载均衡">基于 nginx 实现的负载均衡<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨，无需多言。</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        </body>
+
+</html>

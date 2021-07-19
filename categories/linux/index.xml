@@ -1,29 +1,36 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Linux - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/linux/</link>
+        <link>http://sugarless.top/categories/linux.html</link>
         <description>Linux - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/linux/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/linux.html" rel="self" type="application/rss+xml" /><item>
     <title>Linux服务器出现大量TIME_WAIT状态的连接</title>
-    <link>http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</link>
+    <link>http://sugarless.top/posts/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5.html</link>
     <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2021/01/03/linux-%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8F-time_wait-%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5/</guid>
+    </author><guid>http://sugarless.top/posts/linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%87%BA%E7%8E%B0%E5%A4%A7%E9%87%8Ftime_wait%E7%8A%B6%E6%80%81%E7%9A%84%E8%BF%9E%E6%8E%A5.html</guid>
     <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>]]></description>
 </item><item>
     <title>如何编写一个 Linux Systemd Service？</title>
-    <link>http://sugarless.top/2020/12/01/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service/</link>
+    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html</link>
     <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/12/01/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service/</guid>
+    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html</guid>
     <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
 </item><item>
     <title>CentOS SSH 登录太慢的解决方法</title>
-    <link>http://sugarless.top/2020/11/28/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</link>
+    <link>http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</link>
     <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/2020/11/28/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/</guid>
+    </author><guid>http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</guid>
     <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>]]></description>
+</item><item>
+    <title>SSH远程会话管理工具 – screen使用教程</title>
+    <link>http://sugarless.top/posts/ssh%E8%BF%9C%E7%A8%8B%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-screen%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html</link>
+    <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/ssh%E8%BF%9C%E7%A8%8B%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-screen%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html</guid>
+    <description><![CDATA[<p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>]]></description>
 </item></channel>
 </rss>
