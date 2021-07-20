@@ -67,5 +67,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
     <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>]]></description>
+</item><item>
+    <title>Python 使用 configparser 库操作配置文件</title>
+    <link>http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html</link>
+    <pubDate>Mon, 19 Aug 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html</guid>
+    <description><![CDATA[<p>在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。</p>]]></description>
 </item></channel>
 </rss>

@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>如何使用 SSH 远程登录 Linux 服务器 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="如何使用 SSH 远程登录 Linux 服务器" />
-<meta property="og:description" content="Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。" />
+    <title>Python 使用 configparser 库操作配置文件 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Python 使用 configparser 库操作配置文件" />
+<meta property="og:description" content="在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-08-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-25T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-08-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-19T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="如何使用 SSH 远程登录 Linux 服务器"/>
-<meta name="twitter:description" content="Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。"/>
+<meta name="twitter:title" content="Python 使用 configparser 库操作配置文件"/>
+<meta name="twitter:description" content="在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" /><link rel="prev" href="http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html" /><link rel="next" href="http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html" /><link rel="prev" href="http://sugarless.top/posts/about.html" /><link rel="next" href="http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "如何使用 SSH 远程登录 Linux 服务器",
+        "headline": "Python 使用 configparser 库操作配置文件",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/posts\/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html"
-        },"genre": "posts","keywords": "ssh","wordcount":  623 ,
-        "url": "http:\/\/sugarless.top\/posts\/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html","datePublished": "2019-08-25T00:00:00+00:00","dateModified": "2019-08-25T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/posts\/manipulating-configuration-files-with-the-python-configparser-library.html"
+        },"genre": "posts","wordcount":  588 ,
+        "url": "http:\/\/sugarless.top\/posts\/manipulating-configuration-files-with-the-python-configparser-library.html","datePublished": "2019-08-19T00:00:00+00:00","dateModified": "2019-08-19T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/special"> 专栏 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/manipulating-configuration-files-with-the-python-configparser-library.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/special" title="">专栏</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/manipulating-configuration-files-with-the-python-configparser-library.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +123,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何使用 SSH 远程登录 Linux 服务器</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python 使用 configparser 库操作配置文件</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-25">2019-08-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 623 字&nbsp;
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/python.html"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-19">2019-08-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 588 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -136,43 +136,67 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一windows-远程登录-linux">一、Windows 远程登录 Linux</a>
-      <ul>
-        <li><a href="#11生成-ssh-密钥对">1.1、生成 SSH 密钥对</a></li>
-        <li><a href="#12添加公钥文件至-linux-服务器">1.2、添加公钥文件至 Linux 服务器</a></li>
-        <li><a href="#13登陆">1.3、登陆</a></li>
-      </ul>
-    </li>
+    <li><a href="#一新建配置文件">一、新建配置文件</a></li>
+    <li><a href="#二源码">二、源码</a></li>
+    <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>
-<p>在设计上，SSH 是 Telnet 和非安全 shell 的替代品。Telnet 和 Berkeley rlogin、rsh、rexec 等协议采用明文传输，使用不可靠的密码，容易遭到监听、嗅探和中间人攻击 [5]。SSH 旨在保证非安全网络环境（例如互联网）中信息加密完整可靠。</p>
-<h1 id="一windows-远程登录-linux">一、Windows 远程登录 Linux</h1>
-<p>下载 git bash ，方便执行 ssh 命令。</p>
-<p>官网：https://git-scm.com</p>
-<h2 id="11生成-ssh-密钥对">1.1、生成 SSH 密钥对</h2>
-<p>在 windows 中的 cmd 中输入（使用 git bash 客户端输入也可以）</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen
-</code></pre></div><p>连摁 3 个回车即可。</p>
-<p>生成的秘钥文件在 C:\Users\Administrator.ssh 文件夹下</p>
-<h2 id="12添加公钥文件至-linux-服务器">1.2、添加公钥文件至 Linux 服务器</h2>
-<p>打开 git bash，输入以下命令</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将192.168.1.1替换为Linux服务器的真实IP地址</span>
-<span class="c1"># root是最高权限用户，可以替换为你想要远程登录的某个用户</span>
-<span class="c1"># ssh端口默认是22</span>
-ssh-copy-id root@192.168.1.1 -p <span class="m">22</span>
-</code></pre></div><p>之后的提示输入 yes ，再输入 Linux 的用户密码就可以了。（输入密码时客户端不会显示任何输入提示）</p>
-<h2 id="13登陆">1.3、登陆</h2>
-<p>打开 git bash，输入以下命令就可以直接进入远程 Linux 的 Shell 了。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将192.168.1.1替换为Linux服务器的真实IP地址</span>
-<span class="c1"># root是最高权限用户，可以替换为你想要远程登录的某个用户 </span>
-<span class="c1"># ssh端口默认是22</span>
-ssh root@192.168.1.1 -p <span class="m">22</span>
-</code></pre></div></div><div class="post-footer" id="post-footer">
+            </div><div class="content" id="content"><p>在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。</p>
+<h1 id="一新建配置文件">一、新建配置文件</h1>
+<p>在 python 项目中新建一个 conf 文件夹，并在此文件夹下创建一个 conf.ini 的文件用于存储配置信息。</p>
+<p>文件路径：./conf/conf.ini</p>
+<p>文件内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[EditionInfo]</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">1.0.0</span>
+</code></pre></div><h1 id="二源码">二、源码</h1>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">configparser</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+ 
+ 
+<span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">config_name</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;获取路径 返回运行本函数的文件绝对路径+config_name
+</span><span class="s2">    determine if application is a script file or frozen exe
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;frozen&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="vm">__file__</span><span class="p">:</span>
+        <span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+    <span class="n">config_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="n">config_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config_path</span>
+ 
+ 
+<span class="c1"># 读取conf.ini</span>
+<span class="n">configPath</span> <span class="o">=</span> <span class="s2">&#34;conf</span><span class="se">\\</span><span class="s2">conf.ini&#34;</span>
+ 
+<span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">configPath</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span>
+ 
+<span class="c1"># 获取conf中的section</span>
+<span class="n">sections</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sections</span><span class="p">()</span>
+ 
+<span class="c1"># 获取第一个section中的所有option</span>
+<span class="n">paramList</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+ 
+<span class="c1"># 修改version的值</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">paramList</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;1.0.1&#34;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">))</span>
+ 
+<span class="c1"># 获取version的值 方法1</span>
+<span class="n">version</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">paramList</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># 获取version的值 方法2</span>
+<span class="c1"># version = str(config.get(&#34;EditionInfo&#34;, &#34;version&#34;))</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+</code></pre></div><p>可能有心人会注意到 get_path 的方法有点怪异，那是因为在写 python 程序中，有可能需要获取当前运行脚本的路径。打包成 exe 的脚本和直接运行地脚本在获取路径上稍微有点不同。</p>
+<p>get_path 的方法参考了这篇博客：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>
+<h1 id="ref">REF</h1>
+<p>python中获取打包成执行文件(exe)和脚本运行文件的路径
+：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-08-25</span>
+                <span>更新于 2019-08-19</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -185,14 +209,14 @@ ssh root@192.168.1.1 -p <span class="m">22</span>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ssh.html">ssh</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/manipulating-configuration-files-with-the-python-configparser-library.html" class="prev" rel="prev" title="Python 使用 configparser 库操作配置文件"><i class="fas fa-angle-left fa-fw"></i>Python 使用 configparser 库操作配置文件</a>
-            <a href="/posts/building-a-private-gitserver-with-gogs.html" class="next" rel="next" title="使用 Gogs 搭建私有的 GitServer">使用 Gogs 搭建私有的 GitServer<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/about.html" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" class="next" rel="next" title="如何使用 SSH 远程登录 Linux 服务器">如何使用 SSH 远程登录 Linux 服务器<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
