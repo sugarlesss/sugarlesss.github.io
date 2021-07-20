@@ -4,10 +4,10 @@
         <link>http://sugarless.top/categories/redis.html</link>
         <description>Redis - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/redis.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/redis.html" rel="self" type="application/rss+xml" /><item>
     <title>ThinkPHP5.1 如何使用 Redis 实现悲观锁</title>
     <link>http://sugarless.top/posts/thinkphp5.1-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-redis-%E5%AE%9E%E7%8E%B0%E6%82%B2%E8%A7%82%E9%94%81.html</link>
-    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
+    <pubDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/thinkphp5.1-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8-redis-%E5%AE%9E%E7%8E%B0%E6%82%B2%E8%A7%82%E9%94%81.html</guid>
     <description><![CDATA[<p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>]]></description>
