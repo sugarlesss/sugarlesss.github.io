@@ -2,7 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>/en/categories.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>/en/posts/en/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="/posts/about.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="/en/posts/en/about.html"
+                    /></url><url>
+            <loc>/en/categories.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
                         href="/categories.html"
@@ -10,6 +19,33 @@
                     rel="alternate"
                     hreflang="en"
                     href="/en/categories.html"
+                    /></url><url>
+            <loc>/en/posts.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="/posts.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="/en/posts.html"
+                    /></url><url>
+            <loc>/en/</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="/en/"
+                    /></url><url>
+            <loc>/en/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="zh-cn"
+                        href="/categories/%E9%97%B2%E8%81%8A.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="en"
+                    href="/en/categories/%E9%97%B2%E8%81%8A.html"
                     /></url><url>
             <loc>/en/tags.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
@@ -19,13 +55,4 @@
                     rel="alternate"
                     hreflang="en"
                     href="/en/tags.html"
-                    /></url><url>
-            <loc>/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="zh-cn"
-                        href="/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="en"
-                    href="/en/"
                     /></url></urlset>

@@ -13,7 +13,15 @@
                     href="/categories.html"
                     /></url><url>
             <loc>/tags/ffmpeg.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/posts.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="/en/posts.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="/posts.html"
+                    /></url><url>
             <loc>/categories/python.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/tags.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
@@ -89,7 +97,15 @@
             <loc>/categories/news.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="/en/categories/%E9%97%B2%E8%81%8A.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="/categories/%E9%97%B2%E8%81%8A.html"
+                    /></url><url>
             <loc>/posts/snipaste-simple-but-powerful-snipping-tool.html</loc><lastmod>2019-10-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</loc><lastmod>2019-09-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/building-a-private-gitserver-with-gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -107,4 +123,12 @@
             <loc>/posts/using-nmap-for-port-scanning-on-linux-systems.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/tags/nmap.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/tags/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>/posts/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>/posts/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="/en/posts/en/about.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="/posts/about.html"
+                    /></url></urlset>
