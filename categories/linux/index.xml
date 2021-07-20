@@ -53,5 +53,19 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</guid>
     <description><![CDATA[<p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>]]></description>
+</item><item>
+    <title>Linux 使用 crontab 执行定时任务</title>
+    <link>http://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</link>
+    <pubDate>Mon, 20 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
+    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>]]></description>
+</item><item>
+    <title>Linux 使用 nmap 进行端口扫描</title>
+    <link>http://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</link>
+    <pubDate>Sun, 19 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</guid>
+    <description><![CDATA[<p>目前端口扫描可以通过 web 版本的端口扫描进行简单的测试，一次性扫描的端口数量一般也会有限制。通常情况下，如果仅仅是扫描一些常用端口，如上图所示的网页版端口扫描可以满足。如果想折腾一下，或者是对自己的主机进行安全检查之类的，还是使用 Linux 系统下的 nmap 工具进行扫描会比较方便一点。</p>]]></description>
 </item></channel>
 </rss>

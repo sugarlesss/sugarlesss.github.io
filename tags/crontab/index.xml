@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>crontab - 标签 - 無糖的小宇宙</title>
+        <link>http://sugarless.top/tags/crontab.html</link>
+        <description>crontab - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 20 May 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/crontab.html" rel="self" type="application/rss+xml" /><item>
+    <title>Linux 使用 crontab 执行定时任务</title>
+    <link>http://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</link>
+    <pubDate>Mon, 20 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
+    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>]]></description>
+</item></channel>
+</rss>

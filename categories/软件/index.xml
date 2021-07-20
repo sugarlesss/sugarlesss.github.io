@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>软件 - 分类 - 無糖的小宇宙</title>
+        <link>http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</link>
+        <description>软件 - 分类 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+    <title>Snipaste - 简单但强大的截图工具</title>
+    <link>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</link>
+    <pubDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</guid>
+    <description><![CDATA[<p>Snipaste 是一个简单但强大的截图工具，同时可以让你将截图贴到屏幕上！下载并打开 Snipaste，按下 F1 来开始截图，再按 F3，截图就在桌面置顶显示了。就这么简单！而且它提供的截图操作功能也相当全面，足够当成一款截图工具使用。当前支持 windows / mac 平台。</p>]]></description>
+</item><item>
+    <title>potplayer - 小巧、功能强大的视频播放器</title>
+    <link>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</link>
+    <pubDate>Sat, 31 Aug 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</guid>
+    <description><![CDATA[<p>软件体积不大，底层由 VC++ 编写，用起来也是十分流畅。功能也是十分多样，我也一直在用这款播放器。安利一下</p>]]></description>
+</item></channel>
+</rss>
