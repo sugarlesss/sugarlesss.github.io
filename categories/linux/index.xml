@@ -46,5 +46,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</guid>
     <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>]]></description>
+</item><item>
+    <title>Linux 服务器使用 Cloudflare 搭建 DDNS</title>
+    <link>http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</link>
+    <pubDate>Sat, 25 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</guid>
+    <description><![CDATA[<p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>]]></description>
 </item></channel>
 </rss>

@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>关于博客 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="关于博客" />
-<meta property="og:description" content="关于内容和工具" />
+    <title>Linux 服务器使用 Cloudflare 搭建 DDNS - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="Linux 服务器使用 Cloudflare 搭建 DDNS" />
+<meta property="og:description" content="在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/posts/about.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-05-18T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-05-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-05-25T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="关于博客"/>
-<meta name="twitter:description" content="关于内容和工具"/>
+<meta name="twitter:title" content="Linux 服务器使用 Cloudflare 搭建 DDNS"/>
+<meta name="twitter:description" content="在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/about.html" /><link rel="next" href="http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><link rel="prev" href="http://sugarless.top/posts/about.html" /><link rel="next" href="http://sugarless.top/posts/getting-started-with-linux-shell-scripting.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "关于博客",
+        "headline": "Linux 服务器使用 Cloudflare 搭建 DDNS",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/posts\/about.html"
-        },"genre": "posts","wordcount":  225 ,
-        "url": "http:\/\/sugarless.top\/posts\/about.html","datePublished": "2019-05-18T00:00:00+00:00","dateModified": "2019-05-18T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/posts\/linux-server-using-cloudflare-to-build-ddns-service.html"
+        },"genre": "posts","keywords": "cloudflare, ddns","wordcount":  522 ,
+        "url": "http:\/\/sugarless.top\/posts\/linux-server-using-cloudflare-to-build-ddns-service.html","datePublished": "2019-05-25T00:00:00+00:00","dateModified": "2019-05-25T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/special"> 专栏 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/about.html" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/special" title="">专栏</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/about.html" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,26 +123,61 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">关于博客</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux 服务器使用 Cloudflare 搭建 DDNS</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E9%97%B2%E8%81%8A.html"><i class="far fa-folder fa-fw"></i>闲聊</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-18">2019-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 225 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-25">2019-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 522 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>关于内容和工具</p>
-<p>大概在半年前，尝试并且使用了一些笔记软件，于是逐渐陷入寻找的沼泽里，一发不可收拾，开始体验各种笔记软件，这似乎是陷入了一个不应该存在的怪圈：找笔记APP，体验，找下一个笔记APP。而我们本心不该是这样的，本来是想找个称手的兵器打仗，最后却变成了武器商店的店长。</p>
-<p>近期逐渐意识到了，应该逐渐回归初心，想到什么内容，就找合适的地方马上开始写，内容远比载体重要的多。</p>
-<p>不再去把大量的时间花在寻找好工具上了，专注于内容产出，提升自己，显然更加重要。</p></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一准备工作">一、准备工作</a></li>
+    <li><a href="#二获取账号-global-key">二、获取账号 global key</a></li>
+    <li><a href="#三设置用于-ddns-解析的二级域名">三、设置用于 DDNS 解析的二级域名</a></li>
+    <li><a href="#四下载-ddns-脚本修改配置">四、下载 DDNS 脚本，修改配置</a></li>
+    <li><a href="#五脚本授权并执行">五、脚本授权并执行</a></li>
+    <li><a href="#六设置-crontab-定时任务">六、设置 crontab 定时任务</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>
+<h1 id="一准备工作">一、准备工作</h1>
+<p>注册一个 cloudflare 账号后，按照 cloudflare 给出的提示，将域名接入 cloudflare，让 cloudflare 接管你的域名。</p>
+<h1 id="二获取账号-global-key">二、获取账号 global key</h1>
+<p>打开网页：https://dash.cloudflare.com/profile</p>
+<p>在页面下方找到【Global API Key】，点击右侧的 View 查看 Key，并保存下来</p>
+<h1 id="三设置用于-ddns-解析的二级域名">三、设置用于 DDNS 解析的二级域名</h1>
+<p>在 Cloudflare 中新建一个 A 记录，如：ddns.yourdomain.com，指向 1.1.1.1（可随意指定，如 123.123.123.123 等等，主要用于后续查看 DDNS 是否生效）</p>
+<h1 id="四下载-ddns-脚本修改配置">四、下载 DDNS 脚本，修改配置</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
+vim cf-v4-ddns.sh
+</code></pre></div><p>1.CFKEY 就是第一步获取的 global key</p>
+<p>2.CFUSER 是登录 cloudflare 的邮箱</p>
+<p>3.CFZONE_NAME 是你的一级域名</p>
+<p>4.CFRECORD_NAME 则是用于 DDNS 的二级域名</p>
+<p>5.CFTTL 是域名生效的 ttl，默认 120 即可</p>
+<h1 id="五脚本授权并执行">五、脚本授权并执行</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x cf-v4-ddns.sh
+./cf-v4-ddns.sh
+</code></pre></div><p>如果脚本相关信息填写正确，输出内容会显示服务器当前 IP，登录 Cloudflare DNS 选项 查看之前设置的 1.1.1.1 已变为当前服务器的 IP。</p>
+<h1 id="六设置-crontab-定时任务">六、设置 crontab 定时任务</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 编辑定时任务</span>
+crontab -e
+
+<span class="c1"># 将以下内容添加到crontab中</span>
+<span class="c1"># 无日志</span>
+*/2 * * * * /root/cf-v4-ddns.sh &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div><p>如果需要日志文件，可将上述代码请替换成下述代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2019-05-18</span>
+                <span>更新于 2019-05-25</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -155,14 +190,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cloudflare.html">cloudflare</a>,&nbsp;<a href="/tags/ddns.html">ddns</a></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav">
-            <a href="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" class="next" rel="next" title="Linux 服务器使用 Cloudflare 搭建 DDNS">Linux 服务器使用 Cloudflare 搭建 DDNS<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/about.html" class="prev" rel="prev" title="关于博客"><i class="fas fa-angle-left fa-fw"></i>关于博客</a>
+            <a href="/posts/getting-started-with-linux-shell-scripting.html" class="next" rel="next" title="Linux Shell 脚本入门">Linux Shell 脚本入门<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">
