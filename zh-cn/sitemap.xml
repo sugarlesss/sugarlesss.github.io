@@ -2,8 +2,7 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://sugarless.top/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>http://sugarless.top/categories.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="http://sugarless.top/en/categories.html"
@@ -12,8 +11,20 @@
                     hreflang="zh-cn"
                     href="http://sugarless.top/categories.html"
                     /></url><url>
+            <loc>http://sugarless.top/posts.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="http://sugarless.top/en/"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="http://sugarless.top/"
+                    /></url><url>
+            <loc>http://sugarless.top/posts/baidus-driverless-cab-apollo-robotaxi-opens-to-the-public-in-guangzhou.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/categories/%E8%B5%84%E8%AE%AF.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>http://sugarless.top/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/tags/ffmpeg.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/categories/python.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/tags.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
@@ -26,15 +37,6 @@
                     /></url><url>
             <loc>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="http://sugarless.top/en/"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="http://sugarless.top/"
-                    /></url><url>
             <loc>http://sugarless.top/tags/%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>http://sugarless.top/tags/hugo.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -87,7 +89,6 @@
             <loc>http://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/categories/mark.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/%E8%B5%84%E8%AE%AF.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</loc><lastmod>2019-10-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
