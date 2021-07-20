@@ -60,5 +60,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/python-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA-excel-%E6%96%87%E4%BB%B6%E5%B9%B6%E5%90%91%E5%85%B6%E5%86%99%E5%85%A5%E5%86%85%E5%AE%B9.html</guid>
     <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>]]></description>
+</item><item>
+    <title>我用一天时间“偷了”网易云音乐50W&#43;用户信息</title>
+    <link>http://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</link>
+    <pubDate>Thu, 12 Sep 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
+    <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>]]></description>
 </item></channel>
 </rss>

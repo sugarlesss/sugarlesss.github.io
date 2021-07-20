@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>CentOS SSH 登录太慢的解决方法 - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="CentOS SSH 登录太慢的解决方法" />
-<meta property="og:description" content="连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。" />
+    <title>使用 Gogs 搭建私有的 GitServer - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="使用 Gogs 搭建私有的 GitServer" />
+<meta property="og:description" content="比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-11-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-11-28T00:00:00+00:00" />
+<meta property="og:url" content="http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-09-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-09-02T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="CentOS SSH 登录太慢的解决方法"/>
-<meta name="twitter:description" content="连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。"/>
+<meta name="twitter:title" content="使用 Gogs 搭建私有的 GitServer"/>
+<meta name="twitter:description" content="比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。"/>
 <meta name="application-name" content="LoveIt">
 <meta name="apple-mobile-web-app-title" content="LoveIt">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" /><link rel="prev" href="http://sugarless.top/posts/python-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91.html" /><link rel="next" href="http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html" /><link rel="prev" href="http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" /><link rel="next" href="http://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "CentOS SSH 登录太慢的解决方法",
+        "headline": "使用 Gogs 搭建私有的 GitServer",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/sugarless.top\/posts\/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html"
-        },"genre": "posts","keywords": "ssh","wordcount":  226 ,
-        "url": "http:\/\/sugarless.top\/posts\/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html","datePublished": "2020-11-28T00:00:00+00:00","dateModified": "2020-11-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "http:\/\/sugarless.top\/posts\/building-a-private-gitserver-with-gogs.html"
+        },"genre": "posts","wordcount":  583 ,
+        "url": "http:\/\/sugarless.top\/posts\/building-a-private-gitserver-with-gogs.html","datePublished": "2019-09-02T00:00:00+00:00","dateModified": "2019-09-02T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/special"> 专栏 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/building-a-private-gitserver-with-gogs.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/special" title="">专栏</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/building-a-private-gitserver-with-gogs.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,30 +123,75 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">CentOS SSH 登录太慢的解决方法</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">使用 Gogs 搭建私有的 GitServer</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-28">2020-11-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 226 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/%E6%8A%98%E8%85%BE.html"><i class="far fa-folder fa-fw"></i>折腾</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-09-02">2019-09-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 583 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>
-<p>SSH 登录太慢可能是 DNS 解析的问题，默认配置下 sshd 初次接受 ssh 客户端连接的时候会自动反向解析客户端 IP 以得到 ssh 客户端的域名或主机名。如果这个时候 DNS 的反向解析不正确，sshd 就会等到 DNS 解析超时后才提供 ssh 连接，这样就造成连接时间过长、ssh 客户端等待的情况，一般为 10-30 秒左右。有个简单的解决办法就是在 sshd 的配置文件（sshd_config）里取消 sshd 的反向 DNS 解析。</p>
-<p>编辑 ssh 配置文件</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi /etc/ssh/sshd_config
-</code></pre></div><p>找到 UseDNS 设置为 no</p>
-<p>重启 ssh 服务即可</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl restart sshd
-</code></pre></div></div><div class="post-footer" id="post-footer">
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一添加-nginx-站点">一、添加 nginx 站点</a></li>
+    <li><a href="#二安装并配置-gogs">二、安装并配置 gogs</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>
+<p>本文命令于 CentOS7 系统中测试通过。</p>
+<p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
+<p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
+<p>文档：<a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
+<p>我比较习惯通过二进制文件安装 gogs，所以本文以二进制安装为例说明。有兴趣使用其他方法的朋友们可以自行尝试。</p>
+<h1 id="一添加-nginx-站点">一、添加 nginx 站点</h1>
+<p>将域名解析到你要安装的服务器 IP</p>
+<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
+<span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">git.yourdomain.top</span><span class="p">;</span><span class="c1">#域名修改为你自己的
+</span><span class="c1"></span>    
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">access_log</span>  <span class="s">/home/git/yourdomain_access.log</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="二安装并配置-gogs">二、安装并配置 gogs</h1>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">adduser git <span class="c1">#创建用户 git</span>
+
+passwd git <span class="c1">#设置git用户的密码</span>
+
+groupadd git <span class="c1">#创建用户组 git</span>
+
+usermod -G git git <span class="c1">#将git用户添加到git用户组中</span>
+
+su git <span class="c1">#切换到git用户shell</span>
+
+<span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
+
+wget https://dl.gogs.io/0.11.91/gogs_0.11.91_linux_amd64.zip <span class="c1">#下载gogs</span>
+
+unzip gogs_0.11.91_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
+
+su <span class="c1">#切回root用户</span>
+
+cp /home/git/gogs/scripts/systemd/gogs.service /usr/lib/systemd/system/ <span class="c1">#复制service文件</span>
+
+systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用gogs服务（开机自启）</span>
+
+systemctl start gogs <span class="c1">#启动gogs</span>
+
+systemctl status gogs <span class="c1">#查看gogs运行状态</span>
+</code></pre></div><h1 id="注意事项">注意事项</h1>
+<p>如果你使用的是端口访问的方式，请在主机 IDC 控制台（阿里云或腾讯云等）设置对应的安全组规则，开放入方向的 3000 端口，并且在宝塔的安全设置中开放 3000 端口</p>
+<p>创建数据库请使用 utf-8 编码格式，不要 utf8mb4 。</p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2020-11-28</span>
+                <span>更新于 2019-09-02</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -159,14 +204,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/ssh.html">ssh</a></section>
+        <section class="post-tags"></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/python-%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E6%A0%B9%E6%8D%AE%E8%AF%8D%E9%A2%91%E5%92%8C%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E8%AF%8D%E4%BA%91.html" class="prev" rel="prev" title="Python 中文分词，根据词频和背景图片生成词云"><i class="fas fa-angle-left fa-fw"></i>Python 中文分词，根据词频和背景图片生成词云</a>
-            <a href="/posts/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99%E4%B8%80%E4%B8%AA-linux-systemd-service.html" class="next" rel="next" title="如何编写一个 Linux Systemd Service？">如何编写一个 Linux Systemd Service？<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html" class="prev" rel="prev" title="如何使用 SSH 远程登录 Linux 服务器"><i class="fas fa-angle-left fa-fw"></i>如何使用 SSH 远程登录 Linux 服务器</a>
+            <a href="/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html" class="next" rel="next" title="我用一天时间“偷了”网易云音乐50W&#43;用户信息">我用一天时间“偷了”网易云音乐50W&#43;用户信息<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">

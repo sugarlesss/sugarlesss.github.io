@@ -32,5 +32,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/ssh%E8%BF%9C%E7%A8%8B%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7-screen%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.html</guid>
     <description><![CDATA[<p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>]]></description>
+</item><item>
+    <title>如何使用 SSH 远程登录 Linux 服务器</title>
+    <link>http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
+    <pubDate>Sun, 25 Aug 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
+    <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>]]></description>
 </item></channel>
 </rss>
