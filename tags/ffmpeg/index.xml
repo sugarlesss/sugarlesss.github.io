@@ -13,10 +13,10 @@
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</link>
+    <link>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</guid>
+    </author><guid>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item></channel>
 </rss>

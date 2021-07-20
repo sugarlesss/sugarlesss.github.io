@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>如何编写一个 Linux Systemd Service？ - 無糖的小宇宙</title><meta name="Description" content="关于 LoveIt 主题"><meta property="og:title" content="如何编写一个 Linux Systemd Service？" />
+<meta property="og:description" content="Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://sugarless.top/posts/how-to-create-a-linux-systemd-service.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-12-01T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何编写一个 Linux Systemd Service？"/>
+<meta name="twitter:description" content="Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。"/>
+<meta name="application-name" content="LoveIt">
+<meta name="apple-mobile-web-app-title" content="LoveIt">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://sugarless.top/posts/how-to-create-a-linux-systemd-service.html" /><link rel="prev" href="http://sugarless.top/posts/solution-for-ssh-login-too-slow.html" /><link rel="next" href="http://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="/lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何编写一个 Linux Systemd Service？",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "http:\/\/sugarless.top\/posts\/how-to-create-a-linux-systemd-service.html"
+        },"genre": "posts","wordcount":  1345 ,
+        "url": "http:\/\/sugarless.top\/posts\/how-to-create-a-linux-systemd-service.html","datePublished": "2020-12-01T00:00:00+00:00","dateModified": "2020-12-01T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++)
+                if (metas[i].getAttribute('name') === metaName)
+                    return metas[i];
+            return '';
+        }
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/special"> 专栏 </a><a class="menu-item" href="https://www.yuque.com/jaded" rel="noopener noreffer" target="_blank"> 语雀 </a><a class="menu-item" href="/friends"> 友链 </a><a class="menu-item" href="/about"> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/how-to-create-a-linux-systemd-service.html" selected>简体中文</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/special" title="">专栏</a><a class="menu-item" href="https://www.yuque.com/jaded" title="" rel="noopener noreffer" target="_blank">语雀</a><a class="menu-item" href="/friends" title="">友链</a><a class="menu-item" href="/about" title="">关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/how-to-create-a-linux-systemd-service.html" selected>简体中文</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何编写一个 Linux Systemd Service？</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="/categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-12-01">2020-12-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1345 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一如何创建一个服务">一、如何创建一个服务？</a></li>
+    <li><a href="#二关于-systemd-服务">二、关于 Systemd 服务</a>
+      <ul>
+        <li><a href="#21控制单元-unit">2.1、控制单元 unit</a></li>
+        <li><a href="#22服务本体-service">2.2、服务本体 service</a></li>
+        <li><a href="#23安装部分-install">2.3、安装部分 install</a></li>
+        <li><a href="#24存放的位置">2.4、存放的位置</a></li>
+      </ul>
+    </li>
+    <li><a href="#3总结">3、总结</a></li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>
+<h1 id="一如何创建一个服务">一、如何创建一个服务？</h1>
+<p>这里假设你已经自行编译安装好了 nginx，下面我们来创建一个 nginx.service 文件</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">vi /etc/systemd/system/nginx.service
+</code></pre></div><p>内容如下：</p>
+<pre><code class="language-conf" data-lang="conf">[Unit]
+Description=Nginx - high performance web server
+After=network.target
+ 
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+ 
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>重新加载服务配置文件，使创建的 nginx 服务生效：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload
+</code></pre></div><p>这样我们就可以用 Systemd 的方式来管理 nginx 了，命令如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#启动nginx</span>
+systemctl start nginx
+<span class="c1">#重载nginx</span>
+systemctl reload nginx
+<span class="c1">#停止nginx</span>
+systemctl stop nginx
+<span class="c1">#重启nginx</span>
+systemctl restart nginx
+<span class="c1">#如果需要开机启动</span>
+systemctl <span class="nb">enable</span> nginx
+<span class="c1">#如果需要取消开机启动</span>
+systemctl disable nginx
+</code></pre></div><h1 id="二关于-systemd-服务">二、关于 Systemd 服务</h1>
+<p>Systemd 服务的内容主要分为三个部分，控制单元（unit）的定义、服务（service）的定义、以及安装（install）的定义。</p>
+<h2 id="21控制单元-unit">2.1、控制单元 unit</h2>
+<p>从上面的例子中我们看到 Unit 内容如下：</p>
+<pre><code class="language-conf" data-lang="conf">[Unit]
+Description=Nginx - high performance web server
+After=network.target
+</code></pre><ul>
+<li>Description：代表整个单元的描述，可根据需要任意填写。</li>
+<li>Before/After：指定启动顺序。</li>
+<li>network.target 代表有网路，network-online.target 代表一个连通着的网络。</li>
+</ul>
+<h2 id="22服务本体-service">2.2、服务本体 service</h2>
+<pre><code class="language-conf" data-lang="conf">[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+</code></pre><ul>
+<li>Type: 服务的类型，各种类型的区别如下所示
+<ul>
+<li>simple：默认，这是最简单的服务类型。意思就是说启动的程序就是主体程序，这个程序要是退出那么一切皆休。</li>
+<li>forking：标准 Unix Daemon 使用的启动方式。启动程序后会调用 fork () 函数，把必要的通信频道都设置好之后父进程退出，留下守护精灵的子进程。</li>
+<li>oneshot：适用于那些被一次性执行的任务或者命令，它运行完成后便了无痕迹。因为这类服务运行完就没有任何痕迹，我们经常会需要使用 RemainAfterExit=yes。意思是说，即使没有进程存在，Systemd 也认为该服务启动成功了。同时只有这种类型支持多条命令，命令之间用；分割，如需换行可以用 \。</li>
+<li>dbus：这个程序启动时需要获取一块 DBus 空间，所以需要和 BusName= 一起用。只有它成功获得了 DBus 空间，依赖它的程序才会被启动。</li>
+</ul>
+</li>
+<li>ExecStart：在输入的命令是 start 时候执行的命令，这里的命令启动的程序必须使用绝对路径，比如你必须用 /sbin/arp 而不能简单的以环境变量直接使用 arp。</li>
+<li>ExecStop：在输入的命令是 stop 时候执行的命令，要求同上。</li>
+<li>ExecReload：这个不是必需，如果不写则你的 service 就不支持 restart 命令。ExecStart 和 ExecStop 是必须要有的。</li>
+</ul>
+<h2 id="23安装部分-install">2.3、安装部分 install</h2>
+<pre><code class="language-conf" data-lang="conf">[Install] WantedBy=multi-user.target
+</code></pre><ul>
+<li>WantedBy：运行级别 / 设置服务被谁装载，一般设置为 multi-user.target（从 Centos7 以后 bai 采用 target 概念来定义运行级别，multi-user.target 是第三级别）</li>
+</ul>
+<h2 id="24存放的位置">2.4、存放的位置</h2>
+<p>Systemd Service 位于 /etc/systemd/system（供系统管理员和用户使用），/usr/lib/systemd/system（供发行版打包者使用），我们一般使用前者即可。</p>
+<h1 id="3总结">3、总结</h1>
+<p>Systemd Service 是一种替代 /etc/init.d/ 下脚本的更好方式，它可以灵活的控制你什么时候要启动服务，一般情况下也不会造成系统无法启动进入紧急模式。所以如果想设置一些开机启动的东西，可以试着写 Systemd Service。当然了，前提是你使用的 Linux 发行版是支持它的才行。</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.xiaoz.me/archives/14458">https://www.xiaoz.me/archives/14458</a><br>
+<a href="https://segmentfault.com/a/1190000014740871">https://segmentfault.com/a/1190000014740871</a><br>
+<a href="https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service">https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service</a></p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-12-01</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"></section>
+        <section>
+            <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/solution-for-ssh-login-too-slow.html" class="prev" rel="prev" title="CentOS SSH 登录太慢的解决方法"><i class="fas fa-angle-left fa-fw"></i>CentOS SSH 登录太慢的解决方法</a>
+            <a href="/posts/infinite-level-classification-tree-based-on-php-reference-feature.html" class="next" rel="next" title="PHP基于引用特性实现的无限级分类树">PHP基于引用特性实现的无限级分类树<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+</article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨，无需多言。</div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/fuse/fuse.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="/js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+        </body>
+
+</html>

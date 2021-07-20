@@ -13,24 +13,24 @@
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</link>
+    <link>http://sugarless.top/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</guid>
+    </author><guid>http://sugarless.top/posts/hugo-one-click-deployment.html</guid>
     <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</link>
+    <link>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E5%A6%82%E4%BD%95%E4%B8%8B%E8%BD%BD-ts-%E6%B5%81%E5%AA%92%E4%BD%93%E8%A7%86%E9%A2%91.html</guid>
+    </author><guid>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item><item>
     <title>使用 apache benchmark 对 API 进行压力测试</title>
-    <link>http://sugarless.top/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html</link>
+    <link>http://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</link>
     <pubDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/%E4%BD%BF%E7%94%A8-apache-benchmark-%E5%AF%B9-api-%E8%BF%9B%E8%A1%8C%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html</guid>
+    </author><guid>http://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</guid>
     <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>]]></description>
 </item><item>
     <title>使用 Gogs 搭建私有的 GitServer</title>

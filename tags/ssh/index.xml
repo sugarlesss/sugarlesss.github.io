@@ -6,10 +6,10 @@
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/ssh.html" rel="self" type="application/rss+xml" /><item>
     <title>CentOS SSH 登录太慢的解决方法</title>
-    <link>http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</link>
+    <link>http://sugarless.top/posts/solution-for-ssh-login-too-slow.html</link>
     <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/centos-ssh-%E7%99%BB%E5%BD%95%E5%A4%AA%E6%85%A2%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95.html</guid>
+    </author><guid>http://sugarless.top/posts/solution-for-ssh-login-too-slow.html</guid>
     <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>]]></description>
 </item><item>
     <title>如何使用 SSH 远程登录 Linux 服务器</title>
