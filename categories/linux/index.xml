@@ -39,5 +39,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
     <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>]]></description>
+</item><item>
+    <title>Linux Shell 脚本入门</title>
+    <link>http://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</link>
+    <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</guid>
+    <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>]]></description>
 </item></channel>
 </rss>
