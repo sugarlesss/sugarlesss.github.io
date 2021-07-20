@@ -1,43 +1,43 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>折腾 - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/%E6%8A%98%E8%85%BE.html</link>
+        <link>/categories/%E6%8A%98%E8%85%BE.html</link>
         <description>折腾 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
     <title>关于音视频文案提取</title>
-    <link>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>http://sugarless.top/posts/hugo-one-click-deployment.html</link>
+    <link>/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-one-click-deployment.html</guid>
+    </author><guid>/posts/hugo-one-click-deployment.html</guid>
     <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
+    <link>/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
+    </author><guid>/posts/how-to-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item><item>
     <title>使用 apache benchmark 对 API 进行压力测试</title>
-    <link>http://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</link>
+    <link>/posts/stress-test-the-api-using-apache-benchmark.html</link>
     <pubDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</guid>
+    </author><guid>/posts/stress-test-the-api-using-apache-benchmark.html</guid>
     <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>]]></description>
 </item><item>
     <title>使用 Gogs 搭建私有的 GitServer</title>
-    <link>http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</link>
+    <link>/posts/building-a-private-gitserver-with-gogs.html</link>
     <pubDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</guid>
+    </author><guid>/posts/building-a-private-gitserver-with-gogs.html</guid>
     <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>]]></description>
 </item></channel>
 </rss>

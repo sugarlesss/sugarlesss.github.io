@@ -2,30 +2,30 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://sugarless.top/en/categories.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>/en/categories.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="http://sugarless.top/categories.html"
+                        href="/categories.html"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="http://sugarless.top/en/categories.html"
+                    href="/en/categories.html"
                     /></url><url>
-            <loc>http://sugarless.top/en/tags.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>/en/tags.html</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="http://sugarless.top/tags.html"
+                        href="/tags.html"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="http://sugarless.top/en/tags.html"
+                    href="/en/tags.html"
                     /></url><url>
-            <loc>http://sugarless.top/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
+            <loc>/en/</loc><changefreq>weekly</changefreq><priority>0.5</priority><xhtml:link
                         rel="alternate"
                         hreflang="zh-cn"
-                        href="http://sugarless.top/"
+                        href="/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="en"
-                    href="http://sugarless.top/en/"
+                    href="/en/"
                     /></url></urlset>

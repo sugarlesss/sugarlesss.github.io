@@ -1,36 +1,36 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>软件 - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</link>
+        <link>/categories/%E8%BD%AF%E4%BB%B6.html</link>
         <description>软件 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
     <title>SoftPerfect RAM Disk 内存盘工具</title>
-    <link>http://sugarless.top/posts/ram-disk-tool.html</link>
+    <link>/posts/ram-disk-tool.html</link>
     <pubDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/ram-disk-tool.html</guid>
+    </author><guid>/posts/ram-disk-tool.html</guid>
     <description><![CDATA[<p>内存盘就是将一部分硬盘当硬盘使用，由于内存速度很快，利用了这个特性设置虚拟内存硬盘，在一些特定场景和需求下是非常有帮助的。</p>]]></description>
 </item><item>
     <title>Snipaste - 简单但强大的截图工具</title>
-    <link>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</link>
+    <link>/posts/snipaste-simple-but-powerful-snipping-tool.html</link>
     <pubDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</guid>
+    </author><guid>/posts/snipaste-simple-but-powerful-snipping-tool.html</guid>
     <description><![CDATA[<p>Snipaste 是一个简单但强大的截图工具，同时可以让你将截图贴到屏幕上！下载并打开 Snipaste，按下 F1 来开始截图，再按 F3，截图就在桌面置顶显示了。就这么简单！而且它提供的截图操作功能也相当全面，足够当成一款截图工具使用。当前支持 windows / mac 平台。</p>]]></description>
 </item><item>
     <title>potplayer - 小巧、功能强大的视频播放器</title>
-    <link>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</link>
+    <link>/posts/potplayer-small-and-powerful-video-player.html</link>
     <pubDate>Sat, 31 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</guid>
+    </author><guid>/posts/potplayer-small-and-powerful-video-player.html</guid>
     <description><![CDATA[<p>软件体积不大，底层由 VC++ 编写，用起来也是十分流畅。功能也是十分多样，我也一直在用这款播放器。安利一下</p>]]></description>
 </item><item>
     <title>HashCheck - 一款小巧、实用的文件校验工具</title>
-    <link>http://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</link>
+    <link>/posts/hashcheck-a-small-and-useful-file-verification-tool.html</link>
     <pubDate>Wed, 21 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</guid>
+    </author><guid>/posts/hashcheck-a-small-and-useful-file-verification-tool.html</guid>
     <description><![CDATA[<p>HashCheck 全称 HashCheck Shell Extension，安装后添加到属性窗口中，是一款非常小巧快速的文件校验工具，而且 HashCheck 在 Github 上开放了源代码。软件体积小，文件 hash 值计算速度快。安装后迁入资源管理器的属性中，查看文件 hash 值十分方便。</p>]]></description>
 </item></channel>
 </rss>

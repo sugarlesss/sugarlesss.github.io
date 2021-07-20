@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>日志 - 标签 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/tags/%E6%97%A5%E5%BF%97.html</link>
+        <link>/tags/%E6%97%A5%E5%BF%97.html</link>
         <description>日志 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/tags/%E6%97%A5%E5%BF%97.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E6%97%A5%E5%BF%97.html" rel="self" type="application/rss+xml" /><item>
     <title>Nginx 日志全自动切割脚本</title>
-    <link>http://sugarless.top/posts/nginx-log-auto-chunk-script.html</link>
+    <link>/posts/nginx-log-auto-chunk-script.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/nginx-log-auto-chunk-script.html</guid>
+    </author><guid>/posts/nginx-log-auto-chunk-script.html</guid>
     <description><![CDATA[<p>自动切割目标目录下的所有 .log 文件，即使新建站点，产生新的日志需要切割，也无需修改脚本。</p>]]></description>
 </item></channel>
 </rss>

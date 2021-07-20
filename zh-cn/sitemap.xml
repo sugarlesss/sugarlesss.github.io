@@ -2,110 +2,109 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>http://sugarless.top/categories.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://sugarless.top/en/categories.html"
+                        href="/en/categories.html"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://sugarless.top/categories.html"
+                    href="/categories.html"
                     /></url><url>
-            <loc>http://sugarless.top/categories/news.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/tags/ffmpeg.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories/python.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://sugarless.top/en/"
+                        href="/en/tags.html"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://sugarless.top/"
+                    href="/tags.html"
                     /></url><url>
-            <loc>http://sugarless.top/posts/baidu-driverless-cab-open-to-the-public.html</loc><lastmod>2021-07-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/ffmpeg.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories/python.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/posts/about-extract-copywriting-from-audio-or-video.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
-                        href="http://sugarless.top/en/tags.html"
+                        href="/en/"
                         /><xhtml:link
                     rel="alternate"
                     hreflang="zh-cn"
-                    href="http://sugarless.top/tags.html"
+                    href="/"
                     /></url><url>
-            <loc>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/hugo.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts/hugo-one-click-deployment.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/posts/wiztree-the-fastest-disk-space-analyzer.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/tags/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>http://sugarless.top/about.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://sugarless.top/friends.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://sugarless.top/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>http://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</loc><lastmod>2021-06-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
-            <loc>http://sugarless.top/categories/php.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/python-get-baidu-live-hotspot.html</loc><lastmod>2021-01-11T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/linux.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</loc><lastmod>2020-12-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/solution-for-ssh-login-too-slow.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/ssh.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</loc><lastmod>2020-11-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/pip-source-specific-installation.html</loc><lastmod>2020-11-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/python-export-or-install-requirements.txt-dependencies.html</loc><lastmod>2020-11-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</loc><lastmod>2020-11-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/create-an-excel-file-and-write-to-it-using-python.html</loc><lastmod>2020-11-11T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/mysql.html</loc><lastmod>2020-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</loc><lastmod>2020-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/common-maintenance-sql-for-mysql.html</loc><lastmod>2020-11-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/modifying-the-mysql-default-transaction-isolation-level.html</loc><lastmod>2020-11-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/nginx.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E9%99%90%E6%B5%81.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</loc><lastmod>2020-09-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/redis.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E6%82%B2%E8%A7%82%E9%94%81.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/load-balancing-based-on-nginx.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/ram-disk-tool.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E5%86%85%E5%AD%98%E7%9B%98.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/ab.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/nginx-log-auto-chunk-script.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/ssh-remote-session-management-tool-screen-tutorial.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E6%97%A5%E5%BF%97.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/ajax.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/mark.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</loc><lastmod>2019-10-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</loc><lastmod>2019-09-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</loc><lastmod>2019-08-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</loc><lastmod>2019-08-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</loc><lastmod>2019-08-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/manipulating-configuration-files-with-the-python-configparser-library.html</loc><lastmod>2019-08-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</loc><lastmod>2019-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/shell.html</loc><lastmod>2019-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/cloudflare.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/ddns.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/crontab.html</loc><lastmod>2019-05-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</loc><lastmod>2019-05-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/nmap.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/tags/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>http://sugarless.top/posts/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>
+            <loc>/tags/%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/hugo.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts/hugo-one-click-deployment.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts/wiztree-the-fastest-disk-space-analyzer.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/about.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>/friends.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>/posts/how-to-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
+            <loc>/posts/batch-file-fixed-prefix-removal-using-python.html</loc><lastmod>2021-06-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.6</priority></url><url>
+            <loc>/categories/php.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/python-get-baidu-live-hotspot.html</loc><lastmod>2021-01-11T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/linux.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</loc><lastmod>2020-12-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/how-to-create-a-linux-systemd-service.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/solution-for-ssh-login-too-slow.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/ssh.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</loc><lastmod>2020-11-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/pip-source-specific-installation.html</loc><lastmod>2020-11-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/python-export-or-install-requirements.txt-dependencies.html</loc><lastmod>2020-11-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</loc><lastmod>2020-11-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/create-an-excel-file-and-write-to-it-using-python.html</loc><lastmod>2020-11-11T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/mysql.html</loc><lastmod>2020-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</loc><lastmod>2020-11-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/common-maintenance-sql-for-mysql.html</loc><lastmod>2020-11-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/modifying-the-mysql-default-transaction-isolation-level.html</loc><lastmod>2020-11-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/nginx.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/nginx-limits-flow-based-on-specific-request-parameters.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E9%99%90%E6%B5%81.html</loc><lastmod>2020-09-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</loc><lastmod>2020-09-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/redis.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E6%82%B2%E8%A7%82%E9%94%81.html</loc><lastmod>2020-08-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/load-balancing-based-on-nginx.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/ram-disk-tool.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E5%86%85%E5%AD%98%E7%9B%98.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/ab.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/stress-test-the-api-using-apache-benchmark.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/nginx-log-auto-chunk-script.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/ssh-remote-session-management-tool-screen-tutorial.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E6%97%A5%E5%BF%97.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/ajax.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/mark.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/news.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/snipaste-simple-but-powerful-snipping-tool.html</loc><lastmod>2019-10-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</loc><lastmod>2019-09-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/building-a-private-gitserver-with-gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/potplayer-small-and-powerful-video-player.html</loc><lastmod>2019-08-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</loc><lastmod>2019-08-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/hashcheck-a-small-and-useful-file-verification-tool.html</loc><lastmod>2019-08-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/manipulating-configuration-files-with-the-python-configparser-library.html</loc><lastmod>2019-08-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/getting-started-with-linux-shell-scripting.html</loc><lastmod>2019-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/shell.html</loc><lastmod>2019-05-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/cloudflare.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/ddns.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/linux-server-using-cloudflare-to-build-ddns-service.html</loc><lastmod>2019-05-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/crontab.html</loc><lastmod>2019-05-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/linux-using-crontab-to-execute-timed-tasks.html</loc><lastmod>2019-05-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/using-nmap-for-port-scanning-on-linux-systems.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/nmap.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/tags/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F.html</loc><lastmod>2019-05-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/posts/about.html</loc><lastmod>2019-05-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url></urlset>

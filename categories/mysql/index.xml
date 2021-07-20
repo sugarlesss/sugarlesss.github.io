@@ -1,29 +1,29 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>MySQL - 分类 - 無糖的小宇宙</title>
-        <link>http://sugarless.top/categories/mysql.html</link>
+        <link>/categories/mysql.html</link>
         <description>MySQL - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/mysql.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/mysql.html" rel="self" type="application/rss+xml" /><item>
     <title>MySQL5.7 生产环境推荐参数配置</title>
-    <link>http://sugarless.top/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</link>
+    <link>/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</link>
     <pubDate>Sat, 07 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</guid>
+    </author><guid>/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</guid>
     <description><![CDATA[<p>隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。</p>]]></description>
 </item><item>
     <title>MySQL 的常用维护语句</title>
-    <link>http://sugarless.top/posts/common-maintenance-sql-for-mysql.html</link>
+    <link>/posts/common-maintenance-sql-for-mysql.html</link>
     <pubDate>Thu, 05 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/common-maintenance-sql-for-mysql.html</guid>
+    </author><guid>/posts/common-maintenance-sql-for-mysql.html</guid>
     <description><![CDATA[<p>在日常开发中遇到的一些问题。</p>]]></description>
 </item><item>
     <title>MySQL 修改默认事务隔离级别</title>
-    <link>http://sugarless.top/posts/modifying-the-mysql-default-transaction-isolation-level.html</link>
+    <link>/posts/modifying-the-mysql-default-transaction-isolation-level.html</link>
     <pubDate>Wed, 04 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/modifying-the-mysql-default-transaction-isolation-level.html</guid>
+    </author><guid>/posts/modifying-the-mysql-default-transaction-isolation-level.html</guid>
     <description><![CDATA[<p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p>]]></description>
 </item></channel>
 </rss>

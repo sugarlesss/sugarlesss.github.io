@@ -1,80 +1,80 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>無糖的小宇宙</title>
-        <link>http://sugarless.top/</link>
+        <link>/</link>
         <description>無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
-            <atom:link href="http://sugarless.top/index.xml" rel="self" type="application/rss+xml" />
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>百度无人驾驶出租车 Apollo Robotaxi 在广州面向公众开放</title>
-    <link>http://sugarless.top/posts/baidu-driverless-cab-open-to-the-public.html</link>
-    <pubDate>Tue, 20 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/baidu-driverless-cab-open-to-the-public.html</guid>
-    <description><![CDATA[<p>这会是一场新时代的浪潮的开始吗？</p>]]></description>
-</item><item>
     <title>关于音视频文案提取</title>
-    <link>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>http://sugarless.top/posts/hugo-one-click-deployment.html</link>
+    <link>/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/hugo-one-click-deployment.html</guid>
+    </author><guid>/posts/hugo-one-click-deployment.html</guid>
     <description><![CDATA[<p>尽量简化不必要的流程，保持最简洁的操作，只需一条命令即可完成 hugo 静态 html 渲染、提交到 github 等一系列操作。</p>]]></description>
 </item><item>
     <title>WizTree - 最快的磁盘空间分析器</title>
-    <link>http://sugarless.top/posts/wiztree-the-fastest-disk-space-analyzer.html</link>
+    <link>/posts/wiztree-the-fastest-disk-space-analyzer.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/wiztree-the-fastest-disk-space-analyzer.html</guid>
+    </author><guid>/posts/wiztree-the-fastest-disk-space-analyzer.html</guid>
     <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
+    <link>/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
+    </author><guid>/posts/how-to-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
-    <link>http://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</link>
+    <link>/posts/batch-file-fixed-prefix-removal-using-python.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
+    </author><guid>/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
     <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>]]></description>
 </item><item>
     <title>PHP计算当天剩余秒数最方便和最快的方法</title>
-    <link>http://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</link>
+    <link>/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</link>
     <pubDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
+    </author><guid>/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
     <description><![CDATA[<p>结论推导</p>]]></description>
 </item><item>
     <title>Python 爬取百度实时热点</title>
-    <link>http://sugarless.top/posts/python-get-baidu-live-hotspot.html</link>
+    <link>/posts/python-get-baidu-live-hotspot.html</link>
     <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/python-get-baidu-live-hotspot.html</guid>
+    </author><guid>/posts/python-get-baidu-live-hotspot.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
 </item><item>
     <title>Linux 服务器出现大量 TIME_WAIT 状态的连接</title>
-    <link>http://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</link>
+    <link>/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</link>
     <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
+    </author><guid>/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
     <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>]]></description>
 </item><item>
     <title>PHP基于引用特性实现的无限级分类树</title>
-    <link>http://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</link>
+    <link>/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</link>
     <pubDate>Wed, 16 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>http://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
+    </author><guid>/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
     <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>]]></description>
+</item><item>
+    <title>如何编写一个 Linux Systemd Service？</title>
+    <link>/posts/how-to-create-a-linux-systemd-service.html</link>
+    <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/how-to-create-a-linux-systemd-service.html</guid>
+    <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
 </item></channel>
 </rss>
