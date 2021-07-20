@@ -4,7 +4,14 @@
         <link>http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</link>
         <description>软件 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="http://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+    <title>SoftPerfect RAM Disk 内存盘工具</title>
+    <link>http://sugarless.top/posts/ram-disk-tool.html</link>
+    <pubDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/ram-disk-tool.html</guid>
+    <description><![CDATA[<p>内存盘就是将一部分硬盘当硬盘使用，由于内存速度很快，利用了这个特性设置虚拟内存硬盘，在一些特定场景和需求下是非常有帮助的。</p>]]></description>
+</item><item>
     <title>Snipaste - 简单但强大的截图工具</title>
     <link>http://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</link>
     <pubDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</pubDate><author>
