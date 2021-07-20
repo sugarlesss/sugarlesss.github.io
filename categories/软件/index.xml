@@ -25,5 +25,12 @@
         <name>無糖</name>
     </author><guid>http://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</guid>
     <description><![CDATA[<p>软件体积不大，底层由 VC++ 编写，用起来也是十分流畅。功能也是十分多样，我也一直在用这款播放器。安利一下</p>]]></description>
+</item><item>
+    <title>HashCheck - 一款小巧、实用的文件校验工具</title>
+    <link>http://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</link>
+    <pubDate>Wed, 21 Aug 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>http://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</guid>
+    <description><![CDATA[<p>HashCheck 全称 HashCheck Shell Extension，安装后添加到属性窗口中，是一款非常小巧快速的文件校验工具，而且 HashCheck 在 Github 上开放了源代码。软件体积小，文件 hash 值计算速度快。安装后迁入资源管理器的属性中，查看文件 hash 值十分方便。</p>]]></description>
 </item></channel>
 </rss>
