@@ -11,6 +11,7 @@
                     hreflang="zh-cn"
                     href="/categories.html"
                     /></url><url>
+            <loc>/tags/cpu.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/posts.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
@@ -19,6 +20,15 @@
                     rel="alternate"
                     hreflang="zh-cn"
                     href="/posts.html"
+                    /></url><url>
+            <loc>/tags.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+                        rel="alternate"
+                        hreflang="en"
+                        href="/en/tags.html"
+                        /><xhtml:link
+                    rel="alternate"
+                    hreflang="zh-cn"
+                    href="/tags.html"
                     /></url><url>
             <loc>/posts/about-hyper-threading-technology.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
@@ -31,18 +41,10 @@
                     href="/"
                     /></url><url>
             <loc>/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/%E8%B6%85%E7%BA%BF%E7%A8%8B.html</loc><lastmod>2021-07-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/special.html</loc><lastmod>2021-07-19T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/tags/ffmpeg.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>/categories/python.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>/tags.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority><xhtml:link
-                        rel="alternate"
-                        hreflang="en"
-                        href="/en/tags.html"
-                        /><xhtml:link
-                    rel="alternate"
-                    hreflang="zh-cn"
-                    href="/tags.html"
-                    /></url><url>
             <loc>/posts/about-extract-copywriting-from-audio-or-video.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>/tags/%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
