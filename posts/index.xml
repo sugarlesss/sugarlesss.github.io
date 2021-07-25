@@ -4,7 +4,14 @@
         <link>/posts.html</link>
         <description>所有文章 | 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/posts.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/posts.html" rel="self" type="application/rss+xml" /><item>
+    <title>关于超线程技术</title>
+    <link>/posts/about-hyper-threading-technology.html</link>
+    <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/about-hyper-threading-technology.html</guid>
+    <description><![CDATA[<p>四核八线程，八核十六线程是啥意思？</p>]]></description>
+</item><item>
     <title>关于音视频文案提取</title>
     <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
@@ -67,12 +74,5 @@
         <name>無糖</name>
     </author><guid>/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
     <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>]]></description>
-</item><item>
-    <title>如何编写一个 Linux Systemd Service？</title>
-    <link>/posts/how-to-create-a-linux-systemd-service.html</link>
-    <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>/posts/how-to-create-a-linux-systemd-service.html</guid>
-    <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
 </item></channel>
 </rss>
