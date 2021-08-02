@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>性能优化 - 分类 - 無糖的小宇宙</title>
+        <link>/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html</link>
+        <description>性能优化 - 分类 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html" rel="self" type="application/rss+xml" /><item>
+    <title>关于 CDN</title>
+    <link>/posts/about-cdn.html</link>
+    <pubDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/about-cdn.html</guid>
+    <description><![CDATA[<p>CDN 是什么？ 为什么 CDN 能加速网站访问？ CDN 有多贵？</p>]]></description>
+</item></channel>
+</rss>
