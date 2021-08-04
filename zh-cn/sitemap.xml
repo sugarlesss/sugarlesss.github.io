@@ -2,7 +2,8 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>/categories.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/posts/mark/1.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/categories.html"
@@ -12,7 +13,8 @@
                     href="/categories.html"
                     /></url><url>
             <loc>/tags/cdn.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/posts.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/posts/what-is-cdn.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/posts.html"
@@ -30,9 +32,8 @@
                     hreflang="zh-cn"
                     href="/tags.html"
                     /></url><url>
-            <loc>/posts/about-cdn.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/"
@@ -52,14 +53,14 @@
             <loc>/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>/tags/%E8%AF%AD%E9%9F%B3%E8%BD%AC%E6%96%87%E5%AD%97.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
             <loc>/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</loc><lastmod>2021-07-17T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/tags/hugo.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/posts/hugo-one-click-deployment.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/posts/wiztree-the-fastest-disk-space-analyzer.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/tags/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/about.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/friends.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/posts/how-to-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
-            <loc>/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
+            <loc>/tags/hugo.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/posts/hugo-one-click-deployment.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/posts/wiztree-the-fastest-disk-space-analyzer.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/tags/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/about.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/friends.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/posts/how-to-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
+            <loc>/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>/posts/batch-file-fixed-prefix-removal-using-python.html</loc><lastmod>2021-06-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/categories/php.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -100,7 +101,7 @@
             <loc>/tags/ajax.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/tags/jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>/categories/mark.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>/categories/mark.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/categories/news.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

@@ -7,11 +7,18 @@
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
         <item>
-    <title>关于 CDN</title>
-    <link>/posts/about-cdn.html</link>
+    <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
+    <link>/posts/mark/1.html</link>
+    <pubDate>Tue, 31 Dec 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/mark/1.html</guid>
+    <description><![CDATA[<p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p>]]></description>
+</item><item>
+    <title>CDN 是什么？ 有多贵？</title>
+    <link>/posts/what-is-cdn.html</link>
     <pubDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/about-cdn.html</guid>
+    </author><guid>/posts/what-is-cdn.html</guid>
     <description><![CDATA[<p>CDN 是什么？ 为什么 CDN 能加速网站访问？ CDN 有多贵？</p>]]></description>
 </item><item>
     <title>关于超线程技术</title>
@@ -69,12 +76,5 @@
         <name>無糖</name>
     </author><guid>/posts/python-get-baidu-live-hotspot.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
-</item><item>
-    <title>Linux 服务器出现大量 TIME_WAIT 状态的连接</title>
-    <link>/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</link>
-    <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
-    <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>]]></description>
 </item></channel>
 </rss>
