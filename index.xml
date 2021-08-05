@@ -4,7 +4,7 @@
         <link>/</link>
         <description>無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
@@ -13,6 +13,13 @@
         <name>無糖</name>
     </author><guid>/posts/mark/1.html</guid>
     <description><![CDATA[<p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p>]]></description>
+</item><item>
+    <title>Spring Boot 配置文件中文乱码</title>
+    <link>/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
+    <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
+    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
 </item><item>
     <title>CDN 是什么？ 有多贵？</title>
     <link>/posts/what-is-cdn.html</link>
@@ -69,12 +76,5 @@
         <name>無糖</name>
     </author><guid>/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
     <description><![CDATA[<p>结论推导</p>]]></description>
-</item><item>
-    <title>Python 爬取百度实时热点</title>
-    <link>/posts/python-get-baidu-live-hotspot.html</link>
-    <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>/posts/python-get-baidu-live-hotspot.html</guid>
-    <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
 </item></channel>
 </rss>

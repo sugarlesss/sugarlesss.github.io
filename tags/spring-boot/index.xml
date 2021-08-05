@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Spring Boot - 标签 - 無糖的小宇宙</title>
+        <link>/tags/spring-boot.html</link>
+        <description>Spring Boot - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/spring-boot.html" rel="self" type="application/rss+xml" /><item>
+    <title>Spring Boot 配置文件中文乱码</title>
+    <link>/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
+    <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
+    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
+</item></channel>
+</rss>
