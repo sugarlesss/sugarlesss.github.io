@@ -6,34 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Spring Boot 配置文件中文乱码 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="Spring Boot 配置文件中文乱码" />
-<meta property="og:description" content="在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。" />
+    <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目" />
+<meta property="og:description" content="Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="/posts/spring-boot-configuration-file-chinese-encoding-error.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-08-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-08-05T00:00:00+00:00" />
+<meta property="og:url" content="/posts/how-to-use-alibaba-cloud-toolkit.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-06T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Spring Boot 配置文件中文乱码"/>
-<meta name="twitter:description" content="在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。"/>
+<meta name="twitter:title" content="IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目"/>
+<meta name="twitter:description" content="Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/spring-boot-configuration-file-chinese-encoding-error.html" /><link rel="prev" href="../posts/what-is-cdn.html" /><link rel="next" href="../posts/how-to-use-alibaba-cloud-toolkit.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/how-to-use-alibaba-cloud-toolkit.html" /><link rel="prev" href="../posts/spring-boot-configuration-file-chinese-encoding-error.html" /><link rel="next" href="../posts/mark/1.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "Spring Boot 配置文件中文乱码",
+        "headline": "IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "\/posts\/spring-boot-configuration-file-chinese-encoding-error.html"
-        },"genre": "posts","keywords": "Spring, Spring Boot, 中文乱码","wordcount":  153 ,
-        "url": "\/posts\/spring-boot-configuration-file-chinese-encoding-error.html","datePublished": "2021-08-05T00:00:00+00:00","dateModified": "2021-08-05T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "\/posts\/how-to-use-alibaba-cloud-toolkit.html"
+        },"genre": "posts","keywords": "IDEA, Cloud Toolkit, Spring Boot, 一键部署","wordcount":  572 ,
+        "url": "\/posts\/how-to-use-alibaba-cloud-toolkit.html","datePublished": "2021-08-06T00:00:00+00:00","dateModified": "2021-08-06T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -63,7 +63,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/spring-boot-configuration-file-chinese-encoding-error.html" selected>简体中文</option></select>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/how-to-use-alibaba-cloud-toolkit.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +109,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/spring-boot-configuration-file-chinese-encoding-error.html" selected>简体中文</option></select>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/how-to-use-alibaba-cloud-toolkit.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,12 +123,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Spring Boot 配置文件中文乱码</h1><div class="post-meta">
+    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/spring-boot.html"><i class="far fa-folder fa-fw"></i>Spring Boot</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-05">2021-08-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 153 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/java.html"><i class="far fa-folder fa-fw"></i>Java</a>&nbsp;<a href="../categories/mark.html"><i class="far fa-folder fa-fw"></i>Mark</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 572 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -136,32 +136,134 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#解决方案">解决方案</a>
+    <li><a href="#一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</a></li>
+    <li><a href="#二配置">二、配置</a>
       <ul>
-        <li><a href="#1修改-idea-编码设置为-utf-8-删除并重新创建-applicationproperties-文件">1、修改 IDEA 编码设置为 UTF-8 ，删除并重新创建 application.properties 文件</a></li>
+        <li><a href="#21添加远程服务器">2.1、添加远程服务器</a></li>
+        <li><a href="#22添加详细配置">2.2、添加详细配置</a></li>
       </ul>
     </li>
+    <li><a href="#三一键部署">三、一键部署</a></li>
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>
-<h1 id="解决方案">解决方案</h1>
-<h2 id="1修改-idea-编码设置为-utf-8-删除并重新创建-applicationproperties-文件">1、修改 IDEA 编码设置为 UTF-8 ，删除并重新创建 application.properties 文件</h2>
-<p>我使用的是 IDEA ，首先 File-&gt;settings-&gt;Code style-&gt;File Encoding ，把所有的编码都设为 UTF-8 ，删除并重新创建 application.properties 文件即可。</p>
+            </div><div class="content" id="content"><p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>
+<p>内置终端 Terminal：在 IDE 内，开发者可通过内置终端 Terminal 快速登录远程服务器，减少频繁切换的烦恼。 不仅支持阿里云服务器 ECS，也可以用于所有支持标准 SSH 协议的机器。</p>
+<p>文件上传：Cloud Toolkit 帮助开发者在 IDE 内，一键将本地或远程 URL 文件上传至服务器指定目录。 简化繁琐的上传环节，无需各种 FTP、SCP 工具频繁切换。 更为重要的是，文件上传完毕后，还支持文件解压缩、程序启动等命令执行。</p>
+<p>cloud toolkit 官网：https://www.aliyun.com/product/cloudtoolkit</p>
+<h1 id="一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</h1>
+<ul>
+<li>
+<p>确保 IntelliJ IDEA 在 2018.1 或更高版本；</p>
+</li>
+<li>
+<p>打开 Settings - Plugins 搜索安装 Alibaba Cloud Toolkit；</p>
+</li>
+<li>
+<p>如果迟迟安装不上，可以试试设置一下 IDEA socks 代理或者去它的官网找离线安装包；</p>
+</li>
+</ul>
 <p><img
         class="lazyload"
-        data-src="../post_images/image-20210805110938501.png"
-        data-srcset="../post_images/image-20210805110938501.png, ../post_images/image-20210805110938501.png 1.5x, ../post_images/image-20210805110938501.png 2x"
+        data-src="../post_images/image-20210806140925036.png"
+        data-srcset="../post_images/image-20210806140925036.png, ../post_images/image-20210806140925036.png 1.5x, ../post_images/image-20210806140925036.png 2x"
         data-sizes="auto"
-        alt="/post_images/image-20210805110938501.png"
-        title="image-20210805110938501"
+        alt="/post_images/image-20210806140925036.png"
+        title="image-20210806140925036"
+    /></p>
+<h1 id="二配置">二、配置</h1>
+<h2 id="21添加远程服务器">2.1、添加远程服务器</h2>
+<p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806144136679.png"
+        data-srcset="../post_images/image-20210806144136679.png, ../post_images/image-20210806144136679.png 1.5x, ../post_images/image-20210806144136679.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806144136679.png"
+        title="image-20210806144136679"
+    /></p>
+<p>输入服务器的 IP 及 SSH 连接信息，我使用的是账号密码式。</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806144248501.png"
+        data-srcset="../post_images/image-20210806144248501.png, ../post_images/image-20210806144248501.png 1.5x, ../post_images/image-20210806144248501.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806144248501.png"
+        title="image-20210806144248501"
+    /></p>
+<p>Edit Configurations</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806144651404.png"
+        data-srcset="../post_images/image-20210806144651404.png, ../post_images/image-20210806144651404.png 1.5x, ../post_images/image-20210806144651404.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806144651404.png"
+        title="image-20210806144651404"
+    /></p>
+<p>选择 Deploy to Host</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806144741977.png"
+        data-srcset="../post_images/image-20210806144741977.png, ../post_images/image-20210806144741977.png 1.5x, ../post_images/image-20210806144741977.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806144741977.png"
+        title="image-20210806144741977"
+    /></p>
+<h2 id="22添加详细配置">2.2、添加详细配置</h2>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806145217900.png"
+        data-srcset="../post_images/image-20210806145217900.png, ../post_images/image-20210806145217900.png 1.5x, ../post_images/image-20210806145217900.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806145217900.png"
+        title="image-20210806145217900"
+    /></p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806162619853.png"
+        data-srcset="../post_images/image-20210806162619853.png, ../post_images/image-20210806162619853.png 1.5x, ../post_images/image-20210806162619853.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806162619853.png"
+        title="image-20210806162619853"
+    /></p>
+<p>下面是上图添加详细配置时用到的命令：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 部署路径（ Target Directory ）</span>
+/www/wwwroot/SpringBootDeployTestJar
+
+<span class="c1"># 部署前执行命令（）</span>
+pkill -f main-0.0.1-SNAPSHOT.jar<span class="p">;</span>
+
+<span class="c1"># 部署后执行命令 （ After deploy ）</span>
+nohup java -jar /www/wwwroot/SpringBootDeployTestJar/main-0.0.1-SNAPSHOT.jar --server.port<span class="o">=</span>18080&gt; /www/wwwroot/SpringBootDeployTestJar/nohup.out 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+
+<span class="c1"># 实时日志</span>
+tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
+</code></pre></div><p>填写完成后 Apply 。</p>
+<h1 id="三一键部署">三、一键部署</h1>
+<p>切换到一键部署，run。</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806162820768.png"
+        data-srcset="../post_images/image-20210806162820768.png, ../post_images/image-20210806162820768.png 1.5x, ../post_images/image-20210806162820768.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806162820768.png"
+        title="image-20210806162820768"
+    /></p>
+<p>此时 idea 会自动连接上服务器的 shell ，使用上面配置的命令查看实时日志。</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/image-20210806162947112.png"
+        data-srcset="../post_images/image-20210806162947112.png, ../post_images/image-20210806162947112.png 1.5x, ../post_images/image-20210806162947112.png 2x"
+        data-sizes="auto"
+        alt="/post_images/image-20210806162947112.png"
+        title="image-20210806162947112"
     /></p>
 <h1 id="ref">REF</h1>
-<p><a href="https://blog.csdn.net/chenfei2341/article/details/98854474">https://blog.csdn.net/chenfei2341/article/details/98854474</a></p></div><div class="post-footer" id="post-footer">
+<p><a href="https://www.bilibili.com/video/BV1ga4y1474K">https://www.bilibili.com/video/BV1ga4y1474K</a></p></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-08-05</span>
+                <span>更新于 2021-08-06</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -174,14 +276,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/spring.html">Spring</a>,&nbsp;<a href="../tags/spring-boot.html">Spring Boot</a>,&nbsp;<a href="../tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html">中文乱码</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/idea.html">IDEA</a>,&nbsp;<a href="../tags/cloud-toolkit.html">Cloud Toolkit</a>,&nbsp;<a href="../tags/spring-boot.html">Spring Boot</a>,&nbsp;<a href="../tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html">一键部署</a></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="../">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="../posts/what-is-cdn.html" class="prev" rel="prev" title="CDN 是什么？ 有多贵？"><i class="fas fa-angle-left fa-fw"></i>CDN 是什么？ 有多贵？</a>
-            <a href="../posts/how-to-use-alibaba-cloud-toolkit.html" class="next" rel="next" title="IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../posts/spring-boot-configuration-file-chinese-encoding-error.html" class="prev" rel="prev" title="Spring Boot 配置文件中文乱码"><i class="fas fa-angle-left fa-fw"></i>Spring Boot 配置文件中文乱码</a>
+            <a href="../posts/mark/1.html" class="next" rel="next" title="[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点">[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 </article></div>
         </main><footer class="footer">

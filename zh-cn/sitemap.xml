@@ -3,7 +3,7 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>/posts/mark/1.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/categories.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/categories.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/categories.html"
@@ -12,7 +12,12 @@
                     hreflang="zh-cn"
                     href="/categories.html"
                     /></url><url>
-            <loc>/posts.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/tags/cloud-toolkit.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/idea.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts/how-to-use-alibaba-cloud-toolkit.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories/java.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories/mark.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/posts.html"
@@ -21,11 +26,8 @@
                     hreflang="zh-cn"
                     href="/posts.html"
                     /></url><url>
-            <loc>/tags/spring.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/tags/spring-boot.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/categories/spring-boot.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/posts/spring-boot-configuration-file-chinese-encoding-error.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/tags.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/tags/spring-boot.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/tags.html"
@@ -34,8 +36,8 @@
                     hreflang="zh-cn"
                     href="/tags.html"
                     /></url><url>
-            <loc>/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>/</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
+            <loc>/tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/</loc><lastmod>2021-08-06T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority><xhtml:link
                         rel="alternate"
                         hreflang="en"
                         href="/en/"
@@ -44,6 +46,10 @@
                     hreflang="zh-cn"
                     href="/"
                     /></url><url>
+            <loc>/tags/spring.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/categories/spring-boot.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/posts/spring-boot-configuration-file-chinese-encoding-error.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html</loc><lastmod>2021-08-05T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/tags/cdn.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/posts/what-is-cdn.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html</loc><lastmod>2021-08-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -106,7 +112,6 @@
             <loc>/tags/ajax.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/tags/jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</loc><lastmod>2020-02-27T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>/categories/mark.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>/categories/news.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/goodbye-windows-7.html</loc><lastmod>2020-01-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>/posts/setting-up-windows-ip-dns-using-bat-scripts.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
