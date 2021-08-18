@@ -4,7 +4,14 @@
         <link>/categories/%E6%8A%98%E8%85%BE.html</link>
         <description>折腾 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
+    <title>github webhook 配合宝塔 webhook 自动化部署</title>
+    <link>/posts/github-webhook-and-btpanel-webhook.html</link>
+    <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>/posts/github-webhook-and-btpanel-webhook.html</guid>
+    <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>]]></description>
+</item><item>
     <title>关于音视频文案提取</title>
     <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
