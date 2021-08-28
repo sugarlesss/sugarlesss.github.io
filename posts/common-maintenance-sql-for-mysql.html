@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>MySQL 的常用维护语句 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="MySQL 的常用维护语句" />
+    <title class="pjax-title">MySQL 的常用维护语句 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="MySQL 的常用维护语句" />
 <meta property="og:description" content="在日常开发中遇到的一些问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/common-maintenance-sql-for-mysql.html" /><meta property="article:section" content="posts" />
@@ -21,7 +20,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/common-maintenance-sql-for-mysql.html" /><link rel="prev" href="../posts/modifying-the-mysql-default-transaction-isolation-level.html" /><link rel="next" href="../posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="../posts/common-maintenance-sql-for-mysql.html" /><link rel="prev" href="../posts/modifying-the-mysql-default-transaction-isolation-level.html" /><link rel="next" href="../posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -45,17 +44,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -63,7 +57,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/common-maintenance-sql-for-mysql.html" selected>简体中文</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/common-maintenance-sql-for-mysql.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +103,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/common-maintenance-sql-for-mysql.html" selected>简体中文</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/posts/common-maintenance-sql-for-mysql.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +117,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MySQL 的常用维护语句</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">MySQL 的常用维护语句</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/mysql.html"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-05">2020-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1799 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-05">2020-11-05</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-11-05">2020-11-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1799 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -146,7 +140,7 @@
             </div><div class="content" id="content"><p>在日常开发中遇到的一些问题。</p>
 <h1 id="一查看数据库的各个表占用的文件大小">一、查看数据库的各个表占用的文件大小</h1>
 <p>以查看 test 数据库为例：</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w">
 </span><span class="w">    </span><span class="n">table_schema</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;数据库&#39;</span><span class="p">,</span><span class="w">
 </span><span class="w">    </span><span class="k">table_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;表名&#39;</span><span class="p">,</span><span class="w">
 </span><span class="w">    </span><span class="n">engine</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;存储引擎&#39;</span><span class="p">,</span><span class="w">
@@ -161,17 +155,17 @@
 </span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w">
 </span><span class="w">    </span><span class="n">table_rows</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
 </span></code></pre></div><h1 id="二查找持续时间超过-60s-的事务">二、查找持续时间超过 60s 的事务</h1>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TIME_TO_SEC</span><span class="p">(</span><span class="n">timediff</span><span class="p">(</span><span class="n">now</span><span class="p">(),</span><span class="n">trx_started</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">60</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TIME_TO_SEC</span><span class="p">(</span><span class="n">timediff</span><span class="p">(</span><span class="n">now</span><span class="p">(),</span><span class="n">trx_started</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">60</span><span class="w">
 </span></code></pre></div><h1 id="三查看当前线程处理情况">三、查看当前线程处理情况</h1>
 <p>配套 kill 语句可以处理突发事件</p>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="n">processlist</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="n">processlist</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="n">kill</span><span class="w"> </span><span class="n">Id</span><span class="p">;</span><span class="w">
 </span></code></pre></div><h1 id="四优化表">四、优化表</h1>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="n">optimize</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">`</span><span class="n">table_name_A</span><span class="o">`</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">optimize</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">`</span><span class="n">table_name_A</span><span class="o">`</span><span class="p">;</span><span class="w">
 </span></code></pre></div><p>重新组织表数据和相关索引数据的物理存储，以减少存储空间，提高访问表时的 I/O 效率。</p>
 <p>但此操作会锁表，需要避开业务高峰期。</p>
 <h1 id="五重建表">五、重建表</h1>
-<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w">
 </span></code></pre></div><p>试想一下，如果你现在有一个表 A，需要做空间收缩，为了把表中存在的空洞去掉，你可以怎么做呢？你可以新建一个与表 A 结构相同的表 B，然后按照主键 ID 递增的顺序，把数据一行一行地从表 A 里读出来再插入到表 B 中。由于表 B 是新建的表，所以表 A 主键索引上的空洞，在表 B 中就都不存在了。显然地，表 B 的主键索引更紧凑，数据页的利用率也更高。如果我们把表 B 作为临时表，数据从表 A 导入表 B 的操作完成后，用表 B 替换 A，从效果上看，就起到了收缩表 A 空间的作用。这里，你可以使用 alter table A engine=InnoDB 命令来重建表。在 MySQL 5.5 版本之前，这个命令的执行流程跟我们前面描述的差不多，区别只是这个临时表 B 不需要你自己创建，MySQL 会自动完成转存数据、交换表名、删除旧表的操作。</p>
 <p>显然，花时间最多的步骤是往临时表插入数据的过程，如果在这个过程中，有新的数据要写入到表 A 的话，就会造成数据丢失。因此，在整个 DDL 过程中，表 A 中不能有更新。也就是说，这个 DDL 不是 Online 的。</p>
 <p>而在 MySQL 5.6 版本开始引入的 Online DDL，对这个操作流程做了优化。</p>
@@ -226,12 +220,12 @@
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -239,7 +233,9 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script></div>
+</body>
 
 </html>

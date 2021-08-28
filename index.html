@@ -2,12 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.85.0" />
+	<meta name="generator" content="Hugo 0.87.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="無糖的小宇宙" />
+    <title class="pjax-title">無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="無糖的小宇宙" />
 <meta property="og:description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
@@ -20,7 +19,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="./site.webmanifest"><link rel="canonical" href="./" /><link rel="alternate" href="./index.xml" type="application/rss+xml" title="無糖的小宇宙">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="./" /><link rel="alternate" href="./index.xml" type="application/rss+xml" title="無糖的小宇宙">
     <link rel="feed" href="./index.xml" type="application/rss+xml" title="無糖的小宇宙"><link rel="stylesheet" href="./lib/normalize/normalize.min.css"><link rel="stylesheet" href="./css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="./lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="./lib/animate/animate.min.css"></noscript><script type="application/ld+json">
@@ -37,17 +36,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -55,7 +49,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="./posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="./categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="./tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="./special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="./friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="./about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="./https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -101,7 +95,7 @@
                 </div><a class="menu-item" href="./posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="./categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="./tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="./special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="./friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="./about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="./https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,40 +117,40 @@
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/mark/1.html">[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2019-12-31">2019-12-31</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/mark.html"><i class="far fa-folder fa-fw"></i>Mark</a></span></div><div class="content"><p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p></div><div class="post-footer">
         <a href="./posts/mark/1.html">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/github-webhook-and-btpanel-webhook.html">github webhook 配合宝塔 webhook 自动化部署</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-08-18">2021-08-18</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/%E6%8A%98%E8%85%BE.html"><i class="far fa-folder fa-fw"></i>折腾</a></span></div><div class="content"><p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p></div><div class="post-footer">
         <a href="./posts/github-webhook-and-btpanel-webhook.html">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/bilibili-video-numbering-rules-upgrade.html">如何理解 B 站 AV 号规则升级为 BV 号这件事？</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-08-08">2021-08-08</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html"><i class="far fa-folder fa-fw"></i>互联网观察</a></span></div><div class="content"><p>如何理解自 2020 年 3 月 23 日起，B 站视频的 AV 号将全面升级为 BV 号这件事？</p></div><div class="post-footer">
         <a href="./posts/bilibili-video-numbering-rules-upgrade.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="./tags/b-%E7%AB%99.html">B 站</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/how-to-use-alibaba-cloud-toolkit.html">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-08-06">2021-08-06</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/java.html"><i class="far fa-folder fa-fw"></i>Java</a>&nbsp;<a href="./categories/mark.html"><i class="far fa-folder fa-fw"></i>Mark</a></span></div><div class="content"><p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p></div><div class="post-footer">
         <a href="./posts/how-to-use-alibaba-cloud-toolkit.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="./tags/idea.html">IDEA</a>,&nbsp;<a href="./tags/cloud-toolkit.html">Cloud Toolkit</a>,&nbsp;<a href="./tags/spring-boot.html">Spring Boot</a>,&nbsp;<a href="./tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html">一键部署</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/spring-boot-configuration-file-chinese-encoding-error.html">Spring Boot 配置文件中文乱码</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-08-05">2021-08-05</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/spring-boot.html"><i class="far fa-folder fa-fw"></i>Spring Boot</a></span></div><div class="content"><p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p></div><div class="post-footer">
         <a href="./posts/spring-boot-configuration-file-chinese-encoding-error.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="./tags/spring.html">Spring</a>,&nbsp;<a href="./tags/spring-boot.html">Spring Boot</a>,&nbsp;<a href="./tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81.html">中文乱码</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="./posts/what-is-cdn.html">CDN 是什么？ 有多贵？</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="./" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="./" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2021-08-02">2021-08-02</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="./categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html"><i class="far fa-folder fa-fw"></i>性能优化</a></span></div><div class="content"><p>CDN 是什么？ 为什么 CDN 能加速网站访问？ CDN 有多贵？</p></div><div class="post-footer">
         <a href="./posts/what-is-cdn.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="./tags/cdn.html">CDN</a></div></div>
@@ -184,12 +178,12 @@
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="./lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="./lib/fuse/fuse.min.js"></script><script type="text/javascript" src="./lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"data":{"id-1":"Life is too short to not live wild."},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="./js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="./lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="./lib/fuse/fuse.min.js"></script><script type="text/javascript" src="./lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="./lib/topbar/topbar.min.js"></script><script type="text/javascript" src="./lib/pjax/pjax.min.js"></script><script type="text/javascript" src="./js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -197,7 +191,9 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"data":{"id-1":"Life is too short to not live wild."},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"]},"duration":null,"speed":null}};</script></div>
+</body>
 
 </html>

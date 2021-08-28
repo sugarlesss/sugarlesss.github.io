@@ -2,12 +2,11 @@
 <html lang="zh-CN">
 
 <head>
-	<meta name="generator" content="Hugo 0.85.0" />
+	<meta name="generator" content="Hugo 0.87.0" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="無糖的小宇宙" />
+    <title class="pjax-title">無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="無糖的小宇宙" />
 <meta property="og:description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="/" />
@@ -20,7 +19,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../" /><link rel="alternate" href="../index.xml" type="application/rss+xml" title="無糖的小宇宙">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="../" /><link rel="alternate" href="../index.xml" type="application/rss+xml" title="無糖的小宇宙">
     <link rel="feed" href="../index.xml" type="application/rss+xml" title="無糖的小宇宙"><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
@@ -37,17 +36,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -55,7 +49,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -101,7 +95,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/" selected>简体中文</option><option value="/en/">English</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,40 +117,40 @@
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/common-maintenance-sql-for-mysql.html">MySQL 的常用维护语句</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-11-05">2020-11-05</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/mysql.html"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div><div class="content"><p>在日常开发中遇到的一些问题。</p></div><div class="post-footer">
         <a href="../posts/common-maintenance-sql-for-mysql.html">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/modifying-the-mysql-default-transaction-isolation-level.html">MySQL 修改默认事务隔离级别</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-11-04">2020-11-04</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/mysql.html"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div><div class="content"><p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p></div><div class="post-footer">
         <a href="../posts/modifying-the-mysql-default-transaction-isolation-level.html">阅读全文</a></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/nginx-limits-flow-based-on-specific-request-parameters.html">Nginx 根据特定请求参数做限流</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-09-17">2020-09-17</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/nginx.html"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div><div class="content"><p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p></div><div class="post-footer">
         <a href="../posts/nginx-limits-flow-based-on-specific-request-parameters.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/%E9%99%90%E6%B5%81.html">限流</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/nginx-limits-flow-to-specific-paths-or-entry-files.html">Nginx 针对特定路径或入口文件限流</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-09-16">2020-09-16</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/nginx.html"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div><div class="content"><p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p></div><div class="post-footer">
         <a href="../posts/nginx-limits-flow-to-specific-paths-or-entry-files.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/%E9%99%90%E6%B5%81.html">限流</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html">ThinkPHP5.1 如何使用 Redis 实现悲观锁</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-08-30">2020-08-30</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/php.html"><i class="far fa-folder fa-fw"></i>PHP</a>&nbsp;<a href="../categories/redis.html"><i class="far fa-folder fa-fw"></i>Redis</a></span></div><div class="content"><p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p></div><div class="post-footer">
         <a href="../posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/%E6%82%B2%E8%A7%82%E9%94%81.html">悲观锁</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="../posts/load-balancing-based-on-nginx.html">基于 nginx 实现的负载均衡</a>
     </h1><div class="post-meta">
-        <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+        <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
         </span>&nbsp;<span class="post-publish">发布于 <time datetime="2020-08-24">2020-08-24</time></span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/nginx.html"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div><div class="content"><p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p></div><div class="post-footer">
         <a href="../posts/load-balancing-based-on-nginx.html">阅读全文</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html">负载均衡</a>,&nbsp;<a href="../tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html">高可用</a></div></div>
@@ -198,12 +192,12 @@
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"data":{"id-1":"Life is too short to not live wild."},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"]},"duration":null,"speed":null}};</script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -211,7 +205,9 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/typeit/typeit.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"data":{"id-1":"Life is too short to not live wild."},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null},"typeit":{"cursorChar":null,"cursorSpeed":null,"data":{"id-1":["id-1"]},"duration":null,"speed":null}};</script></div>
+</body>
 
 </html>

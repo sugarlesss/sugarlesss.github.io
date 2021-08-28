@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>关于音视频文案提取 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="关于音视频文案提取" />
+    <title class="pjax-title">关于音视频文案提取 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="关于音视频文案提取" />
 <meta property="og:description" content="长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/about-extract-copywriting-from-audio-or-video.html" /><meta property="article:section" content="posts" />
@@ -21,7 +20,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/about-extract-copywriting-from-audio-or-video.html" /><link rel="prev" href="../posts/hugo-one-click-deployment.html" /><link rel="next" href="../posts/about-hyper-threading-technology.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="../posts/about-extract-copywriting-from-audio-or-video.html" /><link rel="prev" href="../posts/hugo-one-click-deployment.html" /><link rel="next" href="../posts/about-hyper-threading-technology.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -45,17 +44,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -63,7 +57,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/about-extract-copywriting-from-audio-or-video.html" selected>简体中文</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/about-extract-copywriting-from-audio-or-video.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +103,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/about-extract-copywriting-from-audio-or-video.html" selected>简体中文</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/posts/about-extract-copywriting-from-audio-or-video.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +117,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">关于音视频文案提取</h1><h2 class="single-subtitle">如何使用 Python 白嫖腾讯云的语音转文字</h2><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">关于音视频文案提取</h1><h2 class="single-subtitle">如何使用 Python 白嫖腾讯云的语音转文字</h2><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E6%8A%98%E8%85%BE.html"><i class="far fa-folder fa-fw"></i>折腾</a>&nbsp;<a href="../categories/python.html"><i class="far fa-folder fa-fw"></i>Python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-17">2021-07-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5473 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-17">2021-07-17</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-07-17">2021-07-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 5473 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 11 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -168,7 +162,7 @@
             </div><div class="content" id="content"><p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
 <p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
 <p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
 </code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
 <p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
 <h2 id="11讯飞">1.1、讯飞</h2>
@@ -259,7 +253,7 @@
 <p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
 <p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
 <p>3）run it。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 录音文件识别极速版 v2版本</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 录音文件识别极速版 v2版本</span>
 <span class="c1"># API 文档：https://cloud.tencent.com/document/api/1093/52097</span>
 <span class="c1"># 签名生成：https://cloud.tencent.com/document/api/1093/52097#sign</span>
 
@@ -433,7 +427,7 @@
         <span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;channel_id: </span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
 
 </code></pre></div><p>输出</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">[INFO] 生成 params
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">[INFO] 生成 params
 {&#39;secretid&#39;: &#39;xxxxxxxxxxxxxxxxxxx&#39;, &#39;engine_type&#39;: &#39;16k_zh&#39;, &#39;voice_format&#39;: &#39;mp3&#39;, &#39;timestamp&#39;: xxxxxxxxx, &#39;convert_num_mode&#39;: 1}
 
 [INFO] 生成 signstr
@@ -461,14 +455,14 @@ https://asr.cloud.tencent.com/asr/flash/v1/xxxxxxxxx?convert_num_mode=1&amp;engi
 <p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
 <h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
 <p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
 
 <span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
 </code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
 <p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
 <p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
@@ -556,7 +550,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 </code></pre></div><p>输出</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
         <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span>
     <span class="p">},</span>
@@ -566,7 +560,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
 <p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
 <p>用 TaskID 查询识别结果。</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
@@ -599,7 +593,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
     <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 
 </code></pre></div><p>输出：</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
         <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span><span class="p">,</span>
         <span class="nt">&#34;Status&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
@@ -615,13 +609,13 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
 <h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
 <p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
 
 <span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
 </code></pre></div><h3 id="232源码">2.3.2、源码</h3>
 <p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
 <span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
@@ -669,7 +663,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
 </code></pre></div><p>输出：</p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
     <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;一句话录音识别内容&#34;</span><span class="p">,</span>
     <span class="nt">&#34;AudioDuration&#34;</span><span class="p">:</span><span class="mi">59996</span><span class="p">,</span>
     <span class="nt">&#34;WordSize&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
@@ -710,12 +704,12 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -723,7 +717,9 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script></div>
+</body>
 
 </html>

@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>基于 nginx 实现的负载均衡 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="基于 nginx 实现的负载均衡" />
+    <title class="pjax-title">基于 nginx 实现的负载均衡 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="基于 nginx 实现的负载均衡" />
 <meta property="og:description" content="负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/load-balancing-based-on-nginx.html" /><meta property="article:section" content="posts" />
@@ -21,7 +20,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/load-balancing-based-on-nginx.html" /><link rel="prev" href="../posts/ram-disk-tool.html" /><link rel="next" href="../posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="../posts/load-balancing-based-on-nginx.html" /><link rel="prev" href="../posts/ram-disk-tool.html" /><link rel="next" href="../posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -45,17 +44,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -63,7 +57,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/load-balancing-based-on-nginx.html" selected>简体中文</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/load-balancing-based-on-nginx.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +103,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/load-balancing-based-on-nginx.html" selected>简体中文</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/posts/load-balancing-based-on-nginx.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +117,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基于 nginx 实现的负载均衡</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">基于 nginx 实现的负载均衡</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/nginx.html"><i class="far fa-folder fa-fw"></i>Nginx</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-08-24">2020-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1170 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-08-24">2020-08-24</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-08-24">2020-08-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1170 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -162,7 +156,7 @@
 <h1 id="三部署网站">三、部署网站</h1>
 <p>测试域名为 t10.com，因此需要在宿主机上将此域名解析到负载均衡主服务器（192.168.150.10）。</p>
 <p>修改宿主机的 hosts 文件（路径：C:\Windows\System32\drivers\etc\hosts），添加以下内容。</p>
-<div class="highlight"><pre class="chroma"><code class="language-plain" data-lang="plain">192.168.150.10 t10.com
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">192.168.150.10 t10.com
 </code></pre></div><p>分别在三台服务器上添加网站后，将 t10.com 这个域名解析到网站上。</p>
 <p>如下图示例</p>
 <p><img
@@ -174,7 +168,7 @@
         title="img"
     /></p>
 <p>在负载均衡主服务器的 server 语法块下，也就是网关的配置文件中加入一条转发规则</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
     <span class="c1"># 转发至负载均衡服务器
 </span><span class="c1"></span>    <span class="kn">proxy_pass</span> <span class="s">http://fzjh</span><span class="p">;</span>
     <span class="kn">proxy_connect_timeout</span> <span class="s">2s</span><span class="p">;</span>
@@ -183,7 +177,7 @@
     <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div><p>在负载均衡主服务器的 nginx 配置文件的 http 语法块下（与 server 同级别）加入规则</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">upstream</span> <span class="s">fzjh</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">upstream</span> <span class="s">fzjh</span> <span class="p">{</span>
     <span class="c1"># least_conn;
 </span><span class="c1"></span>    <span class="c1"># ip_hash;
 </span><span class="c1"></span>    <span class="kn">server</span> <span class="n">192.168.150.20</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
@@ -194,7 +188,7 @@
 <h1 id="四常用的-nginx-负载均衡算法">四、常用的 nginx 负载均衡算法</h1>
 <h2 id="1轮询默认">1、轮询（默认）</h2>
 <p>轮询即 Round Robin，根据 Nginx 配置文件中的顺序，依次把客户端的 Web 请求分发到不同的后端服务器。</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
  <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
    <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
    <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
@@ -209,7 +203,7 @@
  <span class="p">}</span> 
 </code></pre></div><h2 id="2least_conn最少连接">2、least_conn（最少连接）</h2>
 <p>Web 请求会被转发到连接数最少的服务器上。</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
  <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
    <span class="kn">least_conn</span><span class="p">;</span>
    <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
@@ -225,7 +219,7 @@
  <span class="p">}</span> 
 </code></pre></div><h2 id="3ip_haship-地址哈希">3、ip_hash（IP 地址哈希）</h2>
 <p>前述的两种负载均衡方案中，同一客户端连续的 Web 请求可能会被分发到不同的后端服务器进行处理，因此如果涉及到会话 Session，那么会话会比较复杂。常见的是基于数据库的会话持久化。要克服上面的难题，可以使用基于 IP 地址哈希的负载均衡方案。这样的话，同一客户端连续的 Web 请求都会被分发到同一服务器进行处理。</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
  <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
    <span class="kn">ip_hash</span><span class="p">;</span>
    <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
@@ -241,7 +235,7 @@
  <span class="p">}</span> 
 </code></pre></div><h2 id="4基于权重的负载均衡算法">4、基于权重的负载均衡算法</h2>
 <p>基于权重的负载均衡即 Weighted Load Balancing，这种方式下，我们可以配置 Nginx 把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。</p>
-<div class="highlight"><pre class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
  <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
    <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
    <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
@@ -289,12 +283,12 @@
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -302,7 +296,9 @@
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script></div>
+</body>
 
 </html>

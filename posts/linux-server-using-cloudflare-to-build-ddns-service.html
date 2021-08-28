@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Linux 服务器使用 Cloudflare 搭建 DDNS - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="Linux 服务器使用 Cloudflare 搭建 DDNS" />
+    <title class="pjax-title">Linux 服务器使用 Cloudflare 搭建 DDNS - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="Linux 服务器使用 Cloudflare 搭建 DDNS" />
 <meta property="og:description" content="在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><meta property="article:section" content="posts" />
@@ -21,7 +20,7 @@
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="../site.webmanifest"><link rel="canonical" href="../posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><link rel="prev" href="../posts/linux-using-crontab-to-execute-timed-tasks.html" /><link rel="next" href="../posts/getting-started-with-linux-shell-scripting.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="../posts/linux-server-using-cloudflare-to-build-ddns-service.html" /><link rel="prev" href="../posts/linux-using-crontab-to-execute-timed-tasks.html" /><link rel="next" href="../posts/getting-started-with-linux-shell-scripting.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -45,17 +44,12 @@
 <body header-desktop="" header-mobile=""><script type="text/javascript">
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
-        function getMeta(metaName) {
-            const metas = document.getElementsByTagName('meta');
-            for (let i = 0; i < metas.length; i++)
-                if (metas[i].getAttribute('name') === metaName)
-                    return metas[i];
-            return '';
-        }
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
+    <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
         <div class="header-title">
@@ -63,7 +57,7 @@
         </div>
         <div class="menu">
             <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-user-friends fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-blog fa-fw'></i> 关于 </a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><a href="#" onclick="return false;" class="menu-item language" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
+                        <select class="language-select" title="Select Language" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
                     </a><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
@@ -109,7 +103,7 @@
                 </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-user-friends fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-blog fa-fw'></i>关于</a><a class="menu-item" href="../https:/github.com/sugarlesss" title="GitHub"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a><a href="#" onclick="return false;" class="menu-item" title="选择语言">简体中文<i class="fas fa-chevron-right fa-fw"></i>
-                    <select class="language-select" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
+                    <select class="language-select" title="Select Language" onchange="location = this.value;"><option value="/posts/linux-server-using-cloudflare-to-build-ddns-service.html" selected>简体中文</option></select>
                 </a></div>
     </div>
 </header>
@@ -123,11 +117,11 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.body.setAttribute("pageStyle", "normal")</script><script>document.body.setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux 服务器使用 Cloudflare 搭建 DDNS</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "normal")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Linux 服务器使用 Cloudflare 搭建 DDNS</h1><div class="post-meta">
             <div class="post-meta-line">
-                <span class="post-author"><a href="../" title="Author" rel=" author" class="author"><i class="author fas fa-user-circle fa-fw"></i>無糖</a>
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-25">2019-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 522 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-05-25">2019-05-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2019-05-25">2019-05-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 522 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -153,7 +147,7 @@
 <h1 id="三设置用于-ddns-解析的二级域名">三、设置用于 DDNS 解析的二级域名</h1>
 <p>在 Cloudflare 中新建一个 A 记录，如：ddns.yourdomain.com，指向 1.1.1.1（可随意指定，如 123.123.123.123 等等，主要用于后续查看 DDNS 是否生效）</p>
 <h1 id="四下载-ddns-脚本修改配置">四、下载 DDNS 脚本，修改配置</h1>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
 vim cf-v4-ddns.sh
 </code></pre></div><p>1.CFKEY 就是第一步获取的 global key</p>
 <p>2.CFUSER 是登录 cloudflare 的邮箱</p>
@@ -161,18 +155,18 @@ vim cf-v4-ddns.sh
 <p>4.CFRECORD_NAME 则是用于 DDNS 的二级域名</p>
 <p>5.CFTTL 是域名生效的 ttl，默认 120 即可</p>
 <h1 id="五脚本授权并执行">五、脚本授权并执行</h1>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x cf-v4-ddns.sh
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod +x cf-v4-ddns.sh
 ./cf-v4-ddns.sh
 </code></pre></div><p>如果脚本相关信息填写正确，输出内容会显示服务器当前 IP，登录 Cloudflare DNS 选项 查看之前设置的 1.1.1.1 已变为当前服务器的 IP。</p>
 <h1 id="六设置-crontab-定时任务">六、设置 crontab 定时任务</h1>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 编辑定时任务</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 编辑定时任务</span>
 crontab -e
 
 <span class="c1"># 将以下内容添加到crontab中</span>
 <span class="c1"># 无日志</span>
 */2 * * * * /root/cf-v4-ddns.sh &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
 </code></pre></div><p>如果需要日志文件，可将上述代码请替换成下述代码</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
 </code></pre></div></div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -205,12 +199,12 @@ crontab -e
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
         </div></footer></div>
 
-    <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
             <i class="fas fa-arrow-up fa-fw"></i>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/fuse/fuse.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -218,7 +212,9 @@ crontab -e
       var s = document.getElementsByTagName("script")[0]; 
       s.parentNode.insertBefore(hm, s);
     })();
-</script>
-        </body>
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"search":{"distance":null,"findAllMatches":null,"fuseIndexURL":"/index.json","highlightTag":"em","ignoreFieldNorm":null,"ignoreLocation":null,"isCaseSensitive":null,"location":null,"maxResultLength":10,"minMatchCharLength":null,"noResultsFound":"没有找到结果","snippetLength":50,"threshold":null,"type":"fuse","useExtendedSearch":null}};</script></div>
+</body>
 
 </html>
