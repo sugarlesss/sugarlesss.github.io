@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>News on 無糖的小宇宙</title>
-    <link>/news.html</link>
+    <link>https://sugarless.top/news.html</link>
     <description>Recent content in News on 無糖的小宇宙</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <managingEditor>jaded@foxmail.com (無糖)</managingEditor>
     <webMaster>jaded@foxmail.com (無糖)</webMaster>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 14 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="/news/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 14 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://sugarless.top/news/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>再见 Windows7</title>
-      <link>/news/goodbye-windows-7.html</link>
+      <link>https://sugarless.top/news/goodbye-windows-7.html</link>
       <pubDate>Tue, 14 Jan 2020 00:00:00 +0000</pubDate>
       <author>jaded@foxmail.com (無糖)</author>
-      <guid>/news/goodbye-windows-7.html</guid>
+      <guid>https://sugarless.top/news/goodbye-windows-7.html</guid>
       <description>&lt;p&gt;Microsoft 将于 2020 年 1 月 14 日对 Windows 7 终止支持&lt;/p&gt;</description>
     </item>
     

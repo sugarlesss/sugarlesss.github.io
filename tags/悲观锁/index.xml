@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>悲观锁 - 标签 - 無糖的小宇宙</title>
-        <link>/tags/%E6%82%B2%E8%A7%82%E9%94%81.html</link>
+        <link>https://sugarless.top/tags/%E6%82%B2%E8%A7%82%E9%94%81.html</link>
         <description>悲观锁 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E6%82%B2%E8%A7%82%E9%94%81.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E6%82%B2%E8%A7%82%E9%94%81.html" rel="self" type="application/rss+xml" /><item>
     <title>ThinkPHP5.1 如何使用 Redis 实现悲观锁</title>
-    <link>/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</link>
+    <link>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</link>
     <pubDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</guid>
+    </author><guid>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</guid>
     <description><![CDATA[<p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>]]></description>
 </item></channel>
 </rss>
