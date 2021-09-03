@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>所有文章 - 無糖的小宇宙</title>
-        <link>/posts.html</link>
+        <link>https://sugarless.top/posts.html</link>
         <description>所有文章 | 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/posts.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/posts.html" rel="self" type="application/rss+xml" /><item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
-    <link>/posts/mark/1.html</link>
+    <link>https://sugarless.top/posts/mark/1.html</link>
     <pubDate>Tue, 31 Dec 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/mark/1.html</guid>
+    </author><guid>https://sugarless.top/posts/mark/1.html</guid>
     <description><![CDATA[<p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p>]]></description>
 </item><item>
     <title>Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</title>
-    <link>/posts/baidu-seo-submission-tool-developed-using-python.html</link>
+    <link>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</link>
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
+    </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
     <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>]]></description>
 </item><item>
     <title>github webhook 配合宝塔 webhook 自动化部署</title>
-    <link>/posts/github-webhook-and-btpanel-webhook.html</link>
+    <link>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</link>
     <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/github-webhook-and-btpanel-webhook.html</guid>
+    </author><guid>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</guid>
     <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>]]></description>
 </item><item>
     <title>如何理解 B 站 AV 号规则升级为 BV 号这件事？</title>
-    <link>/posts/bilibili-video-numbering-rules-upgrade.html</link>
+    <link>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</link>
     <pubDate>Sun, 08 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/bilibili-video-numbering-rules-upgrade.html</guid>
+    </author><guid>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</guid>
     <description><![CDATA[<p>如何理解自 2020 年 3 月 23 日起，B 站视频的 AV 号将全面升级为 BV 号这件事？</p>]]></description>
 </item><item>
     <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</title>
-    <link>/posts/how-to-use-alibaba-cloud-toolkit.html</link>
+    <link>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</link>
     <pubDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
+    </author><guid>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
     <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>]]></description>
 </item><item>
     <title>Spring Boot 配置文件中文乱码</title>
-    <link>/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
+    <link>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
     <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
+    </author><guid>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
     <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
 </item><item>
     <title>CDN 是什么？ 有多贵？</title>
-    <link>/posts/what-is-cdn.html</link>
+    <link>https://sugarless.top/posts/what-is-cdn.html</link>
     <pubDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/what-is-cdn.html</guid>
+    </author><guid>https://sugarless.top/posts/what-is-cdn.html</guid>
     <description><![CDATA[<p>CDN 是什么？ 为什么 CDN 能加速网站访问？ CDN 有多贵？</p>]]></description>
 </item><item>
     <title>关于超线程技术</title>
-    <link>/posts/about-hyper-threading-technology.html</link>
+    <link>https://sugarless.top/posts/about-hyper-threading-technology.html</link>
     <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/about-hyper-threading-technology.html</guid>
+    </author><guid>https://sugarless.top/posts/about-hyper-threading-technology.html</guid>
     <description><![CDATA[<p>四核八线程，八核十六线程是啥意思？</p>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
-    <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>/posts/hugo-one-click-deployment.html</link>
+    <link>https://sugarless.top/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/hugo-one-click-deployment.html</guid>
+    </author><guid>https://sugarless.top/posts/hugo-one-click-deployment.html</guid>
     <description><![CDATA[<p>一键发布文章</p>]]></description>
 </item></channel>
 </rss>

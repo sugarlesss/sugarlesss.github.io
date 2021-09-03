@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>一键部署 - 标签 - 無糖的小宇宙</title>
-        <link>/tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</link>
+        <link>https://sugarless.top/tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html</link>
         <description>一键部署 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2.html" rel="self" type="application/rss+xml" /><item>
     <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</title>
-    <link>/posts/how-to-use-alibaba-cloud-toolkit.html</link>
+    <link>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</link>
     <pubDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
+    </author><guid>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
     <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>]]></description>
 </item></channel>
 </rss>

@@ -1,22 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>限流 - 标签 - 無糖的小宇宙</title>
-        <link>/tags/%E9%99%90%E6%B5%81.html</link>
+        <link>https://sugarless.top/tags/%E9%99%90%E6%B5%81.html</link>
         <description>限流 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E9%99%90%E6%B5%81.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E9%99%90%E6%B5%81.html" rel="self" type="application/rss+xml" /><item>
     <title>Nginx 根据特定请求参数做限流</title>
-    <link>/posts/nginx-limits-flow-based-on-specific-request-parameters.html</link>
+    <link>https://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</link>
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
+    </author><guid>https://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
     <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>]]></description>
 </item><item>
     <title>Nginx 针对特定路径或入口文件限流</title>
-    <link>/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</link>
+    <link>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</link>
     <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
+    </author><guid>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
     <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>]]></description>
 </item></channel>
 </rss>

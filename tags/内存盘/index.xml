@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>内存盘 - 标签 - 無糖的小宇宙</title>
-        <link>/tags/%E5%86%85%E5%AD%98%E7%9B%98.html</link>
+        <link>https://sugarless.top/tags/%E5%86%85%E5%AD%98%E7%9B%98.html</link>
         <description>内存盘 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E5%86%85%E5%AD%98%E7%9B%98.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E5%86%85%E5%AD%98%E7%9B%98.html" rel="self" type="application/rss+xml" /><item>
     <title>SoftPerfect RAM Disk 内存盘工具</title>
-    <link>/posts/ram-disk-tool.html</link>
+    <link>https://sugarless.top/posts/ram-disk-tool.html</link>
     <pubDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>/posts/ram-disk-tool.html</guid>
+    </author><guid>https://sugarless.top/posts/ram-disk-tool.html</guid>
     <description><![CDATA[<p>内存盘就是将一部分硬盘当硬盘使用，由于内存速度很快，利用了这个特性设置虚拟内存硬盘，在一些特定场景和需求下是非常有帮助的。</p>]]></description>
 </item></channel>
 </rss>
