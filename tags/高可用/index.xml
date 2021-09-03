@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>高可用 - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html</link>
+        <link>/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html</link>
         <description>高可用 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html" rel="self" type="application/rss+xml" /><item>
     <title>基于 nginx 实现的负载均衡</title>
-    <link>https://sugarless.top/posts/load-balancing-based-on-nginx.html</link>
+    <link>/posts/load-balancing-based-on-nginx.html</link>
     <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/load-balancing-based-on-nginx.html</guid>
+    </author><guid>/posts/load-balancing-based-on-nginx.html</guid>
     <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>]]></description>
 </item></channel>
 </rss>

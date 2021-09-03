@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>互联网观察 - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html</link>
+        <link>/categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html</link>
         <description>互联网观察 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 08 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 08 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html" rel="self" type="application/rss+xml" /><item>
     <title>如何理解 B 站 AV 号规则升级为 BV 号这件事？</title>
-    <link>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</link>
+    <link>/posts/bilibili-video-numbering-rules-upgrade.html</link>
     <pubDate>Sun, 08 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</guid>
+    </author><guid>/posts/bilibili-video-numbering-rules-upgrade.html</guid>
     <description><![CDATA[<p>如何理解自 2020 年 3 月 23 日起，B 站视频的 AV 号将全面升级为 BV 号这件事？</p>]]></description>
 </item></channel>
 </rss>

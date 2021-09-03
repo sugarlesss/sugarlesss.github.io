@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>JQuery - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/jquery.html</link>
+        <link>/tags/jquery.html</link>
         <description>JQuery - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 27 Feb 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/jquery.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 27 Feb 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="/tags/jquery.html" rel="self" type="application/rss+xml" /><item>
     <title>JQuery 如何优雅的发起一个 ajax 请求</title>
-    <link>https://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</link>
+    <link>/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</link>
     <pubDate>Thu, 27 Feb 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
+    </author><guid>/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
     <description><![CDATA[<p>你还在发起 ajax 请求时在 data 里写上一大堆参数，或是手动拼接参数字符串吗？</p>]]></description>
 </item></channel>
 </rss>

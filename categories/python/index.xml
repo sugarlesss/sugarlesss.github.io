@@ -1,78 +1,78 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Python - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/python.html</link>
+        <link>/categories/python.html</link>
         <description>Python - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/python.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="/categories/python.html" rel="self" type="application/rss+xml" /><item>
     <title>Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</title>
-    <link>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</link>
+    <link>/posts/baidu-seo-submission-tool-developed-using-python.html</link>
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
+    </author><guid>/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
     <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
-    <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
-    <link>https://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</link>
+    <link>/posts/batch-file-fixed-prefix-removal-using-python.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
+    </author><guid>/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
     <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>]]></description>
 </item><item>
     <title>Python 爬取百度实时热点</title>
-    <link>https://sugarless.top/posts/python-get-baidu-live-hotspot.html</link>
+    <link>/posts/python-get-baidu-live-hotspot.html</link>
     <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/python-get-baidu-live-hotspot.html</guid>
+    </author><guid>/posts/python-get-baidu-live-hotspot.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
 </item><item>
     <title>Python 中文分词，根据词频和背景图片生成词云</title>
-    <link>https://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</link>
+    <link>/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</guid>
+    </author><guid>/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</guid>
     <description><![CDATA[<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>]]></description>
 </item><item>
     <title>Python pip 指定源安装</title>
-    <link>https://sugarless.top/posts/pip-source-specific-installation.html</link>
+    <link>/posts/pip-source-specific-installation.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/pip-source-specific-installation.html</guid>
+    </author><guid>/posts/pip-source-specific-installation.html</guid>
     <description><![CDATA[<p>有时 pip 不指定源安装会比较慢，甚至会安装失败。</p>]]></description>
 </item><item>
     <title>Python 导出 or 安装 requirements.txt 依赖</title>
-    <link>https://sugarless.top/posts/python-export-or-install-requirements.txt-dependencies.html</link>
+    <link>/posts/python-export-or-install-requirements.txt-dependencies.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/python-export-or-install-requirements.txt-dependencies.html</guid>
+    </author><guid>/posts/python-export-or-install-requirements.txt-dependencies.html</guid>
     <description><![CDATA[<p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>]]></description>
 </item><item>
     <title>PyCharm 使用 Anaconda 管理多版本 Python 环境</title>
-    <link>https://sugarless.top/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</link>
+    <link>/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</link>
     <pubDate>Fri, 13 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</guid>
+    </author><guid>/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</guid>
     <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>]]></description>
 </item><item>
     <title>Python 如何创建一个 Excel 文件并向其写入内容？</title>
-    <link>https://sugarless.top/posts/create-an-excel-file-and-write-to-it-using-python.html</link>
+    <link>/posts/create-an-excel-file-and-write-to-it-using-python.html</link>
     <pubDate>Wed, 11 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/create-an-excel-file-and-write-to-it-using-python.html</guid>
+    </author><guid>/posts/create-an-excel-file-and-write-to-it-using-python.html</guid>
     <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>]]></description>
 </item><item>
     <title>我用一天时间“偷了”网易云音乐50W&#43;用户信息</title>
-    <link>https://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</link>
+    <link>/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</link>
     <pubDate>Thu, 12 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
+    </author><guid>/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
     <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>]]></description>
 </item></channel>
 </rss>
