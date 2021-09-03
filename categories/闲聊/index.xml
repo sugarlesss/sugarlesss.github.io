@@ -12,6 +12,13 @@
     </author><guid>https://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</guid>
     <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>]]></description>
 </item><item>
+    <title>About blog</title>
+    <link>https://sugarless.top/posts/en/about.html</link>
+    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/en/about.html</guid>
+    <description><![CDATA[<p>About Content and Tools</p>]]></description>
+</item><item>
     <title>关于博客</title>
     <link>https://sugarless.top/posts/about.html</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
