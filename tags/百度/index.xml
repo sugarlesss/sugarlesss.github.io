@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Python - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/python.html</link>
-        <description>Python - 标签 - 無糖的小宇宙</description>
+        <title>百度 - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.top/tags/%E7%99%BE%E5%BA%A6.html</link>
+        <description>百度 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/python.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E7%99%BE%E5%BA%A6.html" rel="self" type="application/rss+xml" /><item>
     <title>Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</title>
     <link>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</link>
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
