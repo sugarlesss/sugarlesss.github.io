@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/github-webhook-and-btpanel-webhook.html"
-        },"genre": "posts","keywords": "github, webhook, 宝塔面板, 自动化部署","wordcount":  821 ,
+        },"genre": "posts","keywords": "github, webhook, 宝塔面板, 自动化部署","wordcount":  848 ,
         "url": "https:\/\/sugarless.top\/posts\/github-webhook-and-btpanel-webhook.html","datePublished": "2021-08-18T00:00:00+00:00","dateModified": "2021-09-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -117,7 +117,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E6%8A%98%E8%85%BE.html"><i class="far fa-folder fa-fw"></i>折腾</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 821 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 848 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/github-webhook-and-btpanel-webhook.html" class="leancloud_visitors" data-flag-title="github webhook 配合宝塔 webhook 自动化部署">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -145,13 +145,19 @@
             </div><div class="content" id="content"><p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
 <h1 id="一关于-webhook">一、关于 webhook</h1>
 <p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
-<p>1）你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
-<p>2）你在 gitee 或自建的 gogs （一款开源 git server ）上托管代码，你希望在 git push 提交新版本到远程仓库后，服务器能自动执行 git pull 命令，从远程仓库拉取最新版本的代码，并重启服务。</p>
+<ul>
+<li>
+<p>你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
+</li>
+<li>
+<p>你在 gitee 或自建的 gogs （一款开源 git server ）上托管代码，你希望在 git push 提交新版本到远程仓库后，服务器能自动执行 git pull 命令，从远程仓库拉取最新版本的代码，并重启服务。</p>
+</li>
+</ul>
 <p>实际上，你可以把它看做一种事件触发器。当满足某种特定条件时，执行一系列特定操作。其中，一方是事件发起者，另一方是事件接收者。</p>
 <p>以第一个例子来解释，Github 接收到 push 后，发起一个 HTTP(S) 请求，响应者接收到请求后执行特定命令或业务逻辑。Github 是事件发起者，部署了宝塔面板的服务器是事件执行者。</p>
 <h1 id="二配置宝塔面板-webhook">二、配置宝塔面板 webhook</h1>
-<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，生成的站点实际上就是静态页面，我把它托管在 Github 上（之所以不直接用 github pages 服务是因为百度不收录）。</p>
-<p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能自动执行 git pull 命令，从 Github 拉取最新的版本覆盖，因为是静态资源，所以就无需重启服务之类的。</p>
+<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
+<p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能 cd 到博客源码目录下执行 git pull 命令，这样就可以从 Github 拉取最新的版本覆盖服务器上当前的版本了，因为是静态资源，所以无需重启什么服务，git pull 完成后即更新完毕。</p>
 <h2 id="1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</h2>
 <p>去软件商店可以找到这玩意儿</p>
 <p><img
