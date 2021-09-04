@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">8、剑指 Offer 07. 重建二叉树 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="8、剑指 Offer 07. 重建二叉树" />
+<meta property="og:description" content="一、题目 剑指 Offer 07. 重建二叉树 难度中等 输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。 假设输入的前序遍历和中序遍历的结果中" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sugarless.top/algorithm-leetcode-jzoffer2-java/8.html" /><meta property="article:section" content="algorithm-leetcode-jzoffer2-java" />
+<meta property="article:published_time" content="2021-08-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-08-31T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="8、剑指 Offer 07. 重建二叉树"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 07. 重建二叉树 难度中等 输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。 假设输入的前序遍历和中序遍历的结果中"/>
+<meta name="application-name" content="無糖的小宇宙">
+<meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/algorithm-leetcode-jzoffer2-java/8.html" /><link rel="prev" href="https://sugarless.top/algorithm-leetcode-jzoffer2-java/7.html" /><link rel="next" href="https://sugarless.top/algorithm-leetcode-jzoffer2-java/9.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "8、剑指 Offer 07. 重建二叉树",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/sugarless.top\/algorithm-leetcode-jzoffer2-java\/8.html"
+        },"genre": "algorithm-leetcode-jzoffer2-java","wordcount":  1389 ,
+        "url": "https:\/\/sugarless.top\/algorithm-leetcode-jzoffer2-java\/8.html","datePublished": "2021-08-31T00:00:00+00:00","dateModified": "2021-08-31T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../moments.html"><i class='fas fa-quote-left fa-fw'></i> 说说 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../moments.html" title=""><i class='fas fa-quote-left fa-fw'></i>说说</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">8、剑指 Offer 07. 重建二叉树</h1><div class="content" id="content"><h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 07. 重建二叉树</a> 难度中等</p>
+<p>输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。</p>
+<p>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
+<p><strong>示例 1:</strong></p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/tree.jpg"
+        data-srcset="../post_images/tree.jpg, ../post_images/tree.jpg 1.5x, ../post_images/tree.jpg 2x"
+        data-sizes="auto"
+        alt="/post_images/tree.jpg"
+        title="img"
+    /></p>
+<pre><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+Output: [3,9,20,null,null,15,7]
+</code></pre><p><strong>示例 2:</strong></p>
+<pre><code>Input: preorder = [-1], inorder = [-1]
+Output: [-1]
+</code></pre><p><strong>限制：</strong></p>
+<pre><code>0 &lt;= 节点个数 &lt;= 5000
+</code></pre><p><strong>注意</strong>：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21递归法">2.1、递归法</h2>
+<h3 id="核心思想">核心思想：</h3>
+<p>对于任意一颗树而言，前序遍历的形式总是如下所示，且根节点总是前序遍历中的第一个节点。</p>
+<pre><code>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+</code></pre><p>而中序遍历的形式总是</p>
+<pre><code>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+</code></pre><p>只要我们在中序遍历中定位到根节点，那么我们就可以分别知道左子树和右子树中的节点数目。由于同一颗子树的前序遍历和中序遍历的长度显然是相同的，因此我们就可以对应到前序遍历的结果中，对上述形式中的所有左右括号进行定位。</p>
+<p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
+<p><strong>细节</strong></p>
+<p>在中序遍历中对根节点进行定位时，一种简单的方法是直接扫描整个中序遍历的结果并找出根节点，但这样做的时间复杂度较高。我们可以考虑使用哈希表来帮助我们快速地定位根节点。对于哈希映射中的每个键值对，键表示一个元素（节点的值），值表示其在中序遍历中的出现位置。在构造二叉树的过程之前，我们可以对中序遍历的列表进行一遍扫描，就可以构造出这个哈希映射。在此后构造二叉树的过程中，我们就只需要 O(1) 的时间对根节点进行定位了。</p>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：O(n)，其中 n 是树中的节点个数。</p>
+<p><strong>空间复杂度</strong>：O(n)，除去返回的答案需要的 O(n) 空间之外，我们还需要使用 O(n) 的空间存储哈希映射，以及 O(h)（其中 h 是树的高度）的空间表示递归时栈空间。这里 h &lt; n，所以总空间复杂度为 O(n)。</p>
+<h3 id="代码">代码：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 前序遍历值
+</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="c1">// 中序遍历值
+</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">inorder</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="c1">// 保存中序遍历中每个元素各自出现的下标，方便定位
+</span><span class="c1"></span>    <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;();</span>
+
+    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">buildTree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">inorder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化参数
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">preorder</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">inorder</span> <span class="o">=</span> <span class="n">inorder</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">inorder</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">inorder</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 递归调用
+</span><span class="c1"></span>        <span class="n">TreeNode</span> <span class="n">result</span> <span class="o">=</span> <span class="n">myBuildTree</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">preorder</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">inorder</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="cm">/**
+</span><span class="cm">     * 给定一个树的前序遍历与中序遍历，递归生成树结构
+</span><span class="cm">     *
+</span><span class="cm">     * @param preorderStartIndex 前序遍历下标区间 start
+</span><span class="cm">     * @param preorderEndIndex   前序遍历下标区间 end
+</span><span class="cm">     * @param inorderStartIndex  中序遍历下标区间 start
+</span><span class="cm">     * @param inorderEndIndex    中序遍历下标区间 end
+</span><span class="cm">     * @return 
+</span><span class="cm">     */</span>
+    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">myBuildTree</span><span class="o">(</span><span class="kt">int</span> <span class="n">preorderStartIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">preorderEndIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">inorderStartIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">inorderEndIndex</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">preorderStartIndex</span> <span class="o">&gt;</span> <span class="n">preorderEndIndex</span> <span class="o">||</span> <span class="n">inorderStartIndex</span> <span class="o">&gt;</span> <span class="n">inorderEndIndex</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 如果下标超限,则说明该节点为 null
+</span><span class="c1"></span>            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 先取得根节点的值
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">rootVal</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">preorder</span><span class="o">[</span><span class="n">preorderStartIndex</span><span class="o">];</span>
+
+        <span class="c1">// 构造出一个新节点
+</span><span class="c1"></span>        <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">rootVal</span><span class="o">);</span>
+
+        <span class="c1">// 获取根节点的值处于中序遍历中的下标
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">rootIndex</span> <span class="o">=</span> <span class="k">this</span><span class="o">.</span><span class="na">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">rootVal</span><span class="o">);</span>
+
+        <span class="c1">// 计算左子树元素的个数
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">leftSubtreeSize</span> <span class="o">=</span> <span class="n">rootIndex</span> <span class="o">-</span> <span class="n">inorderStartIndex</span><span class="o">;</span>
+
+        <span class="c1">// 递归处理左子树
+</span><span class="c1"></span>        <span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">myBuildTree</span><span class="o">(</span><span class="n">preorderStartIndex</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">preorderStartIndex</span> <span class="o">+</span> <span class="n">leftSubtreeSize</span><span class="o">,</span> <span class="n">inorderStartIndex</span><span class="o">,</span> <span class="n">rootIndex</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+
+        <span class="c1">// 递归处理右子树
+</span><span class="c1"></span>        <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">myBuildTree</span><span class="o">(</span><span class="n">preorderStartIndex</span> <span class="o">+</span> <span class="n">1</span> <span class="o">+</span> <span class="n">leftSubtreeSize</span><span class="o">,</span> <span class="n">preorderEndIndex</span><span class="o">,</span> <span class="n">rootIndex</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">inorderEndIndex</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22迭代法未完待续">2.2、迭代法（未完待续）</h2>
+<h3 id="核心思想-1">核心思想：</h3>
+<h3 id="复杂度分析-1">复杂度分析：</h3>
+<h3 id="代码-1">代码：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 迭代法
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">buildTree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">preorder</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">inorder</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">preorder</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">preorder</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 初始化根节点
+</span><span class="c1"></span>        <span class="n">TreeNode</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">preorder</span><span class="o">[</span><span class="n">0</span><span class="o">]);</span>
+
+        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;();</span>
+        <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+
+        <span class="kt">int</span> <span class="n">inorderIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">preorder</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">preorderVal</span> <span class="o">=</span> <span class="n">preorder</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">peek</span><span class="o">();</span>
+
+            <span class="c1">// 用前序数组一直构建左子树
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">inorder</span><span class="o">[</span><span class="n">inorderIndex</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">preorderVal</span><span class="o">);</span>
+                <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="c1">// 碰到了inorder[inorderIndex]，表示到了左下角，这时就需要往上走并处理右子树
+</span><span class="c1"></span>                <span class="k">while</span> <span class="o">(!</span><span class="n">stack</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">stack</span><span class="o">.</span><span class="na">peek</span><span class="o">().</span><span class="na">val</span> <span class="o">==</span> <span class="n">inorder</span><span class="o">[</span><span class="n">inorderIndex</span><span class="o">])</span> <span class="o">{</span>
+                    <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+                    <span class="n">inorderIndex</span><span class="o">++;</span>
+                <span class="o">}</span>
+                <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">preorderVal</span><span class="o">);</span>
+                <span class="n">stack</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/solution/mian-shi-ti-07-zhong-jian-er-cha-shu-by-leetcode-s/</a></p>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap</a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/valine/Valine.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{"valine":{"appId":"UwoDT0XASeRI4paQdHT521cA-gzGzoHsz","appKey":"jxCFXucPvPxAt87kWCh2grun","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","meta":["nick","mail","link"],"pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="../lib/valine/valine.min.css"></div>
+</body>
+
+</html>

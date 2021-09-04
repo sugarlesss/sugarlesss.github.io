@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">10、剑指 Offer 04. 二维数组中的查找 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="10、剑指 Offer 04. 二维数组中的查找" />
+<meta property="og:description" content="一、题目 剑指 Offer 04. 二维数组中的查找 难度中等 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sugarless.top/algorithm-leetcode-jzoffer2-java/10.html" /><meta property="article:section" content="algorithm-leetcode-jzoffer2-java" />
+<meta property="article:published_time" content="2021-09-04T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-04T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="10、剑指 Offer 04. 二维数组中的查找"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 04. 二维数组中的查找 难度中等 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请"/>
+<meta name="application-name" content="無糖的小宇宙">
+<meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
+
+<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/algorithm-leetcode-jzoffer2-java/10.html" /><link rel="prev" href="https://sugarless.top/algorithm-leetcode-jzoffer2-java/11.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "10、剑指 Offer 04. 二维数组中的查找",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/sugarless.top\/algorithm-leetcode-jzoffer2-java\/10.html"
+        },"genre": "algorithm-leetcode-jzoffer2-java","wordcount":  997 ,
+        "url": "https:\/\/sugarless.top\/algorithm-leetcode-jzoffer2-java\/10.html","datePublished": "2021-09-04T00:00:00+00:00","dateModified": "2021-09-04T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let themeColorMeta = getMeta('theme-color');
+        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../moments.html"><i class='fas fa-quote-left fa-fw'></i> 说说 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../moments.html" title=""><i class='fas fa-quote-left fa-fw'></i>说说</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">10、剑指 Offer 04. 二维数组中的查找</h1><div class="content" id="content"><h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 04. 二维数组中的查找</a> 难度中等</p>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p><strong>示例:</strong></p>
+<p>现有矩阵 matrix 如下：</p>
+<pre><code>[
+  [1,   4,  7, 11, 15],
+  [2,   5,  8, 12, 19],
+  [3,   6,  9, 16, 22],
+  [10, 13, 14, 17, 24],
+  [18, 21, 23, 26, 30]
+]
+</code></pre><p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
+<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
+<p><strong>限制：</strong></p>
+<pre><code>0 &lt;= n &lt;= 1000
+0 &lt;= m &lt;= 1000
+</code></pre><p>**注意：**本题与主站 240 题相同：https://leetcode-cn.com/problems/search-a-2d-matrix-ii/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21旋转法线性查找">2.1、旋转法（线性查找）</h2>
+<h3 id="核心思想">核心思想：</h3>
+<p>如下图所示，我们将矩阵逆时针旋转 45° ，并将其转化为图形式，发现其类似于 二叉搜索树 ，即对于每个元素，其左分支元素更小、右分支元素更大。因此，通过从 “根节点” 开始搜索，遇到比 target 大的元素就向左，反之向右，即可找到目标值 target 。</p>
+<p><img
+        class="lazyload"
+        data-src="../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png"
+        data-srcset="../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png, ../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png 1.5x, ../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png 2x"
+        data-sizes="auto"
+        alt="/post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png"
+        title="Picture1.png"
+    /></p>
+<p>“根节点” 对应的是矩阵的 “左下角” 和 “右上角” 元素，也就是上图标注蓝色的 3 和 7，实际上以这两个元素为起点搜索都可以。</p>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：O(M+N)，其中，N 和 M 分别为矩阵行数和列数，此算法最多循环 M+N 次。</p>
+<p><strong>空间复杂度</strong>：O(1)， <code>i</code>, <code>j</code>  指针使用常数大小额外空间。</p>
+<h3 id="代码">代码：</h3>
+<p>以左下角为起点，向上搜索</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 将左下角元素作为起点（初始下标）
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="c1">// 循环寻找
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">--;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">j</span><span class="o">++;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>或以右上角为起点，向下搜索</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 将右上角元素作为起点（初始下标）
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="c1">// 循环寻找
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">j</span><span class="o">--;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22暴力法">2.2、暴力法</h2>
+<h3 id="核心思想-1">核心思想：</h3>
+<p>如果不考虑二维数组排好序的特点，则直接遍历整个二维数组的每一个元素，判断目标值是否在二维数组中存在。</p>
+<p>依次遍历二维数组的每一行和每一列。如果找到一个元素等于目标值，则返回 true。如果遍历完毕仍未找到等于目标值的元素，则返回 false。</p>
+<h3 id="复杂度分析-1">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：O(nm)。二维数组中的每个元素都被遍历，因此时间复杂度为二维数组的大小。</p>
+<p><strong>空间复杂度</strong>：O(1)。</p>
+<h3 id="代码-1">代码：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 处理边界条件
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 获取矩阵的行列值
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+
+        <span class="c1">// 遍历矩阵每个元素查找
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">columns</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/</a></p>
+<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/</a></p>
+</div><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></div></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap</a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/valine/Valine.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{"valine":{"appId":"UwoDT0XASeRI4paQdHT521cA-gzGzoHsz","appKey":"jxCFXucPvPxAt87kWCh2grun","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","meta":["nick","mail","link"],"pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="../lib/valine/valine.min.css"></div>
+</body>
+
+</html>
