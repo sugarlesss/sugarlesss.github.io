@@ -14,6 +14,34 @@
     </author><guid>https://sugarless.top/posts/mark/1.html</guid>
     <description><![CDATA[<p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p>]]></description>
 </item><item>
+    <title>10、剑指 Offer 04. 二维数组中的查找</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html</link>
+    <pubDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 04. 二维数组中的查找 难度中等 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请]]></description>
+</item><item>
+    <title>11、剑指 Offer 29. 顺时针打印矩阵</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html</link>
+    <pubDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 29. 顺时针打印矩阵 难度简单 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。 示例 1： 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]] 输出：[1]]></description>
+</item><item>
+    <title>9、剑指 Offer 06. 从尾到头打印链表</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/9.html</link>
+    <pubDate>Thu, 02 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/9.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 06. 从尾到头打印链表 难度简单 输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。 示例 1： 输入：head = [1,3,2] 输出：]]></description>
+</item><item>
+    <title>8、剑指 Offer 07. 重建二叉树</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/8.html</link>
+    <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/8.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 07. 重建二叉树 难度中等 输入某二叉树的前序遍历和中序遍历的结果，请构建该二叉树并返回其根节点。 假设输入的前序遍历和中序遍历的结果中]]></description>
+</item><item>
     <title>Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</title>
     <link>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</link>
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
@@ -21,60 +49,32 @@
     </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
     <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>]]></description>
 </item><item>
-    <title>github webhook 配合宝塔 webhook 自动化部署</title>
-    <link>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</link>
-    <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+    <title>7、剑指 Offer 11. 旋转数组的最小数字</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/7.html</link>
+    <pubDate>Sun, 29 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</guid>
-    <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>]]></description>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/7.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 11. 旋转数组的最小数字 难度简单 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转]]></description>
 </item><item>
-    <title>如何理解 B 站 AV 号规则升级为 BV 号这件事？</title>
-    <link>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</link>
-    <pubDate>Sun, 08 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+    <title>6、剑指 Offer 22. 链表中倒数第k个节点</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/6.html</link>
+    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/bilibili-video-numbering-rules-upgrade.html</guid>
-    <description><![CDATA[<p>如何理解自 2020 年 3 月 23 日起，B 站视频的 AV 号将全面升级为 BV 号这件事？</p>]]></description>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/6.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 22. 链表中倒数第k个节点 难度简单 输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节]]></description>
 </item><item>
-    <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</title>
-    <link>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</link>
-    <pubDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+    <title>5、剑指 Offer 51. 数组中的逆序对</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/5.html</link>
+    <pubDate>Fri, 27 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
-    <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>]]></description>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/5.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 51. 数组中的逆序对 难度困难 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个]]></description>
 </item><item>
-    <title>Spring Boot 配置文件中文乱码</title>
-    <link>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
-    <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+    <title>4、剑指 Offer 09. 用两个栈实现队列</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/4.html</link>
+    <pubDate>Tue, 24 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
-    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
-</item><item>
-    <title>CDN 是什么？ 有多贵？</title>
-    <link>https://sugarless.top/posts/what-is-cdn.html</link>
-    <pubDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/what-is-cdn.html</guid>
-    <description><![CDATA[<p>CDN 是什么？ 为什么 CDN 能加速网站访问？ CDN 有多贵？</p>]]></description>
-</item><item>
-    <title>关于超线程技术</title>
-    <link>https://sugarless.top/posts/about-hyper-threading-technology.html</link>
-    <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/about-hyper-threading-technology.html</guid>
-    <description><![CDATA[<p>四核八线程，八核十六线程是啥意思？</p>]]></description>
-</item><item>
-    <title>关于音视频文案提取</title>
-    <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
-    <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
-    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
-</item><item>
-    <title>hugo 一键部署</title>
-    <link>https://sugarless.top/posts/hugo-one-click-deployment.html</link>
-    <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/hugo-one-click-deployment.html</guid>
-    <description><![CDATA[<p>一键发布文章</p>]]></description>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/4.html</guid>
+    <description><![CDATA[一、题目 剑指 Offer 09. 用两个栈实现队列 难度简单 用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 appendTail 和 deleteHead ，分别完成在队列尾部插入整数和在队列头]]></description>
 </item></channel>
 </rss>

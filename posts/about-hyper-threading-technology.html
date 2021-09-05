@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">关于超线程技术 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="关于超线程技术" />
-<meta property="og:description" content="四核八线程，八核十六线程是啥意思？" />
+<meta property="og:description" content="4 核 8 线程，8 核 16 线程是啥意思？
+为什么不是 4 核 4 线程或 8 核 10 线程、11 线程？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.top/posts/about-hyper-threading-technology.html" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-07-25T00:00:00+00:00" />
@@ -14,7 +15,8 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="关于超线程技术"/>
-<meta name="twitter:description" content="四核八线程，八核十六线程是啥意思？"/>
+<meta name="twitter:description" content="4 核 8 线程，8 核 16 线程是啥意思？
+为什么不是 4 核 4 线程或 8 核 10 线程、11 线程？"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/about-hyper-threading-technology.html"
-        },"genre": "posts","keywords": "CPU, 超线程","wordcount":  1705 ,
+        },"genre": "posts","keywords": "CPU, 超线程","wordcount":  1726 ,
         "url": "https:\/\/sugarless.top\/posts\/about-hyper-threading-technology.html","datePublished": "2021-07-25T00:00:00+00:00","dateModified": "2021-07-25T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -56,7 +58,7 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../moments.html"><i class='fas fa-quote-left fa-fw'></i> 说说 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../moments.html"><i class='fas fa-quote-left fa-fw'></i> 说说 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i> GitHub </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
@@ -98,7 +100,7 @@
                     <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../moments.html" title=""><i class='fas fa-quote-left fa-fw'></i>说说</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../moments.html" title=""><i class='fas fa-quote-left fa-fw'></i>说说</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>GitHub</a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -117,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80.html"><i class="far fa-folder fa-fw"></i>计算机基础</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1705 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1726 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/posts/about-hyper-threading-technology.html" class="leancloud_visitors" data-flag-title="关于超线程技术">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -133,7 +135,8 @@
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>四核八线程，八核十六线程是啥意思？</p>
+            </div><div class="content" id="content"><p>4 核 8 线程，8 核 16 线程是啥意思？</p>
+<p>为什么不是 4 核 4 线程或 8 核 10 线程、11 线程？</p>
 <h1 id="一关于超线程">一、关于超线程</h1>
 <p>超线程，其实是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
 <p>超线程技术其实是把一个 CPU 的物理核模拟成两个虚拟核用，通过此技术，英特尔实现在一个实体 CPU 物理核中，提供两个逻辑线程。让单个物理核心就能使用线程级的并行计算，进而兼容多线程操作系统和软件。超线程技术充分利用空闲 CPU 资源，在相同时间内完成更多工作。</p>
