@@ -10,6 +10,22 @@
     <pubDate>Thu, 27 Feb 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
-    <description><![CDATA[<p>你还在发起 ajax 请求时在 data 里写上一大堆参数，或是手动拼接参数字符串吗？</p>]]></description>
+    <description><![CDATA[<p>你还在发起 ajax 请求时在 data 里写上一大堆参数，或是手动拼接参数字符串吗？</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;http://example.com/...&#34;</span><span class="p">;</span>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span>
+    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="c1">//使用post方式提交
+</span><span class="c1"></span>    <span class="nx">data</span><span class="o">:</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;form&#34;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span><span class="c1">//使用jQuery选择器获取form标签中的数据，并序列化
+</span><span class="c1"></span>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// ...
+</span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// ...
+</span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="c1">// ...
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div><p>jQuery Yes！</p>]]></description>
 </item></channel>
 </rss>

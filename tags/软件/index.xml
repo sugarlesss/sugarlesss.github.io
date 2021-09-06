@@ -10,6 +10,11 @@
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/wiztree-the-fastest-disk-space-analyzer.html</guid>
-    <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>]]></description>
+    <description><![CDATA[<p>WizeTree 是一款 Windows 平台下的磁盘空间分析器。</p>
+<p>通过可视化（图形化、树形化）的布局，你可以直观地看到在你硬盘上大的文件和文件夹。</p>
+<p>内置文件管理器，支持查看文件树、文件夹大小排序、文件类型分析 wiztree 使用 NTFS 文件系统的 MFT 进行文件分析 (与著名的软件 everything 原理相同) 比 spacesniffer 的速度快数十倍，几秒钟就能完成全盘文件大小分析。</p>
+<p>官网：https://www.diskanalyzer.com/</p>
+<p>预览图</p>
+<p></p>]]></description>
 </item></channel>
 </rss>

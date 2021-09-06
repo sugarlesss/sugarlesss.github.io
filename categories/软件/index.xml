@@ -10,27 +10,43 @@
     <pubDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/ram-disk-tool.html</guid>
-    <description><![CDATA[<p>内存盘就是将一部分硬盘当硬盘使用，由于内存速度很快，利用了这个特性设置虚拟内存硬盘，在一些特定场景和需求下是非常有帮助的。</p>]]></description>
+    <description><![CDATA[<p>内存盘就是将一部分硬盘当硬盘使用，由于内存速度很快，利用了这个特性设置虚拟内存硬盘，在一些特定场景和需求下是非常有帮助的。</p>
+<p>界面简洁，原生支持中文，支持在创建时自动创建目录，能够满足需求。</p>
+<p>官网：<a href="https://www.softperfect.com/products/ramdisk" target="_blank" rel="noopener noreffer">https://www.softperfect.com/products/ramdisk</a></p>
+<p>度盘：<a href="https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w</a>  提取码：kcik</p>]]></description>
 </item><item>
     <title>Snipaste - 简单但强大的截图工具</title>
     <link>https://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</link>
     <pubDate>Fri, 18 Oct 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/snipaste-simple-but-powerful-snipping-tool.html</guid>
-    <description><![CDATA[<p>Snipaste 是一个简单但强大的截图工具，同时可以让你将截图贴到屏幕上！下载并打开 Snipaste，按下 F1 来开始截图，再按 F3，截图就在桌面置顶显示了。就这么简单！而且它提供的截图操作功能也相当全面，足够当成一款截图工具使用。当前支持 windows / mac 平台。</p>]]></description>
+    <description><![CDATA[<p>Snipaste 是一个简单但强大的截图工具，同时可以让你将截图贴到屏幕上！下载并打开 Snipaste，按下 F1 来开始截图，再按 F3，截图就在桌面置顶显示了。就这么简单！而且它提供的截图操作功能也相当全面，足够当成一款截图工具使用。当前支持 windows / mac 平台。</p>
+<p>官网：https://www.snipaste.com</p>
+<p>中文官网：https://zh.snipaste.com</p>
+<p>你还可以将剪贴板里的文字或者颜色信息转化为图片窗口，并且将它们进行缩放、旋转、翻转、设为半透明，甚至让鼠标能穿透它们！如果你是程序员、设计师，或者是大部分工作时间都在电脑前，贴图功能将改变你的工作方式、提升工作效率。</p>
+<p>Snipaste 使用很简单，但同时也有一些较高级的用法可以进一步提升你的工作效率。感兴趣的话，请抽空读一读用户手册。</p>
+<p>Snipaste 是免费软件，它也很安全，没有广告、不会扫描你的硬盘、更不会上传用户数据，它只做它应该做的事。</p>]]></description>
 </item><item>
     <title>potplayer - 小巧、功能强大的视频播放器</title>
     <link>https://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</link>
     <pubDate>Sat, 31 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/potplayer-small-and-powerful-video-player.html</guid>
-    <description><![CDATA[<p>软件体积不大，底层由 VC++ 编写，用起来也是十分流畅。功能也是十分多样，我也一直在用这款播放器。安利一下</p>]]></description>
+    <description><![CDATA[<p>软件体积不大，底层由 VC++ 编写，用起来也是十分流畅。功能也是十分多样，我也一直在用这款播放器。安利一下</p>
+<h1 id="下载地址">下载地址</h1>
+<p><a href="https://daumpotplayer.com/download" target="_blank" rel="noopener noreffer">https://daumpotplayer.com/download</a></p>
+<p><a href="https://potplayer.daum.net" target="_blank" rel="noopener noreffer">https://potplayer.daum.net</a> （这个貌似已经打不开了）</p>
+<p>度盘：<a href="https://pan.baidu.com/s/1CO5Xq51aAi5b7_9Y-9xKYQ" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1CO5Xq51aAi5b7_9Y-9xKYQ</a> 提取码：i018</p>]]></description>
 </item><item>
     <title>HashCheck - 一款小巧、实用的文件校验工具</title>
     <link>https://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</link>
     <pubDate>Wed, 21 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/hashcheck-a-small-and-useful-file-verification-tool.html</guid>
-    <description><![CDATA[<p>HashCheck 全称 HashCheck Shell Extension，安装后添加到属性窗口中，是一款非常小巧快速的文件校验工具，而且 HashCheck 在 Github 上开放了源代码。软件体积小，文件 hash 值计算速度快。安装后迁入资源管理器的属性中，查看文件 hash 值十分方便。</p>]]></description>
+    <description><![CDATA[<p>HashCheck 全称 HashCheck Shell Extension，安装后添加到属性窗口中，是一款非常小巧快速的文件校验工具，而且 HashCheck 在 Github 上开放了源代码。软件体积小，文件 hash 值计算速度快。安装后迁入资源管理器的属性中，查看文件 hash 值十分方便。</p>
+<h1 id="下载地址">下载地址</h1>
+<p>官网：<a href="http://code.kliu.org/hashcheck" target="_blank" rel="noopener noreffer">http://code.kliu.org/hashcheck</a></p>
+<p>Github：<a href="https://github.com/gurnec/HashCheck" target="_blank" rel="noopener noreffer">https://github.com/gurnec/HashCheck</a></p>
+<p>度盘：<a href="https://pan.baidu.com/s/11yLvdMRYHhFncVMvyumO9Q" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/11yLvdMRYHhFncVMvyumO9Q</a> 提取码：1k4a</p>]]></description>
 </item></channel>
 </rss>

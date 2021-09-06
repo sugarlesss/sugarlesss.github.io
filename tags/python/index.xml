@@ -10,6 +10,122 @@
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
-    <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>]]></description>
+    <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>
+<p>百度提交页面：https://ziyuan.baidu.com/linksubmit/index</p>
+<p>通过此页面可以向百度搜索主动推送资源，同时百度也提供了 API 提交接口，这样可以缩短爬虫发现网站链接的时间，但百度不保证收录和展现效果。</p>
+<p>以本站为例，百度提供了 API 提交的样例参数。</p>
+<p></p>
+<h1 id="源码">源码</h1>
+<p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
+<p>使用前需要注意替换真实参数：</p>
+<ul>
+<li>site</li>
+<li>token</li>
+<li>sitemap_path</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="k">class</span> <span class="nc">Pusher</span><span class="p">:</span>
+    <span class="c1"># 初始化参数</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sitemap_path</span> <span class="o">=</span> <span class="n">sitemap_path</span>
+
+    <span class="c1"># 批量提交 url</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urls</span><span class="p">):</span>
+        <span class="n">post_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://data.zz.baidu.com/urls?site=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="si">}</span><span class="s2">&amp;token=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">&#34;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;curl/7.12.1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;data.zz.baidu.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">post_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">urls</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送失败（异常状态码）：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&#34;error&#34;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送失败（error）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="s2">&#34;success&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送异常（百度已更改返回体格式）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;已成功推送 </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> 条 url&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;当天剩余的可推送 url 条数 ---&gt; </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;remain&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 获取站点 sitemap.xml 文件内容, 解析 url</span>
+    <span class="k">def</span> <span class="nf">get_url_from_sitemap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">sitemap_path</span><span class="si">}</span><span class="s2">&#34;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取站点 xml 文件失败（异常状态码）：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">sitemap_xml</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+
+        <span class="n">urls</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;loc&gt;(.+?)&lt;/loc&gt;&#39;</span><span class="p">,</span> <span class="n">sitemap_xml</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">urls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">urls</span> <span class="o">==</span> <span class="p">[]</span> <span class="ow">or</span> <span class="n">urls</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;解析 url 失败（该站点不存在 sitemap.xml 或内容为空）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取站点 xml 文件成功, 共有：</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span><span class="si">}</span><span class="s2"> 条 url&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">urls</span>
+
+    <span class="c1"># 入口</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url_from_sitemap</span><span class="p">()</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 站点</span>
+    <span class="n">site</span> <span class="o">=</span> <span class="s2">&#34;https://sugarless.top&#34;</span>
+    <span class="c1"># 百度提交页面提供的 token</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="s2">&#34;JvNXvshHiebMYkve&#34;</span>
+    <span class="c1"># 站点 sitemap uri</span>
+    <span class="c1"># sitemap_path = &#34;/zh-cn/sitemap.xml&#34;</span>
+    <span class="n">sitemap_path</span> <span class="o">=</span> <span class="s2">&#34;/sitemap.xml&#34;</span>
+
+    <span class="n">pusher</span> <span class="o">=</span> <span class="n">Pusher</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">)</span>
+    <span class="n">pusher</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
 </item></channel>
 </rss>

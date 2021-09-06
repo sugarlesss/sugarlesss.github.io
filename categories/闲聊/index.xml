@@ -10,20 +10,60 @@
     <pubDate>Fri, 22 Nov 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/setting-up-windows-ip-dns-using-bat-scripts.html</guid>
-    <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>]]></description>
+    <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>
+<h1 id="一dhcp">一、DHCP</h1>
+<p>将如下内容保存为 set_WLAN_DHCP.bat 文件</p>
+<p>设置为自动获取IP/DNS</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> off
+%
+设置UTF-8 防止中文乱码
+%
+chcp 65001
+ 
+<span class="k">echo</span> 设置IP信息自动获取
+netsh interface ip set address <span class="s2">&#34;WLAN&#34;</span> source=dhcp
+<span class="k">echo</span> 设置DNS自动获取
+netsh interface ip set dnsservers <span class="s2">&#34;WLAN&#34;</span> source=dhcp
+<span class="k">echo</span> 完成
+<span class="k">pause</span>
+</code></pre></div><h1 id="二静态-ip">二、静态 IP</h1>
+<p>将如下内容保存为 set_WLAN_StaticIP.bat 文件</p>
+<p>设置为静态IP/DNS</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> off
+%
+设置UTF-8 防止中文乱码
+%
+chcp 65001
+
+<span class="k">echo</span> 设置IP、子网掩码及网关
+netsh interface ip set address name=<span class="s2">&#34;WLAN&#34;</span> static 192.168.11.119 255.255.255.0 192.168.11.1 1 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 设置主DNS
+netsh interface ip set dns name=<span class="s2">&#34;WLAN&#34;</span> static 192.168.11.1 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 设置副DNS
+netsh interface ip add dns name=<span class="s2">&#34;WLAN&#34;</span> 114.114.114.114 2 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 完成
+<span class="k">pause</span>
+</code></pre></div><p>PS：两个脚本中的 “WLAN” 是因为我的笔记本无线网卡名称为 WLAN</p>
+<p></p>]]></description>
 </item><item>
     <title>About blog</title>
     <link>https://sugarless.top/posts/en/about.html</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/en/about.html</guid>
-    <description><![CDATA[<p>About Content and Tools</p>]]></description>
+    <description><![CDATA[<p>About Content and Tools</p>
+<p>I&rsquo;ve been trying to use some note taking software for about half a year now, and I&rsquo;ve gradually fallen into the swamp of searching and experiencing all kinds of note taking software, which seems to be a strange circle that shouldn&rsquo;t exist: looking for a note taking app, experiencing it, and looking for the next note taking app, but we shouldn&rsquo;t be like this, originally wanting to find a good weapon to fight with, but finally becoming a shopkeeper of a weapon store.</p>
+<p>Recently gradually realized, should gradually return to the original heart, think of what content, find the right place to start writing immediately, the content is far more important than the carrier.</p>
+<p>No longer go to spend a lot of time looking for good tools, focus on content output, improve their own, obviously more important.</p>]]></description>
 </item><item>
     <title>关于博客</title>
     <link>https://sugarless.top/posts/about.html</link>
     <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/about.html</guid>
-    <description><![CDATA[<p>关于内容和工具。</p>]]></description>
+    <description><![CDATA[<p>关于内容和工具。</p>
+<p>大概在半年前，尝试并且使用了一些笔记软件，于是逐渐陷入寻找的沼泽里，一发不可收拾，开始体验各种笔记软件，这似乎是陷入了一个不应该存在的怪圈：找笔记APP，体验，找下一个笔记APP。而我们本心不该是这样的，本来是想找个称手的兵器打仗，最后却变成了武器商店的店长。</p>
+<p>近期逐渐意识到了，应该逐渐回归初心，想到什么内容，就找合适的地方马上开始写，内容远比载体重要的多。</p>
+<p>不再去把大量的时间花在寻找好工具上了，专注于内容产出，提升自己，显然更加重要。</p>]]></description>
 </item></channel>
 </rss>

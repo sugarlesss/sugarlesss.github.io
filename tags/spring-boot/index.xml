@@ -10,13 +10,104 @@
     <pubDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
-    <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>]]></description>
+    <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>
+<p>内置终端 Terminal：在 IDE 内，开发者可通过内置终端 Terminal 快速登录远程服务器，减少频繁切换的烦恼。 不仅支持阿里云服务器 ECS，也可以用于所有支持标准 SSH 协议的机器。</p>
+<p>文件上传：Cloud Toolkit 帮助开发者在 IDE 内，一键将本地或远程 URL 文件上传至服务器指定目录。 简化繁琐的上传环节，无需各种 FTP、SCP 工具频繁切换。 更为重要的是，文件上传完毕后，还支持文件解压缩、程序启动等命令执行。</p>
+<p>cloud toolkit 官网：<a href="https://www.aliyun.com/product/cloudtoolkit" target="_blank" rel="noopener noreffer">https://www.aliyun.com/product/cloudtoolkit</a></p>
+<h1 id="一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</h1>
+<ul>
+<li>
+<p>确保 IntelliJ IDEA 在 2018.1 或更高版本；</p>
+</li>
+<li>
+<p>打开 Settings - Plugins 搜索安装 Alibaba Cloud Toolkit；</p>
+</li>
+<li>
+<p>如果迟迟安装不上，可以试试设置一下 IDEA socks 代理或者去它的官网找离线安装包；</p>
+</li>
+</ul>
+<figure><a class="lightgallery" href="/post_images/image-20210806140925036.png" title="/post_images/image-20210806140925036.png" data-thumbnail="/post_images/image-20210806140925036.png" data-sub-html="<h2>Alibaba Cloud Toolkit</h2>">
+        
+    </a><figcaption class="image-caption">Alibaba Cloud Toolkit</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<h1 id="二配置">二、配置</h1>
+<h2 id="21添加远程服务器">2.1、添加远程服务器</h2>
+<p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
+<figure><a class="lightgallery" href="/post_images/image-20210806144136679.png" title="/post_images/image-20210806144136679.png" data-thumbnail="/post_images/image-20210806144136679.png" data-sub-html="<h2>Add Host</h2>">
+        
+    </a><figcaption class="image-caption">Add Host</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>输入服务器的 IP 及 SSH 连接信息，我使用的是账号密码式。</p>
+<figure><a class="lightgallery" href="/post_images/image-20210806144248501.png" title="/post_images/image-20210806144248501.png" data-thumbnail="/post_images/image-20210806144248501.png" data-sub-html="<h2>配置 IP 和 SSH 连接信息</h2>">
+        
+    </a><figcaption class="image-caption">配置 IP 和 SSH 连接信息</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>Edit Configurations
+<figure><a class="lightgallery" href="/post_images/image-20210806144651404.png" title="/post_images/image-20210806144651404.png" data-thumbnail="/post_images/image-20210806144651404.png" data-sub-html="<h2>Edit Configurations</h2>">
+        
+    </a><figcaption class="image-caption">Edit Configurations</figcaption>
+    </figure></p>
+<!-- raw HTML omitted -->
+<p>选择 Deploy to Host
+<figure><a class="lightgallery" href="/post_images/image-20210806144741977.png" title="/post_images/image-20210806144741977.png" data-thumbnail="/post_images/image-20210806144741977.png" data-sub-html="<h2>Deploy to Host</h2>">
+        
+    </a><figcaption class="image-caption">Deploy to Host</figcaption>
+    </figure></p>
+<!-- raw HTML omitted -->
+<h2 id="22添加详细配置">2.2、添加详细配置</h2>
+<figure><a class="lightgallery" href="/post_images/image-20210806145217900.png" title="/post_images/image-20210806145217900.png" data-thumbnail="/post_images/image-20210806145217900.png" data-sub-html="<h2>详细配置1</h2>">
+        
+    </a><figcaption class="image-caption">详细配置1</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<figure><a class="lightgallery" href="/post_images/image-20210806162619853.png" title="/post_images/image-20210806162619853.png" data-thumbnail="/post_images/image-20210806162619853.png" data-sub-html="<h2>详细配置2</h2>">
+        
+    </a><figcaption class="image-caption">详细配置2</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>下面是上图添加详细配置时用到的命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 部署路径（ Target Directory ）</span>
+/www/wwwroot/SpringBootDeployTestJar
+
+<span class="c1"># 部署前执行命令（）</span>
+pkill -f main-0.0.1-SNAPSHOT.jar<span class="p">;</span>
+
+<span class="c1"># 部署后执行命令 （ After deploy ）</span>
+nohup java -jar /www/wwwroot/SpringBootDeployTestJar/main-0.0.1-SNAPSHOT.jar --server.port<span class="o">=</span>18080&gt; /www/wwwroot/SpringBootDeployTestJar/nohup.out 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+
+<span class="c1"># 实时日志</span>
+tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
+</code></pre></div><p>填写完成后 Apply 。</p>
+<h1 id="三一键部署">三、一键部署</h1>
+<p>切换到一键部署，run。</p>
+<figure><a class="lightgallery" href="/post_images/image-20210806162820768.png" title="/post_images/image-20210806162820768.png" data-thumbnail="/post_images/image-20210806162820768.png" data-sub-html="<h2>一键部署</h2>">
+        
+    </a><figcaption class="image-caption">一键部署</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>此时 idea 会自动连接上服务器的 shell ，使用上面配置的命令查看实时日志。</p>
+<figure><a class="lightgallery" href="/post_images/image-20210806162947112.png" title="/post_images/image-20210806162947112.png" data-thumbnail="/post_images/image-20210806162947112.png" data-sub-html="<h2>控制台实时日志</h2>">
+        
+    </a><figcaption class="image-caption">控制台实时日志</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<h1 id="ref">REF</h1>
+<p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreffer">https://www.bilibili.com/video/BV1ga4y1474K</a></p>]]></description>
 </item><item>
     <title>Spring Boot 配置文件中文乱码</title>
     <link>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</link>
     <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
-    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
+    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>
+<h1 id="解决方案">解决方案</h1>
+<h2 id="1修改-idea-编码设置为-utf-8-删除并重新创建-applicationproperties-文件">1、修改 IDEA 编码设置为 UTF-8 ，删除并重新创建 application.properties 文件</h2>
+<p>我使用的是 IDEA ，首先 File-&gt;settings-&gt;Code style-&gt;File Encoding ，把所有的编码都设为 UTF-8 ，删除并重新创建 application.properties 文件即可。</p>
+<p></p>
+<h1 id="ref">REF</h1>
+<p><a href="https://blog.csdn.net/chenfei2341/article/details/98854474" target="_blank" rel="noopener noreffer">https://blog.csdn.net/chenfei2341/article/details/98854474</a></p>]]></description>
 </item></channel>
 </rss>

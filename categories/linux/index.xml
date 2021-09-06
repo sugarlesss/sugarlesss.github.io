@@ -10,62 +10,471 @@
     <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
-    <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>]]></description>
+    <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>
+<p>高并发可以让服务器在短时间范围内同时占用大量端口，而端口有个 0~65535 的范围，并不是很多，刨除系统和其他服务要用的，剩下的就更少了。</p>
+<p>在这个场景中，短连接表示 “业务处理 + 传输数据的时间 远远小于 TIMEWAIT 超时的时间” 的连接。Linux 默认的 TIME_WAIT 时长一般是 60 秒。</p>
+<h1 id="查看默认-timewait-时长">查看默认 timewait 时长</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat /proc/sys/net/ipv4/tcp_fin_timeout
+</code></pre></div><h1 id="查看连接状态统计">查看连接状态统计</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">netstat -an <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
+</code></pre></div><h1 id="优化内核参数">优化内核参数</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim /etc/sysctl.conf
+
+<span class="c1">#追加内容</span>
+net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
+net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+</code></pre></div><h1 id="释义">释义</h1>
+<p>开启 SYN Cookies。当出现 SYN 等待队列溢出时，启用 cookies 来处理，可防范少量 SYN 攻击，默认为 0，表示关闭。<br>
+net.ipv4.tcp_syncookies = 1</p>
+<p>开启重用。允许将 TIME-WAIT sockets 重新用于新的 TCP 连接，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_reuse = 1</p>
+<p>开启 TCP 连接中 TIME-WAIT sockets 的快速回收，默认为 0，表示关闭。<br>
+net.ipv4.tcp_tw_recycle = 1</p>
+<p>修改系統默认的 TIMEOUT 时间（FIN_WAIT_2 状态的时长）<br>
+net.ipv4.tcp_fin_timeout</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.cnblogs.com/apanly/p/12431902.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/apanly/p/12431902.html</a><br>
+<a href="https://zhuanlan.zhihu.com/p/79507132" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/79507132</a></p>]]></description>
 </item><item>
     <title>如何编写一个 Linux Systemd Service？</title>
     <link>https://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</link>
     <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</guid>
-    <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>]]></description>
+    <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>
+<h1 id="一如何创建一个服务">一、如何创建一个服务？</h1>
+<p>这里假设你已经自行编译安装好了 nginx，下面我们来创建一个 nginx.service 文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vi /etc/systemd/system/nginx.service
+</code></pre></div><p>内容如下：</p>
+<pre><code class="language-conf" data-lang="conf">[Unit]
+Description=Nginx - high performance web server
+After=network.target
+ 
+[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+ 
+[Install]
+WantedBy=multi-user.target
+</code></pre><p>重新加载服务配置文件，使创建的 nginx 服务生效：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload
+</code></pre></div><p>这样我们就可以用 Systemd 的方式来管理 nginx 了，命令如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#启动nginx</span>
+systemctl start nginx
+<span class="c1">#重载nginx</span>
+systemctl reload nginx
+<span class="c1">#停止nginx</span>
+systemctl stop nginx
+<span class="c1">#重启nginx</span>
+systemctl restart nginx
+<span class="c1">#如果需要开机启动</span>
+systemctl <span class="nb">enable</span> nginx
+<span class="c1">#如果需要取消开机启动</span>
+systemctl disable nginx
+</code></pre></div><h1 id="二关于-systemd-服务">二、关于 Systemd 服务</h1>
+<p>Systemd 服务的内容主要分为三个部分，控制单元（unit）的定义、服务（service）的定义、以及安装（install）的定义。</p>
+<h2 id="21控制单元-unit">2.1、控制单元 unit</h2>
+<p>从上面的例子中我们看到 Unit 内容如下：</p>
+<pre><code class="language-conf" data-lang="conf">[Unit]
+Description=Nginx - high performance web server
+After=network.target
+</code></pre><ul>
+<li>Description：代表整个单元的描述，可根据需要任意填写。</li>
+<li>Before/After：指定启动顺序。</li>
+<li>network.target 代表有网路，network-online.target 代表一个连通着的网络。</li>
+</ul>
+<h2 id="22服务本体-service">2.2、服务本体 service</h2>
+<pre><code class="language-conf" data-lang="conf">[Service]
+Type=forking
+ExecStart=/usr/local/nginx/sbin/nginx
+ExecReload=/usr/local/nginx/sbin/nginx -s reload
+ExecStop=/usr/local/nginx/sbin/nginx -s stop
+</code></pre><ul>
+<li>Type: 服务的类型，各种类型的区别如下所示
+<ul>
+<li>simple：默认，这是最简单的服务类型。意思就是说启动的程序就是主体程序，这个程序要是退出那么一切皆休。</li>
+<li>forking：标准 Unix Daemon 使用的启动方式。启动程序后会调用 fork () 函数，把必要的通信频道都设置好之后父进程退出，留下守护精灵的子进程。</li>
+<li>oneshot：适用于那些被一次性执行的任务或者命令，它运行完成后便了无痕迹。因为这类服务运行完就没有任何痕迹，我们经常会需要使用 RemainAfterExit=yes。意思是说，即使没有进程存在，Systemd 也认为该服务启动成功了。同时只有这种类型支持多条命令，命令之间用；分割，如需换行可以用 \。</li>
+<li>dbus：这个程序启动时需要获取一块 DBus 空间，所以需要和 BusName= 一起用。只有它成功获得了 DBus 空间，依赖它的程序才会被启动。</li>
+</ul>
+</li>
+<li>ExecStart：在输入的命令是 start 时候执行的命令，这里的命令启动的程序必须使用绝对路径，比如你必须用 /sbin/arp 而不能简单的以环境变量直接使用 arp。</li>
+<li>ExecStop：在输入的命令是 stop 时候执行的命令，要求同上。</li>
+<li>ExecReload：这个不是必需，如果不写则你的 service 就不支持 restart 命令。ExecStart 和 ExecStop 是必须要有的。</li>
+</ul>
+<h2 id="23安装部分-install">2.3、安装部分 install</h2>
+<pre><code class="language-conf" data-lang="conf">[Install] WantedBy=multi-user.target
+</code></pre><ul>
+<li>WantedBy：运行级别 / 设置服务被谁装载，一般设置为 multi-user.target（从 Centos7 以后 bai 采用 target 概念来定义运行级别，multi-user.target 是第三级别）</li>
+</ul>
+<h2 id="24存放的位置">2.4、存放的位置</h2>
+<p>Systemd Service 位于 /etc/systemd/system（供系统管理员和用户使用），/usr/lib/systemd/system（供发行版打包者使用），我们一般使用前者即可。</p>
+<h1 id="3总结">3、总结</h1>
+<p>Systemd Service 是一种替代 /etc/init.d/ 下脚本的更好方式，它可以灵活的控制你什么时候要启动服务，一般情况下也不会造成系统无法启动进入紧急模式。所以如果想设置一些开机启动的东西，可以试着写 Systemd Service。当然了，前提是你使用的 Linux 发行版是支持它的才行。</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.xiaoz.me/archives/14458" target="_blank" rel="noopener noreffer">https://www.xiaoz.me/archives/14458</a><br>
+<a href="https://segmentfault.com/a/1190000014740871" target="_blank" rel="noopener noreffer">https://segmentfault.com/a/1190000014740871</a><br>
+<a href="https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service" target="_blank" rel="noopener noreffer">https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service</a></p>]]></description>
 </item><item>
     <title>CentOS SSH 登录太慢的解决方法</title>
     <link>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</link>
     <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</guid>
-    <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>]]></description>
+    <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>
+<p>SSH 登录太慢可能是 DNS 解析的问题，默认配置下 sshd 初次接受 ssh 客户端连接的时候会自动反向解析客户端 IP 以得到 ssh 客户端的域名或主机名。如果这个时候 DNS 的反向解析不正确，sshd 就会等到 DNS 解析超时后才提供 ssh 连接，这样就造成连接时间过长、ssh 客户端等待的情况，一般为 10-30 秒左右。有个简单的解决办法就是在 sshd 的配置文件（sshd_config）里取消 sshd 的反向 DNS 解析。</p>
+<p>编辑 ssh 配置文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vi /etc/ssh/sshd_config
+</code></pre></div><p>找到 UseDNS 设置为 no</p>
+<p>重启 ssh 服务即可</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl restart sshd
+</code></pre></div>]]></description>
 </item><item>
     <title>SSH 远程会话管理工具 – screen使用教程</title>
     <link>https://sugarless.top/posts/ssh-remote-session-management-tool-screen-tutorial.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/ssh-remote-session-management-tool-screen-tutorial.html</guid>
-    <description><![CDATA[<p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>]]></description>
+    <description><![CDATA[<p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>
+<h1 id="一screen-是什么">一、screen 是什么？</h1>
+<p>Screen 是一个可以在多个进程之间多路复用一个物理终端的全屏窗口管理器。Screen 中有会话的概念，用户可以在一个 screen 会话中创建多个 screen 窗口，在每一个 screen 窗口中就像操作一个真实的 telnet/SSH 连接窗口那样。</p>
+<h1 id="二如何安装-screen-命令">二、如何安装 screen 命令？</h1>
+<p>除部分精简的系统或者定制的系统大部分都安装了 screen 命令，如果没有安装，CentOS 系统可以执行：yum install screen ；</p>
+<p>CentOS 8 上移除了 screen，需要安装 epel 后安装 screen 执行：yum install screen ；</p>
+<p>Debian/Ubuntu 系统执行：apt-get install screen 。</p>
+<p>PS：安装 epel ：https://blog.keyboardman.fun/linux/729.html</p>
+<h1 id="三screen-命令使用方法">三、screen 命令使用方法？</h1>
+<h2 id="31-创建-screen-会话">3.1 创建 screen 会话</h2>
+<p>可以先执行：screen -S lnmp ，screen 就会创建一个名字为 lnmp 的会话。 VPS 侦探 <a href="https://www.vpser.net/" target="_blank" rel="noopener noreffer">https://www.vpser.net/</a></p>
+<h2 id="32-暂时离开保留-screen-会话中的任务或程序">3.2 暂时离开，保留 screen 会话中的任务或程序</h2>
+<p>当需要临时离开时（会话中的程序不会关闭，仍在运行）可以用快捷键 Ctrl+a d (即按住 Ctrl，依次再按 a,d)</p>
+<h2 id="33-恢复-screen-会话">3.3 恢复 screen 会话</h2>
+<p>当回来时可以再执行执行：screen -r lnmp 即可恢复到离开前创建的 lnmp 会话的工作界面。如果忘记了，或者当时没有指定会话名，可以执行：screen -ls screen 会列出当前存在的会话列表</p>
+<h2 id="34-关闭-screen-的会话">3.4 关闭 screen 的会话</h2>
+<p>执行：exit ，会提示：[screen is terminating]，表示已经成功退出 screen 会话。</p>
+<h1 id="四远程演示">四、远程演示</h1>
+<p>首先演示者先在服务器上执行 screen -S test 创建一个 screen 会话，观众可以链接到远程服务器上执行 screen -x test 观众屏幕上就会出现和演示者同步。</p>
+<h1 id="五常用快捷键">五、常用快捷键</h1>
+<p>Ctrl+a c ：在当前 screen 会话中创建窗口
+Ctrl+a w ：窗口列表
+Ctrl+a n ：下一个窗口
+Ctrl+a p ：上一个窗口
+Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>]]></description>
 </item><item>
     <title>如何使用 SSH 远程登录 Linux 服务器</title>
     <link>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
     <pubDate>Sun, 25 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
-    <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>]]></description>
+    <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>
+<p>在设计上，SSH 是 Telnet 和非安全 shell 的替代品。Telnet 和 Berkeley rlogin、rsh、rexec 等协议采用明文传输，使用不可靠的密码，容易遭到监听、嗅探和中间人攻击 [5]。SSH 旨在保证非安全网络环境（例如互联网）中信息加密完整可靠。</p>
+<h1 id="一windows-远程登录-linux">一、Windows 远程登录 Linux</h1>
+<p>下载 git bash ，方便执行 ssh 命令。</p>
+<p>官网：https://git-scm.com</p>
+<h2 id="11生成-ssh-密钥对">1.1、生成 SSH 密钥对</h2>
+<p>在 windows 中的 cmd 中输入（使用 git bash 客户端输入也可以）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen
+</code></pre></div><p>连摁 3 个回车即可。</p>
+<p>生成的秘钥文件在 C:\Users\Administrator.ssh 文件夹下</p>
+<h2 id="12添加公钥文件至-linux-服务器">1.2、添加公钥文件至 Linux 服务器</h2>
+<p>打开 git bash，输入以下命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将192.168.1.1替换为Linux服务器的真实IP地址</span>
+<span class="c1"># root是最高权限用户，可以替换为你想要远程登录的某个用户</span>
+<span class="c1"># ssh端口默认是22</span>
+ssh-copy-id root@192.168.1.1 -p <span class="m">22</span>
+</code></pre></div><p>之后的提示输入 yes ，再输入 Linux 的用户密码就可以了。（输入密码时客户端不会显示任何输入提示）</p>
+<h2 id="13登陆">1.3、登陆</h2>
+<p>打开 git bash，输入以下命令就可以直接进入远程 Linux 的 Shell 了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 将192.168.1.1替换为Linux服务器的真实IP地址</span>
+<span class="c1"># root是最高权限用户，可以替换为你想要远程登录的某个用户 </span>
+<span class="c1"># ssh端口默认是22</span>
+ssh root@192.168.1.1 -p <span class="m">22</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>Linux Shell 脚本入门</title>
     <link>https://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</guid>
-    <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>]]></description>
+    <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>
+<p>直接放脚本，Mark 一下防止以后忘记…</p>
+<p>复制脚本内容，保存为 *.sh 文件，运行 bash *.sh 结合查看脚本的输出情况来理解命令更佳。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>:<span class="s">&lt;&lt;EOF
+</span><span class="s">这是多行注释区块
+</span><span class="s">
+</span><span class="s">$0	当前脚本的文件名
+</span><span class="s">$n	传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。
+</span><span class="s">$#	传递给脚本或函数的参数个数。
+</span><span class="s">$*	传递给脚本或函数的所有参数。
+</span><span class="s">$@	传递给脚本或函数的所有参数。被双引号(&#34; &#34;)包含时，与 $* 稍有不同，下面将会讲到。
+</span><span class="s">$?	上个命令的退出状态，或函数的返回值。
+</span><span class="s">$$	当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
+</span><span class="s">
+</span><span class="s">EOF</span>
+
+<span class="nv">str</span><span class="o">=</span><span class="s2">&#34;frist shell script&#34;</span>
+
+<span class="c1">#字符串拼接</span>
+<span class="nb">echo</span> <span class="s2">&#34;1：do u know this is my </span><span class="nv">$str</span><span class="s2">&#34;</span>
+
+<span class="c1">#字符串长度</span>
+<span class="nb">echo</span> <span class="s2">&#34;2：</span><span class="si">${#</span><span class="nv">str</span><span class="si">}</span><span class="s2">&#34;</span>
+
+<span class="c1">#提取子字符串</span>
+<span class="nb">echo</span> <span class="s2">&#34;3：</span><span class="si">${</span><span class="nv">str</span><span class="p">:</span><span class="nv">1</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span><span class="s2">&#34;</span>
+
+<span class="c1">#查找子字符串 查找字符 i 或 s 的位置(哪个字母先出现就计算哪个)</span>
+<span class="nb">echo</span> <span class="s2">&#34;4：`expr index &#34;</span><span class="nv">$str</span><span class="s2">&#34; is`&#34;</span>
+
+
+
+<span class="c1">#数组定义</span>
+<span class="nv">array_test</span><span class="o">=(</span><span class="m">1</span> <span class="s1">&#39;A&#39;</span> <span class="m">2</span> 4<span class="o">)</span>
+
+<span class="c1">#获取数组元素值</span>
+<span class="nb">echo</span> <span class="s2">&#34;5：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;6：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;7：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;8：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
+
+<span class="c1">#获取数组的长度</span>
+<span class="nb">echo</span> <span class="s2">&#34;9：</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
+
+
+<span class="c1">#加法运算</span>
+<span class="nv">val</span><span class="o">=</span><span class="sb">`</span>expr <span class="m">2</span> + 2<span class="sb">`</span>
+<span class="nb">echo</span> <span class="s2">&#34;10：两数之和为 : </span><span class="nv">$val</span><span class="s2">&#34;</span>
+
+<span class="c1">#在当前目录下生成log文件</span>
+<span class="nv">log_path</span><span class="o">=</span><span class="s2">&#34;test.log&#34;</span>
+<span class="nb">echo</span> <span class="s2">&#34;11：往当前目录下的log文件写入内容,如果文件不存在则自动创建。&#34;</span>
+<span class="c1">#如果不希望文件内容被覆盖，可以使用 &gt;&gt; 追加到文件末尾</span>
+<span class="nb">echo</span> <span class="s2">&#34;It is a test&#34;</span> &gt; <span class="nv">$log_path</span>
+
+<span class="c1">#显示命令执行结果</span>
+<span class="nb">echo</span> <span class="s2">&#34;12：显示命令执行结果 ls&#34;</span>
+<span class="nb">echo</span> <span class="sb">`</span>ls<span class="sb">`</span>
+
+:<span class="s">&lt;&lt;EOF
+</span><span class="s">%s %c %d %f都是格式替代符
+</span><span class="s">
+</span><span class="s">%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐），任何字符都会被显示在10个字符宽的字符内
+</span><span class="s">如果不足则自动以空格填充，超过也会将内容全部显示出来。
+</span><span class="s">
+</span><span class="s">%-4.2f 指格式化为小数，其中.2指保留2位小数。
+</span><span class="s">EOF</span>
+<span class="c1">#printf显示表格</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;13：printf显示表格&#34;</span>
+<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4s\n&#34;</span>   姓名 性别 体重kg  
+<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭靖 男 66.1234 
+<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 杨过 男 48.6543 
+<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭芙 女 47.9876 
+
+<span class="c1"># 格式只指定了一个参数，但多出的参数仍然会按照该格式输出，format-string 被重用</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;14：format-string 重用&#34;</span>
+<span class="nb">printf</span> <span class="s2">&#34;%s\n&#34;</span> abc df
+<span class="nb">printf</span> <span class="s2">&#34;%s %s %s\n&#34;</span> a b c d e f g h i j
+
+
+
+<span class="c1">#if</span>
+<span class="nb">echo</span> <span class="s2">&#34;14：if语句&#34;</span>
+<span class="nv">a</span><span class="o">=</span><span class="m">102</span>
+<span class="nv">b</span><span class="o">=</span><span class="m">101</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$a</span> -eq <span class="nv">$b</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;两个数相等！&#39;</span>
+<span class="k">elif</span> <span class="o">[</span> <span class="nv">$a</span> -gt <span class="nv">$b</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;a大于b！&#39;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> <span class="s1">&#39;a小于b！&#39;</span>
+<span class="k">fi</span>
+
+<span class="nv">a</span><span class="o">=</span><span class="m">101</span>
+<span class="nv">b</span><span class="o">=</span><span class="m">101</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$a</span> &gt; <span class="nv">$b</span> <span class="o">||</span> <span class="nv">$a</span> <span class="o">==</span> <span class="nv">$b</span> <span class="o">]]</span>
+<span class="k">then</span>
+	<span class="nb">echo</span> <span class="s1">&#39;c大等于d&#39;</span>
+<span class="k">else</span>
+	<span class="nb">echo</span> <span class="s1">&#39;c小于d&#39;</span>
+<span class="k">fi</span>
+
+<span class="c1">#字符串比较</span>
+<span class="nv">c</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
+<span class="nv">d</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="nv">$c</span> <span class="o">==</span> <span class="nv">$d</span> <span class="o">]]</span>
+<span class="k">then</span>
+	<span class="nb">echo</span> <span class="s1">&#39;c和d相等！&#39;</span>
+<span class="k">else</span>
+	<span class="nb">echo</span> <span class="s1">&#39;c和d不相等！&#39;</span>
+<span class="k">fi</span>
+
+<span class="c1">#for循环</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;15：for循环输出数组内的所有元素&#34;</span>
+<span class="k">for</span> vo in <span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$vo</span>
+<span class="k">done</span>
+
+<span class="c1">#while循环</span>
+<span class="nb">echo</span> -e <span class="s2">&#34;15：while循环输出数组内的所有元素&#34;</span>
+<span class="nv">array_length</span><span class="o">=</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
+<span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
+<span class="k">while</span> <span class="o">[</span> <span class="nv">$temp</span> -lt <span class="nv">$array_length</span> <span class="o">]</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$temp</span>
+    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
+<span class="k">done</span>
+
+<span class="c1">#until循环</span>
+<span class="c1">#until 循环执行一系列命令直至条件为 true 时停止。</span>
+<span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
+<span class="nb">echo</span> <span class="s2">&#34;16：until循环输出数组内的所有元素&#34;</span>
+<span class="k">until</span> <span class="o">[</span> <span class="nv">$temp</span> -eq <span class="nv">$array_length</span> <span class="o">]</span>
+<span class="k">do</span>
+    <span class="nb">echo</span> <span class="nv">$temp</span>
+    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
+<span class="k">done</span>
+
+
+<span class="c1">#读取用户输入</span>
+<span class="nb">echo</span> <span class="s2">&#34;17：读取用户输入&#34;</span>
+<span class="nb">echo</span> <span class="o">&amp;&amp;</span> <span class="nb">read</span> -e -p <span class="s2">&#34;请输入数字 [1-4]：&#34;</span> aNum
+<span class="k">case</span> <span class="nv">$aNum</span> in
+    1<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 1&#39;</span>
+    <span class="p">;;</span>
+    2<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 2&#39;</span>
+    <span class="p">;;</span>
+    3<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 3&#39;</span>
+    <span class="p">;;</span>
+    4<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 4&#39;</span>
+    <span class="p">;;</span>
+    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你没有输入 1 到 4 之间的数字&#39;</span>
+    <span class="p">;;</span>
+<span class="k">esac</span>
+
+
+<span class="c1">#函数定义 调用</span>
+<span class="nb">echo</span> <span class="s2">&#34;18：函数定义 调用&#34;</span>
+demoFun<span class="o">(){</span>
+    <span class="nb">echo</span> <span class="s2">&#34;这是我的第一个 shell 函数!&#34;</span>
+<span class="o">}</span>
+<span class="nb">echo</span> <span class="s2">&#34;-----函数开始执行-----&#34;</span>
+demoFun
+<span class="nb">echo</span> <span class="s2">&#34;-----函数执行完毕-----&#34;</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>Linux 服务器使用 Cloudflare 搭建 DDNS</title>
     <link>https://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</link>
     <pubDate>Sat, 25 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</guid>
-    <description><![CDATA[<p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>]]></description>
+    <description><![CDATA[<p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>
+<h1 id="一准备工作">一、准备工作</h1>
+<p>注册一个 cloudflare 账号后，按照 cloudflare 给出的提示，将域名接入 cloudflare，让 cloudflare 接管你的域名。</p>
+<h1 id="二获取账号-global-key">二、获取账号 global key</h1>
+<p>打开网页：https://dash.cloudflare.com/profile</p>
+<p>在页面下方找到【Global API Key】，点击右侧的 View 查看 Key，并保存下来</p>
+<h1 id="三设置用于-ddns-解析的二级域名">三、设置用于 DDNS 解析的二级域名</h1>
+<p>在 Cloudflare 中新建一个 A 记录，如：ddns.yourdomain.com，指向 1.1.1.1（可随意指定，如 123.123.123.123 等等，主要用于后续查看 DDNS 是否生效）</p>
+<h1 id="四下载-ddns-脚本修改配置">四、下载 DDNS 脚本，修改配置</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
+vim cf-v4-ddns.sh
+</code></pre></div><p>1.CFKEY 就是第一步获取的 global key</p>
+<p>2.CFUSER 是登录 cloudflare 的邮箱</p>
+<p>3.CFZONE_NAME 是你的一级域名</p>
+<p>4.CFRECORD_NAME 则是用于 DDNS 的二级域名</p>
+<p>5.CFTTL 是域名生效的 ttl，默认 120 即可</p>
+<h1 id="五脚本授权并执行">五、脚本授权并执行</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod +x cf-v4-ddns.sh
+./cf-v4-ddns.sh
+</code></pre></div><p>如果脚本相关信息填写正确，输出内容会显示服务器当前 IP，登录 Cloudflare DNS 选项 查看之前设置的 1.1.1.1 已变为当前服务器的 IP。</p>
+<h1 id="六设置-crontab-定时任务">六、设置 crontab 定时任务</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 编辑定时任务</span>
+crontab -e
+
+<span class="c1"># 将以下内容添加到crontab中</span>
+<span class="c1"># 无日志</span>
+*/2 * * * * /root/cf-v4-ddns.sh &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div><p>如果需要日志文件，可将上述代码请替换成下述代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>Linux 使用 crontab 执行定时任务</title>
     <link>https://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</link>
     <pubDate>Mon, 20 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
-    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>]]></description>
+    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>
+<h1 id="一命令格式及其含义">一、命令格式及其含义</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#语义</span>
+* * * * * <span class="nb">command</span>
+┃ ┃ ┃ ┃ ┃ ┃
+┃ ┃ ┃ ┃ ┃ ┗━需要执行的命令或脚本的路径
+┃ ┃ ┃ ┃ ┗━━━星期 取值范围 0-6
+┃ ┃ ┃ ┗━━━━月份 取值范围 1-12
+┃ ┃ ┗━━━━━ 日   取值范围 1-31
+┃ ┗━━━━━━ 小时 取值范围 0-23
+┗━━━━━━━━ 分钟 取值范围 0-59
+
+<span class="c1">#编辑crontab任务，写入后保存退出生效</span>
+crontab -e
+
+<span class="c1">#列出已经存在的crontab任务</span>
+crontab -l
+</code></pre></div><h1 id="二demo">二、Demo</h1>
+<pre><code class="language-contab" data-lang="contab">#每天7:00重启
+0 7 * * * reboot
+
+#每周六凌晨4:00重启
+0 4 * * 6 reboot
+
+#每周六凌晨4:05执行脚本
+5 4 * * 6 /root/clearLog.sh
+
+#每周六凌晨4:15执行
+15 4 * * 6 /root/clearLog.sh
+
+#每天8:40执行
+40 8 * * * /root/clearLog.sh
+
+#每周一到周五的11:41开始，每隔10分钟执行一次
+41,51 11 * * 1-5 /root/clearLog.sh
+1-59/10 12-23 * * 1-5 /root/clearLog.sh
+
+#在每天的10:31开始，每隔2小时重复一次
+31 10-23/2 * * * /root/clearLog.sh
+
+#每天23:50执行
+50 23 * * * /root/clearLog.sh
+
+#每天10:00、16:00执行
+0 10,16 * * * /root/clearLog.sh
+</code></pre><h1 id="ref">REF</h1>
+<p>Linux 计划任务 Crontab 实例详解：<a href="https://www.osyunwei.com/archives/5039.html" target="_blank" rel="noopener noreffer">https://www.osyunwei.com/archives/5039.html</a></p>]]></description>
 </item><item>
     <title>Linux 使用 nmap 进行端口扫描</title>
     <link>https://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</link>
     <pubDate>Sun, 19 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</guid>
-    <description><![CDATA[<p>目前端口扫描可以通过 web 版本的端口扫描进行简单的测试，一次性扫描的端口数量一般也会有限制。通常情况下，如果仅仅是扫描一些常用端口，如上图所示的网页版端口扫描可以满足。如果想折腾一下，或者是对自己的主机进行安全检查之类的，还是使用 Linux 系统下的 nmap 工具进行扫描会比较方便一点。</p>]]></description>
+    <description><![CDATA[<p>目前端口扫描可以通过 web 版本的端口扫描进行简单的测试，一次性扫描的端口数量一般也会有限制。通常情况下，如果仅仅是扫描一些常用端口，如上图所示的网页版端口扫描可以满足。如果想折腾一下，或者是对自己的主机进行安全检查之类的，还是使用 Linux 系统下的 nmap 工具进行扫描会比较方便一点。</p>
+<h1 id="一安装-nmap">一、安装 nmap</h1>
+<p>使用 yum 安装 nmap</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#更新一下源</span>
+yum update -y
+
+<span class="c1">#安装</span>
+yum install nmap -y
+</code></pre></div><h1 id="二nmap-命令">二、nmap 命令</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#扫描本机开放的端口「127.0.0.1 一般指代本机」</span>
+nmap 127.0.0.1  -p 1-65535
+</code></pre></div><p>先咕咕咕… 日后再补批量扫 IP 段并将结果写入日志</p>]]></description>
 </item></channel>
 </rss>

@@ -10,6 +10,52 @@
     <pubDate>Mon, 20 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
-    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>]]></description>
+    <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>
+<h1 id="一命令格式及其含义">一、命令格式及其含义</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#语义</span>
+* * * * * <span class="nb">command</span>
+┃ ┃ ┃ ┃ ┃ ┃
+┃ ┃ ┃ ┃ ┃ ┗━需要执行的命令或脚本的路径
+┃ ┃ ┃ ┃ ┗━━━星期 取值范围 0-6
+┃ ┃ ┃ ┗━━━━月份 取值范围 1-12
+┃ ┃ ┗━━━━━ 日   取值范围 1-31
+┃ ┗━━━━━━ 小时 取值范围 0-23
+┗━━━━━━━━ 分钟 取值范围 0-59
+
+<span class="c1">#编辑crontab任务，写入后保存退出生效</span>
+crontab -e
+
+<span class="c1">#列出已经存在的crontab任务</span>
+crontab -l
+</code></pre></div><h1 id="二demo">二、Demo</h1>
+<pre><code class="language-contab" data-lang="contab">#每天7:00重启
+0 7 * * * reboot
+
+#每周六凌晨4:00重启
+0 4 * * 6 reboot
+
+#每周六凌晨4:05执行脚本
+5 4 * * 6 /root/clearLog.sh
+
+#每周六凌晨4:15执行
+15 4 * * 6 /root/clearLog.sh
+
+#每天8:40执行
+40 8 * * * /root/clearLog.sh
+
+#每周一到周五的11:41开始，每隔10分钟执行一次
+41,51 11 * * 1-5 /root/clearLog.sh
+1-59/10 12-23 * * 1-5 /root/clearLog.sh
+
+#在每天的10:31开始，每隔2小时重复一次
+31 10-23/2 * * * /root/clearLog.sh
+
+#每天23:50执行
+50 23 * * * /root/clearLog.sh
+
+#每天10:00、16:00执行
+0 10,16 * * * /root/clearLog.sh
+</code></pre><h1 id="ref">REF</h1>
+<p>Linux 计划任务 Crontab 实例详解：<a href="https://www.osyunwei.com/archives/5039.html" target="_blank" rel="noopener noreffer">https://www.osyunwei.com/archives/5039.html</a></p>]]></description>
 </item></channel>
 </rss>

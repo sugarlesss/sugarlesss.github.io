@@ -10,48 +10,850 @@
     <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</guid>
-    <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>]]></description>
+    <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
+<h1 id="一关于-webhook">一、关于 webhook</h1>
+<p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
+<ul>
+<li>
+<p>你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
+</li>
+<li>
+<p>你在 gitee 或自建的 gogs （一款开源 git server ）上托管代码，你希望在 git push 提交新版本到远程仓库后，服务器能自动执行 git pull 命令，从远程仓库拉取最新版本的代码，并重启服务。</p>
+</li>
+</ul>
+<p>实际上，你可以把它看做一种事件触发器。当满足某种特定条件时，执行一系列特定操作。其中，一方是事件发起者，另一方是事件接收者。</p>
+<p>以第一个例子来解释，Github 接收到 push 后，发起一个 HTTP(S) 请求，响应者接收到请求后执行特定命令或业务逻辑。Github 是事件发起者，部署了宝塔面板的服务器是事件执行者。</p>
+<h1 id="二配置宝塔面板-webhook">二、配置宝塔面板 webhook</h1>
+<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
+<p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能 cd 到博客源码目录下执行 git pull 命令，这样就可以从 Github 拉取最新的版本覆盖服务器上当前的版本了，因为是静态资源，所以无需重启什么服务，git pull 完成后即更新完毕。</p>
+<h2 id="1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</h2>
+<p>去软件商店可以找到这玩意儿</p>
+<p></p>
+<h2 id="2添加-webhook">2）添加 WebHook</h2>
+<p></p>
+<h2 id="3配置执行命令">3）配置执行命令</h2>
+<pre><code>cd /www/wwwroot/sugarlesss.github.io;
+git pull;
+</code></pre><p></p>
+<p>配置完成后，就可以看到一条 webhook 规则了。</p>
+<p></p>
+<h2 id="4获取-webhook-url">4）获取 webhook url</h2>
+<p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
+<p></p>
+<h1 id="三配置-github-webhook">三、配置 Github webhook</h1>
+<p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
+<p></p>
+<p>将宝塔提供的 webhook url 填入此处的 Payload URL，并将下方的 Content type 修改为 application/json ，否则 Github 请求此 URL 时，宝塔会返回 403 错误。</p>
+<p></p>
+<h1 id="注意事项">注意事项</h1>
+<ul>
+<li>在服务器上生成一对 SSH 秘钥，将公钥配置到你的 Github 账号后，服务器就可以使用 git pull 命令拉取最新版本，不需要输入账号密码了。</li>
+<li>如果在配置 Github webhook 时，Content type 你忘记修改为 application/json ，宝塔会返回 403 错误，你配置的一系列自定义命令就无法执行了。</li>
+</ul>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
     <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
-    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
+    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
+<p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
+<p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
+</code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
+<p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
+<h2 id="11讯飞">1.1、讯飞</h2>
+<p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<ul>
+<li>套餐一（ 20 小时） 168 元 / 单价 8.4</li>
+<li>套餐二（ 200 小时） 980 元 / 单价 4.9</li>
+<li>套餐三（ 1000 小时） 3900 元 / 单价 3.9</li>
+<li>套餐四（ 3000 小时） 10500 元 / 单价 3.5</li>
+</ul>
+<h2 id="12百度云">1.2、百度云</h2>
+<p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按小时包预付费</p>
+<ul>
+<li>套餐一（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐二（ 10000 小时） 9000 元 / 单价 0.9</li>
+<li>套餐三（ 100000 小时） 70000 元 / 单价 0.7</li>
+<li>套餐四（ 500000 小时） 300000 元 / 单价 0.6</li>
+</ul>
+<p>按调用时长后付费</p>
+<ul>
+<li>每小时 2 元，系统按用户实际使用，每小时出账单实时扣费，账户内需保留足量余额。</li>
+</ul>
+<h2 id="13腾讯云">1.3、腾讯云</h2>
+<p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/product/asr</a></p>
+<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
+<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://buy.cloud.tencent.com/asr</a></p>
+<p>录音文件识别（五小时内出结果）</p>
+<ul>
+<li>套餐一（ 60 小时） 90 元 / 单价 1.5</li>
+<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐三（ 10000 小时） 10000 元 / 单价 1</li>
+<li>套餐四（ 100000 小时） 80000 元 / 单价 0.8</li>
+<li>套餐五（ 300000 小时） 210000 元 / 单价 0.7</li>
+</ul>
+<blockquote>
+<p>支持中文普通话、英语、粤语、日语、泰语。对时长5小时以内的录音文件进行识别，异步返回识别全部结果。<br>
+支持语音 URL 和本地语音文件两种请求方式。<br>
+语音 URL 的音频时长不能长于5小时，文件大小不超过512MB。<br>
+本地语音文件不能大于5MB。<br>
+提交录音文件识别请求后，在5小时内完成识别（半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+支持回调或轮询的方式获取结果</p>
+</blockquote>
+<p>录音文件识别极速版（准实时）</p>
+<ul>
+<li>套餐一（ 30 小时） 72 元 / 单价 2.3</li>
+<li>套餐二（ 1000 小时） 1500 元 / 单价 1.5</li>
+<li>套餐三（ 10000 小时） 12000 元 / 单价 1.2</li>
+<li>套餐四（ 100000 小时） 110000 元 / 单价 1.1</li>
+<li>套餐五（ 300000 小时） 300000 元 / 单价 1</li>
+</ul>
+<blockquote>
+<p>仅支持中文普通话，使用者通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。<br>
+支持100MB以内音频文件的识别</p>
+</blockquote>
+<h2 id="14阿里云">1.4、阿里云</h2>
+<p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<p>录音文件识别（六小时内出结果）</p>
+<ul>
+<li>套餐一（ 40 小时） 100 元 / 单价 2.5</li>
+<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐三（ 20000 小时） 20000 元 / 单价 1</li>
+<li>套餐四（ 100000 小时） 90000 元 / 单价 0.9</li>
+<li>套餐五（ 250000 小时） 200000 元 / 单价 0.8</li>
+</ul>
+<p>录音文件识别极速版（30分钟以内时长的音频转写完成时间不超过10秒）</p>
+<ul>
+<li>套餐一（ 40 小时） 90 元 / 单价 2.5</li>
+<li>套餐二（ 1000 小时） 1560 元 / 单价 1.56</li>
+<li>套餐三（ 20000 小时） 26000 元 / 单价 1.3</li>
+<li>套餐四（ 100000 小时） 117000 元 / 单价 1.17</li>
+<li>套餐五（ 250000 小时） 260000  元 / 单价 1.04</li>
+</ul>
+<h1 id="二对接腾讯云">二、对接腾讯云</h1>
+<p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
+<ul>
+<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/developer</a></li>
+<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></li>
+</ul>
+<h2 id="21录音文件识别极速版v2">2.1、录音文件识别极速版（V2）</h2>
+<p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
+<p>极速版仅支持中文普通话，通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。支持100MB以内音频文件的识别。</p>
+<p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
+<p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
+<p>3）run it。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 录音文件识别极速版 v2版本</span>
+<span class="c1"># API 文档：https://cloud.tencent.com/document/api/1093/52097</span>
+<span class="c1"># 签名生成：https://cloud.tencent.com/document/api/1093/52097#sign</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="c1"># 调用者身份</span>
+<span class="k">class</span> <span class="nc">Credential</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret_id</span> <span class="o">=</span> <span class="n">secret_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">secret_key</span>
+
+
+<span class="c1"># 服务端信息</span>
+<span class="k">class</span> <span class="nc">Server</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span>
+
+
+<span class="c1"># 打印日志</span>
+<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&#34;INFO&#34;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[&#34;</span> <span class="o">+</span> <span class="n">level</span> <span class="o">+</span> <span class="s2">&#34;] &#34;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+
+<span class="c1"># 获取时间戳</span>
+<span class="k">def</span> <span class="nf">getTimestamp</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="c1"># return t # 原始时间数据</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># 秒级时间戳</span>
+    <span class="c1"># return int(round(t * 1000))  # 毫秒级时间戳</span>
+    <span class="c1"># return int(round(t * 1000000))  # 微秒级时间戳</span>
+
+
+<span class="c1"># 字典序排序</span>
+<span class="k">def</span> <span class="nf">format_sign_string</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">signstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;POST</span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="n">server</span><span class="o">.</span><span class="n">uri</span> <span class="o">+</span> <span class="n">credential</span><span class="o">.</span><span class="n">app_id</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">break</span>
+    <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;?&#34;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;=&#34;</span>
+        <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;&amp;&#34;</span>
+    <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">signstr</span>
+
+
+<span class="c1"># 签名</span>
+<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
+    <span class="n">hmacstr</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+                       <span class="n">signstr</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hmacstr</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># 调用者信息对象初始化</span>
+<span class="c1"># 在腾讯云控制台账号信息页面查看账号 APPID：https://console.cloud.tencent.com/developer</span>
+<span class="c1"># 访问管理页面获取 SecretID 和 SecretKey：https://console.cloud.tencent.com/cam/capi</span>
+<span class="n">APPID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">SECRET_ID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">credential</span> <span class="o">=</span> <span class="n">Credential</span><span class="p">(</span><span class="n">APPID</span><span class="p">,</span> <span class="n">SECRET_ID</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
+
+<span class="c1"># 服务端信息对象初始化</span>
+<span class="n">PROTOCOL</span> <span class="o">=</span> <span class="s2">&#34;https://&#34;</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">URI</span> <span class="o">=</span> <span class="s2">&#34;/asr/flash/v1/&#34;</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">PROTOCOL</span><span class="p">,</span> <span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">URI</span><span class="p">)</span>
+
+<span class="c1"># 构造参数</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># 用户在腾讯云注册账号 AppId 对应的 SecretId</span>
+    <span class="s2">&#34;secretid&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">credential</span><span class="o">.</span><span class="n">secret_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 引擎模型类型。8k_zh：8k 中文普通话通用；16k_zh：16k 中文普通话通用；16k_zh_video：16k 音视频领域。</span>
+    <span class="s2">&#34;engine_type&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 音频格式。支持 wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。</span>
+    <span class="s2">&#34;voice_format&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 当前 UNIX 时间戳，如果与当前时间相差超过3分钟，会报签名失败错误。</span>
+    <span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">getTimestamp</span><span class="p">(),</span>
+<span class="p">}</span>
+
+<span class="c1"># 是否开启说话人分离（目前支持中文普通话引擎），默认为0，0：不开启，1：开启。</span>
+<span class="c1"># params[&#34;speaker_diarization&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤脏词（目前支持中文普通话引擎），默认为0。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 *。</span>
+<span class="c1"># params[&#34;filter_dirty&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤语气词（目前支持中文普通话引擎），默认为0。0：不过滤语气词；1：部分过滤；2：严格过滤。</span>
+<span class="c1"># params[&#34;filter_modal&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤标点符号（目前支持中文普通话引擎），默认为0。0：不过滤，1：过滤句末标点，2：过滤所有标点。</span>
+<span class="c1"># params[&#34;filter_punc&#34;] = 0;</span>
+
+<span class="c1"># 是否进行阿拉伯数字智能转换，默认为1。0：全部转为中文数字；1：根据场景智能转换为阿拉伯数字。</span>
+<span class="n">params</span><span class="p">[</span><span class="s2">&#34;convert_num_mode&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1"># 是否显示词级别时间戳，默认为0。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。</span>
+<span class="c1"># params[&#34;word_info&#34;] = 0;</span>
+
+<span class="c1"># 是否只识别首个声道，默认为1。0：识别所有声道；1：识别首个声道。</span>
+<span class="c1"># params[&#34;first_channel_only&#34;] = 1;</span>
+
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 params&#34;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># 获取 signature</span>
+<span class="n">signstr</span> <span class="o">=</span> <span class="n">format_sign_string</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signstr&#34;</span><span class="p">,</span> <span class="n">signstr</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signature&#34;</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+
+<span class="c1"># 计算 URL</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">protocol</span> <span class="o">+</span> <span class="n">signstr</span><span class="p">[</span><span class="mi">4</span><span class="p">::]</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;计算 URL&#34;</span><span class="p">,</span> <span class="n">URL</span><span class="p">)</span>
+
+<span class="c1"># 构造 header</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;Authorization&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">signature</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+    <span class="c1"># &#34;Content-Type&#34;: &#34;application/octet-stream&#34;,</span>
+    <span class="c1"># &#34;Content-Length&#34;: &#34;请求长度，此处对应语音数据字节数，单位：字节&#34;</span>
+<span class="p">}</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 headers&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="c1"># 音频路径</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./外卖佣金到底有多高.mp3&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># 调用腾讯云语音识别 API</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">responese</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别失败&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别成功&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
+
+    <span class="c1"># 一个channl_result对应一个声道的识别结果</span>
+    <span class="c1"># 大多数音频是单声道，对应一个channl_result</span>
+    <span class="k">for</span> <span class="n">channl_result</span> <span class="ow">in</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;flash_result&#34;</span><span class="p">]:</span>
+        <span class="n">channel_id</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;channel_id&#39;</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+
+        <span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;channel_id: </span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+</code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">[INFO] 生成 params
+{&#39;secretid&#39;: &#39;xxxxxxxxxxxxxxxxxxx&#39;, &#39;engine_type&#39;: &#39;16k_zh&#39;, &#39;voice_format&#39;: &#39;mp3&#39;, &#39;timestamp&#39;: xxxxxxxxx, &#39;convert_num_mode&#39;: 1}
+
+[INFO] 生成 signstr
+POSTasr.cloud.tencent.com/asr/flash/v1/xxxxxxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxxxxx&amp;voice_format=mp3
+
+[INFO] 生成 signature
+xxxxxxxxxxxxxxxxxxx=
+
+[INFO] 计算 URL
+https://asr.cloud.tencent.com/asr/flash/v1/xxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxx&amp;voice_format=mp3
+
+[INFO] 生成 headers
+{&#39;Host&#39;: &#39;asr.cloud.tencent.com&#39;, &#39;Authorization&#39;: &#39;xxxxxxxxxxxxxxxxxxxxx=&#39;}
+
+[INFO] 识别成功
+{&#39;request_id&#39;: &#39;xxxxxxxxxxxxxxxxxx&#39;, &#39;code&#39;: 0, &#39;message&#39;: &#39;&#39;, &#39;audio_duration&#39;: xxxxxxxx, &#39;flash_result&#39;: [{&#39;text&#39;: &#39;测试音频转文字内容&#39;, &#39;start_time&#39;: xxxxxxxxx, &#39;end_time&#39;: xxxxxx, &#39;speaker_id&#39;: 0}]}]}
+
+[INFO] channel_id: 0
+测试音频转文字内容
+</code></pre></div><p>如果有特殊需求，根据可选的 params 参数去调整就好了。</p>
+<h2 id="22录音文件识别v3">2.2、录音文件识别（V3）</h2>
+<p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
+<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823</a></p>
+<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37822</a></p>
+<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
+<h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
+<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+
+<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
+pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
+</code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
+<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
+<p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./audio.mp3&#34;</span>
+
+<span class="c1"># 将录音转为字符串</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        引擎模型类型。 这里的 k 指的是采样率
+</span><span class="s1">            电话场景： 
+</span><span class="s1">                • 8k_en：电话8k英语； 
+</span><span class="s1">                • 8k_zh：电话8k中文普通话通用； 
+</span><span class="s1">            
+</span><span class="s1">            非电话场景： 
+</span><span class="s1">                • 16k_zh：16k 中文普通话通用； 
+</span><span class="s1">                • 16k_zh_video：16k 音视频领域； 
+</span><span class="s1">                • 16k_en：16k 英语； 
+</span><span class="s1">                • 16k_ca：16k 粤语； 
+</span><span class="s1">                • 16k_ja：16k 日语； 
+</span><span class="s1">                • 16k_zh_edu 中文教育； 
+</span><span class="s1">                • 16k_en_edu 英文教育； 
+</span><span class="s1">                • 16k_zh_medical 医疗；
+</span><span class="s1">                • 16k_th 泰语；
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            识别声道数。注意：录音识别会自动将音频转码为填写的识别声道数
+</span><span class="s1">                1：单声道；
+</span><span class="s1">                2：双声道（仅支持 8k_zh 引擎模）。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            识别结果返回形式。
+</span><span class="s1">                0： 识别结果文本(含分段时间戳)； 
+</span><span class="s1">                1：词级别粒度的详细识别结果(不含标点，含语速值)；
+</span><span class="s1">                2：词级别粒度的详细识别结果（包含标点、语速值）
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            语音数据来源。
+</span><span class="s1">                0：语音 URL；
+</span><span class="s1">                1：语音数据（post body）。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            语音数据，当SourceType 值为1时必须填写，为0可不写。
+</span><span class="s1">                要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。
+</span><span class="s1">                编码后的数据不可带有回车换行符)。音频数据要小于5MB。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;f1234567-89a4-1234-12d3-d56bdd9aac1a&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>请求成功后，返回的 JSON 中 Data -&gt; TaskId 就是我们此次上传任务的 ID ，需要拿这个 ID 去轮训另一个接口，查询是否成功。</p>
+<h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
+<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
+<p>用 TaskID 查询识别结果。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">TaskId</span> <span class="o">=</span> <span class="mi">1234567890</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">TaskId</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span><span class="p">,</span>
+        <span class="nt">&#34;Status&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&#34;StatusStr&#34;</span><span class="p">:</span><span class="s2">&#34;success&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;[0:0.000,1:0.320]  识别结果。\n[1:0.320,2:0.360]  识别结果。\n[2:0.360,3:0.380]  识别结果。\n[3:0.380,4:0.400]  识别结果。\n[4:0.400,5:0.420]  识别结果。\n&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ErrorMsg&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ResultDetail&#34;</span><span class="p">:</span><span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-1234-1234-1234-b11234567890&#34;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="23一句话识别v3">2.3、一句话识别（V3）</h2>
+<p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/product/1093/35646</a></p>
+<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
+<h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
+<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+
+<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
+pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
+</code></pre></div><h3 id="232源码">2.3.2、源码</h3>
+<p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./一句话录音.mp3&#34;</span>
+
+<span class="c1"># 将录音转为字符串</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SentenceRecognitionRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&#34;SubServiceType&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&#34;EngSerViceType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span>
+        <span class="s2">&#34;VoiceFormat&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;UsrAudioKey&#34;</span><span class="p">:</span> <span class="s2">&#34;uniqueKey-1&#34;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">SentenceRecognition</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;一句话录音识别内容&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;AudioDuration&#34;</span><span class="p">:</span><span class="mi">59996</span><span class="p">,</span>
+    <span class="nt">&#34;WordSize&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;WordList&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-4307-46ae-1234-beb3eb051234&#34;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
+<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
     <link>https://sugarless.top/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/hugo-one-click-deployment.html</guid>
-    <description><![CDATA[<p>一键发布文章</p>]]></description>
+    <description><![CDATA[<p>一键发布文章</p>
+<p>本操作只在 windows 平台下实践过，其他平台可自行尝试。</p>
+<p>先安装 git bash ，官网：https://git-scm.com/downloads</p>
+<p>确定 hugo 博客的根目录：public 的上级目录就是你博客的根目录，我的根目录是 D:\blog\src</p>
+<pre><code>D:\BLOG\SRC
+│  config.toml
+├─archetypes 
+├─assets
+├─content
+├─data
+├─layouts
+├─public    
+├─resources
+├─static
+└─themes
+</code></pre><p>将 git 仓库（xxx.github.io）的  .git 文件夹和 CNAME 文件复制一份到博客根目录的 public 文件夹中，使 public 目录成为一个仓库。</p>
+<p>配置 git alias 别名，这里我将 git blog 这个命令作为以后日常一键部署的命令，注意，此处的博客根目录不要填写错误。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
+</code></pre></div><p>以后写好文章之后，就可以在任意目录执行这个命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git blog
+</code></pre></div><p>即可一键渲染、并提交推送到 github 上了，配合 git pages 使用更佳。</p>
+<p>PS：如果需要同时同步到 Github 和 Gitee ，可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a> ，并修改 git blog 对应的命令。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
     <link>https://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
-    <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>]]></description>
+    <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
+<p></p>
+<p>文件内容大致像这样：</p>
+<p></p>
+<p>如果没有发现独立的 m3u8 文件，有可能每一个 ts 文件的地址中也是含有这个 m3u8 文件的名称的。把这个 m3u8 文件的完整地址截取出来。针对这种情况，我就不具体举例了，因为我还没遇到过。</p>
+<p>到 header tab 里，复制一下这个 m3u8 文件的完整 url ，画红线的这部分就是。</p>
+<p></p>
+<p>假设这个地址是：https://xxx.abc.com/xxx/a.m3u8</p>
+<p>可以使用ffmpeg（<a href="https://link.zhihu.com/?target=https%3A//www.ffmpeg.org/" target="_blank" rel="noopener noreffer">FFmpeg</a>）命令下载合并输出为一个视频文件</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i https://xxx.abc.com/xxx/a.m3u8 -c copy output.mp4
+</code></pre></div><p></p>]]></description>
 </item><item>
     <title>frp 内网穿透</title>
     <link>https://sugarless.top/posts/how-to-use-frp.html</link>
     <pubDate>Sun, 20 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-use-frp.html</guid>
-    <description><![CDATA[<p>frp 是一个基于 Go 语言开发的专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。frp 上手难度低，配置起来并不算困难。</p>]]></description>
+    <description><![CDATA[<p>frp 是一个基于 Go 语言开发的专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。frp 上手难度低，配置起来并不算困难。</p>
+<p>Github：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp</a></p>
+<p>官网：<a href="https://gofrp.org/" target="_blank" rel="noopener noreffer">https://gofrp.org</a></p>
+<p>通过在具有公网 IP 的节点上部署 frp 服务端，可以轻松地将内网服务穿透到公网。前提是，内网能访问外网。而不是像特殊单位的纯内网环境，不允许访问外网。</p>
+<p>举几个经典的应用场景：</p>
+<ul>
+<li>开发人员在家办公，需要连接公司内网，进服务器 shell 调试 / 部署；</li>
+<li>开发人员联调时，需要给外网提供部署在本地的 web 服务；</li>
+<li>出差过程中，需要连接公司内网，登录内部系统审批流程；</li>
+<li>访问家庭 NAS 服务器。</li>
+</ul>
+<p>本文以服务端 centos7，客户端 windows 为例进行演示说明。</p>
+<h1 id="一下载最新版本的-frp-到服务器">一、下载最新版本的 frp 到服务器</h1>
+<p>下载页面：<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp/releases</a></p>
+<p>根据自己的服务器架构，选择对应发行版本的文件下载。一般都是 x86 架构，下 linux_amd64.tar.gz 结尾的版本就可以。</p>
+<p>当前最新版本是：0.34.3。</p>
+<p>下载到 /root 目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /root <span class="o">&amp;&amp;</span> wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
+</code></pre></div><p>解压到 /usr/local 下，重命名文件夹为 frp：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tar -zxvf frp_0.34.3_linux_amd64.tar.gz --directory<span class="o">=</span>/usr/local/ <span class="o">&amp;&amp;</span> mv frp_0.34.3_linux_amd64 frp
+</code></pre></div><h1 id="二配置-frp-systemd-服务">二、配置 frp systemd 服务</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#创建systemd服务文件</span>
+vim /usr/lib/systemd/system/frp.service
+ 
+<span class="c1">#写入以下内容，退出并保存</span>
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>The nginx HTTP and reverse proxy server
+<span class="nv">After</span><span class="o">=</span>network.target remote-fs.target nss-lookup.target
+ 
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>simple
+<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/frp/frps -c /usr/local/frp/frps.ini
+<span class="nv">KillSignal</span><span class="o">=</span>SIGQUIT
+<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+<span class="nv">KillMode</span><span class="o">=</span>process
+<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+<span class="nv">StandardOutput</span><span class="o">=</span>syslog
+<span class="nv">StandardError</span><span class="o">=</span>inherit
+ 
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</code></pre></div><p>重载配置文件，使之立即生效。</p>
+<pre><code>systemctl daemon-reload
+</code></pre><p>systemctl 命令：</p>
+<pre><code>systemctl start frp #启动
+systemctl stop frp #关闭
+systemctl restart frp #重启
+systemctl status frp #当前状态
+systemctl enable frp #开机自启动
+systemctl disable frp #取消开机自启动
+</code></pre><h1 id="三修改-frp-服务端配置">三、修改 frp 服务端配置</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1">#修改frp服务端配置文件</span>
+<span class="na">vim /usr/local/frp/frps.ini</span>
+ 
+<span class="c1">#按照以下内容配置，保存并退出</span>
+<span class="k">[common]</span>
+<span class="na">bind_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端端口</span>
+<span class="na">vhost_http_port</span> <span class="o">=</span> <span class="s">8080 #http访问端口</span>
+ 
+<span class="na">[web] #[]中的内容可以自己随便起，但不允许重复，只是起备注的功能而已。</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">http #服务类型，可以设为http,https</span>
+<span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #公网域名，记得域名的A记录要解析到外网主机的IP。</span>
+<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+ 
+<span class="na">[ssh] #监听6000端口，外网SSH连接内网机器时，填写的IP即为frp服务端的IP和此处设定的6000端口。</span>
+<span class="na">listen_port</span> <span class="o">=</span> <span class="s">6000</span>
+<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+ 
+<span class="na">[tcp] #监听10889端口，转发消息给客户端。</span>
+<span class="na">listen_port</span> <span class="o">=</span> <span class="s">10889</span>
+<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+</code></pre></div><p>修改完 frp 服务端的配置文件后，需要检查服务器端口是否开放，上面的配置文件用到了 6000/7000/8080/10089 这 4 个端口。</p>
+<p>重启 frp 服务端</p>
+<pre><code>systemctl restart frp
+</code></pre><p>web 配置项用于向外网提供本地 web 服务、ssh 配置项用于连接本地虚拟机的 shell、tcp 配置项用于转发 10889 端口消息给本机。</p>
+<p>需要注意的是，以上配置中，web/ssh/tcp 的字眼并非是标准语法，而是我起的一个备注而已。</p>
+<h1 id="四下载最新版本的-frp-到本机">四、下载最新版本的 frp 到本机</h1>
+<p>同样的，在 Github 的 release 页面下载对应版本的 frp：<a href="https://github.com/fatedier/frp/releases" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp/releases</a></p>
+<p>本机是 windows，因此下载 windows_amd64.zip 版本即可。</p>
+<p>下载地址：<a href="https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_windows_amd64.zip" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_windows_amd64.zip</a></p>
+<h1 id="五配置客户端参数">五、配置客户端参数</h1>
+<p>解压后进入目录，修改 frpc.ini 为如下内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[common]</span>
+<span class="na">server_addr</span> <span class="o">=</span> <span class="s">xx.xx.xx.xx #部署frp服务端的IP地址</span>
+<span class="na">server_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端的端口</span>
+<span class="na">privilege_token</span> <span class="o">=</span> <span class="s">123456789 #验证token/密码</span>
+ 
+<span class="k">[web]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">http</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">5500 #web服务本地端口</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">8080 #frp服务端HTTP端口</span>
+<span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #反代域名</span>
+ 
+<span class="c1">#将远程6000端口的tcp流量转发到本地的22端口</span>
+<span class="k">[ssh]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">6000</span>
+ 
+<span class="c1">#将远程10889端口的tcp流量转发到本地的10889端口</span>
+<span class="k">[tcp]</span>
+<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+<span class="na">local_port</span> <span class="o">=</span> <span class="s">10889</span>
+<span class="na">remote_port</span> <span class="o">=</span> <span class="s">10889</span>
+</code></pre></div><p>此处的 web 项配置意为：frp 服务端会把访问 xxx.keyboardman.fun:8080 端口的请求代理至本地的 5500 端口。</p>
+<p>ssh 项：将服务端 6000 端口的 tcp 流量转发至本地的 22 端口</p>
+<p>tcp 项：将服务端 10889 端口的 tcp 流量转发至本地的 10889 端口</p>
+<h1 id="六运行本机上运行-frp-客户端并测试效果">六、运行本机上运行 frp 客户端并测试效果</h1>
+<p>打开 cmd，cd 到 frp 的目录下，frpc.exe 运行客户端</p>
+<p></p>
+<h2 id="1web-服务访问测试">1）web 服务访问测试</h2>
+<p>访问 <a href="http://xxx.keyboardman.fun:8080" target="_blank" rel="noopener noreffer">http://xxx.keyboardman.fun:8080</a>，frp 服务端会将请求代理至本地的 5500 端口。</p>
+<p></p>
+<h2 id="2socket-消息测试">2）socket 消息测试</h2>
+<p></p>
+<p>SSH 测试就不演示了，在本机上有搭建 VMware，使用 nat 转发即可把本机的 22 端口 tcp 流量转发到目标虚拟机的 22 端口去，也就是远程 SSH 连接公司内网的应用场景了。</p>
+<p>远程连接时，IP 填 frp 服务端所在的 IP，端口填 6000，可以回头看一下上文 frp 服务端的配置，其中 ssh 项的监听端口我选择的就是 6000。</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/129076009" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/129076009</a></p>]]></description>
 </item><item>
     <title>使用 apache benchmark 对 API 进行压力测试</title>
     <link>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</link>
     <pubDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</guid>
-    <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>]]></description>
+    <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 ab</span>
+yum -y install httpd-tools
+
+<span class="c1"># 显示可选的参数列表及说明</span>
+ab -help
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 测试 </span>
+<span class="c1"># c：并发数量</span>
+<span class="c1"># n：总计请求数量</span>
+ab -c <span class="m">100</span> -n <span class="m">10000</span> https://yourdomain.com/getUserInfo?id<span class="o">=</span>36<span class="p">&amp;</span><span class="nv">token</span><span class="o">=</span>6vPgUT0gG1RyzBRKxYsSNBgwFwM1mQLz
+</code></pre></div><p>耐心等待测试完毕，以下是测试报告</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">Server Software: nginx
+Server Hostname: yourdomain.com
+Server Port: <span class="m">443</span>
+SSL/TLS Protocol: TLSv1.2,ECDHE-RSA-AES128-GCM-SHA256,2048,128
+ 
+Document Path: getUserInfo?id<span class="o">=</span>36<span class="p">&amp;</span><span class="nv">token</span><span class="o">=</span>6vPgUT0gG1RyzBRKxYsSNBgwFwM1mQLz
+Document Length: <span class="m">41</span> bytes
+ 
+Concurrency Level: <span class="m">200</span>
+Time taken <span class="k">for</span> tests: 187.546 seconds
+Complete requests: <span class="m">30000</span>
+Failed requests: <span class="m">53</span>
+<span class="o">(</span>Connect: 0, Receive: 0, Length: 53, Exceptions: 0<span class="o">)</span>
+Write errors: <span class="m">0</span>
+Non-2xx responses: <span class="m">47</span>
+Total transferred: <span class="m">11695535</span> bytes
+HTML transferred: <span class="m">1235123</span> bytes
+Requests per second: 159.96 <span class="o">[</span><span class="c1">#/sec] (mean)</span>
+Time per request: 1250.304 <span class="o">[</span>ms<span class="o">]</span> <span class="o">(</span>mean<span class="o">)</span>
+Time per request: 6.252 <span class="o">[</span>ms<span class="o">]</span> <span class="o">(</span>mean, across all concurrent requests<span class="o">)</span>
+Transfer rate: 60.90 <span class="o">[</span>Kbytes/sec<span class="o">]</span> received
+ 
+Connection Times <span class="o">(</span>ms<span class="o">)</span>
+min mean<span class="o">[</span>+/-sd<span class="o">]</span> median max
+Connect: <span class="m">0</span> <span class="m">420</span> 1078.0 <span class="m">286</span> <span class="m">63684</span>
+Processing: <span class="m">50</span> <span class="m">640</span> 996.0 <span class="m">609</span> <span class="m">69848</span>
+Waiting: <span class="m">50</span> <span class="m">625</span> 248.5 <span class="m">608</span> <span class="m">1796</span>
+Total: <span class="m">217</span> <span class="m">1060</span> 1452.9 <span class="m">951</span> <span class="m">69848</span>
+ 
+Percentage of the requests served within a certain <span class="nb">time</span> <span class="o">(</span>ms<span class="o">)</span>
+50% <span class="m">951</span> <span class="c1"># 50%的请求在951ms内返回</span>
+66% <span class="m">1074</span>
+75% <span class="m">1152</span>
+80% <span class="m">1205</span>
+90% <span class="m">1391</span> <span class="c1"># 90%的请求在1391ms内返回</span>
+95% <span class="m">1660</span>
+98% <span class="m">2043</span>
+99% <span class="m">2928</span> <span class="c1"># 99%的请求在2928ms内返回</span>
+100% <span class="m">69848</span> <span class="o">(</span>longest request<span class="o">)</span>
+</code></pre></div><p>比较重要的也就是最后这部分的 percent line 了，jmeter 只有 90%、95%、99% 这三个量级，ab 从 50% 到 100% 都有。</p>]]></description>
 </item><item>
     <title>使用 Gogs 搭建私有的 GitServer</title>
     <link>https://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</link>
     <pubDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</guid>
-    <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>]]></description>
+    <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>
+<p>本文命令于 CentOS7 系统中测试通过。</p>
+<p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
+<p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
+<p>文档：<a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
+<p>我比较习惯通过二进制文件安装 gogs，所以本文以二进制安装为例说明。有兴趣使用其他方法的朋友们可以自行尝试。</p>
+<h1 id="一添加-nginx-站点">一、添加 nginx 站点</h1>
+<p>将域名解析到你要安装的服务器 IP</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
+<span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">git.yourdomain.top</span><span class="p">;</span><span class="c1">#域名修改为你自己的
+</span><span class="c1"></span>    
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">access_log</span>  <span class="s">/home/git/yourdomain_access.log</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="二安装并配置-gogs">二、安装并配置 gogs</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">adduser git <span class="c1">#创建用户 git</span>
+
+passwd git <span class="c1">#设置git用户的密码</span>
+
+groupadd git <span class="c1">#创建用户组 git</span>
+
+usermod -G git git <span class="c1">#将git用户添加到git用户组中</span>
+
+su git <span class="c1">#切换到git用户shell</span>
+
+<span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
+
+wget https://dl.gogs.io/0.11.91/gogs_0.11.91_linux_amd64.zip <span class="c1">#下载gogs</span>
+
+unzip gogs_0.11.91_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
+
+su <span class="c1">#切回root用户</span>
+
+cp /home/git/gogs/scripts/systemd/gogs.service /usr/lib/systemd/system/ <span class="c1">#复制service文件</span>
+
+systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用gogs服务（开机自启）</span>
+
+systemctl start gogs <span class="c1">#启动gogs</span>
+
+systemctl status gogs <span class="c1">#查看gogs运行状态</span>
+</code></pre></div><h1 id="注意事项">注意事项</h1>
+<p>如果你使用的是端口访问的方式，请在主机 IDC 控制台（阿里云或腾讯云等）设置对应的安全组规则，开放入方向的 3000 端口，并且在宝塔的安全设置中开放 3000 端口</p>
+<p>创建数据库请使用 utf-8 编码格式，不要 utf8mb4 。</p>]]></description>
 </item></channel>
 </rss>

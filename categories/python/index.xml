@@ -10,69 +10,1443 @@
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
-    <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>]]></description>
+    <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>
+<p>百度提交页面：https://ziyuan.baidu.com/linksubmit/index</p>
+<p>通过此页面可以向百度搜索主动推送资源，同时百度也提供了 API 提交接口，这样可以缩短爬虫发现网站链接的时间，但百度不保证收录和展现效果。</p>
+<p>以本站为例，百度提供了 API 提交的样例参数。</p>
+<p></p>
+<h1 id="源码">源码</h1>
+<p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
+<p>使用前需要注意替换真实参数：</p>
+<ul>
+<li>site</li>
+<li>token</li>
+<li>sitemap_path</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: UTF-8 -*-</span>
+
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+
+<span class="k">class</span> <span class="nc">Pusher</span><span class="p">:</span>
+    <span class="c1"># 初始化参数</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">site</span> <span class="o">=</span> <span class="n">site</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">token</span> <span class="o">=</span> <span class="n">token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sitemap_path</span> <span class="o">=</span> <span class="n">sitemap_path</span>
+
+    <span class="c1"># 批量提交 url</span>
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">urls</span><span class="p">):</span>
+        <span class="n">post_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;http://data.zz.baidu.com/urls?site=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="si">}</span><span class="s2">&amp;token=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">token</span><span class="si">}</span><span class="s2">&#34;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;curl/7.12.1&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Host&#39;</span><span class="p">:</span> <span class="s1">&#39;data.zz.baidu.com&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;text/plain&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;Content-Length&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">)),</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">post_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">urls</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送失败（异常状态码）：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s2">&#34;error&#34;</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送失败（error）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="s2">&#34;success&#34;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;推送异常（百度已更改返回体格式）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;已成功推送 </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;success&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> 条 url&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;当天剩余的可推送 url 条数 ---&gt; </span><span class="si">{</span><span class="n">response</span><span class="p">[</span><span class="s1">&#39;remain&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="c1"># 获取站点 sitemap.xml 文件内容, 解析 url</span>
+    <span class="k">def</span> <span class="nf">get_url_from_sitemap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">site</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">sitemap_path</span><span class="si">}</span><span class="s2">&#34;</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;User-Agent&#39;</span><span class="p">:</span> <span class="s1">&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36&#39;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取站点 xml 文件失败（异常状态码）：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">sitemap_xml</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+
+        <span class="n">urls</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;loc&gt;(.+?)&lt;/loc&gt;&#39;</span><span class="p">,</span> <span class="n">sitemap_xml</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">S</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">urls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">urls</span> <span class="o">==</span> <span class="p">[]</span> <span class="ow">or</span> <span class="n">urls</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;解析 url 失败（该站点不存在 sitemap.xml 或内容为空）&#34;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">()</span>
+            <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;获取站点 xml 文件成功, 共有：</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span><span class="si">}</span><span class="s2"> 条 url&#34;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">urls</span>
+
+    <span class="c1"># 入口</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_url_from_sitemap</span><span class="p">()</span>
+
+        <span class="n">body</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+            <span class="n">body</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="s2">&#34;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># 站点</span>
+    <span class="n">site</span> <span class="o">=</span> <span class="s2">&#34;https://sugarless.top&#34;</span>
+    <span class="c1"># 百度提交页面提供的 token</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="s2">&#34;JvNXvshHiebMYkve&#34;</span>
+    <span class="c1"># 站点 sitemap uri</span>
+    <span class="c1"># sitemap_path = &#34;/zh-cn/sitemap.xml&#34;</span>
+    <span class="n">sitemap_path</span> <span class="o">=</span> <span class="s2">&#34;/sitemap.xml&#34;</span>
+
+    <span class="n">pusher</span> <span class="o">=</span> <span class="n">Pusher</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">)</span>
+    <span class="n">pusher</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
     <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
-    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>]]></description>
+    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
+<p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
+<p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
+</code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
+<p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
+<h2 id="11讯飞">1.1、讯飞</h2>
+<p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<ul>
+<li>套餐一（ 20 小时） 168 元 / 单价 8.4</li>
+<li>套餐二（ 200 小时） 980 元 / 单价 4.9</li>
+<li>套餐三（ 1000 小时） 3900 元 / 单价 3.9</li>
+<li>套餐四（ 3000 小时） 10500 元 / 单价 3.5</li>
+</ul>
+<h2 id="12百度云">1.2、百度云</h2>
+<p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>按小时包预付费</p>
+<ul>
+<li>套餐一（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐二（ 10000 小时） 9000 元 / 单价 0.9</li>
+<li>套餐三（ 100000 小时） 70000 元 / 单价 0.7</li>
+<li>套餐四（ 500000 小时） 300000 元 / 单价 0.6</li>
+</ul>
+<p>按调用时长后付费</p>
+<ul>
+<li>每小时 2 元，系统按用户实际使用，每小时出账单实时扣费，账户内需保留足量余额。</li>
+</ul>
+<h2 id="13腾讯云">1.3、腾讯云</h2>
+<p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/product/asr</a></p>
+<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
+<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://buy.cloud.tencent.com/asr</a></p>
+<p>录音文件识别（五小时内出结果）</p>
+<ul>
+<li>套餐一（ 60 小时） 90 元 / 单价 1.5</li>
+<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐三（ 10000 小时） 10000 元 / 单价 1</li>
+<li>套餐四（ 100000 小时） 80000 元 / 单价 0.8</li>
+<li>套餐五（ 300000 小时） 210000 元 / 单价 0.7</li>
+</ul>
+<blockquote>
+<p>支持中文普通话、英语、粤语、日语、泰语。对时长5小时以内的录音文件进行识别，异步返回识别全部结果。<br>
+支持语音 URL 和本地语音文件两种请求方式。<br>
+语音 URL 的音频时长不能长于5小时，文件大小不超过512MB。<br>
+本地语音文件不能大于5MB。<br>
+提交录音文件识别请求后，在5小时内完成识别（半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+支持回调或轮询的方式获取结果</p>
+</blockquote>
+<p>录音文件识别极速版（准实时）</p>
+<ul>
+<li>套餐一（ 30 小时） 72 元 / 单价 2.3</li>
+<li>套餐二（ 1000 小时） 1500 元 / 单价 1.5</li>
+<li>套餐三（ 10000 小时） 12000 元 / 单价 1.2</li>
+<li>套餐四（ 100000 小时） 110000 元 / 单价 1.1</li>
+<li>套餐五（ 300000 小时） 300000 元 / 单价 1</li>
+</ul>
+<blockquote>
+<p>仅支持中文普通话，使用者通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。<br>
+支持100MB以内音频文件的识别</p>
+</blockquote>
+<h2 id="14阿里云">1.4、阿里云</h2>
+<p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<p>录音文件识别（六小时内出结果）</p>
+<ul>
+<li>套餐一（ 40 小时） 100 元 / 单价 2.5</li>
+<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
+<li>套餐三（ 20000 小时） 20000 元 / 单价 1</li>
+<li>套餐四（ 100000 小时） 90000 元 / 单价 0.9</li>
+<li>套餐五（ 250000 小时） 200000 元 / 单价 0.8</li>
+</ul>
+<p>录音文件识别极速版（30分钟以内时长的音频转写完成时间不超过10秒）</p>
+<ul>
+<li>套餐一（ 40 小时） 90 元 / 单价 2.5</li>
+<li>套餐二（ 1000 小时） 1560 元 / 单价 1.56</li>
+<li>套餐三（ 20000 小时） 26000 元 / 单价 1.3</li>
+<li>套餐四（ 100000 小时） 117000 元 / 单价 1.17</li>
+<li>套餐五（ 250000 小时） 260000  元 / 单价 1.04</li>
+</ul>
+<h1 id="二对接腾讯云">二、对接腾讯云</h1>
+<p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
+<ul>
+<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/developer</a></li>
+<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></li>
+</ul>
+<h2 id="21录音文件识别极速版v2">2.1、录音文件识别极速版（V2）</h2>
+<p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
+<p>极速版仅支持中文普通话，通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。支持100MB以内音频文件的识别。</p>
+<p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
+<p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
+<p>3）run it。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 录音文件识别极速版 v2版本</span>
+<span class="c1"># API 文档：https://cloud.tencent.com/document/api/1093/52097</span>
+<span class="c1"># 签名生成：https://cloud.tencent.com/document/api/1093/52097#sign</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">hmac</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+
+
+<span class="c1"># 调用者身份</span>
+<span class="k">class</span> <span class="nc">Credential</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret_id</span> <span class="o">=</span> <span class="n">secret_id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">secret_key</span>
+
+
+<span class="c1"># 服务端信息</span>
+<span class="k">class</span> <span class="nc">Server</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span>
+
+
+<span class="c1"># 打印日志</span>
+<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&#34;INFO&#34;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[&#34;</span> <span class="o">+</span> <span class="n">level</span> <span class="o">+</span> <span class="s2">&#34;] &#34;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+
+
+<span class="c1"># 获取时间戳</span>
+<span class="k">def</span> <span class="nf">getTimestamp</span><span class="p">():</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="c1"># return t # 原始时间数据</span>
+    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># 秒级时间戳</span>
+    <span class="c1"># return int(round(t * 1000))  # 毫秒级时间戳</span>
+    <span class="c1"># return int(round(t * 1000000))  # 微秒级时间戳</span>
+
+
+<span class="c1"># 字典序排序</span>
+<span class="k">def</span> <span class="nf">format_sign_string</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="n">signstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;POST</span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="n">server</span><span class="o">.</span><span class="n">uri</span> <span class="o">+</span> <span class="n">credential</span><span class="o">.</span><span class="n">app_id</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">break</span>
+    <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;?&#34;</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;=&#34;</span>
+        <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;&amp;&#34;</span>
+    <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">signstr</span>
+
+
+<span class="c1"># 签名</span>
+<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
+    <span class="n">hmacstr</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
+                       <span class="n">signstr</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hmacstr</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># 调用者信息对象初始化</span>
+<span class="c1"># 在腾讯云控制台账号信息页面查看账号 APPID：https://console.cloud.tencent.com/developer</span>
+<span class="c1"># 访问管理页面获取 SecretID 和 SecretKey：https://console.cloud.tencent.com/cam/capi</span>
+<span class="n">APPID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">SECRET_ID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">credential</span> <span class="o">=</span> <span class="n">Credential</span><span class="p">(</span><span class="n">APPID</span><span class="p">,</span> <span class="n">SECRET_ID</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
+
+<span class="c1"># 服务端信息对象初始化</span>
+<span class="n">PROTOCOL</span> <span class="o">=</span> <span class="s2">&#34;https://&#34;</span>
+<span class="n">HOST</span> <span class="o">=</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span>
+<span class="n">PORT</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="n">URI</span> <span class="o">=</span> <span class="s2">&#34;/asr/flash/v1/&#34;</span>
+<span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">PROTOCOL</span><span class="p">,</span> <span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">URI</span><span class="p">)</span>
+
+<span class="c1"># 构造参数</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># 用户在腾讯云注册账号 AppId 对应的 SecretId</span>
+    <span class="s2">&#34;secretid&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">credential</span><span class="o">.</span><span class="n">secret_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 引擎模型类型。8k_zh：8k 中文普通话通用；16k_zh：16k 中文普通话通用；16k_zh_video：16k 音视频领域。</span>
+    <span class="s2">&#34;engine_type&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 音频格式。支持 wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。</span>
+    <span class="s2">&#34;voice_format&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
+
+    <span class="c1"># 当前 UNIX 时间戳，如果与当前时间相差超过3分钟，会报签名失败错误。</span>
+    <span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">getTimestamp</span><span class="p">(),</span>
+<span class="p">}</span>
+
+<span class="c1"># 是否开启说话人分离（目前支持中文普通话引擎），默认为0，0：不开启，1：开启。</span>
+<span class="c1"># params[&#34;speaker_diarization&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤脏词（目前支持中文普通话引擎），默认为0。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 *。</span>
+<span class="c1"># params[&#34;filter_dirty&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤语气词（目前支持中文普通话引擎），默认为0。0：不过滤语气词；1：部分过滤；2：严格过滤。</span>
+<span class="c1"># params[&#34;filter_modal&#34;] = 0;</span>
+
+<span class="c1"># 是否过滤标点符号（目前支持中文普通话引擎），默认为0。0：不过滤，1：过滤句末标点，2：过滤所有标点。</span>
+<span class="c1"># params[&#34;filter_punc&#34;] = 0;</span>
+
+<span class="c1"># 是否进行阿拉伯数字智能转换，默认为1。0：全部转为中文数字；1：根据场景智能转换为阿拉伯数字。</span>
+<span class="n">params</span><span class="p">[</span><span class="s2">&#34;convert_num_mode&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="c1"># 是否显示词级别时间戳，默认为0。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。</span>
+<span class="c1"># params[&#34;word_info&#34;] = 0;</span>
+
+<span class="c1"># 是否只识别首个声道，默认为1。0：识别所有声道；1：识别首个声道。</span>
+<span class="c1"># params[&#34;first_channel_only&#34;] = 1;</span>
+
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 params&#34;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+
+<span class="c1"># 获取 signature</span>
+<span class="n">signstr</span> <span class="o">=</span> <span class="n">format_sign_string</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+<span class="n">signature</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signstr&#34;</span><span class="p">,</span> <span class="n">signstr</span><span class="p">)</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signature&#34;</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+
+<span class="c1"># 计算 URL</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">protocol</span> <span class="o">+</span> <span class="n">signstr</span><span class="p">[</span><span class="mi">4</span><span class="p">::]</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;计算 URL&#34;</span><span class="p">,</span> <span class="n">URL</span><span class="p">)</span>
+
+<span class="c1"># 构造 header</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;Authorization&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">signature</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
+    <span class="c1"># &#34;Content-Type&#34;: &#34;application/octet-stream&#34;,</span>
+    <span class="c1"># &#34;Content-Length&#34;: &#34;请求长度，此处对应语音数据字节数，单位：字节&#34;</span>
+<span class="p">}</span>
+<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 headers&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
+
+<span class="c1"># 音频路径</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./外卖佣金到底有多高.mp3&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="c1"># 调用腾讯云语音识别 API</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">responese</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="n">code</span> <span class="o">=</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别失败&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别成功&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
+
+    <span class="c1"># 一个channl_result对应一个声道的识别结果</span>
+    <span class="c1"># 大多数音频是单声道，对应一个channl_result</span>
+    <span class="k">for</span> <span class="n">channl_result</span> <span class="ow">in</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;flash_result&#34;</span><span class="p">]:</span>
+        <span class="n">channel_id</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;channel_id&#39;</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
+
+        <span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;channel_id: </span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+
+</code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">[INFO] 生成 params
+{&#39;secretid&#39;: &#39;xxxxxxxxxxxxxxxxxxx&#39;, &#39;engine_type&#39;: &#39;16k_zh&#39;, &#39;voice_format&#39;: &#39;mp3&#39;, &#39;timestamp&#39;: xxxxxxxxx, &#39;convert_num_mode&#39;: 1}
+
+[INFO] 生成 signstr
+POSTasr.cloud.tencent.com/asr/flash/v1/xxxxxxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxxxxx&amp;voice_format=mp3
+
+[INFO] 生成 signature
+xxxxxxxxxxxxxxxxxxx=
+
+[INFO] 计算 URL
+https://asr.cloud.tencent.com/asr/flash/v1/xxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxx&amp;voice_format=mp3
+
+[INFO] 生成 headers
+{&#39;Host&#39;: &#39;asr.cloud.tencent.com&#39;, &#39;Authorization&#39;: &#39;xxxxxxxxxxxxxxxxxxxxx=&#39;}
+
+[INFO] 识别成功
+{&#39;request_id&#39;: &#39;xxxxxxxxxxxxxxxxxx&#39;, &#39;code&#39;: 0, &#39;message&#39;: &#39;&#39;, &#39;audio_duration&#39;: xxxxxxxx, &#39;flash_result&#39;: [{&#39;text&#39;: &#39;测试音频转文字内容&#39;, &#39;start_time&#39;: xxxxxxxxx, &#39;end_time&#39;: xxxxxx, &#39;speaker_id&#39;: 0}]}]}
+
+[INFO] channel_id: 0
+测试音频转文字内容
+</code></pre></div><p>如果有特殊需求，根据可选的 params 参数去调整就好了。</p>
+<h2 id="22录音文件识别v3">2.2、录音文件识别（V3）</h2>
+<p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
+<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823</a></p>
+<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37822</a></p>
+<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
+<h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
+<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+
+<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
+pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
+</code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
+<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
+<p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./audio.mp3&#34;</span>
+
+<span class="c1"># 将录音转为字符串</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">        引擎模型类型。 这里的 k 指的是采样率
+</span><span class="s1">            电话场景： 
+</span><span class="s1">                • 8k_en：电话8k英语； 
+</span><span class="s1">                • 8k_zh：电话8k中文普通话通用； 
+</span><span class="s1">            
+</span><span class="s1">            非电话场景： 
+</span><span class="s1">                • 16k_zh：16k 中文普通话通用； 
+</span><span class="s1">                • 16k_zh_video：16k 音视频领域； 
+</span><span class="s1">                • 16k_en：16k 英语； 
+</span><span class="s1">                • 16k_ca：16k 粤语； 
+</span><span class="s1">                • 16k_ja：16k 日语； 
+</span><span class="s1">                • 16k_zh_edu 中文教育； 
+</span><span class="s1">                • 16k_en_edu 英文教育； 
+</span><span class="s1">                • 16k_zh_medical 医疗；
+</span><span class="s1">                • 16k_th 泰语；
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            识别声道数。注意：录音识别会自动将音频转码为填写的识别声道数
+</span><span class="s1">                1：单声道；
+</span><span class="s1">                2：双声道（仅支持 8k_zh 引擎模）。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            识别结果返回形式。
+</span><span class="s1">                0： 识别结果文本(含分段时间戳)； 
+</span><span class="s1">                1：词级别粒度的详细识别结果(不含标点，含语速值)；
+</span><span class="s1">                2：词级别粒度的详细识别结果（包含标点、语速值）
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            语音数据来源。
+</span><span class="s1">                0：语音 URL；
+</span><span class="s1">                1：语音数据（post body）。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+
+        <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">            语音数据，当SourceType 值为1时必须填写，为0可不写。
+</span><span class="s1">                要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。
+</span><span class="s1">                编码后的数据不可带有回车换行符)。音频数据要小于5MB。
+</span><span class="s1">        &#39;&#39;&#39;</span>
+        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div><p>输出</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;f1234567-89a4-1234-12d3-d56bdd9aac1a&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>请求成功后，返回的 JSON 中 Data -&gt; TaskId 就是我们此次上传任务的 ID ，需要拿这个 ID 去轮训另一个接口，查询是否成功。</p>
+<h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
+<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
+<p>用 TaskID 查询识别结果。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">TaskId</span> <span class="o">=</span> <span class="mi">1234567890</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">TaskId</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
+        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span><span class="p">,</span>
+        <span class="nt">&#34;Status&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
+        <span class="nt">&#34;StatusStr&#34;</span><span class="p">:</span><span class="s2">&#34;success&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;[0:0.000,1:0.320]  识别结果。\n[1:0.320,2:0.360]  识别结果。\n[2:0.360,3:0.380]  识别结果。\n[3:0.380,4:0.400]  识别结果。\n[4:0.400,5:0.420]  识别结果。\n&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ErrorMsg&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ResultDetail&#34;</span><span class="p">:</span><span class="kc">null</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-1234-1234-1234-b11234567890&#34;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="23一句话识别v3">2.3、一句话识别（V3）</h2>
+<p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/product/1093/35646</a></p>
+<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
+<h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
+<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
+
+<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
+pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
+</code></pre></div><h3 id="232源码">2.3.2、源码</h3>
+<p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
+<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
+
+<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./一句话录音.mp3&#34;</span>
+
+<span class="c1"># 将录音转为字符串</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="c1"># 读取音频数据</span>
+    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
+<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
+    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
+    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
+
+    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
+    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
+
+    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SentenceRecognitionRequest</span><span class="p">()</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="s2">&#34;SubServiceType&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&#34;EngSerViceType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span>
+        <span class="s2">&#34;VoiceFormat&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
+        <span class="s2">&#34;UsrAudioKey&#34;</span><span class="p">:</span> <span class="s2">&#34;uniqueKey-1&#34;</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
+
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">SentenceRecognition</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
+
+<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+</code></pre></div><p>输出：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;一句话录音识别内容&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;AudioDuration&#34;</span><span class="p">:</span><span class="mi">59996</span><span class="p">,</span>
+    <span class="nt">&#34;WordSize&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;WordList&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
+    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-4307-46ae-1234-beb3eb051234&#34;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
+<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
     <link>https://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
-    <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>]]></description>
+    <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>
+<p>场景：在 “D:\纪录片\中国通史” 路径下有 100 集视频文件，每个文件都带有固定前缀 “www.baidu.com 出品 微信公众号 xxx” 字样。</p>
+<h1 id="源码">源码</h1>
+<p>RemoveFixedPrefix.py ，因为源码使用了 python fstring 的特性，需要在 python &gt;= 3.6 的版本中使用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># coding=utf-8</span>
+ 
+<span class="kn">import</span> <span class="nn">os</span>
+ 
+<span class="c1"># 目标路径</span>
+<span class="n">srcPath</span> <span class="o">=</span> <span class="s2">&#34;D:\纪录片\中国通史&#34;</span>
+<span class="n">fileList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">srcPath</span><span class="p">)</span>
+ 
+<span class="c1"># 固定前缀</span>
+<span class="n">FixedPrefix</span> <span class="o">=</span> <span class="s2">&#34;www.baidu.com出品 微信公众号xxx&#34;</span>
+ 
+<span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
+    <span class="n">oldFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fileName</span><span class="si">}</span><span class="s2">&#34;</span>
+ 
+    <span class="c1"># 跳过目录</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">):</span>
+        <span class="k">continue</span>
+ 
+    <span class="n">newFileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">FixedPrefix</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+    <span class="n">newFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">newFileName</span><span class="si">}</span><span class="s2">&#34;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">,</span> <span class="n">newFilePath</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+ 
+    <span class="nb">print</span><span class="p">(</span><span class="n">newFileName</span><span class="p">)</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>Python 爬取百度实时热点</title>
     <link>https://sugarless.top/posts/python-get-baidu-live-hotspot.html</link>
     <pubDate>Mon, 11 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/python-get-baidu-live-hotspot.html</guid>
-    <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>]]></description>
+    <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>
+<h1 id="源码">源码</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*- #</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="k">def</span> <span class="nf">get_headers</span><span class="p">():</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;content-type&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;text/html;&#34;</span>
+    <span class="n">headers</span><span class="p">[</span>
+        <span class="s2">&#34;user-agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&#34;</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;host&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;top.baidu.com&#34;</span>
+    <span class="k">return</span> <span class="n">headers</span>
+ 
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://top.baidu.com/buzz?b=1&#39;</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">get_headers</span><span class="p">())</span>
+<span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gbk&#39;</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+ 
+<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;返回状态码：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 调用HTML类进行初始化</span>
+<span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+<span class="c1"># 提取该页面所有标题</span>
+<span class="n">result_all</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&#34;main&#34;]/div[2]/div/table/tr/td[2]/a[1]&#39;</span><span class="p">)</span>
+
+<span class="c1"># 　打印所有提取出的新闻标题</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">result_all</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div><blockquote>
+<p>在开发时遇到一个有意思的坑，如果你测试时使用浏览器复制的热点标题的 title xpath，你会发现获取不到标题。你只需要把 tbody 标签去掉，就可以正常获取到标题了。</p>
+</blockquote>
+<h1 id="输出">输出</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">31省新增本土病例85例:河北82例
+佩洛西:众议院将第二次弹劾特朗普
+河北新增49例本地无症状感染者
+金正恩被推举为朝鲜劳动党总书记
+北京新增1例确诊 4例无症状感染者
+百度宣布组建智能汽车公司
+美发生连环枪击案 一留学生身亡
+日本发现新型变异新冠病毒
+死刑!曾春亮案一审宣判
+青藏高原云南等地降温雨雪来了
+拼多多回应员工匿名发帖被辞退
+石家庄新增确诊曾去过武汉汉正街
+吉林新增4例本土无症状:2对夫妻
+袁咏仪 送包给我是张智霖的福分
+宋小女:这个结局也挺好
+2020年CPI较上年上涨2.5%
+全棉时代道歉疑似打广告
+韩媒:韩军发现朝鲜举行阅兵式迹象
+国会骚乱后特朗普没联系过彭斯
+天津处罚过马路的低头族
+被放生秃鹫赖警局每天伙食费150
+比特币暴跌超10%
+20岁小姐姐当汽车兵驰骋川藏线
+北京乘出租车网约车需扫健康宝
+网上买菜莫名被开通美团月付
+自低风险区返乡要检测?多地出通知
+车厘子价格腰斩
+山东长岛海边现冰冻奇观似鸳鸯锅
+武汉向石家庄捐赠50吨蔬菜
+康辉说和21岁最大差别是脸的宽度
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://blog.csdn.net/qq_36523839/article/details/79992002" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_36523839/article/details/79992002</a></p>]]></description>
 </item><item>
     <title>Python 中文分词，根据词频和背景图片生成词云</title>
     <link>https://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</link>
     <pubDate>Wed, 18 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</guid>
-    <description><![CDATA[<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>]]></description>
+    <description><![CDATA[<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>
+<h1 id="一生成矩形颜色随机的词云图">一、生成矩形颜色随机的词云图</h1>
+<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成矩形随机颜色的词云图。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">math</span>
+ 
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+ 
+<span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+ 
+ 
+<span class="c1"># 创建停用词列表</span>
+<span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
+    <span class="c1"># 按行读入</span>
+    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+ 
+    <span class="c1"># 分割为单个字符（列表解析）</span>
+    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">stopwords</span>
+ 
+ 
+<span class="c1"># # 指定字符串方式</span>
+<span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
+ 
+<span class="c1"># 文件读取方式</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+ 
+<span class="c1"># 生成词云的词频限制，选取前30%</span>
+<span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
+ 
+<span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_rectangle.png 文件）</span>
+<span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_rectangle.png&#34;</span>
+ 
+<span class="c1"># jieba分词</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+ 
+<span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+ 
+<span class="c1"># 去除标点符号</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
+<span class="c1"># 只取中文</span>
+<span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
+ 
+<span class="c1"># 转换为list</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+ 
+<span class="c1"># 过滤空字符和None</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
+<span class="c1"># print(seg)</span>
+ 
+<span class="c1"># 创建一个停用词列表</span>
+<span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
+<span class="c1"># print(stopwords)</span>
+ 
+<span class="c1"># 过滤停用词（列表解析）</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+<span class="c1"># print(seg)</span>
+ 
+<span class="c1"># 统计词频</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+<span class="c1"># print(word_counts)</span>
+<span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
+ 
+<span class="c1"># # 获取词频降序排列的前30%</span>
+<span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
+<span class="c1"># print(word_counts_top_50_percent)</span>
+ 
+<span class="c1"># 生成词云</span>
+<span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
+    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
+    <span class="c1"># 设置背景宽</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="c1"># 设置背景高</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+    <span class="c1"># 最大字体</span>
+    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="c1"># 最小字体</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="c1"># 设置字体文件路径，不指定就会出现乱码。</span>
+    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
+    <span class="c1"># 设置背景色</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+ 
+<span class="c1"># 根据词频产生词云</span>
+<span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
+ 
+<span class="c1"># 生成词云图片文件</span>
+<span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
+</code></pre></div><p>效果图：</p>
+<p></p>
+<h1 id="二根据图片生成规定形状的颜色相近的词云图">二、根据图片生成规定形状的颜色相近的词云图</h1>
+<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，根据背景图片生成规定形状和颜色的词云图。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+ 
+<span class="kn">import</span> <span class="nn">jieba</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">ImageColorGenerator</span>
+ 
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+ 
+<span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+ 
+ 
+<span class="c1"># 创建停用词列表</span>
+<span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
+    <span class="c1"># 按行读入</span>
+    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+ 
+    <span class="c1"># 分割为单个字符（列表解析）</span>
+    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">stopwords</span>
+ 
+ 
+<span class="c1"># 自定义颜色函数（在绘制词云图时发现有的字颜色为黄色导致看不清因此需要修改整个词云图的色调为冷色调 蓝绿色）</span>
+<span class="k">def</span> <span class="nf">random_color_func</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="c1"># what is HSL? https://baike.baidu.com/item/HSL/1443144?fr=aladdin</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="mf">255.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&#34;hsl(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">%, </span><span class="si">{}</span><span class="s2">%)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+ 
+ 
+<span class="c1"># # 指定字符串方式</span>
+<span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
+ 
+<span class="c1"># 文件读取方式</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+ 
+<span class="c1"># 生成词云的词频限制，选取前30%</span>
+<span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
+ 
+<span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_arbitrary_shape.png 文件）</span>
+<span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_arbitrary_shape.png&#34;</span>
+ 
+<span class="c1"># jieba分词</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+ 
+<span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+ 
+<span class="c1"># 去除标点符号</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
+<span class="c1"># 只取中文</span>
+<span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
+ 
+<span class="c1"># 转换为list</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+ 
+<span class="c1"># 过滤空字符和None</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
+<span class="c1"># print(seg)</span>
+ 
+<span class="c1"># 创建一个停用词列表</span>
+<span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
+<span class="c1"># print(stopwords)</span>
+ 
+<span class="c1"># 过滤停用词（列表解析）</span>
+<span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+<span class="c1"># print(seg)</span>
+ 
+<span class="c1"># 统计词频</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+<span class="c1"># print(word_counts)</span>
+<span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
+ 
+<span class="c1"># # 获取词频降序排列的前30%</span>
+<span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
+<span class="c1"># print(word_counts_top_50_percent)</span>
+ 
+<span class="c1"># 词云形状</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;./background1.png&#34;</span><span class="p">))</span>
+<span class="c1"># 根据图片颜色设置词云颜色(如果背景图片是纯色背景会报 NotImplementedError: Gray-scale images TODO 错误)</span>
+<span class="n">bg_color_func</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+ 
+<span class="c1"># 生成词云</span>
+<span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+    <span class="c1"># 词云形状</span>
+    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
+    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
+    <span class="c1"># 设置图片宽度（单位：像素）</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="c1"># 设置图片高度（单位：像素）</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+    <span class="c1"># 最大字体</span>
+    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="c1"># 最小字体</span>
+    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="c1"># 字体文件路径，不指定就会出现乱码。（windows系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来）</span>
+    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
+    <span class="c1"># 设置背景色</span>
+    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="c1"># 颜色模式（默认为RBG）当参数为“RGBA”并且background_color为None时，背景为黑色</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RGBA&#39;</span><span class="p">,</span>
+ 
+    <span class="c1"># 词语水平方向排版出现的频率，默认 0.9 （所以词语垂直方向排版出现频率为 0.1 ）</span>
+    <span class="n">prefer_horizontal</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="c1"># 按照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍</span>
+    <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="c1"># 词频和字体大小的关联性</span>
+    <span class="n">relative_scaling</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="c1"># 生成新颜色的函数（默认为None）</span>
+    <span class="c1"># color_func=None,</span>
+    <span class="n">color_func</span><span class="o">=</span><span class="n">bg_color_func</span><span class="p">,</span>
+    <span class="c1"># color_func=random_color_func,</span>
+    <span class="c1"># 给每个单词随机分配颜色，若指定color_func，则忽略该方法</span>
+    <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># colormap=&#39;pink&#39;,</span>
+<span class="p">)</span>
+ 
+<span class="c1"># 根据词频产生词云</span>
+<span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
+ 
+<span class="c1"># 生成词云图片文件</span>
+<span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
+</code></pre></div><p>效果图：</p>
+<p></p>
+<p>原背景图：</p>
+<p></p>
+<h1 id="三版本依赖-requirementstxt">三、版本依赖 requirements.txt</h1>
+<pre><code class="language-conf" data-lang="conf">certifi==2020.6.20
+cycler==0.10.0
+jieba==0.42.1
+kiwisolver==1.3.1
+matplotlib==3.3.3
+numpy==1.19.3
+Pillow==8.0.1
+pyparsing==2.4.7
+python-dateutil==2.8.1
+six==1.15.0
+wincertstore==0.2
+wordcloud==1.8.1
+</code></pre><h1 id="四停止词--过滤词chinsesstoptxt">四、停止词 / 过滤词（chinsesstop.txt）</h1>
+<p>这里其实我只对单字过滤了，没有对词组做过滤。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">的地得
+了就在与也为更而之由以把吧巴去过被搞或每及几
+不让到等从人请叫和最当例本
+干拿取说做给靠按受收记
+但又及并另只则既即将
+一二三四五六七八九
+是非
+大小
+时分秒
+前后左右
+东西南北中
+你我他她它们
+年月日
+进出
+新旧
+有无
+对错
+开关
+里外
+多少
+上下
+个头
+</code></pre></div><h1 id="五字体文件msyhttc">五、字体文件（MSYH.TTC）</h1>
+<p>windows 系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来</p>
+<h1 id="六测试文章">六、测试文章</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">戴着眼镜，文质彬彬，我们很难把刘聪和传统印象里的农人联系起来。但实际上，35岁的“新农人”刘聪，已经在重庆田间地头种了近十年的葡萄。
+ 
+2009年毕业于西南农业大学，从事的销售工作需要经常出差，漂泊生活无法给刘聪带来安定感。一次偶然，刘聪看了电影《林中漫步》，被影片中祥和宁静的森林景色所打动，于是辞去了原有的工作，和朋友回乡种起了葡萄。
+ 
+然而，刘聪理想中田园生活的“美轮美奂”，在现实里被各种鸡飞狗跳替代。因为资金链缺乏、设施落后，在对抗自然灾害、虫害方面抗风险能力较低，导致第一年出品的葡萄品质非常一般。
+ 
+不过，刘聪并没有放弃，吸取教训后更认真地钻研葡萄栽培。同时，他着手申请政府的援助项目搭建钢棚，慢慢发展起来后加大投资，又顺利申请到平安普惠惠农贷，获得平安普惠三农服务的帮助，极大缓解了创业前期的资金压力。
+ 
+如今，刘聪的“阳光玫瑰”种植面积已经有47亩，靠种葡萄改善了家庭状况。原本反对刘聪回农村搞农业的爸妈，也慢慢开始能够理解他了。
+ 
+像刘聪这样“归园田居”的故事，正越来越多地在现实里上演。
+ 
+一如国庆档黑马《一点就到家》把“三个合伙人”的创业故事从城市搬到了农村，如今，回家乡早已经不是退路，而是奋斗者的另一种选择。在农村脱贫主旋律下，当代农村的创业故事，远比想象中更精彩。
+ 
+走出贫穷的循环，
+辣椒地里开出幸福花
+ 
+在《一点就到家》里，回到云南普洱的年轻人种起咖啡，圆了咖啡梦的同时助力家乡脱贫。电影里，咖啡是一开始不被接受的“新事物”，而实际上，云南的咖啡种植历史由来已久。
+ 
+咖啡是云南的特色产品。同样，在贵州，也有一群人靠着家乡特色产品辣椒，闯出红火事业。
+ 
+20年前，夏可福放弃国家公职人员身份，回到贵州湄潭开始创业。一开始，夏可福差价赚钱，但他意识到光靠转卖鲜辣椒终究不是长远之计，于是他用几年的积蓄租下了一个两万平方的工厂，开始转向辣椒加工。
+ 
+如今，公司经过产业转型升级，已发展成为湄潭县辣椒加工及销售的龙头企业，夏可福也成为了黔北一带有名企业家“夏辣椒”。
+ 
+夏可福不仅靠卖辣椒闯出红火事业，更带动了本地老百姓增收致富。
+ 
+值得一提的是，夏可福的公司采取“公司+基地+农户”的模式，在提供技术指导和肥料补助的基础上，与基地农户签订收购合同，实行保护价、随行就市收购和公司二次分配返还利润的办法，直接带动农民增收，与基地农户建立了紧密合作伙伴关系。
+ 
+2019年，通过遵义市农业信贷担保公司，夏可福了解到平安普惠三农服务，认为平安普惠惠农贷这个项目能够给企业和老百姓实实在在的实惠，遂与之展开合作。
+ 
+90后单亲妈妈杨胜颖，正是通过收购合作方夏可福的介绍推荐，了解到平安普惠三农服务，获得了100万元贷款资金支持。
+ 
+杨胜颖家祖祖辈辈以种辣椒为生，小规模种植只够一家人谋生，一年到最后，基本没剩什么存款。
+ 
+直到杨胜颖用这笔钱扩大了辣椒地种植面积，有了帮工，提高了生产的效率，通过自己的努力增加收入，突破了小规模种植的拮据经济状况，让生活变得滋润起来，也为孩子创造了更好的成长环境。
+ 
+带妇女走出家庭，
+小镇独立女性的创业路
+ 
+在过去，农村女性总是全身心为小家而活，一辈子没走出过厨房，缺少独立意识。而如今，越来越多的女性有了自己的事业，杨胜颖给出了一个不同的答案，张红中又给出了另一个。
+ 
+2015年，张红中到甘肃靖远的农投公司上班，一直在党政综合办公室工作。今年疫情稍微有所好转的时候，张红中接到通知，说要让她搞妇女创业项目。
+ 
+菌棒生产项目是靖远县人民政府为了解决全县香菇产业菌棒用量大、外购成本高、当地贫困户就业困难等问题而决定实施的重点扶贫项目。从一个“领导要求什么就做什么”的行政岗位，到千人千法的创业，临危受命，张红中一点点学，咬着牙干了起来。
+ 
+繁忙的工作让张红中没有太多时间顾及家庭和孩子，但家人们的理解和支持让她能够放心去干。同时，一想到基地上的五六十名女同志，她们也有家庭、孩子，都在为这份事业不断奋斗，她作为领头人也更不能先退缩。
+ 
+同样身为女性，张红中更能与妇女们产生共情。菌棒生产车间对技术要求比较高，车间也有挺多妇女的文化水平只是在初中，她们不懂，张红中就自己学来了之后给她们上课，教懂她们一项技能。
+ 
+项目落地后，菌棒生产项目获得了平安普惠的80万惠农金，这份灵活的资金，对张红中的经营无疑是雪中送炭。资金被用于原料采购、销售技能培训等方面，妇女们获取劳务收入的同时，也提高了就业技能和致富能力。
+ 
+不只是菌棒生产项目，2020年4月，由中国妇女发展基金会与平安普惠合作发起的惠农金项目落地甘肃靖远县，平安普惠为项目提供了400万元资金支持，以扶持靖远县香菇脱贫基地、千亩枸杞园、菌棒生产大棚、日光温室蔬菜大棚、爱心惠民超市等5个项目。每个项目各分配80万元，主要用于生产资料的购置、女性技术及营销技能的培训和工资发放。
+ 
+这些项目的落地，实现了近300名女性就近就业。通过技能扶贫，让女性们手握脱贫的“金钥匙”，独立走出家庭，靠自己争取出了一片天。
+ 
+不只如此，平安普惠扶贫的脚步一直没有停过，与传承非物质文化遗产相结合，创新设计扶贫也成为平安普惠创新扶贫的重点。
+ 
+今年八月，由平安普惠联合平安集团、经济日报报业集团艺术与设计杂志社、中国服饰报社策划的“妈妈的针线活”项目启动仪式在四川凉山西昌举行。
+ 
+彝族女孩子们自幼学习刺绣，彝族刺绣工艺独特，是具有悠久历史的非物质文化遗产。“妈妈的针线活” 妇女手工创业扶贫项目，通过旧衣物升级改造的“再生设计”，赋予旧废服饰新生命，在振兴非物质遗产同时，帮助和带动当地贫困妇女就地就业创业，并增加收益，起到精准扶贫的效果。
+ 
+拔掉“穷根”，
+平安普惠“造鱼塘”助农
+ 
+2020年是精准扶贫、脱贫攻坚的关键之年，平安普惠积极响应国家“十四五”规划和2035年远景目标，在中国平安“三村工程”的指导下，始终怀有强烈的社会责任感和使命感。
+ 
+助力扶贫攻坚与乡村振兴，平安普惠以“商业向善”为核心，围绕新农村创新产业发展、妇女创业、商业可持续、文化传承等方向，积极多角度探索创新三农扶贫模式：
+ 
+与中国扶贫基金会共同成立“平安产业扶贫公益基金”，用于建设4个扶贫新农人产业发展基地；
+ 
+与上海宋庆龄基金会、中国妇女发展基金会合作，为贫困地区农村合作社带头人经营生产，提供免息借款惠农金和创业能力建设服务；
+ 
+凭借自身主营业务优势，积极探索解决农村农业发展中“融资难、融资贵、融资慢”的问题，联合多家省级农业担保公司及其他基层机构，为农村创业者提供商业可持续的惠农借贷服务；
+ 
+结合凉山非遗传承文化，探索旧衣回收、非遗设计、手工加工、市场销售的全链条闭环扶贫长效机制。
+ 
+ 
+截至目前，平安普惠累计向农村合作社带头人及农创者提供扶持资金超11880万元，直接扶持超过800户贫困户，覆盖地区包括甘肃、重庆、贵州、陕西、海南、黑龙江、云南等12个省份，覆盖种植业、畜牧业、林业等多种农业类型。
+ 
+除了为农户提供资金扶持，平安普惠更充分发挥自身优势扶贫，依托平安的人工智能、云计算和区块链三大核心科技，积极构建多元的扶贫场景，以科技赋能扶贫。
+ 
+平安普惠的精准扶贫不只是治标，从提供资金“授人以鱼”，到技术扶贫“授人以渔”，甚至从生产到销售打通全产业链助农，平安普惠更造了个“鱼塘”，给足了农民脱贫路上“放手去干”的安全感。
+ 
+扶贫路上，平安普惠始终不忘普惠三农服务的社会责任初衷和决心：聚焦小微、助农惠农、帮助弱势群体，多角度、全方位探索助农模式，为贫困地区农村经济和产业发展注入新鲜动力，助力建档立卡贫困户和小农户脱贫致富。
+</code></pre></div>]]></description>
 </item><item>
     <title>Python pip 指定源安装</title>
     <link>https://sugarless.top/posts/pip-source-specific-installation.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/pip-source-specific-installation.html</guid>
-    <description><![CDATA[<p>有时 pip 不指定源安装会比较慢，甚至会安装失败。</p>]]></description>
+    <description><![CDATA[<p>有时 pip 不指定源安装会比较慢，甚至会安装失败。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#阿里源</span>
+pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
+ 
+<span class="c1">#豆瓣</span>
+pip install -r requirements.txt -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+ 
+<span class="c1">#清华大学</span>
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
+</code></pre></div>]]></description>
 </item><item>
     <title>Python 导出 or 安装 requirements.txt 依赖</title>
     <link>https://sugarless.top/posts/python-export-or-install-requirements.txt-dependencies.html</link>
     <pubDate>Tue, 17 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/python-export-or-install-requirements.txt-dependencies.html</guid>
-    <description><![CDATA[<p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>]]></description>
+    <description><![CDATA[<p>在查看别人的 Python 项目时，经常会看到一个 requirements.txt 文件，里面记录了当前程序的所有依赖包及其精确版本号，与 npm 的 package.json 很像。其作用是用来在另一台 PC 上重新构建项目所需要的运行环境依赖。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 导出依赖</span>
+<span class="n">pip</span> <span class="n">freeze</span> <span class="o">&gt;</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c1"># 安装依赖</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>PyCharm 使用 Anaconda 管理多版本 Python 环境</title>
     <link>https://sugarless.top/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</link>
     <pubDate>Fri, 13 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</guid>
-    <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>]]></description>
+    <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>
+<h1 id="一anaconda">一、Anaconda</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看 conda 版本号</span>
+conda --version
+
+<span class="c1"># 查看系统当前已有的 Python 环境</span>
+conda info --envs
+
+<span class="c1"># 添加一个名为 python27，Python 版本为 2.7 的环境</span>
+conda create --name python27 <span class="nv">python</span><span class="o">=</span>2.7
+
+<span class="c1"># 查看当前环境的 Python 版本</span>
+python --version
+
+<span class="c1"># 切换 Python 环境到刚才新添加的 Python2.7</span>
+conda activate python27
+
+<span class="c1"># 切回原来的 Python 环境</span>
+conda deactivate python27
+<span class="c1"># 或</span>
+conda activate base
+
+<span class="c1"># 删除 python27 这个环境</span>
+conda remove --name python27 --all
+
+<span class="c1"># 添加清华源</span>
+conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --set show_channel_urls yes
+
+<span class="c1"># 查看镜像列表</span>
+conda config --show channels
+
+<span class="c1"># 删除某个镜像</span>
+conda config --remove channels   <span class="c1">#如：https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span>
+
+<span class="c1"># 包管理</span>
+conda install &lt;包名&gt; 安装指定包
+conda remove &lt;包名&gt; 移除指定包
+conda update &lt;包名&gt; 更新指定包
+</code></pre></div><h1 id="二pycharm">二、PyCharm</h1>
+<p></p>]]></description>
 </item><item>
     <title>Python 如何创建一个 Excel 文件并向其写入内容？</title>
     <link>https://sugarless.top/posts/create-an-excel-file-and-write-to-it-using-python.html</link>
     <pubDate>Wed, 11 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/create-an-excel-file-and-write-to-it-using-python.html</guid>
-    <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>]]></description>
+    <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>
+<h1 id="一openpyxl-库">一、openpyxl 库</h1>
+<p>openyxl 库文档地址：https://openpyxl.readthedocs.io/en/stable/usage.html  /  <a href="https://pypi.org/project/openpyxl" target="_blank" rel="noopener noreffer">https://pypi.org/project/openpyxl</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">openpyxl</span>
+ 
+<span class="n">ExeclFileSavePath</span> <span class="o">=</span> <span class="s2">&#34;./test.xlsx&#34;</span>
+ 
+<span class="n">wb</span> <span class="o">=</span> <span class="n">openpyxl</span><span class="o">.</span><span class="n">Workbook</span><span class="p">()</span>
+ 
+<span class="n">rowInit</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">rowLimit</span> <span class="o">=</span> <span class="mi">50</span>
+ 
+<span class="n">columnInit</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">columnLimit</span> <span class="o">=</span> <span class="mi">5</span>
+ 
+<span class="c1"># 默认Sheet</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">active</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rowInit</span><span class="p">,</span> <span class="n">rowLimit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">columnInit</span><span class="p">,</span> <span class="n">columnLimit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">ws</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">row</span>
+ 
+<span class="c1"># 创建一个sheet Pi</span>
+<span class="n">wsA</span> <span class="o">=</span> <span class="n">wb</span><span class="o">.</span><span class="n">create_sheet</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;Pi&#34;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rowInit</span><span class="p">,</span> <span class="n">rowLimit</span><span class="p">):</span>
+    <span class="n">wsA</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">columnInit</span><span class="p">,</span> <span class="n">columnLimit</span><span class="p">))</span>
+ 
+<span class="c1"># 保存文件</span>
+<span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ExeclFileSavePath</span><span class="p">)</span>
+</code></pre></div><h1 id="二xlwt-库">二、xlwt 库</h1>
+<p>xlwt 库文档地址：https://xlwt.readthedocs.io/en/latest  /  <a href="https://pypi.org/project/xlwt" target="_blank" rel="noopener noreffer">https://pypi.org/project/xlwt</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">xlwt</span>
+ 
+<span class="n">ExeclFileSavePath</span> <span class="o">=</span> <span class="s2">&#34;./test.xls&#34;</span>
+ 
+<span class="n">workbook</span> <span class="o">=</span> <span class="n">xlwt</span><span class="o">.</span><span class="n">Workbook</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+<span class="n">sheet1</span> <span class="o">=</span> <span class="n">workbook</span><span class="o">.</span><span class="n">add_sheet</span><span class="p">(</span><span class="s1">&#39;sheet1&#39;</span><span class="p">,</span> <span class="n">cell_overwrite_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># 给excel文件添加sheet</span>
+ 
+<span class="n">rowInit</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">rowLimit</span> <span class="o">=</span> <span class="mi">50</span>
+ 
+<span class="n">columnInit</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">columnLimit</span> <span class="o">=</span> <span class="mi">5</span>
+ 
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rowInit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rowLimit</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">columnInit</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">columnLimit</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">row</span>  <span class="c1"># 单元格内容</span>
+        <span class="n">sheet1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+        <span class="c1"># sheet1.write_merge(0, 3, 1, 1, &#39;合并&#39;)  # 合并单元格</span>
+ 
+<span class="n">workbook</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ExeclFileSavePath</span><span class="p">)</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>我用一天时间“偷了”网易云音乐50W&#43;用户信息</title>
     <link>https://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</link>
     <pubDate>Thu, 12 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
-    <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>]]></description>
+    <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>
+<h1 id="一思路">一、思路</h1>
+<p>在 GitHub 上已经有网易云音乐的 node.js API（GitHub：https://github.com/Binaryify/NeteaseCloudMusicApi）。根据这个库提供的信息，可以很轻易的获取到网易云音乐获取某个用户的粉丝信息接口的参数（接口限制只能获取 100 个），进而继续获取这 100 个粉丝的粉丝… 简单的几层循环嵌套就能很轻易的拿到十万级到百万级的用户数据（非敏感用户信息）。</p>
+<h1 id="二参数加密流程分析">二、参数加密流程分析</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">__getFormData(data, __get_random_str()) 
+    参数1：data是dict数据，包含了表单的各个字段和数据 
+    参数2：16位的随机字符串 
+    最终return的是一个dict，包含了params和encSecKey两个参数 
+ 
+    params 
+        __get_encText(args1, random16str) 
+        参数1：args1是__getFormData函数的参数1，是dict数据，包含了表单的各个字段和数据 
+        参数2：random16str是__getFormData函数的参数2，是一个16位的随机字符串 
+        最终返回的是将参数加密后产生的params 
+ 
+        __AES_encrypt(args1, args4) 
+            参数1：args1是__get_encText函数的参数1，是dict数据，包含了表单的各个字段和数据 
+            参数2：arg4是一个固定参数 
+            最终返回的是将参数使用AES CBC加密后再进行一次base64加密产生的字符串 
+ 
+        使用__AES_encrypt函数首先加密一次参数是（args1，args4）得到一个加密的字符串 
+        在使用加密过一次的字符串作为参数1，和__get_encText函数传入的参数2 random16str 这个随机16位的字符串作为参数2继续加密1次 
+        最终得到params 
+    
+    encSecKey 
+        __get_encSecKey(random16str) 
+            参数1：random16str是__getFormData函数的参数2，是一个16位的随机字符串
+            最终返回的是通过随机字符串产生的encSecKey 
+ 
+        固定参数arg2 
+        固定参数arg3 
+        通过固定算法，使用随机16位的字符串random16str与这两个固定参数产生encSecKey
+</code></pre></div><h1 id="三源码">三、源码</h1>
+<h2 id="commonpy-需要用到的函数">common.py （需要用到的函数）</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">codecs</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">fake_useragent</span> <span class="kn">import</span> <span class="n">UserAgent</span>
+ 
+<span class="k">def</span> <span class="nf">__AES_encrypt</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;
+</span><span class="s1">    获取到加密后的数据
+</span><span class="s1">    :param text: 首先CBC加密方法，text必须位16位数据
+</span><span class="s1">    :param key: 加密的key
+</span><span class="s1">    :return: 加密后的字符串
+</span><span class="s1">    &#39;&#39;&#39;</span>
+    <span class="n">iv</span> <span class="o">=</span> <span class="s2">&#34;0102030405060708&#34;</span>
+    <span class="n">pad</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">%</span> <span class="mi">16</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">*</span> <span class="nb">chr</span><span class="p">(</span><span class="n">pad</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">deocde</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="n">pad</span> <span class="o">*</span> <span class="nb">chr</span><span class="p">(</span><span class="n">pad</span><span class="p">)</span>
+    <span class="n">aes</span> <span class="o">=</span> <span class="n">AES</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="nb">bytes</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">),</span> <span class="n">mode</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">IV</span><span class="o">=</span><span class="nb">bytes</span><span class="p">(</span><span class="n">iv</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">aes</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">))</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+ 
+<span class="k">def</span> <span class="nf">__get_encText</span><span class="p">(</span><span class="n">args1</span><span class="p">,</span> <span class="n">random16str</span><span class="p">):</span>
+    <span class="n">args4</span> <span class="o">=</span> <span class="s2">&#34;0CoJUm6Qyw8W8jud&#34;</span>
+    <span class="n">encText</span> <span class="o">=</span> <span class="n">__AES_encrypt</span><span class="p">(</span><span class="n">args1</span><span class="p">,</span> <span class="n">args4</span><span class="p">)</span>
+    <span class="n">encText</span> <span class="o">=</span> <span class="n">__AES_encrypt</span><span class="p">(</span><span class="n">encText</span><span class="p">,</span> <span class="n">random16str</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">encText</span>
+ 
+<span class="k">def</span> <span class="nf">__get_encSecKey</span><span class="p">(</span><span class="n">random16str</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;通过查看js代码，获取encSecKey&#39;&#39;&#39;</span>
+    <span class="n">arg2</span> <span class="o">=</span> <span class="s2">&#34;010001&#34;</span>
+    <span class="n">arg3</span> <span class="o">=</span> <span class="s2">&#34;00e0b509f6259df8642dbc35662901477df22677ec152b5ff68ace615bb7b725152b3ab17a876aea8a5aa76d2e417629ec4ee341f56135fccf695280104e0312ecbda92557c93870114af6c9d05c4f7f0c3685b7a46bee255932575cce10b424d813cfe4875d3e82047b97ddef52741d546b8e289dc6935b3ece0462db0a22b8e7&#34;</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">random16str</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">rs</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">codecs</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="s1">&#39;hex_codec&#39;</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span> <span class="o">**</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg2</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">arg3</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">format</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+ 
+<span class="k">def</span> <span class="nf">__get_random_str</span><span class="p">():</span>
+    <span class="s1">&#39;&#39;&#39;这是16位的随机字符串&#39;&#39;&#39;</span>
+    <span class="n">str_set</span> <span class="o">=</span> <span class="s2">&#34;abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#34;</span>
+    <span class="n">random_str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">str_set</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">random_str</span> <span class="o">+=</span> <span class="n">str_set</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">random_str</span>
+ 
+<span class="k">def</span> <span class="nf">__getFormData</span><span class="p">(</span><span class="n">args1</span><span class="p">,</span> <span class="n">random16str</span><span class="p">):</span>
+    <span class="s1">&#39;&#39;&#39;获取到提交的数据&#39;&#39;&#39;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;params&#34;</span><span class="p">:</span> <span class="n">__get_encText</span><span class="p">(</span><span class="n">args1</span><span class="p">,</span> <span class="n">random16str</span><span class="p">),</span> <span class="s2">&#34;encSecKey&#34;</span><span class="p">:</span> <span class="n">__get_encSecKey</span><span class="p">(</span><span class="n">random16str</span><span class="p">)}</span>
+    <span class="k">return</span> <span class="n">data</span>
+ 
+<span class="k">def</span> <span class="nf">__getFans</span><span class="p">(</span><span class="n">userID</span><span class="p">):</span>
+    <span class="n">userDict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">userID</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">userID</span><span class="p">)</span> <span class="c1"># userID=&#34;6177307&#34;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;{&#34;userId&#34;:&#34;&#39;</span> <span class="o">+</span> <span class="n">userID</span> <span class="o">+</span> <span class="s1">&#39;&#34;,&#34;time&#34;:&#34;-1&#34;,&#34;limit&#34;:&#34;104334&#34;,&#34;csrf_token&#34;: &#34;&#34;}&#39;</span>
+    <span class="n">formdata</span> <span class="o">=</span> <span class="n">__getFormData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">__get_random_str</span><span class="p">())</span> 
+    
+    <span class="n">ua</span> <span class="o">=</span> <span class="n">UserAgent</span><span class="p">()</span>
+    <span class="n">session</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;content-type&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;application/x-www-form-urlencoded&#34;</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;user-agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ua</span><span class="o">.</span><span class="n">random</span>
+    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;referer&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;https://music.163.com/&#34;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://music.163.com/weapi/user/getfolloweds&#39;</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">formdata</span><span class="p">)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="c1"># print(response.status_code)</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;followeds&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">userDict</span><span class="p">[</span><span class="n">one</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;userId&#39;</span><span class="p">)]</span> <span class="o">=</span> <span class="n">one</span>
+        <span class="c1"># print(one.get(&#39;userId&#39;))</span>
+        <span class="c1"># print(str(one))</span>
+    <span class="k">return</span> <span class="n">userDict</span>
+</code></pre></div><h2 id="mainpy-主程序">main.py （主程序）</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">common</span>
+<span class="n">AllData</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">__getFans</span><span class="p">(</span><span class="mi">6177307</span><span class="p">)</span>
+<span class="n">AllData</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">__getFans</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">AllData</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">item1</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+        <span class="n">temp2</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">__getFans</span><span class="p">(</span><span class="n">item1</span><span class="p">)</span>
+        <span class="n">AllData</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">temp2</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">item2</span> <span class="ow">in</span> <span class="n">temp2</span><span class="p">:</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+            <span class="n">temp3</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">__getFans</span><span class="p">(</span><span class="n">item2</span><span class="p">)</span>
+            <span class="n">AllData</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">temp3</span><span class="p">)</span>
+ 
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;fans.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">AllData</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">one</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">one</span><span class="p">))</span>
+</code></pre></div><h1 id="四数据">四、数据</h1>
+<p>我把 main.py 放到了服务器上运行，跑到程序结束大概用了 24 小时左右后看了一下存储的文本有 50W 左右的用户数据（不含敏感信息），如下。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="p">(</span><span class="mi">83543823</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;mjdtjst&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1510758264852</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">83543823</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;名劍動天倦收天&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;天下若倾，尚有儒门一手擎天！&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">305937375</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;ttqsunny&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1510751111003</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">305937375</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;甜甜圈sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/v9iyq-6I1WC96R7SlbKvXQ==/3420580709664324.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">359743222</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;xxwmhjl-_&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1509411979309</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">359743222</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;醒醒我们回家了-_&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/KcAVTPDSC8MrKaFB9_Vd9g==/109951163985306640.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;身邪不怕影子正&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">285736292</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;gzydyzj-&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1509016136464</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">285736292</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;孤舟夜灯一掌剑-&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/SsOPGfkTUM0dSEkOuvHfHQ==/109951163351011922.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;寂寞候忘了向先生说告辞！&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">39</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">23</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">79969440</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;cj&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1508992729596</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">79969440</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;尺疾&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/SLdf4abndYLV4Gq8eXbK8w==/109951163788127476.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;绝情莫过绝音讯，断爱无非断感情&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">413801433</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;Aresfx&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1508811460203</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">413801433</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;Ares风雪&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/B1qPhuJvDGuAkQxGvNkxoA==/18828037115798229.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">385103142</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;gyw&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1508734902599</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">385103142</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;归于无&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/HjaQMktAYh5dDuf009Fv5A==/18588343580852886.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">83142991</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;persana&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1508582619577</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">83142991</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;persana&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/psdQcsE9EWpawBXFDEbBag==/109951163289688334.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;所有悲欢离合最后都不过付与说书人&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">259674694</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;hcxdn&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1508483033261</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">259674694</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;会嘲笑的鸟&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/Z6hvgL__sAOKLe_X30ePUg==/1424967073916267.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">277358463</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;yqj&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1507095713513</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">277358463</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;御清觉&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/VCxi7mae0G7lu1auRDiRQg==/1406275381794388.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">411934208</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;lybl10&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1498717923059</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;lybl10&#39;</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">411934208</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/BMFrIsI8jj8R-ths5hR4QQ==/109951163450374697.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;旁友，你听说过布袋戏吗？( ´･ᴗ･` )&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">18</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">380749891</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;18579086180&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1563184649570</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">380749891</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;18579086180&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p2.music.126.net/Eu7gRGq_brlja7CqeHaMsA==/18646617697102174.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">367993248</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;fymxrys&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1561220920584</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">367993248</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;风摇满袖人与事&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/mU8t1BFAz-KKdOz_9vFbJQ==/18807146394528801.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;好霹雳，萌天下，无cp观，重口皆吃，大锅炖肉，讨厌角色性格走形╮(￣▽￣)╭&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">307861774</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;yj&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1561120492944</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">307861774</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;予玦&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/d_GZI27ulOSrLoUtH7ohcw==/1398578804087193.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;曾绕林中潇湘索，鸿雁去，倚风听竹山河曲；无奈百尺叹高楼，此间不胜寒。&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">554030934</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;rqezcp&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1556848452508</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">554030934</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;如期而至cp&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/ut1M-6fLqv6q97Eh8WGXPw==/109951163993855389.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">249943751</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;jjjjaaaay&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1542523045166</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">249943751</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;jjjjaaaay&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/otp0fgk7yTala8lxZ6E5YQ==/109951163653627471.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">69678664</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;syfsb&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1512553262435</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">69678664</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;疏影浮生灬&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p2.music.126.net/StbUovFF2Fe4OM8BXfn7Sw==/109951164172211056.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;星雪凄天银河垂，狂艳夜徊铸楚辞。萧瑟悲声秋风起，杀忆寒蝉未鸣时。&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">393632402</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;lyh&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1528925134497</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">393632402</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;樂悦鹤&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/w7yJivlRLfnXALj62LLPBw==/109951163959519476.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;“你要爱荒野上的风声 ，胜过爱贫穷和思考，暮冬时烤雪 ，迟夏写长信，早春不过，一颗树。”&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">363727100</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;qqz&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1521783497886</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">363727100</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;乾秋子&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/tLbQkYiAvnWUISXkgsqlAQ==/109951163731450756.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">281619418</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;hrwsltx&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1515770911364</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;皇儒无上蔺天邢&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/UEyFyd1lC50-TP8OFdYujw==/109951164003473228.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">281619418</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">41</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;师太，放我一马！！！！！&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">102754093</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;sts&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1510381589001</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">102754093</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;説太岁&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/vZ3I_7VzVxF3iqTrXIh6eQ==/3272146607712737.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;愤怒是对自己无能的表现&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">255086049</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;rwyjths&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1546144733907</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/s0lEIISQLCiCvcjfuI5wUw==/109951163864346086.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">26</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">255086049</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;人舞一剑探花殇&#39;</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">220</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">125556054</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;95-58165&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1506253400100</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">125556054</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;95-58165&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/odk0UIRLjxtl9BFZyU_7qw==/109951164198663765.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;知进退，明得失&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">})</span>
+<span class="p">(</span><span class="mi">79927936</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;_nfbj_&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1499765008933</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">79927936</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;_南风不竞_&#39;</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/_HXCTTkMUS4uCbDv8_ECuQ==/109951163041830201.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;驰来北马多骄气，歌到南风尽死声。&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">})</span>
+</code></pre></div><p>下面是一个格式化的 json，信息的维度从 UID 到用户注册时间，还是比较丰富的。（非敏感用户信息）</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="err">&#39;py&#39;:</span> <span class="err">&#39;mjdtjst&#39;,</span>
+    <span class="err">&#39;time&#39;:</span> <span class="err">1510758264852,</span>
+    <span class="err">&#39;userId&#39;:</span> <span class="err">83543823,</span>
+    <span class="err">&#39;mutual&#39;:</span> <span class="err">False,</span>
+    <span class="err">&#39;followed&#39;:</span> <span class="err">False,</span>
+    <span class="err">&#39;accountStatus&#39;:</span> <span class="err">0,</span>
+    <span class="err">&#39;nickname&#39;:</span> <span class="err">&#39;名劍動天倦收天&#39;,</span>
+    <span class="err">&#39;avatarUrl&#39;:</span> <span class="err">&#39;http://p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;,</span>
+    <span class="err">&#39;gender&#39;:</span> <span class="err">1,</span>
+    <span class="err">&#39;expertTags&#39;:</span> <span class="err">None,</span>
+    <span class="err">&#39;experts&#39;:</span> <span class="err">None,</span>
+    <span class="err">&#39;followeds&#39;:</span> <span class="err">13,</span>
+    <span class="err">&#39;remarkName&#39;:</span> <span class="err">None,</span>
+    <span class="err">&#39;follows&#39;:</span> <span class="err">19,</span>
+    <span class="err">&#39;authStatus&#39;:</span> <span class="err">0,</span>
+    <span class="err">&#39;userType&#39;:</span> <span class="err">0,</span>
+    <span class="err">&#39;vipType&#39;:</span> <span class="err">0,</span>
+    <span class="err">&#39;signature&#39;:</span> <span class="err">&#39;天下若倾，尚有儒门一手擎天！&#39;,</span>
+    <span class="err">&#39;vipRights&#39;:</span> <span class="err">None,</span>
+    <span class="err">&#39;eventCount&#39;:</span> <span class="err">1,</span>
+    <span class="err">&#39;playlistCount&#39;:</span> <span class="err">5</span>
+<span class="p">}</span>
+</code></pre></div><p>人对技术要持有敬畏之心，慎用之。</p>]]></description>
 </item></channel>
 </rss>

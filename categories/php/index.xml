@@ -10,20 +10,386 @@
     <pubDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
-    <description><![CDATA[<p>结论推导</p>]]></description>
+    <description><![CDATA[<p>结论推导</p>
+<h1 id="一结论">一、结论</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="c1"># 最方便
+</span><span class="c1"></span><span class="k">echo</span> <span class="nx">strtotime</span><span class="p">(</span><span class="s1">&#39;23:59:59&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">time</span><span class="p">();</span>
+
+<span class="c1">#最快
+</span><span class="c1"></span><span class="k">echo</span> <span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">28800</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span><span class="p">;</span>
+</code></pre></div><h1 id="二推导过程">二、推导过程</h1>
+<p>用 86400 减去今天已经过去了多少秒，即可求得今天还剩多少秒。</p>
+<p>86400=24*3600，即一天的总秒数。</p>
+<p>28800=8*3600，即 8 个小时的总秒数。</p>
+<p>当前时间戳取模 86400 并不是今天已经过去了多少秒，因为时间戳起始时间并不是 0 点，而是 8 点整。所以，如果当前是早上 8 点整，取模 86400 后会等于 0，与我们的本意不符（求今天已经过去了多少秒）。</p>
+<p>因此，要用当前时间戳加上 8 个小时的总秒数后再取模 86400，即可求得今天过去了多少秒。</p>
+<p>结论是由下面的算法简化后得到的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span>
+</code></pre></div><h1 id="三ref">三、REF</h1>
+<p><a href="https://segmentfault.com/a/1190000019844608" target="_blank" rel="noopener noreffer">https://segmentfault.com/a/1190000019844608</a></p>]]></description>
 </item><item>
     <title>PHP基于引用特性实现的无限级分类树</title>
     <link>https://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</link>
     <pubDate>Wed, 16 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
-    <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>]]></description>
+    <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>
+<h1 id="源码">源码</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// 初始数据
+</span><span class="c1"></span>    <span class="nv">$items</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;福建省&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;四川省&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;福州市&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;成都市&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;乐山市&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;成华区&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;龙泉驿区&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">6</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;崔家店路&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">7</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;龙都南路&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A店铺&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;B店铺&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">12</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">8</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;C店铺&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;泉州市&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;南安县&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;惠安县&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A镇&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">17</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">14</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;B镇&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">18</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A村&#39;</span><span class="p">),</span>
+        <span class="k">array</span><span class="p">(</span><span class="s1">&#39;id&#39;</span> <span class="o">=&gt;</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;pid&#39;</span> <span class="o">=&gt;</span> <span class="mi">16</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;B村&#39;</span><span class="p">),</span>
+    <span class="p">);</span>
+ 
+    <span class="c1">// 根据初始数据，生成一个以 id 为 key/下标 的数组，方便根据 pid 判断是否存在父级元素。
+</span><span class="c1"></span>    <span class="nv">$items</span> <span class="o">=</span> <span class="nx">array_column</span><span class="p">(</span><span class="nv">$items</span><span class="p">,</span><span class="k">null</span><span class="p">,</span><span class="s1">&#39;id&#39;</span><span class="p">);</span>
+ 
+    <span class="c1">//使用 php 的 &amp; 引用特性，遍历一次循环即可生成无限级分类树。（其他高级语言中也有类似的特性，诸如 C++ 的指针和 JAVA 的引用）
+</span><span class="c1"></span>    <span class="nv">$tree</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nv">$items</span> <span class="k">as</span> <span class="nv">$item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nv">$item</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">];</span>
+        <span class="nv">$pid</span> <span class="o">=</span> <span class="nv">$item</span><span class="p">[</span><span class="s1">&#39;pid&#39;</span><span class="p">];</span>
+ 
+        <span class="k">if</span> <span class="p">(</span><span class="nx">isset</span><span class="p">(</span><span class="nv">$items</span><span class="p">[</span><span class="nv">$pid</span><span class="p">]))</span>
+            <span class="nv">$items</span><span class="p">[</span><span class="nv">$pid</span><span class="p">][</span><span class="s1">&#39;children&#39;</span><span class="p">][]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$items</span><span class="p">[</span><span class="nv">$id</span><span class="p">];</span>
+        <span class="k">else</span>
+            <span class="nv">$tree</span><span class="p">[]</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$items</span><span class="p">[</span><span class="nv">$id</span><span class="p">];</span>
+    <span class="p">}</span>
+ 
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">success</span><span class="p">(</span><span class="s1">&#39;ok&#39;</span><span class="p">,</span><span class="nv">$tree</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="输出">输出</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="p">{</span>
+  <span class="s2">&#34;code&#34;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">&#34;msg&#34;</span><span class="o">:</span> <span class="s2">&#34;ok&#34;</span><span class="p">,</span>
+  <span class="s2">&#34;data&#34;</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;福建省&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">3</span><span class="p">,</span>
+          <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;福州市&#34;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+          <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;泉州市&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">14</span><span class="p">,</span>
+              <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+              <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;南安县&#34;</span><span class="p">,</span>
+              <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                  <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+                  <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">14</span><span class="p">,</span>
+                  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;A镇&#34;</span><span class="p">,</span>
+                  <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">18</span><span class="p">,</span>
+                      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+                      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;A村&#34;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">19</span><span class="p">,</span>
+                      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+                      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;B村&#34;</span>
+                    <span class="p">}</span>
+                  <span class="p">]</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                  <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">17</span><span class="p">,</span>
+                  <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">14</span><span class="p">,</span>
+                  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;B镇&#34;</span>
+                <span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">15</span><span class="p">,</span>
+              <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">13</span><span class="p">,</span>
+              <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;惠安县&#34;</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;四川省&#34;</span><span class="p">,</span>
+      <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+          <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;成都市&#34;</span><span class="p">,</span>
+          <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+              <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+              <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+              <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;成华区&#34;</span><span class="p">,</span>
+              <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                  <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+                  <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">6</span><span class="p">,</span>
+                  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;崔家店路&#34;</span><span class="p">,</span>
+                  <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">10</span><span class="p">,</span>
+                      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+                      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;A店铺&#34;</span>
+                    <span class="p">},</span>
+                    <span class="p">{</span>
+                      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">12</span><span class="p">,</span>
+                      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
+                      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;C店铺&#34;</span>
+                    <span class="p">}</span>
+                  <span class="p">]</span>
+                <span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">},</span>
+            <span class="p">{</span>
+              <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+              <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">4</span><span class="p">,</span>
+              <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;龙泉驿区&#34;</span><span class="p">,</span>
+              <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                  <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+                  <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">7</span><span class="p">,</span>
+                  <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;龙都南路&#34;</span><span class="p">,</span>
+                  <span class="s2">&#34;children&#34;</span><span class="o">:</span> <span class="p">[</span>
+                    <span class="p">{</span>
+                      <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">11</span><span class="p">,</span>
+                      <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">9</span><span class="p">,</span>
+                      <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;B店铺&#34;</span>
+                    <span class="p">}</span>
+                  <span class="p">]</span>
+                <span class="p">}</span>
+              <span class="p">]</span>
+            <span class="p">}</span>
+          <span class="p">]</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+          <span class="s2">&#34;id&#34;</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+          <span class="s2">&#34;pid&#34;</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+          <span class="s2">&#34;name&#34;</span><span class="o">:</span> <span class="s2">&#34;乐山市&#34;</span>
+        <span class="p">}</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+</code></pre></div>]]></description>
 </item><item>
     <title>ThinkPHP5.1 如何使用 Redis 实现悲观锁</title>
     <link>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</link>
     <pubDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</guid>
-    <description><![CDATA[<p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>]]></description>
+    <description><![CDATA[<p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>
+<p>在用户量 / 客户端数量比较少的时候，只要系统的业务逻辑是正确的，一般都不会发现有什么问题。但随着用户量 / 客户端数量逐渐增多，高并发带来的问题就会逐渐出现，而脏读是众多问题的其中之一。</p>
+<h1 id="一无并发控制会带来什么问题">一、无并发控制，会带来什么问题？</h1>
+<p>本文以 ThinkPHP5.1.39 的代码作为案例，下面是一个 File Cache 读写操作：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
+    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
+    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
+ 
+    <span class="c1">//写入缓存
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+ 
+    <span class="c1">//从缓存中获取值
+</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+ 
+    <span class="c1">//删除缓存
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+ 
+    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>访问这个 function，会输出 OK! 996 。无论你访问几次，结果都是如此，但仅限于单线程的情况（只有你自己一个人在访问这个 function），如果是多个人同时不停的访问这个 function，还会是这样吗？想一想 😛</p>
+<p>使用 jmeter 测试一下，120 线程测试了十几秒，发现了 3 种不同的返回结果。</p>
+<h2 id="11返回了-ok-996">1.1、返回了 OK! 996</h2>
+<p>与单线程时的结果一致，是正常处理逻辑。</p>
+<p></p>
+<h2 id="12只返回了-ok而不是-ok-996">1.2、只返回了 OK！而不是 OK! 996</h2>
+<p></p>
+<p>说明缓存不存在，原因是：在 A 线程将 996 写入缓存后，B 线程将缓存删除了。此时 A 线程从缓存中读出来的数据为 null，所以 A 线程输出了 OK! ，而不是 OK! 996。</p>
+<h2 id="13返回了一个-500-错误">1.3、返回了一个 500 错误</h2>
+<p></p>
+<p>报错的内容是： file_get_contents（…）No such file or directory。</p>
+<p></p>
+<p>显然是 cache 文件夹下的某个缓存文件不存在，所以引起了这个错误。原因是：A 线程在删除缓存后，B 线程也在执行删除缓存的操作。当缓存文件已被删除时，再执行删除缓存文件的操作，自然就报了文件不存在的错误。（实测 120 个线程并发，总计 500 个请求，异常率 0.20%）</p>
+<p>尽管我修改了 File Cache 的 133 行，在删除前判断文件是否存在，虽然异常率降低了，但依然无法从根本上解决问题。可以看到的是，在高并发场景下，问题已经显现出来了。</p>
+<p>下面我们用 redis 缓存试试看：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
+    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
+    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
+ 
+    <span class="c1">//写入缓存
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+ 
+    <span class="c1">//从缓存中获取值
+</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+ 
+    <span class="c1">//删除缓存
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+ 
+    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>经过测试，与上面的 3 种情况一致。（根据 thinkphp5.1 的官方文档，我使用的是 store 来切换到 redis，但不知道为何，仍然会报 File Cache 驱动的 No such file or directory/unlink 错误，十分诡异）。</p>
+<p>如何解决高并发场景下带来的脏读问题？</p>
+<p>答案是：使用锁机制。</p>
+<h1 id="二关于锁机制">二、关于锁机制</h1>
+<p>根据锁的控制范围，可分为单机锁 / 分布式锁 2 种。根据锁的实现思想，可分为悲观锁 / 乐观锁 2 种。</p>
+<h2 id="21单机锁">2.1、单机锁</h2>
+<p>即为单机环境的锁，无分布式设计。</p>
+<p>常用的实现工具：</p>
+<ul>
+<li>Redis</li>
+<li>Memcached</li>
+</ul>
+<h2 id="22分布式锁">2.2、分布式锁</h2>
+<p>为了防止分布式系统中的多个进程之间相互干扰，我们需要一种分布式协调技术来对这些进程进行调度。而这个分布式协调技术的核心就是来实现这个分布式锁。</p>
+<ul>
+<li>在分布式系统环境下，一个方法在同一时间只能被一个机器的一个线程执行</li>
+<li>高可用的获取锁与释放锁</li>
+<li>高性能的获取锁与释放锁</li>
+<li>具备锁失效机制，防止死锁</li>
+<li>具备非阻塞锁特性，即没有获取到锁将直接返回获取锁失败</li>
+</ul>
+<p>常用的实现工具：</p>
+<ul>
+<li>Zookeeper</li>
+<li>Redis</li>
+<li>Memcached</li>
+<li>Chubby</li>
+</ul>
+<h2 id="23悲观锁">2.3、悲观锁</h2>
+<p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java 中 synchronized 和 ReentrantLock 等独占锁就是悲观锁思想的实现。</p>
+<h2 id="24乐观锁">2.4、乐观锁</h2>
+<p>总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和 CAS 算法实现。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于 write_condition 机制，其实都是提供的乐观锁。在 Java 中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。</p>
+<h2 id="25如何选择悲观--乐观锁">2.5、如何选择悲观 / 乐观锁？</h2>
+<p>从上面对两种锁的介绍，我们知道两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下（多读场景），即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果是多写的情况，一般会经常产生冲突，这就会导致上层应用会不断的进行 retry，这样反倒是降低了性能，所以一般多写的场景下用悲观锁就比较合适。</p>
+<h1 id="三redis-实现悲观锁">三、Redis 实现悲观锁</h1>
+<p>在商品秒杀活动活动中，流量峰值相对平常时的流量是高出非常多的。使用 Redis 实现悲观锁机制，可以解决商品库存脏读的问题。</p>
+<p>初始化库存：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">stockInit</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$key</span>       <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
+    <span class="nv">$stockInit</span> <span class="o">=</span> <span class="mi">699</span><span class="p">;</span>
+ 
+    <span class="c1">//清空所有缓存
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">clear</span><span class="p">();</span>
+    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
+ 
+    <span class="c1">//写入库存初始值
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stockInit</span><span class="p">);</span>
+ 
+    <span class="k">echo</span> <span class="s1">&#39;stock Init&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h2 id="31悲观锁实现一非最佳实践">3.1、悲观锁实现（一）非最佳实践</h2>
+<p>看似符合逻辑的商品秒杀：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
+    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span>
+ 
+    <span class="c1">//判断库存锁是否存在
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">)</span> <span class="o">==</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 存在锁定则等待
+</span><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">200000</span><span class="p">);</span>
+    <span class="p">}</span>
+ 
+    <span class="c1">//库存上锁
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+ 
+    <span class="c1">//获取库存值
+</span><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+ 
+    <span class="c1">//减库存
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
+        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">//打开库存锁
+</span><span class="c1"></span>        <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
+ 
+    <span class="c1">//打开库存锁
+</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+ 
+    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>实测 150 线程并发，异常率 0%，虽然引用了锁机制，看似符合逻辑的锁机制，但仍会有极低的概率脏读，原因无他，有 N 个线程同时抢到了锁。虽然概率低，但线程一多仍然会脏读。所以需要改用 redis 原生支持的 setnx 来保证只有一个线程抢到了锁。</p>
+<p>如下，两个线程同时抢到了第 80 个库存：</p>
+<p></p>
+<h2 id="32悲观锁实现二">3.2、悲观锁实现（二）</h2>
+<p>setnx 是 set if not exists 的简写，在 key 不存在时等价于 set，如果 key 存在，则不更新缓存内容，且返回 false。使用这个特性，可以保证锁只有一个线程抢到了。</p>
+<p>使用 redis setnx 实现悲观锁的商品秒杀：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="nv">$redisConifg</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;cache.redis&#39;</span><span class="p">);</span>                  <span class="c1">//获取当前模块下的config文件夹中的cache文件的redis配置数组
+</span><span class="c1"></span>    <span class="nv">$redis</span>       <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">);</span>           <span class="c1">//获取thinkPHP官方封装的Redis Cache对象
+</span><span class="c1"></span>    <span class="nv">$handler</span>     <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">handler</span><span class="p">();</span><span class="c1">//获取php redis扩展原生redis对象 https://github.com/phpredis/phpredis
+</span><span class="c1"></span> 
+    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span><span class="c1">//商品库存缓存名
+</span><span class="c1"></span>    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span><span class="c1">//商品库存锁后缀名
+</span><span class="c1"></span>    <span class="nv">$timeOut</span>    <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>     <span class="c1">//库存锁过期时间
+</span><span class="c1"></span> 
+    <span class="c1">//抢库存锁
+</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nv">$handler</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;nx&#39;</span><span class="p">,</span> <span class="s1">&#39;ex&#39;</span> <span class="o">=&gt;</span> <span class="nv">$timeOut</span><span class="p">])</span> <span class="o">==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 没有抢到则等待
+</span><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">20000</span><span class="p">);</span>
+    <span class="p">}</span>
+ 
+    <span class="c1">//当前线程抢到库存锁了
+</span><span class="c1"></span> 
+    <span class="c1">//获取库存值
+</span><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+ 
+    <span class="c1">//减库存
+</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
+        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">//删除库存锁
+</span><span class="c1"></span>        <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
+        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="c1">//更新库存值
+</span><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
+ 
+    <span class="c1">//删除库存锁
+</span><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
+ 
+    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>150 线程并发测试后，并没有发现有异常情况了。根据实际业务需求，可以增加等待超时机制。</p>
+<h1 id="四ref">四、REF</h1>
+<p><a href="https://redis.io/commands/set" target="_blank" rel="noopener noreffer">https://redis.io/commands/set</a></p>
+<p><a href="https://github.com/phpredis/phpredis#set" target="_blank" rel="noopener noreffer">https://github.com/phpredis/phpredis#set</a></p>
+<p><a href="https://www.jianshu.com/p/a1ebab8ce78a" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/a1ebab8ce78a</a></p>
+<p><a href="https://blog.csdn.net/qq_34337272/article/details/81072874" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_34337272/article/details/81072874</a></p>]]></description>
 </item></channel>
 </rss>

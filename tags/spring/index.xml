@@ -10,6 +10,12 @@
     <pubDate>Thu, 05 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/spring-boot-configuration-file-chinese-encoding-error.html</guid>
-    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>]]></description>
+    <description><![CDATA[<p>在配置文件 application.properties 或 application.yaml 中，配置项如果填写的是中文，读取后是乱码，但是如果使用 unicode 编码方式进行书写，则可以正确识别。这是因为 .properties 文件的默认读取配置是使用的是 ISO_8859_1 编码，这个编码是不支持中文的。</p>
+<h1 id="解决方案">解决方案</h1>
+<h2 id="1修改-idea-编码设置为-utf-8-删除并重新创建-applicationproperties-文件">1、修改 IDEA 编码设置为 UTF-8 ，删除并重新创建 application.properties 文件</h2>
+<p>我使用的是 IDEA ，首先 File-&gt;settings-&gt;Code style-&gt;File Encoding ，把所有的编码都设为 UTF-8 ，删除并重新创建 application.properties 文件即可。</p>
+<p></p>
+<h1 id="ref">REF</h1>
+<p><a href="https://blog.csdn.net/chenfei2341/article/details/98854474" target="_blank" rel="noopener noreffer">https://blog.csdn.net/chenfei2341/article/details/98854474</a></p>]]></description>
 </item></channel>
 </rss>

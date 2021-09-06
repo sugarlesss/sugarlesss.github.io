@@ -10,27 +10,225 @@
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
-    <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>]]></description>
+    <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>
+<p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from = wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
+<h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
+<p>在 nginx 的 http 部分写入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
+<span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
+  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p>这里的 rate 我设为了每秒处理 30 个请求，如果 limit_req 没有设置 burst，则默认为 0。<br>
+rate 支持 r/s 和 r/m 两种模式。</p>
+</blockquote>
+<p>在 server 部分写入：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
+  <span class="c1">#limit_rate 512k;
+</span><span class="c1"></span>  
+  <span class="c1">#宝塔PHP文件处理
+</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
+<p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
+<h1 id="四原理">四、原理</h1>
+<p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>
+<p>但两者有本质上的区别，request 和 connection 是不同的，在实际应用中应注意区别。</p>
+<ul>
+<li>connection 是连接，即常说的 tcp 连接，通过三次握手而建立的。</li>
+<li>request 是指请求，即 http 请求，（注意，tcp 连接是有状态的，而构建在 tcp 之上的 http 却是无状态的协议）。</li>
+</ul>
+<p>limit_req_zone 或是 limit_conn_zone 对请求的限制有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。但 IP 是针对全体用户做的限流，显然不能满足我们的需求。所以我们需要使用 map 模块来匹配特定的请求参数生成一个变量，将这个变量作为 limit_req_zone 或是 limit_conn_zone 的 key，这样就可以实现我们的需求了。</p>]]></description>
 </item><item>
     <title>Nginx 针对特定路径或入口文件限流</title>
     <link>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</link>
     <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
-    <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>]]></description>
+    <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>
+<p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
+<h1 id="一编写-location-规则">一、编写 location 规则</h1>
+<p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
+<h1 id="二限制并发量">二、限制并发量</h1>
+<p>在 nginx 的 http 部分添加：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
+<span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
+</code></pre></div><blockquote>
+<p>$binary_remote_addr 是二进制格式的 IPv4 地址，这个 IP 是请求者的 IP。将远程客户端的 IP 地址作为 zone 的 key，目的是为了对单个客户端做并发限制。<br>
+$server_name 指的是当前站点的名称，将这个作为 zone 的 key，目的是为了对某个站点做总体的并发限制。</p>
+</blockquote>
+<p>稍稍修改一下上面的 location 规则，设置为站点并发量为 300，单个 IP 并发量限制 25：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+  <span class="kn">limit_conn</span> <span class="s">perserver</span> <span class="mi">300</span><span class="p">;</span>
+  <span class="kn">limit_conn</span> <span class="s">perip</span> <span class="mi">25</span><span class="p">;</span>
+  <span class="kn">limit_rate</span> <span class="mi">128k</span><span class="p">;</span>
+  
+  <span class="c1">#宝塔面板默认的 enable-php-56.conf 规则，对php文件的响应处理
+</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><blockquote>
+<p>limit_conn 的作用是，在某个 zone 下的并发限制为多少。<br>
+limit_rate 限制的是 nginx 向客户端传送响应的速率。<br>
+limit_conn 和 limit_req 不能设置在 if 指令中，所以如果针对不同的 URL 进行限流，只能通过不同的 location 实现。<br>
+limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不同 URL 的限流。</p>
+</blockquote>
+<p>使用 jmeter 等相关并发测试工具可以测到，确实对 /app/index.php/ 请求做了并发量的限制，超出并发量的部分 nginx 会默认返回 503。</p>]]></description>
 </item><item>
     <title>基于 nginx 实现的负载均衡</title>
     <link>https://sugarless.top/posts/load-balancing-based-on-nginx.html</link>
     <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/load-balancing-based-on-nginx.html</guid>
-    <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>]]></description>
+    <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>
+<p>如果手上没有足够数量的公网云服务器，本地使用虚拟机环境搭建集群做负载均衡测试是最省钱的做法，也方便做快照恢复。</p>
+<h1 id="一准备工作">一、准备工作</h1>
+<p>我使用 VMware 在本地部署了 3 台 CentOS 服务器作为测试环境，统一安装宝塔编译环境（LNMP）。虚拟机的网络配置不是本文的重点，就不再赘述了。</p>
+<h1 id="二检查环境">二、检查环境</h1>
+<p>这 3 台 CentOS 服务器编译好环境之后分别添加一个网站，检查 web 服务是否正常，并修改其中 2 台的默认模板文件，方便在测试负载均衡效果时区分是哪台服务器提供的 web 服务。</p>
+<p>本次测试的三台服务器 IP 地址分别为</p>
+<p>192.168.150.10（负载均衡 主服务器）
+192.168.150.20（业务服务器）
+192.168.150.30（业务服务器）</p>
+<h1 id="三部署网站">三、部署网站</h1>
+<p>测试域名为 t10.com，因此需要在宿主机上将此域名解析到负载均衡主服务器（192.168.150.10）。</p>
+<p>修改宿主机的 hosts 文件（路径：C:\Windows\System32\drivers\etc\hosts），添加以下内容。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">192.168.150.10 t10.com
+</code></pre></div><p>分别在三台服务器上添加网站后，将 t10.com 这个域名解析到网站上。</p>
+<p>如下图示例</p>
+<p></p>
+<p>在负载均衡主服务器的 server 语法块下，也就是网关的配置文件中加入一条转发规则</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
+    <span class="c1"># 转发至负载均衡服务器
+</span><span class="c1"></span>    <span class="kn">proxy_pass</span> <span class="s">http://fzjh</span><span class="p">;</span>
+    <span class="kn">proxy_connect_timeout</span> <span class="s">2s</span><span class="p">;</span>
+    <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span> 
+    <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span> 
+    <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>在负载均衡主服务器的 nginx 配置文件的 http 语法块下（与 server 同级别）加入规则</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">upstream</span> <span class="s">fzjh</span> <span class="p">{</span>
+    <span class="c1"># least_conn;
+</span><span class="c1"></span>    <span class="c1"># ip_hash;
+</span><span class="c1"></span>    <span class="kn">server</span> <span class="n">192.168.150.20</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
+    <span class="kn">server</span> <span class="n">192.168.150.30</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
+    <span class="c1"># server 192.168.150.30:80 backup;
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>保存配置文件后重启 nginx，此时访问 t10.com 时会自动分发至两台业务服务器（192.168.150.20、192.168.150.30）。</p>
+<h1 id="四常用的-nginx-负载均衡算法">四、常用的 nginx 负载均衡算法</h1>
+<h2 id="1轮询默认">1、轮询（默认）</h2>
+<p>轮询即 Round Robin，根据 Nginx 配置文件中的顺序，依次把客户端的 Web 请求分发到不同的后端服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+ <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+ <span class="p">}</span> 
+ <span class="k">....</span> 
+ <span class="s">server</span><span class="p">{</span> 
+   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+   <span class="kn">...</span> 
+   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+   <span class="p">}</span>  
+ <span class="p">}</span> 
+</code></pre></div><h2 id="2least_conn最少连接">2、least_conn（最少连接）</h2>
+<p>Web 请求会被转发到连接数最少的服务器上。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+ <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
+   <span class="kn">least_conn</span><span class="p">;</span>
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+ <span class="p">}</span> 
+ <span class="k">....</span> 
+ <span class="s">server</span><span class="p">{</span> 
+   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+   <span class="kn">...</span> 
+   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+   <span class="p">}</span>  
+ <span class="p">}</span> 
+</code></pre></div><h2 id="3ip_haship-地址哈希">3、ip_hash（IP 地址哈希）</h2>
+<p>前述的两种负载均衡方案中，同一客户端连续的 Web 请求可能会被分发到不同的后端服务器进行处理，因此如果涉及到会话 Session，那么会话会比较复杂。常见的是基于数据库的会话持久化。要克服上面的难题，可以使用基于 IP 地址哈希的负载均衡方案。这样的话，同一客户端连续的 Web 请求都会被分发到同一服务器进行处理。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+ <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
+   <span class="kn">ip_hash</span><span class="p">;</span>
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+ <span class="p">}</span> 
+ <span class="k">....</span> 
+ <span class="s">server</span><span class="p">{</span> 
+   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+   <span class="kn">...</span> 
+   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+   <span class="p">}</span>  
+ <span class="p">}</span> 
+</code></pre></div><h2 id="4基于权重的负载均衡算法">4、基于权重的负载均衡算法</h2>
+<p>基于权重的负载均衡即 Weighted Load Balancing，这种方式下，我们可以配置 Nginx 把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
+ <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
+   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
+   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
+ <span class="p">}</span> 
+ <span class="k">....</span> 
+ <span class="s">server</span><span class="p">{</span> 
+   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+   <span class="kn">...</span> 
+   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+   <span class="p">}</span>  
+ <span class="p">}</span>
+</code></pre></div><ul>
+<li>backup 即为备机，当所有业务服务器都宕机时，请求会自动转发至备机；</li>
+<li>多台业务服务器的代码同步可以使用 rsync 解决。</li>
+</ul>]]></description>
 </item><item>
     <title>Nginx 日志全自动切割脚本</title>
     <link>https://sugarless.top/posts/nginx-log-auto-chunk-script.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/nginx-log-auto-chunk-script.html</guid>
-    <description><![CDATA[<p>自动切割目标目录下的所有 .log 文件，即使新建站点，产生新的日志需要切割，也无需修改脚本。</p>]]></description>
+    <description><![CDATA[<p>自动切割目标目录下的所有 .log 文件，即使新建站点，产生新的日志需要切割，也无需修改脚本。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="c1">#自动版日志切割 无需设置</span>
+ 
+<span class="c1">#存放 .log 日志文件的路径</span>
+<span class="nv">log_files_path</span><span class="o">=</span><span class="s2">&#34;/home/wwwlogs&#34;</span>
+<span class="c1">#存放切割后日志的文件夹路径</span>
+<span class="nv">log_files_dir</span><span class="o">=</span><span class="si">${</span><span class="nv">log_files_path</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y&#34;</span><span class="k">)</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%m&#34;</span><span class="k">)</span>
+ 
+<span class="c1">#nginx的路径</span>
+<span class="nv">nginx_sbin</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/sbin/nginx&#34;</span>
+<span class="c1">#保存多少天内的日志</span>
+<span class="nv">save_days</span><span class="o">=</span><span class="m">30</span>
+ 
+<span class="c1">############################################</span>
+<span class="c1"># 请勿修改此脚本下面的任何内容！！！！！！！！！ #</span>
+<span class="c1">############################################</span>
+mkdir -p <span class="nv">$log_files_dir</span>
+ 
+<span class="nb">cd</span> <span class="nv">$log_files_path</span>
+<span class="c1">#cut nginx log files</span>
+<span class="k">for</span> d in <span class="sb">`</span>ls -f *.log<span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+mv <span class="si">${</span><span class="nv">log_files_path</span><span class="si">}${</span><span class="nv">d</span><span class="si">}</span> <span class="si">${</span><span class="nv">log_files_dir</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y%m%d&#34;</span><span class="k">)</span>_<span class="nv">$d</span>
+<span class="k">done</span>
+ 
+<span class="c1">#delete 30 days ago nginx log files</span>
+find <span class="nv">$log_files_path</span> -mtime +<span class="nv">$save_days</span> -exec rm -rf <span class="o">{}</span> <span class="se">\;</span>
+ 
+<span class="nv">$nginx_sbin</span> -s reload
+</code></pre></div>]]></description>
 </item></channel>
 </rss>
