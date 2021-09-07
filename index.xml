@@ -4,7 +4,7 @@
         <link>https://sugarless.top/</link>
         <description>無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://sugarless.top/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
@@ -164,6 +164,65 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="https://www.allhistory.com" target="_blank" rel="noopener noreffer">https://www.allhistory.com</a></p>
 <h3 id="2西窗烛--古诗">2、西窗烛 / 古诗</h3>
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
+</item><item>
+    <title>12、剑指 Offer 10- I. 斐波那契数列</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html</link>
+    <pubDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- I. 斐波那契数列</a> 难度简单</p>
+<p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项（即 <code>F(N)</code>）。斐波那契数列的定义如下：</p>
+<pre><code>F(0) = 0,   F(1) = 1
+F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
+</code></pre><p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：n = 2
+输出：1
+</code></pre><p><strong>示例 2：</strong></p>
+<pre><code>输入：n = 5
+输出：5
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= n &lt;= 100</code></li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21动态规划">2.1、动态规划</h2>
+<h3 id="核心思路">核心思路：</h3>
+<p>斐波那契数的边界条件是 F(0)=0 和 F(1)=1。当 n&gt;1 时，每一项的和都等于前两项的和，因此有如下递推关系：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">F(n)=F(n-1)+F(n-2)
+</code></pre></div><p>由于斐波那契数存在递推关系，因此可以使用动态规划求解。动态规划的状态转移方程即为上述递推关系，边界条件为 F(0) 和 F(1)。</p>
+<p>计算过程中，答案需要取模 1e9+7。</p>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度 O(N)</strong>：计算 f(n) 需循环 n 次，每轮循环内计算操作使用 O(1)。</p>
+<p><strong>空间复杂度 O(1)</strong>：几个标志变量使用常数大小的额外空间。</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">fib</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">MOD</span> <span class="o">=</span> <span class="n">1000000007</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span> 
+            <span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span> 
+            <span class="n">r</span> <span class="o">=</span> <span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="o">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22矩阵快速幂待续">2.2、矩阵快速幂（待续）</h2>
+<p>动态规划的时间复杂度是 O(n)。使用矩阵快速幂的方法可以降低时间复杂度。</p>
+<h3 id="核心思路-1">核心思路：</h3>
+<h3 id="复杂度分析-1">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：O(log n)。</p>
+<p><strong>空间复杂度</strong>：O(1)。</p>
+<h3 id="code-1">Code：</h3>
+<h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/</a></p>
+]]></description>
 </item><item>
     <title>10、剑指 Offer 04. 二维数组中的查找</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html</link>
@@ -1031,128 +1090,6 @@ Output: [-1]
 <p>官方题解：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/</p>
 <p>评论区题解：</p>
 <p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/</a></p>
-]]></description>
-</item><item>
-    <title>4、剑指 Offer 09. 用两个栈实现队列</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/4.html</link>
-    <pubDate>Tue, 24 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/4.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 09. 用两个栈实现队列</a> 难度简单</p>
-<p>用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 <code>appendTail</code> 和 <code>deleteHead</code> ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，<code>deleteHead</code> 操作返回 -1 )</p>
-<p><strong>示例 1：</strong></p>
-<pre><code>输入：
-[&quot;CQueue&quot;,&quot;appendTail&quot;,&quot;deleteHead&quot;,&quot;deleteHead&quot;]
-[[],[3],[],[]]
-输出：[null,null,3,-1]
-</code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：
-[&quot;CQueue&quot;,&quot;deleteHead&quot;,&quot;appendTail&quot;,&quot;appendTail&quot;,&quot;deleteHead&quot;,&quot;deleteHead&quot;]
-[[],[],[5],[2],[],[]]
-输出：[null,-1,null,null,5,2]
-</code></pre><p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= values &lt;= 10000</code></li>
-<li><code>最多会对 appendTail、deleteHead 进行 10000 次调用</code></li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21双栈法">2.1、双栈法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>维护两个栈，第一个栈（正序支持插入操作，第二个栈支持删除操作。</p>
-<p>根据栈先进后出的特性，我们每次往第一个栈里插入元素后，第一个栈的底部元素是最后插入的元素，第一个栈的顶部元素是下一个待删除的元素。为了维护队列先进先出的特性，我们引入第二个栈，用第二个栈维护待删除的元素，在执行删除操作的时候我们首先看下第二个栈是否为空。如果为空，我们将第一个栈里的元素一个个弹出插入到第二个栈里，这样第二个栈里元素的顺序就是待删除的元素的顺序，要执行删除操作的时候我们直接弹出第二个栈的元素返回即可。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p>**时间复杂度：**对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会「至多被插入和弹出 <code>stack2</code> 一次」，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。</p>
-<p><strong>空间复杂度：O(n)</strong>。需要使用两个栈存储已有的元素。</p>
-<h3 id="代码优化前">代码（优化前）：</h3>
-<p>这个是我第一次解题时的写法，因为我是实时维护正序栈与逆序栈的，所以效率比较底下。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">CQueue</span> <span class="o">{</span>
-    <span class="c1">// 正序栈 A ：队列正序（栈顶元素即为队列头）
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackA</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="c1">// 逆序栈 B ：队列逆序
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackB</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">CQueue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 初始化双栈
-</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">stackA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">stackB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 在队列尾部插入整数
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">appendTail</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 压入逆序栈
-</span><span class="c1"></span>        <span class="n">stackB</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-        <span class="c1">// 更新正序栈
-</span><span class="c1"></span>        <span class="n">stackA</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">(</span><span class="n">stackB</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 在队列头部删除整数 若队列中没有元素，deleteHead 操作返回 -1
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">deleteHead</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 如果队列中没有元素,则返回 -1
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">stackA</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="o">-</span><span class="n">1</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 正序栈的栈顶元素出站
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">stackA</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
-        <span class="c1">// 更新逆序栈
-</span><span class="c1"></span>        <span class="n">stackB</span> <span class="o">=</span> <span class="n">reverse</span><span class="o">(</span><span class="n">stackA</span><span class="o">);</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 获取一个栈的逆序栈
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">reverse</span><span class="o">(</span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stack</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="o">(</span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;)</span> <span class="n">stack</span><span class="o">.</span><span class="na">clone</span><span class="o">();</span>
-
-        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
-
-        <span class="k">while</span> <span class="o">(!</span><span class="n">temp</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">temp</span><span class="o">.</span><span class="na">pop</span><span class="o">());</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h3 id="代码优化后">代码（优化后）：</h3>
-<p>此版本为参考官方题解的解题思路与评论区 kd35 大佬的代码，也是本解法中核心思想的实现。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">CQueue</span> <span class="o">{</span>
-    <span class="c1">// 栈 A ：队列正序
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackA</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    <span class="c1">// 栈 B ：队列逆序
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackB</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="nf">CQueue</span><span class="o">()</span> <span class="o">{</span>
-        <span class="c1">// 初始化双栈
-</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">stackA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">stackB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 在队列尾部插入整数
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">appendTail</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 压入逆序栈
-</span><span class="c1"></span>        <span class="n">stackB</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 在队列头部删除整数 若队列中没有元素，deleteHead 操作返回 -1
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">deleteHead</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">stackA</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="c1">// 正序栈存在元素, 将栈顶元素出栈
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">stackA</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="c1">// 更新正序栈：此时正序栈中不存在元素，将逆序栈中的元素依次出栈，并压入正序栈中
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">stackB</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-                <span class="n">stackA</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">stackB</span><span class="o">.</span><span class="na">pop</span><span class="o">());</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 如果更新后的正序栈依然为空, 则说明队列中此时没有元素, 返回 -1
-</span><span class="c1"></span>            <span class="c1">// 如果更新后的正序栈不为空, 则将正序栈的栈顶出栈
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">stackA</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">?</span> <span class="o">-</span><span class="n">1</span> <span class="o">:</span> <span class="n">stackA</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/</a></p>
 ]]></description>
 </item></channel>
 </rss>
