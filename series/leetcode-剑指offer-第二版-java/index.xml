@@ -64,73 +64,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/</a></p>
 ]]></description>
 </item><item>
-    <title>13、剑指 Offer 20. 表示数值的字符串</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</link>
-    <pubDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<h4 id="剑指-offer-20-表示数值的字符串httpsleetcode-cncomproblemsbiao-shi-shu-zhi-de-zi-fu-chuan-lcof-难度中等"><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 20. 表示数值的字符串</a> 难度中等</h4>
-<p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
-<p><strong>数值</strong>（按顺序）可以分成以下几个部分：</p>
-<ol>
-<li>若干空格</li>
-<li>一个 <strong>小数</strong> 或者 <strong>整数</strong></li>
-<li>（可选）一个 <code>'e'</code> 或 <code>'E'</code> ，后面跟着一个 <strong>整数</strong></li>
-<li>若干空格</li>
-</ol>
-<p><strong>小数</strong>（按顺序）可以分成以下几个部分：</p>
-<ol>
-<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
-<li>下述格式之一：
-<ol>
-<li>至少一位数字，后面跟着一个点 <code>'.'</code></li>
-<li>至少一位数字，后面跟着一个点 <code>'.'</code> ，后面再跟着至少一位数字</li>
-<li>一个点 <code>'.'</code> ，后面跟着至少一位数字</li>
-</ol>
-</li>
-</ol>
-<p><strong>整数</strong>（按顺序）可以分成以下几个部分：</p>
-<ol>
-<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
-<li>至少一位数字</li>
-</ol>
-<p>部分<strong>数值</strong>列举如下：</p>
-<ul>
-<li><code>[&quot;+100&quot;, &quot;5e2&quot;, &quot;-123&quot;, &quot;3.1416&quot;, &quot;-1E-16&quot;, &quot;0123&quot;]</code></li>
-</ul>
-<p>部分<strong>非数值</strong>列举如下：</p>
-<ul>
-<li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
-</ul>
-<p><strong>示例 1：</strong></p>
-<pre><code>输入：s = &quot;0&quot;
-输出：true
-</code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：s = &quot;e&quot;
-输出：false
-</code></pre><p><strong>示例 3：</strong></p>
-<pre><code>输入：s = &quot;.&quot;
-输出：false
-</code></pre><p><strong>示例 4：</strong></p>
-<pre><code>输入：s = &quot;    .1  &quot;
-输出：true
-</code></pre><p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= s.length &lt;= 20</code></li>
-<li><code>s</code> 仅含英文字母（大写和小写），数字（<code>0-9</code>），加号 <code>'+'</code> ，减号 <code>'-'</code> ，空格 <code>' '</code> 或者点 <code>'.'</code> 。</li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21确定有限状态自动机">2.1、确定有限状态自动机</h2>
-<h3 id="核心思路">核心思路：</h3>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：</p>
-<p><strong>空间复杂度</strong>：</p>
-<h3 id="code">Code：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java">
-</code></pre></div><h1 id="ref">REF</h1>
-]]></description>
-</item><item>
     <title>10、剑指 Offer 04. 二维数组中的查找</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html</link>
     <pubDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -996,6 +929,216 @@ Output: [-1]
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/</a></p>
+]]></description>
+</item><item>
+    <title>3、剑指 Offer 38. 字符串的排列</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/3.html</link>
+    <pubDate>Sun, 22 Aug 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/3.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 38. 字符串的排列</a></p>
+<p>难度中等403收藏分享切换为英文接收动态反馈</p>
+<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
+<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
+<p><strong>示例:</strong></p>
+<pre><code>输入：s = &quot;abc&quot;
+输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]
+</code></pre><p><strong>限制：</strong></p>
+<pre><code>1 &lt;= s 的长度 &lt;= 8
+</code></pre><h1 id="二解法">二、解法</h1>
+<h2 id="21回溯---dfs--剪枝">2.1、回溯  / DFS + 剪枝</h2>
+<h3 id="核心思想">核心思想：</h3>
+<p>我们将这个问题看作有 n 个排列成一行的空位，我们需要从左往右依次填入题目给定的 n 个字符，每个字符只能使用一次。首先可以想到穷举的算法，即从左往右每一个空位都依次尝试填入一个字符，看是否能填完这 n 个空位，编程实现时，我们可以用「回溯法」来模拟这个过程，也就是 DFS 。</p>
+<p>按照题目中给定的要求，生成字符串的所有排列之后，里面不能有重复元素，也就是说我们需要按照这个规则来进行剪枝，减少不必要的运算。</p>
+<p>对于一个长度为 n 的字符串（假设字符互不重复），其排列方案数共有：n×(n−1)×(n−2)…×2×1</p>
+<p><strong>排列方案的生成：</strong></p>
+<p>通过字符交换，先固定第 1 位字符（ n 种情况）、再固定第 2 位字符（ n-1 种情况）、&hellip; 、最后固定第 n 位字符（ 1 种情况）。</p>
+<p></p>
+<p><strong>重复排列方案与剪枝：</strong></p>
+<p>当字符串存在重复字符时，排列方案中也存在重复的排列方案。为排除重复方案，需在固定某位字符时，保证 “每种字符只在此位固定一次” ，即遇到重复字符时不交换，直接跳过。从 DFS 角度看，此操作称为 “剪枝” 。</p>
+<p></p>
+<p><strong>递归解析：</strong></p>
+<ul>
+<li>终止条件： 当 x = len(chars) - 1 时，代表所有位已固定（最后一位只有 11 种情况），则将当前组合 chars 转化为字符串并加入 result ，并返回；</li>
+<li>递推参数： 当前固定位 x ；</li>
+<li>递推工作： 初始化一个 Set ，用于排除重复的字符；将第 x 位字符与 i ∈ [ x, len(chars) ] 字符分别交换，并进入下层递归；
+<ul>
+<li>剪枝： 若 chars[i] 在 Set 中，代表其是重复字符，因此 “剪枝” ；</li>
+<li>将 chars[i] 加入 Set ，以便之后遇到重复字符时剪枝；</li>
+<li>固定字符： 将字符 chars[i] 和 chars<i class="far fa-check-square fa-fw"></i> 交换，即固定 chars[i] 为当前位字符；</li>
+<li>开启下层递归： 调用 dfs(x + 1) ，即开始固定第 x + 1 个字符；</li>
+<li>还原交换： 将字符 chars[i] 和 chars<i class="far fa-check-square fa-fw"></i> 交换（还原之前的交换）；</li>
+</ul>
+</li>
+</ul>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<ul>
+<li>时间复杂度 O(N!N)： N 为字符串 s 的长度；时间复杂度和字符串排列的方案数成线性关系，方案数为 N×(N−1)×(N−2)…×2×1 ，即复杂度为 O(N!) ；字符串拼接操作 join() 使用 O(N) ；因此总体时间复杂度为 O(N! × N) 。</li>
+<li>空间复杂度 O(N^2) ： 全排列的递归深度为 N ，系统累计使用栈空间大小为 O(N)；递归中辅助 Set 累计存储的字符数量最多为 N+(N−1)+&hellip;+2+1=(N+1)N/2 ，即占用 O(N^2) 的额外空间。</li>
+</ul>
+<h3 id="代码">代码：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 回溯法 / dfs + 剪枝
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">chars</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
+    <span class="o">}</span>
+
+    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">chars</span><span class="o">));</span>      <span class="c1">// 添加排列方案
+</span><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">chars</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="k">continue</span><span class="o">;</span> <span class="c1">// 重复，因此剪枝
+</span><span class="c1"></span>            <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">chars</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>                      <span class="c1">// 交换，将 c[i] 固定在第 x 位
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>                      <span class="c1">// 开启固定第 x + 1 位字符
+</span><span class="c1"></span>            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>                      <span class="c1">// 恢复交换
+</span><span class="c1"></span>        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
+        <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
+        <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22下一个排列">2.2、下一个排列</h2>
+<h3 id="核心思想-1">核心思想：</h3>
+<p>我们可以这样思考：当我们已知了当前的一个排列，我们能不能快速得到字典序中下一个更大的排列呢？</p>
+<p>答案是肯定的，参见「31. 下一个排列的官方题解」，当我们已知了当前的一个排列，我们可以在 O(n)O(n) 的时间内计算出字典序下一个中更大的排列。这与 C++ 中的 next_permutation 函数功能相同。</p>
+<p>具体地，我们首先对给定的字符串中的字符进行排序，即可得到当前字符串的第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
+<p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
+<h3 id="复杂度分析-1">复杂度分析：</h3>
+<p>**时间复杂度：**O(n×n!)，其中 n 为给定字符串的长度。我们需要 O(nlogn) 的时间得到第一个排列，nextPermutation 函数的时间复杂度为 O(n)，我们至多执行该函数 O(n!) 次，因此总时间复杂度为 O(n×n!+nlogn)=O(n×n!)。</p>
+<p>**空间复杂度：**O(1)，注意返回值不计入空间复杂度。</p>
+<h3 id="代码-1">代码：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 存储所有排列的变量
+</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+        
+        <span class="c1">// string 转换为 char 数组，对其排序        
+</span><span class="c1"></span>        <span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+        
+        <span class="c1">// 循环计算下一个更大的排列
+</span><span class="c1"></span>        <span class="k">do</span> <span class="o">{</span>
+            <span class="n">ret</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
+        <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">nextPermutation</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
+        
+        <span class="c1">// 构造符合题目要求的数据格式 -&gt; String 数组
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">retArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">retArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">retArr</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// 求下一个更大的排列
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">nextPermutation</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// i 从 arr 的倒数第二个位置开始向前找，直到符合 arr[i] &lt; arr[i + 1] 为止
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">2</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">])</span> <span class="o">{</span>
+            <span class="n">i</span><span class="o">--;</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        
+        <span class="c1">// j 从 arr 的最后一个位置开始找，直到符合 arr[i] &lt; arr[j] 为止
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
+            <span class="n">j</span><span class="o">--;</span>
+        <span class="o">}</span>
+        
+        <span class="c1">// 交换 arr[i] 和 arr[j] 的值
+</span><span class="c1"></span>        <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+        
+        <span class="c1">// 将 arr 中下标从 i+1 开始，直到 arr 的末尾的元素反转
+</span><span class="c1"></span>        <span class="n">reverse</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// 交换 char 数组下标为 i 和 j 的值
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="c1">// 反转 char 数组的部分元素, 下标从 start 开始到末尾
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reverse</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">start</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+            <span class="n">left</span><span class="o">++;</span>
+            <span class="n">right</span><span class="o">--;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="三解法补充说明">三、解法补充说明</h1>
+<h2 id="dfs--剪枝">DFS + 剪枝</h2>
+<p>以 DFS+剪枝 这个解法来说，实际上你可以把问题分解为两个：</p>
+<ul>
+<li>如何列出字符串的全排列？</li>
+<li>如何对全排列去重？</li>
+</ul>
+<p>我们使用 DFS 生成全排列，并且在生成的过程中剪枝，提高计算效率。</p>
+<p><strong>DFS 生成全排列</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;1233&#34;</span><span class="o">;</span>
+        <span class="n">Solution</span> <span class="n">solution</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Solution</span><span class="o">();</span>
+
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">solution</span><span class="o">.</span><span class="na">permutation</span><span class="o">(</span><span class="n">str</span><span class="o">)));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1">// 示范如何使用 dfs 穷举字符串排列（不去重/剪枝）
+</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">chars</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
+        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">chars</span><span class="o">));</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
+            <span class="n">dfs</span><span class="o">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
+        <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
+        <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>此时在这个基础上进行改造，做剪枝处理，也就得到了最终的答案。</p>
+<h2 id="下一个排列">下一个排列</h2>
+<p>先给字符串进行排序，就可以得到第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
+<p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/</a></p>
 ]]></description>
 </item></channel>
 </rss>
