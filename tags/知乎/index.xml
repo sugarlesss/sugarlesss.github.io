@@ -1,10 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>news - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/news.html</link>
-        <description>news - 分类 - 無糖的小宇宙</description>
+        <title>知乎 - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.top/tags/%E7%9F%A5%E4%B9%8E.html</link>
+        <description>知乎 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/news.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E7%9F%A5%E4%B9%8E.html" rel="self" type="application/rss+xml" /><item>
     <title>知乎就月饼吃坏肚子致歉</title>
     <link>https://sugarless.top/posts/news/zhihu-apologizes-for-the-mooncake-incident.html</link>
     <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -46,14 +46,5 @@
     </figure>
 <!-- raw HTML omitted -->
 ]]></description>
-</item><item>
-    <title>再见 Windows7</title>
-    <link>https://sugarless.top/posts/news/goodbye-windows-7.html</link>
-    <pubDate>Tue, 14 Jan 2020 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/news/goodbye-windows-7.html</guid>
-    <description><![CDATA[<p>Microsoft 将于 2020 年 1 月 14 日对 Windows 7 终止支持</p>
-<p>一个时代落幕了。</p>
-<p></p>]]></description>
 </item></channel>
 </rss>
