@@ -224,6 +224,73 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/</a></p>
 ]]></description>
 </item><item>
+    <title>13、剑指 Offer 20. 表示数值的字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</link>
+    <pubDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<h4 id="剑指-offer-20-表示数值的字符串httpsleetcode-cncomproblemsbiao-shi-shu-zhi-de-zi-fu-chuan-lcof-难度中等"><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 20. 表示数值的字符串</a> 难度中等</h4>
+<p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
+<p><strong>数值</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>若干空格</li>
+<li>一个 <strong>小数</strong> 或者 <strong>整数</strong></li>
+<li>（可选）一个 <code>'e'</code> 或 <code>'E'</code> ，后面跟着一个 <strong>整数</strong></li>
+<li>若干空格</li>
+</ol>
+<p><strong>小数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>下述格式之一：
+<ol>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code></li>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code> ，后面再跟着至少一位数字</li>
+<li>一个点 <code>'.'</code> ，后面跟着至少一位数字</li>
+</ol>
+</li>
+</ol>
+<p><strong>整数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>至少一位数字</li>
+</ol>
+<p>部分<strong>数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;+100&quot;, &quot;5e2&quot;, &quot;-123&quot;, &quot;3.1416&quot;, &quot;-1E-16&quot;, &quot;0123&quot;]</code></li>
+</ul>
+<p>部分<strong>非数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：s = &quot;0&quot;
+输出：true
+</code></pre><p><strong>示例 2：</strong></p>
+<pre><code>输入：s = &quot;e&quot;
+输出：false
+</code></pre><p><strong>示例 3：</strong></p>
+<pre><code>输入：s = &quot;.&quot;
+输出：false
+</code></pre><p><strong>示例 4：</strong></p>
+<pre><code>输入：s = &quot;    .1  &quot;
+输出：true
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 20</code></li>
+<li><code>s</code> 仅含英文字母（大写和小写），数字（<code>0-9</code>），加号 <code>'+'</code> ，减号 <code>'-'</code> ，空格 <code>' '</code> 或者点 <code>'.'</code> 。</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21确定有限状态自动机">2.1、确定有限状态自动机</h2>
+<h3 id="核心思路">核心思路：</h3>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：</p>
+<p><strong>空间复杂度</strong>：</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java">
+</code></pre></div><h1 id="ref">REF</h1>
+]]></description>
+</item><item>
     <title>10、剑指 Offer 04. 二维数组中的查找</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html</link>
     <pubDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -998,98 +1065,6 @@ Output: [-1]
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/</a></p>
-]]></description>
-</item><item>
-    <title>5、剑指 Offer 51. 数组中的逆序对</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/5.html</link>
-    <pubDate>Fri, 27 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/5.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 51. 数组中的逆序对</a> 难度困难</p>
-<p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: [7,5,6,4]
-输出: 5
-</code></pre><p><strong>限制：</strong></p>
-<pre><code>0 &lt;= 数组长度 &lt;= 50000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21归并排序统计法">2.1、归并排序统计法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>求逆序对和归并排序有什么关系呢？关键就在于「归并」当中「并」的过程。</p>
-<p>归并排序体现了 “分而治之” 的算法思想，具体为：</p>
-<ul>
-<li><strong>分：</strong> 不断将数组从中点位置划分开（即二分法），将整个数组的排序问题转化为子数组的排序问题；</li>
-<li><strong>治：</strong> 划分到子数组长度为 1 时，开始向上合并，不断将 <strong>较短排序数组</strong> 合并为 <strong>较长排序数组</strong>，直至合并至原数组时完成排序；</li>
-</ul>
-<p><strong>合并阶段</strong> 本质上是 <strong>合并两个排序数组</strong> 的过程，而每当遇到 左子数组当前元素 &gt; 右子数组当前元素 时，意味着 「左子数组当前元素 至 末尾元素」 与 「右子数组当前元素」 构成了若干 「逆序对」 。</p>
-<p>举个例子来说明：假设我们有两个已排序的序列等待合并，分别是 L = { 8, 12, 16, 22, 100 } 和 R = { 9, 26, 55, 64, 91 } 。一开始我们用指针 <code>i = 0</code> 指向 L 的首部，<code>j = 0</code> 指向 R 的头部。记已经合并好的部分为 M 。</p>
-<pre><code>L = [8, 12, 16, 22, 100]   R = [9, 26, 55, 64, 91]  M = []
-     |                          |
-     i                          j
-</code></pre><p>我们发现 <code>i</code> 指向的元素小于 <code>j</code> 指向的元素，于是把 <code>i</code> 指向的元素放入答案，并把 <code>i</code> 后移一位。这个时候我们把左边的 8 加入了答案，此时右边没有数比 8 小。</p>
-<pre><code>L = [8, 12, 16, 22, 100]   R = [9, 26, 55, 64, 91]  M = [8]
-        |                       |
-        i                       j
-</code></pre><p>接着我们继续合并，此时<code>i</code>指向的元素（12）大于<code>j</code>指向的元素（9），那么我们可知<code>i</code>后面的元素也大于 9 ，也就是 12/16/22/100 都大于 9 ，由此我们就得到了 4 对逆序对。</p>
-<p>然后把 9 加入答案，此时 <code>i</code> 指向 12，<code>j</code> 指向 26 。</p>
-<pre><code>L = [8, 12, 16, 22, 100]   R = [9, 26, 55, 64, 91]  M = [8, 9]
-        |                          |
-        i                          j
-</code></pre><p>以此类推，等合并完这两个已排序的序列后，我们就算出了本轮的逆序对数量。</p>
-<p>因此，本题的关键是使用归并排序中的合并阶段来统计逆序对数量的。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
-<li><strong>时间复杂度 O(N * log N)：</strong> 其中 N 为数组长度；归并排序使用 O(N * log N) 时间；</li>
-<li><strong>空间复杂度 O(N)*O*(*N*) ：</strong> 辅助数组 tmp 占用 O(N) 大小的额外空间；</li>
-</ul>
-<h3 id="代码">代码：</h3>
-<p>为简化代码，「 当 j = r + 1 时 」 与 「 当 tmp[ i ] &lt;= tmp[ j ] 时 」 两判断项可合并。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="n">tmp</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">reversePairs</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">nums</span> <span class="o">=</span> <span class="n">nums</span><span class="o">;</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-        <span class="k">return</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 终止条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="o">)</span> <span class="k">return</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="c1">// 递归划分
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">left</span><span class="o">,</span> <span class="n">mid</span><span class="o">)</span> <span class="o">+</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">mid</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
-
-        <span class="c1">// 合并阶段
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-        <span class="c1">// 将 left~right 区间的值拷贝到 tmp 数组的对应区间中
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span>
-            <span class="n">tmp</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
-        <span class="c1">// 根据 tmp 中对应区间的值操作 nums 数组
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">left</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">mid</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span>
-                <span class="c1">// i 已经走到尽头
-</span><span class="c1"></span>                <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
-            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">right</span> <span class="o">+</span> <span class="n">1</span> <span class="o">||</span> <span class="n">tmp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">j</span><span class="o">])</span>
-                <span class="c1">// j 已经走到尽头 || j 位置的值比 i 位置的值大
-</span><span class="c1"></span>                <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">i</span><span class="o">++];</span>
-            <span class="k">else</span> <span class="o">{</span>
-                <span class="c1">// i 位置的值比 j 位置的值大
-</span><span class="c1"></span>                <span class="n">nums</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">j</span><span class="o">++];</span>
-                <span class="c1">// 统计逆序对（ 推论：i~mid 位置的数都比 j 位置的数大，因此此次统计到的逆序对数量为 mid-i+1 ）
-</span><span class="c1"></span>                <span class="n">result</span> <span class="o">+=</span> <span class="n">mid</span> <span class="o">-</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p>官方题解：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/</p>
-<p>评论区题解：</p>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/</a></p>
 ]]></description>
 </item></channel>
 </rss>

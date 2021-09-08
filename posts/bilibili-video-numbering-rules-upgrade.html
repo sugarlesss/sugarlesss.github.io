@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/bilibili-video-numbering-rules-upgrade.html"
-        },"genre": "posts","keywords": "B 站","wordcount":  2799 ,
+        },"genre": "posts","keywords": "B 站","wordcount":  2839 ,
         "url": "https:\/\/sugarless.top\/posts\/bilibili-video-numbering-rules-upgrade.html","datePublished": "2021-08-08T00:00:00+00:00","dateModified": "2021-08-08T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -117,7 +117,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html"><i class="far fa-folder fa-fw"></i>互联网观察</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-08">2021-08-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-08">2021-08-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2799 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-08">2021-08-08</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-08">2021-08-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2839 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id="/posts/bilibili-video-numbering-rules-upgrade.html" class="leancloud_visitors" data-flag-title="如何理解 B 站 AV 号规则升级为 BV 号这件事？">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -206,7 +206,7 @@
 </ul>
 <p>这两个链接可以跳转到同一个视频，而并没有显示视频不存在或 404 之类的错误提示。这意味着，实际上 AV 号仍然在新稿件上沿用。</p>
 <p>但似乎 1 亿后的 AV 号不再连续，似乎是开始随机抽取的，当然，也有可能是我没有发现其规则。</p>
-<p>根据知乎大神与评论区的解析，有人做了一个在线 BV 号转 AV 号的在线转换工具：https://b.gqxqd.cn/bv2av/</p>
+<p>根据知乎大神与评论区的解析，有人做了一个在线 BV 号转 AV 号的在线转换工具：<a href="https://b.gqxqd.cn/bv2av/" target="_blank" rel="noopener noreffer">https://b.gqxqd.cn/bv2av/</a></p>
 <p>目前新的 BV 号转出来的 AV 号已经不是连续的了，即 AV 号的生成已经换了新的方案。B 站从 AV 号升级到 BV 号后，旧的 AV 号是保留的，所以依然不影响爬取早期数据。那么为什么不让 8 位 AV 号之后的新 AV 号不再是连续的呢？多加几位数也是可以用下去的，如果 AV 号是 int 型存储的话应该还能存很久，毕竟能到2147483647 呢，再不行就用 bigint 呗…</p>
 <p>关于这点，我也不明白 B 站在想什么。</p>
 <h2 id="25破圈成长与去-acg-化">2.5、破圈成长与去 ACG 化</h2>
@@ -226,6 +226,7 @@
 <h2 id="27技术原因">2.7、技术原因</h2>
 <p>有可能是因为 MySQL 大表做自增 id 不利于分表和分布式，这点就不展开了。</p>
 <h1 id="三-bv-号规则与-base58--64-编码">三、 BV 号规则与 Base58 / 64 编码</h1>
+<p>在线 BV 号转 AV 号的在线转换工具：<a href="https://b.gqxqd.cn/bv2av/" target="_blank" rel="noopener noreffer">https://b.gqxqd.cn/bv2av/</a></p>
 <h2 id="31bv-号的规则">3.1、BV 号的规则</h2>
 <p>根据知乎大神与评论区的解析，BV 号的规律大概就是 AV 号异或某个随便选择的数，再随便加一个数，最后再转化成 58 进制（Base58），其数位顺序是打乱的，其索引代表 0～57 的 字母 / 数字 也是乱序的。</p>
 <p>既然提到了 Base58 ，也顺便提一下讲 Base64 吧。</p>
