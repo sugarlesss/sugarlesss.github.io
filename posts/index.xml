@@ -37,11 +37,15 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <h2 id="开发工具">开发工具</h2>
 <h3 id="1anotherredisdesktopmanager">1、AnotherRedisDesktopManager</h3>
 <p>一个 GUI Redis 桌面管理器，兼容 Linux、Windows、Mac。更重要的是，在加载大量的键时，它不会崩溃。</p>
-<p>Github：https://github.com/qishibo/AnotherRedisDesktopManager</p>
+<p>Github：<a href="https://github.com/qishibo/AnotherRedisDesktopManager" target="_blank" rel="noopener noreffer">https://github.com/qishibo/AnotherRedisDesktopManager</a></p>
 <h3 id="2switchhosts">2、SwitchHosts</h3>
 <p>SwitchHosts 是一个管理、切换多个 hosts 方案的工具。</p>
-<p>Github：https://github.com/oldj/SwitchHosts</p>
-<p>官网：https://swh.app/zh/</p>
+<p>Github：<a href="https://github.com/oldj/SwitchHosts" target="_blank" rel="noopener noreffer">https://github.com/oldj/SwitchHosts</a></p>
+<p>官网：<a href="https://swh.app/zh/" target="_blank" rel="noopener noreffer">https://swh.app/zh/</a></p>
+<h3 id="3docsify">3、docsify</h3>
+<p>docsify 可以快速帮你生成文档网站。不同于 GitBook、Hexo 的地方是它不会生成静态的 .html 文件，所有转换工作都是在运行时。如果你想要开始使用它，只需要创建一个 index.html 就可以开始编写文档并直接部署在 GitHub Pages。</p>
+<p>Github：<a href="https://github.com/docsifyjs/docsify/" target="_blank" rel="noopener noreffer">https://github.com/docsifyjs/docsify/</a></p>
+<p>官网：<a href="https://docsify.js.org/" target="_blank" rel="noopener noreffer">https://docsify.js.org/</a></p>
 <h2 id="ui-框架">UI 框架</h2>
 <h3 id="1layui">1、LayUI</h3>
 <p>对非专业前端的开发人员非常友好，组件丰富，极低门槛，开箱即用。</p>
@@ -66,6 +70,15 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <h3 id="3webstack">3、WebStack</h3>
 <p>网址导航主题</p>
 <p>Github：<a href="https://github.com/owen0o0/WebStack" target="_blank" rel="noopener noreffer">https://github.com/owen0o0/WebStack</a></p>
+<h2 id="hugo-主题">Hugo 主题</h2>
+<h3 id="1doit">1、DoIt</h3>
+<p>个人博客主题</p>
+<p>Github：<a href="https://github.com/HEIGE-PCloud/DoIt" target="_blank" rel="noopener noreffer">https://github.com/HEIGE-PCloud/DoIt</a></p>
+<p>Demo：<a href="https://hugodoit.pages.dev/zh-cn/" target="_blank" rel="noopener noreffer">https://hugodoit.pages.dev/zh-cn/</a></p>
+<h3 id="2hugo-theme-meme">2、hugo-theme-meme</h3>
+<p>个人博客主题</p>
+<p>Github：<a href="https://github.com/reuixiy/hugo-theme-meme" target="_blank" rel="noopener noreffer">https://github.com/reuixiy/hugo-theme-meme</a></p>
+<p>Demo：<a href="https://io-oi.me/" target="_blank" rel="noopener noreffer">https://io-oi.me/</a></p>
 <h2 id="javascript">JavaScript</h2>
 <h3 id="1introjs">1、intro.js</h3>
 <p>网站页面 / 新功能 引导流程插件</p>
