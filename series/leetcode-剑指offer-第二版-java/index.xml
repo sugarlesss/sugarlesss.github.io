@@ -4,7 +4,425 @@
         <link>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
         <description>LeetCode-剑指offer-第二版-java - 系列 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+    <title>13、剑指 Offer 20. 表示数值的字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</link>
+    <pubDate>Mon, 13 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<h4 id="剑指-offer-20-表示数值的字符串httpsleetcode-cncomproblemsbiao-shi-shu-zhi-de-zi-fu-chuan-lcof-难度中等"><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 20. 表示数值的字符串</a> 难度中等</h4>
+<p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
+<p><strong>数值</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>若干空格</li>
+<li>一个 <strong>小数</strong> 或者 <strong>整数</strong></li>
+<li>（可选）一个 <code>'e'</code> 或 <code>'E'</code> ，后面跟着一个 <strong>整数</strong></li>
+<li>若干空格</li>
+</ol>
+<p><strong>小数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>下述格式之一：
+<ol>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code></li>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code> ，后面再跟着至少一位数字</li>
+<li>一个点 <code>'.'</code> ，后面跟着至少一位数字</li>
+</ol>
+</li>
+</ol>
+<p><strong>整数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>至少一位数字</li>
+</ol>
+<p>部分<strong>数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;+100&quot;, &quot;5e2&quot;, &quot;-123&quot;, &quot;3.1416&quot;, &quot;-1E-16&quot;, &quot;0123&quot;]</code></li>
+</ul>
+<p>部分<strong>非数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<pre><code>输入：s = &quot;0&quot;
+输出：true
+</code></pre><p><strong>示例 2：</strong></p>
+<pre><code>输入：s = &quot;e&quot;
+输出：false
+</code></pre><p><strong>示例 3：</strong></p>
+<pre><code>输入：s = &quot;.&quot;
+输出：false
+</code></pre><p><strong>示例 4：</strong></p>
+<pre><code>输入：s = &quot;    .1  &quot;
+输出：true
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 20</code></li>
+<li><code>s</code> 仅含英文字母（大写和小写），数字（<code>0-9</code>），加号 <code>'+'</code> ，减号 <code>'-'</code> ，空格 <code>' '</code> 或者点 <code>'.'</code> 。</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21确定有限状态自动机官方题解">2.1、确定有限状态自动机（官方题解）</h2>
+<h3 id="核心思路">核心思路</h3>
+<p><strong>预备知识</strong></p>
+<p>确定有限状态自动机（以下简称「自动机」）是一类计算模型。它包含一系列状态，这些状态中：</p>
+<p>有一个特殊的状态，被称作「初始状态」。
+还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。
+起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」。</p>
+<p>注意：如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」。</p>
+<p>一个自动机，总能够回答某种形式的「对于给定的输入字符串 S，判断其是否满足条件 P」的问题。在本题中，条件 P 即为「构成合法的表示数值的字符串」。</p>
+<p>自动机驱动的编程，可以被看做一种暴力枚举方法的延伸：它穷尽了在任何一种情况下，对应任何的输入，需要做的事情。</p>
+<p>自动机在计算机科学领域有着广泛的应用。在算法领域，它与大名鼎鼎的字符串查找算法「KMP」算法有着密切的关联；在工程领域，它是实现「正则表达式」的基础。</p>
+<p><strong>问题描述</strong></p>
+<p>在 <a href="https://en.cppreference.com/w/cpp/language/floating_literal" target="_blank" rel="noopener noreffer">C++ 文档</a> 中，描述了一个合法的数值字符串应当具有的格式。具体而言，它包含以下部分：</p>
+<p>符号位，即 ++、-− 两种符号
+整数部分，即由若干字符 0-90−9 组成的字符串
+小数点
+小数部分，其构成与整数部分相同
+指数部分，其中包含开头的字符 \text{e}e（大写小写均可）、可选的符号位，和整数部分
+相比于 C++ 文档而言，本题还有一点额外的不同，即允许字符串首末两端有一些额外的空格。</p>
+<p>在上面描述的五个部分中，每个部分都不是必需的，但也受一些额外规则的制约，如：</p>
+<p>如果符号位存在，其后面必须跟着数字或小数点。
+小数点的前后两侧，至少有一侧是数字。</p>
+<p><strong>思路与算法</strong></p>
+<p>根据上面的描述，现在可以定义自动机的「状态集合」了。那么怎么挖掘出所有可能的状态呢？一个常用的技巧是，用「当前处理到字符串的哪个部分」当作状态的表述。根据这一技巧，不难挖掘出所有状态：</p>
+<p>起始的空格
+符号位
+整数部分
+左侧有整数的小数点
+左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
+小数部分
+字符 e
+指数部分的符号位
+指数部分的整数部分
+末尾的空格
+下一步是找出「初始状态」和「接受状态」的集合。根据题意，「初始状态」应当为状态 1，而「接受状态」的集合则为状态 3、状态 4、状态 6、状态 9 以及状态 10。换言之，字符串的末尾要么是空格，要么是数字，要么是小数点，但前提是小数点的前面有数字。</p>
+<p>最后，需要定义「转移规则」。结合数值字符串应当具备的格式，将自动机转移的过程以图解的方式表示出来：</p>
+<a class="lightgallery" href="/post_images/image-20210913110127164.png" title="/post_images/image-20210913110127164.png" data-thumbnail="/post_images/image-20210913110127164.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>比较上图与「预备知识」一节中对自动机的描述，可以看出有一点不同：</p>
+<p>我们没有单独地考虑每种字符，而是划分为若干类。由于全部 10 个数字字符彼此之间都等价，因此只需定义一种统一的「数字」类型即可。对于正负号也是同理。
+在实际代码中，我们需要处理转移失败的情况。例如当位于状态 1（起始空格）时，没有对应字符 e 的状态。为了处理这种情况，我们可以创建一个特殊的拒绝状态。如果当前状态下没有对应读入字符的「转移规则」，我们就转移到这个特殊的拒绝状态。一旦自动机转移到这个特殊状态，我们就可以立即判定该字符串不「被接受」。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)，其中 n 为字符串的长度。我们需要遍历字符串的每个字符，其中状态转移所需的时间复杂度为 O(1)。</p>
+<p><strong>空间复杂度</strong>：O(1)，只需要创建固定大小的状态转移表。</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 有限状态集合
+</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">State</span> <span class="o">{</span>
+        <span class="c1">// 起始的空格
+</span><span class="c1"></span>        <span class="n">STATE_INITIAL</span><span class="o">,</span>
+        <span class="c1">// 整数部分符号位
+</span><span class="c1"></span>        <span class="n">STATE_INT_SIGN</span><span class="o">,</span>
+        <span class="c1">// 整数部分
+</span><span class="c1"></span>        <span class="n">STATE_INTEGER</span><span class="o">,</span>
+        <span class="c1">// 左侧有整数的小数点
+</span><span class="c1"></span>        <span class="n">STATE_POINT</span><span class="o">,</span>
+        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
+</span><span class="c1"></span>        <span class="n">STATE_POINT_WITHOUT_INT</span><span class="o">,</span>
+        <span class="c1">// 小数部分
+</span><span class="c1"></span>        <span class="n">STATE_FRACTION</span><span class="o">,</span>
+        <span class="c1">// 字符 e
+</span><span class="c1"></span>        <span class="n">STATE_EXP</span><span class="o">,</span>
+        <span class="c1">// 指数部分的符号位
+</span><span class="c1"></span>        <span class="n">STATE_EXP_SIGN</span><span class="o">,</span>
+        <span class="c1">// 指数部分的整数部分
+</span><span class="c1"></span>        <span class="n">STATE_EXP_NUMBER</span><span class="o">,</span>
+        <span class="c1">// 末尾的空格
+</span><span class="c1"></span>        <span class="n">STATE_END</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 字符类型集合
+</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">CharType</span> <span class="o">{</span>
+        <span class="c1">// 数字
+</span><span class="c1"></span>        <span class="n">CHAR_NUMBER</span><span class="o">,</span>
+        <span class="c1">// 字符 e
+</span><span class="c1"></span>        <span class="n">CHAR_EXP</span><span class="o">,</span>
+        <span class="c1">// 小数点
+</span><span class="c1"></span>        <span class="n">CHAR_POINT</span><span class="o">,</span>
+        <span class="c1">// 正负号
+</span><span class="c1"></span>        <span class="n">CHAR_SIGN</span><span class="o">,</span>
+        <span class="c1">// 空格
+</span><span class="c1"></span>        <span class="n">CHAR_SPACE</span><span class="o">,</span>
+        <span class="c1">// 非法字符
+</span><span class="c1"></span>        <span class="n">CHAR_ILLEGAL</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 状态机
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;</span> <span class="n">transfer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;();</span>
+
+
+        <span class="c1">// 空格（初始状态） 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">initialMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="c1">// 空格
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">);</span>
+            <span class="c1">// 整数
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="c1">// 小数点
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+            <span class="c1">// 正负号
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">,</span> <span class="n">initialMap</span><span class="o">);</span>
+
+
+        <span class="c1">// 整数部分符号位 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">intSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">,</span> <span class="n">intSignMap</span><span class="o">);</span>
+
+
+        <span class="c1">// 整数部分 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">integerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">,</span> <span class="n">integerMap</span><span class="o">);</span>
+
+        <span class="c1">// 左侧有整数的小数点 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">,</span> <span class="n">pointMap</span><span class="o">);</span>
+
+        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分) 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointWithoutIntMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">,</span> <span class="n">pointWithoutIntMap</span><span class="o">);</span>
+
+        <span class="c1">// 小数部分
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">fractionMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">,</span> <span class="n">fractionMap</span><span class="o">);</span>
+
+        <span class="c1">// 字符 e 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">,</span> <span class="n">expMap</span><span class="o">);</span>
+
+        <span class="c1">// 指数部分的符号位 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">,</span> <span class="n">expSignMap</span><span class="o">);</span>
+
+        <span class="c1">// 指数部分的整数部分 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expNumberMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">,</span> <span class="n">expNumberMap</span><span class="o">);</span>
+
+        <span class="c1">// 末尾的空格 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">endMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">,</span> <span class="n">endMap</span><span class="o">);</span>
+
+
+        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="c1">// 初始状态
+</span><span class="c1"></span>        <span class="n">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">;</span>
+
+        <span class="c1">// 循环处理每个字符, 模拟状态转移
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 获取当前字符的类型
+</span><span class="c1"></span>            <span class="n">CharType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">toCharType</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+
+            <span class="k">if</span> <span class="o">(!</span><span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 获取字符的类型
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">CharType</span> <span class="nf">toCharType</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_ILLEGAL</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22确定有限状态自动机评论区">2.2、确定有限状态自动机（评论区）</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>本题使用有限状态自动机。根据字符类型和合法数值的特点，先定义状态，再画出状态转移图，最后编写代码即可。</p>
+<p><strong>字符类型</strong>：</p>
+<p>空格 「 」、数字「 0—9 」 、正负号 「 +− 」 、小数点 「 . 」 、幂符号 「 eE 」 。</p>
+<p><strong>状态定义</strong>：</p>
+<p>按照字符串从左到右的顺序，定义以下 9 种状态。</p>
+<ul>
+<li>开始的空格</li>
+<li>幂符号前的正负号</li>
+<li>小数点前的数字</li>
+<li>小数点、小数点后的数字</li>
+<li>当小数点前为空格时，小数点、小数点后的数字</li>
+<li>幂符号</li>
+<li>幂符号后的正负号</li>
+<li>幂符号后的数字</li>
+<li>结尾的空格</li>
+</ul>
+<p><strong>结束状态</strong>：</p>
+<p>合法的结束状态有 2, 3, 7, 8 。</p>
+<a class="lightgallery" href="/post_images/image-20210913105508562.png" title="/post_images/image-20210913105508562.png" data-thumbnail="/post_images/image-20210913105508562.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：其中 N 为字符串 s 的长度，判断需遍历字符串，每轮状态转移的使用 O(1) 时间。</p>
+<p><strong>空间复杂度</strong>：states 和 p 使用常数大小的额外空间。</p>
+<h3 id="code-1">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">HashMap</span><span class="o">[]</span> <span class="n">states</span> <span class="o">=</span> <span class="o">{</span>
+                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 0. start with &#39;blank&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 1. &#39;sign&#39; before &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 2. &#39;digit&#39; before &#39;dot&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>              <span class="c1">// 3. &#39;digit&#39; after &#39;dot&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 4. &#39;digit&#39; after &#39;dot&#39; (‘blank’ before &#39;dot&#39;)
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 5. &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 6. &#39;sign&#39; after &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 7. &#39;digit&#39; after &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}}</span>                                         <span class="c1">// 8. end with &#39;blank&#39;
+</span><span class="c1"></span>        <span class="o">};</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">char</span> <span class="n">t</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;d&#39;</span><span class="o">;</span>       <span class="c1">// digit
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;s&#39;</span><span class="o">;</span>  <span class="c1">// sign
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;e&#39;</span><span class="o">;</span>  <span class="c1">// e or E
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>    <span class="c1">// dot, blank
+</span><span class="c1"></span>            <span class="k">else</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;?&#39;</span><span class="o">;</span>                           <span class="c1">// unknown
+</span><span class="c1"></span>            <span class="k">if</span><span class="o">(!</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">containsKey</span><span class="o">(</span><span class="n">t</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">2</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">3</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">7</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">8</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="23常规解法">2.3、常规解法</h2>
+<h3 id="核心思路-2">核心思路</h3>
+<blockquote>
+<p>什么有限状态自动机的我不太懂，常规解法可以做就不想搞这种可能只有这道题会用到的解法。</p>
+</blockquote>
+<p>我首先想到的是判断否 false 而不是判断是 true，毕竟有这么多条件满足才能判断 true，但是只要有一个条件不满足就可以判断 false，最后代码的效率也还可以，那么接下来进入正题吧：</p>
+<ol>
+<li>
+<p>首先定义了四个flag，对应四种字符</p>
+<ul>
+<li>是否有数字：hasNum</li>
+<li>是否有e：hasE</li>
+<li>是否有正负符号：hasSign</li>
+<li>是否有点：hasDot</li>
+</ul>
+</li>
+<li>
+<p>其余还定义了字符串长度 n 以及字符串索引 index</p>
+</li>
+<li>
+<p>先处理一下开头的空格，index 相应的后移</p>
+</li>
+<li>
+<p>然后进入循环，遍历字符串</p>
+<ul>
+<li>如果当前字符 c 是数字：将 hasNum 置为 true ，index 往后移动一直到非数字或遍历到末尾位置；如果已遍历到末尾 ( index == n ) ，结束循环</li>
+<li>如果当前字符 c 是 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ：如果 e 已经出现或者当前 e 之前没有出现过数字，返回 fasle ；否则令 hasE = true ，并且将其他 3 个 flag 全部置为 false ，因为要开始遍历 e 后面的新数字了</li>
+<li>如果当前字符 c 是 + 或-：如果已经出现过 + 或 - 或者已经出现过数字或者已经出现过 &lsquo;.&rsquo; ，返回 flase ；否则令 hasSign = true</li>
+<li>如果当前字符 c 是 &lsquo;.&rsquo; ：如果已经出现过 &lsquo;.&rsquo; 或者已经出现过 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ，返回 false ；否则令 hasDot = true</li>
+<li>如果当前字符 c 是 ' ' ：结束循环，因为可能是末尾的空格了，但也有可能是字符串中间的空格，在循环外继续处理</li>
+<li>如果当前字符 c 是除了上面 5 种情况以外的其他字符，直接返回 false</li>
+</ul>
+</li>
+<li>
+<p>处理空格，index 相应的后移</p>
+</li>
+<li>
+<p>如果当前索引 index 与字符串长度相等，说明遍历到了末尾，但是还要满足 hasNum 为 true 才可以最终返回 true ，因为如果字符串里全是符号没有数字的话是不行的，而且 e 后面没有数字也是不行的，但是没有符号是可以的，所以 4 个 flag 里只要判断一下 hasNum 就行；所以最后返回的是 hasNum &amp;&amp; index == n</p>
+</li>
+<li>
+<p>如果字符串中间有空格，按以上思路是无法遍历到末尾的，index 不会与 n 相等，返回的就是 false</p>
+</li>
+</ol>
+<h3 id="复杂度分析-2">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)</p>
+<p><strong>空间复杂度</strong>：O(1)</p>
+<h3 id="code-2">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasE</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">){</span>
+            <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">){</span>
+                <span class="n">index</span><span class="o">++;</span>
+                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">){</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasE</span> <span class="o">||</span> <span class="o">!</span><span class="n">hasNum</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasE</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasSign</span> <span class="o">||</span> <span class="n">hasNum</span> <span class="o">||</span> <span class="n">hasDot</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasDot</span> <span class="o">||</span> <span class="n">hasE</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">){</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="n">hasNum</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/</a></p>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/</a></p>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/</a></p>
+]]></description>
+</item><item>
     <title>12、剑指 Offer 10- I. 斐波那契数列</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html</link>
     <pubDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -929,216 +1347,6 @@ Output: [-1]
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/</a></p>
-]]></description>
-</item><item>
-    <title>3、剑指 Offer 38. 字符串的排列</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/3.html</link>
-    <pubDate>Sun, 22 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/3.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 38. 字符串的排列</a></p>
-<p>难度中等403收藏分享切换为英文接收动态反馈</p>
-<p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
-<p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
-<p><strong>示例:</strong></p>
-<pre><code>输入：s = &quot;abc&quot;
-输出：[&quot;abc&quot;,&quot;acb&quot;,&quot;bac&quot;,&quot;bca&quot;,&quot;cab&quot;,&quot;cba&quot;]
-</code></pre><p><strong>限制：</strong></p>
-<pre><code>1 &lt;= s 的长度 &lt;= 8
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21回溯---dfs--剪枝">2.1、回溯  / DFS + 剪枝</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>我们将这个问题看作有 n 个排列成一行的空位，我们需要从左往右依次填入题目给定的 n 个字符，每个字符只能使用一次。首先可以想到穷举的算法，即从左往右每一个空位都依次尝试填入一个字符，看是否能填完这 n 个空位，编程实现时，我们可以用「回溯法」来模拟这个过程，也就是 DFS 。</p>
-<p>按照题目中给定的要求，生成字符串的所有排列之后，里面不能有重复元素，也就是说我们需要按照这个规则来进行剪枝，减少不必要的运算。</p>
-<p>对于一个长度为 n 的字符串（假设字符互不重复），其排列方案数共有：n×(n−1)×(n−2)…×2×1</p>
-<p><strong>排列方案的生成：</strong></p>
-<p>通过字符交换，先固定第 1 位字符（ n 种情况）、再固定第 2 位字符（ n-1 种情况）、&hellip; 、最后固定第 n 位字符（ 1 种情况）。</p>
-<p></p>
-<p><strong>重复排列方案与剪枝：</strong></p>
-<p>当字符串存在重复字符时，排列方案中也存在重复的排列方案。为排除重复方案，需在固定某位字符时，保证 “每种字符只在此位固定一次” ，即遇到重复字符时不交换，直接跳过。从 DFS 角度看，此操作称为 “剪枝” 。</p>
-<p></p>
-<p><strong>递归解析：</strong></p>
-<ul>
-<li>终止条件： 当 x = len(chars) - 1 时，代表所有位已固定（最后一位只有 11 种情况），则将当前组合 chars 转化为字符串并加入 result ，并返回；</li>
-<li>递推参数： 当前固定位 x ；</li>
-<li>递推工作： 初始化一个 Set ，用于排除重复的字符；将第 x 位字符与 i ∈ [ x, len(chars) ] 字符分别交换，并进入下层递归；
-<ul>
-<li>剪枝： 若 chars[i] 在 Set 中，代表其是重复字符，因此 “剪枝” ；</li>
-<li>将 chars[i] 加入 Set ，以便之后遇到重复字符时剪枝；</li>
-<li>固定字符： 将字符 chars[i] 和 chars<i class="far fa-check-square fa-fw"></i> 交换，即固定 chars[i] 为当前位字符；</li>
-<li>开启下层递归： 调用 dfs(x + 1) ，即开始固定第 x + 1 个字符；</li>
-<li>还原交换： 将字符 chars[i] 和 chars<i class="far fa-check-square fa-fw"></i> 交换（还原之前的交换）；</li>
-</ul>
-</li>
-</ul>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
-<li>时间复杂度 O(N!N)： N 为字符串 s 的长度；时间复杂度和字符串排列的方案数成线性关系，方案数为 N×(N−1)×(N−2)…×2×1 ，即复杂度为 O(N!) ；字符串拼接操作 join() 使用 O(N) ；因此总体时间复杂度为 O(N! × N) 。</li>
-<li>空间复杂度 O(N^2) ： 全排列的递归深度为 N ，系统累计使用栈空间大小为 O(N)；递归中辅助 Set 累计存储的字符数量最多为 N+(N−1)+&hellip;+2+1=(N+1)N/2 ，即占用 O(N^2) 的额外空间。</li>
-</ul>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 回溯法 / dfs + 剪枝
-</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
-    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">chars</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
-        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
-    <span class="o">}</span>
-
-    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">chars</span><span class="o">));</span>      <span class="c1">// 添加排列方案
-</span><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">chars</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="k">continue</span><span class="o">;</span> <span class="c1">// 重复，因此剪枝
-</span><span class="c1"></span>            <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">chars</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>                      <span class="c1">// 交换，将 c[i] 固定在第 x 位
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>                      <span class="c1">// 开启固定第 x + 1 位字符
-</span><span class="c1"></span>            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>                      <span class="c1">// 恢复交换
-</span><span class="c1"></span>        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">char</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
-        <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
-        <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22下一个排列">2.2、下一个排列</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>我们可以这样思考：当我们已知了当前的一个排列，我们能不能快速得到字典序中下一个更大的排列呢？</p>
-<p>答案是肯定的，参见「31. 下一个排列的官方题解」，当我们已知了当前的一个排列，我们可以在 O(n)O(n) 的时间内计算出字典序下一个中更大的排列。这与 C++ 中的 next_permutation 函数功能相同。</p>
-<p>具体地，我们首先对给定的字符串中的字符进行排序，即可得到当前字符串的第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
-<p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p>**时间复杂度：**O(n×n!)，其中 n 为给定字符串的长度。我们需要 O(nlogn) 的时间得到第一个排列，nextPermutation 函数的时间复杂度为 O(n)，我们至多执行该函数 O(n!) 次，因此总时间复杂度为 O(n×n!+nlogn)=O(n×n!)。</p>
-<p>**空间复杂度：**O(1)，注意返回值不计入空间复杂度。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 存储所有排列的变量
-</span><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
-        
-        <span class="c1">// string 转换为 char 数组，对其排序        
-</span><span class="c1"></span>        <span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
-        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
-        
-        <span class="c1">// 循环计算下一个更大的排列
-</span><span class="c1"></span>        <span class="k">do</span> <span class="o">{</span>
-            <span class="n">ret</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
-        <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">nextPermutation</span><span class="o">(</span><span class="n">arr</span><span class="o">));</span>
-        
-        <span class="c1">// 构造符合题目要求的数据格式 -&gt; String 数组
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">retArr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">retArr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">ret</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">retArr</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="c1">// 求下一个更大的排列
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">nextPermutation</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// i 从 arr 的倒数第二个位置开始向前找，直到符合 arr[i] &lt; arr[i + 1] 为止
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">2</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">])</span> <span class="o">{</span>
-            <span class="n">i</span><span class="o">--;</span>
-        <span class="o">}</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-        
-        <span class="c1">// j 从 arr 的最后一个位置开始找，直到符合 arr[i] &lt; arr[j] 为止
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
-            <span class="n">j</span><span class="o">--;</span>
-        <span class="o">}</span>
-        
-        <span class="c1">// 交换 arr[i] 和 arr[j] 的值
-</span><span class="c1"></span>        <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
-        
-        <span class="c1">// 将 arr 中下标从 i+1 开始，直到 arr 的末尾的元素反转
-</span><span class="c1"></span>        <span class="n">reverse</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="c1">// 交换 char 数组下标为 i 和 j 的值
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-        <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="c1">// 反转 char 数组的部分元素, 下标从 start 开始到末尾
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">reverse</span><span class="o">(</span><span class="kt">char</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">start</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">start</span><span class="o">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
-            <span class="n">left</span><span class="o">++;</span>
-            <span class="n">right</span><span class="o">--;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="三解法补充说明">三、解法补充说明</h1>
-<h2 id="dfs--剪枝">DFS + 剪枝</h2>
-<p>以 DFS+剪枝 这个解法来说，实际上你可以把问题分解为两个：</p>
-<ul>
-<li>如何列出字符串的全排列？</li>
-<li>如何对全排列去重？</li>
-</ul>
-<p>我们使用 DFS 生成全排列，并且在生成的过程中剪枝，提高计算效率。</p>
-<p><strong>DFS 生成全排列</strong></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&#34;1233&#34;</span><span class="o">;</span>
-        <span class="n">Solution</span> <span class="n">solution</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Solution</span><span class="o">();</span>
-
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">solution</span><span class="o">.</span><span class="na">permutation</span><span class="o">(</span><span class="n">str</span><span class="o">)));</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// 示范如何使用 dfs 穷举字符串排列（不去重/剪枝）
-</span><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
-    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">chars</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">();</span>
-        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toArray</span><span class="o">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">result</span><span class="o">.</span><span class="na">size</span><span class="o">()]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">chars</span><span class="o">));</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">index</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
-            <span class="n">dfs</span><span class="o">(</span><span class="n">index</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-            <span class="n">swap</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">index</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">char</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">];</span>
-        <span class="n">chars</span><span class="o">[</span><span class="n">a</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">];</span>
-        <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>此时在这个基础上进行改造，做剪枝处理，也就得到了最终的答案。</p>
-<h2 id="下一个排列">下一个排列</h2>
-<p>先给字符串进行排序，就可以得到第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
-<p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
-<h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/</a></p>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/</a></p>
 ]]></description>
 </item></channel>
 </rss>
