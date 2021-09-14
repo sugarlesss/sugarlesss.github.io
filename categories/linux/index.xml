@@ -48,7 +48,7 @@ net.ipv4.tcp_fin_timeout</p>
 <p>这里假设你已经自行编译安装好了 nginx，下面我们来创建一个 nginx.service 文件</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vi /etc/systemd/system/nginx.service
 </code></pre></div><p>内容如下：</p>
-<pre><code class="language-conf" data-lang="conf">[Unit]
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[Unit]
 Description=Nginx - high performance web server
 After=network.target
  
@@ -79,7 +79,7 @@ systemctl disable nginx
 <p>Systemd 服务的内容主要分为三个部分，控制单元（unit）的定义、服务（service）的定义、以及安装（install）的定义。</p>
 <h2 id="21控制单元-unit">2.1、控制单元 unit</h2>
 <p>从上面的例子中我们看到 Unit 内容如下：</p>
-<pre><code class="language-conf" data-lang="conf">[Unit]
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[Unit]
 Description=Nginx - high performance web server
 After=network.target
 </code></pre><ul>
@@ -88,7 +88,7 @@ After=network.target
 <li>network.target 代表有网路，network-online.target 代表一个连通着的网络。</li>
 </ul>
 <h2 id="22服务本体-service">2.2、服务本体 service</h2>
-<pre><code class="language-conf" data-lang="conf">[Service]
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[Service]
 Type=forking
 ExecStart=/usr/local/nginx/sbin/nginx
 ExecReload=/usr/local/nginx/sbin/nginx -s reload
@@ -107,7 +107,7 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 <li>ExecReload：这个不是必需，如果不写则你的 service 就不支持 restart 命令。ExecStart 和 ExecStop 是必须要有的。</li>
 </ul>
 <h2 id="23安装部分-install">2.3、安装部分 install</h2>
-<pre><code class="language-conf" data-lang="conf">[Install] WantedBy=multi-user.target
+<pre tabindex="0"><code class="language-conf" data-lang="conf">[Install] WantedBy=multi-user.target
 </code></pre><ul>
 <li>WantedBy：运行级别 / 设置服务被谁装载，一般设置为 multi-user.target（从 Centos7 以后 bai 采用 target 概念来定义运行级别，multi-user.target 是第三级别）</li>
 </ul>
@@ -429,7 +429,7 @@ crontab -e
 <span class="c1">#列出已经存在的crontab任务</span>
 crontab -l
 </code></pre></div><h1 id="二demo">二、Demo</h1>
-<pre><code class="language-contab" data-lang="contab">#每天7:00重启
+<pre tabindex="0"><code class="language-contab" data-lang="contab">#每天7:00重启
 0 7 * * * reboot
 
 #每周六凌晨4:00重启

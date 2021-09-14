@@ -32,7 +32,7 @@
 <h2 id="2添加-webhook">2）添加 WebHook</h2>
 <p></p>
 <h2 id="3配置执行命令">3）配置执行命令</h2>
-<pre><code>cd /www/wwwroot/sugarlesss.github.io;
+<pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
 git pull;
 </code></pre><p></p>
 <p>配置完成后，就可以看到一条 webhook 规则了。</p>

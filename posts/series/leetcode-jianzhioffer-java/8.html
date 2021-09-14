@@ -164,21 +164,21 @@
         alt="/post_images/tree.jpg"
         title="img"
     /></p>
-<pre><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+<pre tabindex="0"><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
 </code></pre><p><strong>示例 2:</strong></p>
-<pre><code>Input: preorder = [-1], inorder = [-1]
+<pre tabindex="0"><code>Input: preorder = [-1], inorder = [-1]
 Output: [-1]
 </code></pre><p><strong>限制：</strong></p>
-<pre><code>0 &lt;= 节点个数 &lt;= 5000
+<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 5000
 </code></pre><p><strong>注意</strong>：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/</p>
 <h1 id="二解法">二、解法</h1>
 <h2 id="21递归法">2.1、递归法</h2>
 <h3 id="核心思想">核心思想：</h3>
 <p>对于任意一颗树而言，前序遍历的形式总是如下所示，且根节点总是前序遍历中的第一个节点。</p>
-<pre><code>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+<pre tabindex="0"><code>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
 </code></pre><p>而中序遍历的形式总是</p>
-<pre><code>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+<pre tabindex="0"><code>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
 </code></pre><p>只要我们在中序遍历中定位到根节点，那么我们就可以分别知道左子树和右子树中的节点数目。由于同一颗子树的前序遍历和中序遍历的长度显然是相同的，因此我们就可以对应到前序遍历的结果中，对上述形式中的所有左右括号进行定位。</p>
 <p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
 <p><strong>细节</strong></p>

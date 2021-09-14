@@ -28,7 +28,7 @@ crontab -e
 <span class="c1">#列出已经存在的crontab任务</span>
 crontab -l
 </code></pre></div><h1 id="二demo">二、Demo</h1>
-<pre><code class="language-contab" data-lang="contab">#每天7:00重启
+<pre tabindex="0"><code class="language-contab" data-lang="contab">#每天7:00重启
 0 7 * * * reboot
 
 #每周六凌晨4:00重启

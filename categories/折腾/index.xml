@@ -32,7 +32,7 @@
 <h2 id="2添加-webhook">2）添加 WebHook</h2>
 <p></p>
 <h2 id="3配置执行命令">3）配置执行命令</h2>
-<pre><code>cd /www/wwwroot/sugarlesss.github.io;
+<pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
 git pull;
 </code></pre><p></p>
 <p>配置完成后，就可以看到一条 webhook 规则了。</p>
@@ -582,7 +582,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>本操作只在 windows 平台下实践过，其他平台可自行尝试。</p>
 <p>先安装 git bash ，官网：https://git-scm.com/downloads</p>
 <p>确定 hugo 博客的根目录：public 的上级目录就是你博客的根目录，我的根目录是 D:\blog\src</p>
-<pre><code>D:\BLOG\SRC
+<pre tabindex="0"><code>D:\BLOG\SRC
 │  config.toml
 ├─archetypes 
 ├─assets
@@ -665,9 +665,9 @@ vim /usr/lib/systemd/system/frp.service
 <span class="o">[</span>Install<span class="o">]</span>
 <span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
 </code></pre></div><p>重载配置文件，使之立即生效。</p>
-<pre><code>systemctl daemon-reload
+<pre tabindex="0"><code>systemctl daemon-reload
 </code></pre><p>systemctl 命令：</p>
-<pre><code>systemctl start frp #启动
+<pre tabindex="0"><code>systemctl start frp #启动
 systemctl stop frp #关闭
 systemctl restart frp #重启
 systemctl status frp #当前状态
@@ -696,7 +696,7 @@ systemctl disable frp #取消开机自启动
 <span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
 </code></pre></div><p>修改完 frp 服务端的配置文件后，需要检查服务器端口是否开放，上面的配置文件用到了 6000/7000/8080/10089 这 4 个端口。</p>
 <p>重启 frp 服务端</p>
-<pre><code>systemctl restart frp
+<pre tabindex="0"><code>systemctl restart frp
 </code></pre><p>web 配置项用于向外网提供本地 web 服务、ssh 配置项用于连接本地虚拟机的 shell、tcp 配置项用于转发 10889 端口消息给本机。</p>
 <p>需要注意的是，以上配置中，web/ssh/tcp 的字眼并非是标准语法，而是我起的一个备注而已。</p>
 <h1 id="四下载最新版本的-frp-到本机">四、下载最新版本的 frp 到本机</h1>

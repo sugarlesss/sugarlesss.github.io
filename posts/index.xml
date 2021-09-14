@@ -4,7 +4,7 @@
         <link>https://sugarless.top/posts.html</link>
         <description>所有文章 | 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 13 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/posts.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 14 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/posts.html" rel="self" type="application/rss+xml" /><item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
     <link>https://sugarless.top/posts/mark/1.html</link>
     <pubDate>Tue, 31 Dec 2019 00:00:00 &#43;0000</pubDate><author>
@@ -139,6 +139,12 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <h3 id="2thefuture-书籍搜索">2、thefuture 书籍搜索</h3>
 <p>小站，知名度不高，但试着搜索了几本书，感觉还挺好用。</p>
 <p>官网：<a href="https://bks.thefuture.top" target="_blank" rel="noopener noreffer">https://bks.thefuture.top</a></p>
+<h3 id="3z-library">3、z-library</h3>
+<p>可以找到不少英文原版书籍</p>
+<p>官网：<a href="https://zh.z-lib.org/" target="_blank" rel="noopener noreffer">https://zh.z-lib.org/</a></p>
+<h3 id="4全国图书馆参考咨询联盟">4、全国图书馆参考咨询联盟</h3>
+<p>由中国公共、教育、科技系统 图书馆合作建立的公益性服务机构，能找到不少书籍，但下载比较麻烦。</p>
+<p>官网：<a href="http://www.ucdrs.superlib.net/" target="_blank" rel="noopener noreffer">http://www.ucdrs.superlib.net/</a></p>
 <h2 id="生产力">生产力</h2>
 <h3 id="1gitmind-在线思维导图">1、GitMind 在线思维导图</h3>
 <p><a href="https://gitmind.cn" target="_blank" rel="noopener noreffer">https://gitmind.cn</a></p>
@@ -180,6 +186,44 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <h3 id="2西窗烛--古诗">2、西窗烛 / 古诗</h3>
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
 </item><item>
+    <title>14、剑指 Offer 20. 表示数值的字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html</link>
+    <pubDate>Tue, 14 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
+<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
+输出: 3 
+解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
+</code></pre><p><strong>示例 2:</strong></p>
+<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
+输出: 1
+解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
+</code></pre><p><strong>示例 3:</strong></p>
+<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
+输出: 3
+解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
+</code></pre><p>提示：</p>
+<ul>
+<li><code>s.length &lt;= 40000</code></li>
+</ul>
+<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21确定有限状态自动机">2.1、确定有限状态自动机</h2>
+<h3 id="核心思路">核心思路：</h3>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：</p>
+<p><strong>空间复杂度</strong>：</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java">
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
+]]></description>
+</item><item>
     <title>13、剑指 Offer 20. 表示数值的字符串</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html</link>
     <pubDate>Mon, 13 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -220,16 +264,16 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<pre><code>输入：s = &quot;0&quot;
+<pre tabindex="0"><code>输入：s = &quot;0&quot;
 输出：true
 </code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：s = &quot;e&quot;
+<pre tabindex="0"><code>输入：s = &quot;e&quot;
 输出：false
 </code></pre><p><strong>示例 3：</strong></p>
-<pre><code>输入：s = &quot;.&quot;
+<pre tabindex="0"><code>输入：s = &quot;.&quot;
 输出：false
 </code></pre><p><strong>示例 4：</strong></p>
-<pre><code>输入：s = &quot;    .1  &quot;
+<pre tabindex="0"><code>输入：s = &quot;    .1  &quot;
 输出：true
 </code></pre><p><strong>提示：</strong></p>
 <ul>
@@ -678,15 +722,15 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- I. 斐波那契数列</a> 难度简单</p>
 <p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项（即 <code>F(N)</code>）。斐波那契数列的定义如下：</p>
-<pre><code>F(0) = 0,   F(1) = 1
+<pre tabindex="0"><code>F(0) = 0,   F(1) = 1
 F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 </code></pre><p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
 <p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
 <p><strong>示例 1：</strong></p>
-<pre><code>输入：n = 2
+<pre tabindex="0"><code>输入：n = 2
 输出：1
 </code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：n = 5
+<pre tabindex="0"><code>输入：n = 5
 输出：5
 </code></pre><p><strong>提示：</strong></p>
 <ul>
@@ -739,7 +783,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
 <p><strong>示例:</strong></p>
 <p>现有矩阵 matrix 如下：</p>
-<pre><code>[
+<pre tabindex="0"><code>[
   [1,   4,  7, 11, 15],
   [2,   5,  8, 12, 19],
   [3,   6,  9, 16, 22],
@@ -749,7 +793,7 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 </code></pre><p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
 <p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
 <p><strong>限制：</strong></p>
-<pre><code>0 &lt;= n &lt;= 1000
+<pre tabindex="0"><code>0 &lt;= n &lt;= 1000
 0 &lt;= m &lt;= 1000
 </code></pre><p>**注意：**本题与主站 240 题相同：https://leetcode-cn.com/problems/search-a-2d-matrix-ii/</p>
 <h1 id="二解法">二、解法</h1>
@@ -850,10 +894,10 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
 <p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
 <p><strong>示例 1：</strong></p>
-<pre><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
+<pre tabindex="0"><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
 输出：[1,2,3,6,9,8,7,4,5]
 </code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
+<pre tabindex="0"><code>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
 输出：[1,2,3,4,8,12,11,10,9,5,6,7]
 </code></pre><p><strong>限制：</strong></p>
 <ul>
@@ -1003,10 +1047,10 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 06. 从尾到头打印链表</a> 难度简单</p>
 <p>输入一个链表的头节点，从尾到头反过来返回每个节点的值（用数组返回）。</p>
 <p><strong>示例 1：</strong></p>
-<pre><code>输入：head = [1,3,2]
+<pre tabindex="0"><code>输入：head = [1,3,2]
 输出：[2,3,1]
 </code></pre><p><strong>限制：</strong></p>
-<pre><code>0 &lt;= 链表长度 &lt;= 10000
+<pre tabindex="0"><code>0 &lt;= 链表长度 &lt;= 10000
 </code></pre><h1 id="二解法">二、解法</h1>
 <h2 id="21辅助栈">2.1、辅助栈</h2>
 <h3 id="核心思想">核心思想：</h3>
@@ -1096,21 +1140,21 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p>假设输入的前序遍历和中序遍历的结果中都不含重复的数字。</p>
 <p><strong>示例 1:</strong></p>
 <p></p>
-<pre><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
+<pre tabindex="0"><code>Input: preorder = [3,9,20,15,7], inorder = [9,3,15,20,7]
 Output: [3,9,20,null,null,15,7]
 </code></pre><p><strong>示例 2:</strong></p>
-<pre><code>Input: preorder = [-1], inorder = [-1]
+<pre tabindex="0"><code>Input: preorder = [-1], inorder = [-1]
 Output: [-1]
 </code></pre><p><strong>限制：</strong></p>
-<pre><code>0 &lt;= 节点个数 &lt;= 5000
+<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 5000
 </code></pre><p><strong>注意</strong>：本题与主站 105 题重复：https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/</p>
 <h1 id="二解法">二、解法</h1>
 <h2 id="21递归法">2.1、递归法</h2>
 <h3 id="核心思想">核心思想：</h3>
 <p>对于任意一颗树而言，前序遍历的形式总是如下所示，且根节点总是前序遍历中的第一个节点。</p>
-<pre><code>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
+<pre tabindex="0"><code>[ 根节点, [左子树的前序遍历结果], [右子树的前序遍历结果] ]
 </code></pre><p>而中序遍历的形式总是</p>
-<pre><code>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
+<pre tabindex="0"><code>[ [左子树的中序遍历结果], 根节点, [右子树的中序遍历结果] ]
 </code></pre><p>只要我们在中序遍历中定位到根节点，那么我们就可以分别知道左子树和右子树中的节点数目。由于同一颗子树的前序遍历和中序遍历的长度显然是相同的，因此我们就可以对应到前序遍历的结果中，对上述形式中的所有左右括号进行定位。</p>
 <p>这样以来，我们就知道了左子树的前序遍历和中序遍历结果，以及右子树的前序遍历和中序遍历结果，我们就可以递归地对构造出左子树和右子树，再将这两颗子树接到根节点的左右位置。</p>
 <p><strong>细节</strong></p>
@@ -1344,79 +1388,5 @@ Output: [-1]
     <span class="n">pusher</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
-</item><item>
-    <title>7、剑指 Offer 11. 旋转数组的最小数字</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/7.html</link>
-    <pubDate>Sun, 29 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/7.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 11. 旋转数组的最小数字</a> 难度简单</p>
-<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 <code>[3,4,5,1,2]</code> 为 <code>[1,2,3,4,5]</code> 的一个旋转，该数组的最小值为1。</p>
-<p><strong>示例 1：</strong></p>
-<pre><code>输入：[3,4,5,1,2]
-输出：1
-</code></pre><p><strong>示例 2：</strong></p>
-<pre><code>输入：[2,2,2,0,1]
-输出：0
-</code></pre><p>注意：本题与主站 154 题相同：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21遍历求最小值不推荐">2.1、遍历求最小值（不推荐）</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>遍历数组，求最小值。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(N) 。</p>
-<p><strong>空间复杂度</strong>：O(1)。min 变量使用常数大小的额外空间。</p>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">min</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22二分法推荐">2.2、二分法（推荐）</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>排序数组的查找问题首先考虑使用 <strong>二分法</strong> 解决，其可将 <strong>遍历法</strong> 的 <strong>线性级别</strong> 时间复杂度降低至 <strong>对数级别</strong> 。</p>
-<p>寻找旋转数组的最小元素即为寻找 <strong>右排序数组</strong> 的首个元素 nums[ x ] ，称 x 为 旋转点。</p>
-<ul>
-<li>右排序数组：在 [ 3, 4, 5, 1, 2 ] 序列中，我们将 [ 1, 2 ] 称为右排序数组；</li>
-<li>旋转点：在 [ 3, 4, 5, 1, 2 ] 序列中，我们将右排序数组的首个元素称为旋转点；</li>
-</ul>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度：</strong> O(log₂N) 。在特例情况下（例如 [ 1,1,1,1 ]），会退化到 O(N)。</p>
-<p><strong>空间复杂度：</strong> O(1)。i， j，mid 变量使用常数大小的额外空间。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-
-        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-            <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">)</span> <span class="o">/</span> <span class="n">2</span><span class="o">;</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
-                <span class="c1">// 旋转点 x (最小值)一定在 [mid+1,j] 闭区间内
-</span><span class="c1"></span>                <span class="n">i</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">numbers</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">numbers</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
-                <span class="c1">// 旋转点 x (最小值)一定在 [i,mid] 闭区间内
-</span><span class="c1"></span>                <span class="n">j</span> <span class="o">=</span> <span class="n">mid</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="c1">// 旋转点在 [i,j-1]
-</span><span class="c1"></span>                <span class="n">j</span><span class="o">--;</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/</a></p>
-]]></description>
 </item></channel>
 </rss>
