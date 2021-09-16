@@ -303,7 +303,7 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
     </a><figcaption class="image-caption">配置双重验证</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<ol>
+<ol start="2">
 <li>
 <p>使用 2FA 验证器扫描密钥二维码，或手动输入密钥到 2FA 验证器中，此时你已经和服务器共同掌握了一把密钥。</p>
 <blockquote>
@@ -323,7 +323,7 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
     </a><figcaption class="image-caption">动态验证码</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<ol>
+<ol start="4">
 <li>服务器提供一串代码作为最后的手段，一旦忘记密码或者遗失手机，想要恢复登录，就可以使用此恢复代码，一般来说这种恢复账号性质的代码都比较长，几乎不可能被暴力破解。</li>
 </ol>
 <p>下面我们回头继续讲 TOTP 算法。</p>
