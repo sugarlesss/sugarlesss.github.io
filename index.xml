@@ -230,73 +230,40 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <span class="o">}</span>
 </code></pre></div><h2 id="22快速排序思想">2.2、快速排序思想</h2>
 <h3 id="核心思路-1">核心思路</h3>
-<p>我们可以借鉴快速排序的思想。我们知道快排的划分函数每次执行完后都能将数组分成两个部分，小于等于分界值 pivot 的元素的都会被放到数组的左边，大于的都会被放到数组的右边，然后返回分界值的下标。与快速排序不同的是，快速排序会根据分界值的下标递归处理划分的两侧，而这里我们只处理划分的一边。</p>
-<p>其实，找前 K 大 / 前 K 小问题不需要对整个数组进行 O(n log n) 的排序。例如本题，直接通过快排切分排好第 K 小的数（下标为 K-1），那么它左边的数就是比它小的另外 K-1 个数了。</p>
+<p>题目只要求返回最小的 k 个数，对这 k 个数的顺序并没有要求。因此，只需要将数组划分为 最小的 k 个数 和 其他数字 两部分即可，而快速排序的哨兵划分可完成此目标。</p>
+<p>根据快速排序原理，如果某次哨兵划分后 基准数正好是第 k+1 小的数字 ，那么此时基准数左边的所有数字便是题目所求的 最小的 k 个数 。</p>
+<p>根据此思路，考虑在每次哨兵划分后，判断基准数在数组中的索引是否等于 k ，若 true 则直接返回此时数组的前 k 个数字即可。</p>
 <h3 id="复杂度分析-1">复杂度分析</h3>
 <p><strong>时间复杂度</strong>：O(N)， 因为我们是要找下标为 k 的元素，第一次切分的时候需要遍历整个数组 (0 ~ n) 找到了下标是 j 的元素，假如 k 比 j 小的话，那么我们下次切分只要遍历数组 (0~k-1)的元素，反之如果 k 比 j 大的话，那下次切分只要遍历数组 (k+1～n) 的元素，总之可以看作每次调用 partition 遍历的元素数目都是上一次遍历的 1/2，因此时间复杂度是 N + N/2 + N/4 + &hellip; + N/N = 2N, 因此时间复杂度是 O(N)。</p>
-<p><strong>空间复杂度</strong>：O(1)</p>
+<p><strong>空间复杂度</strong>：O(log N)，划分函数的平均递归深度为 O(log N)。</p>
 <h3 id="code-1">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getLeastNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 入口
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getLeastNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
         <span class="c1">// 边界条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 最后一个参数表示我们要找的是下标为k-1的数
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">quickSearch</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">k</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+        <span class="c1">// 递归调用
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">quickSearch</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">high</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 每快排切分1次，找到排序后下标为j的元素，如果j恰好等于k就返回j以及j左边所有的数；
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">high</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+    <span class="c1">// quick_sort() 的功能不是排序整个数组，而是搜索并返回最小的 k 个数.
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">])</span> <span class="n">j</span><span class="o">--;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">])</span> <span class="n">i</span><span class="o">++;</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
         <span class="o">}</span>
-
-        <span class="c1">// 根据下标 j 与 k 的大小关系来决定继续切分左段还是右段
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 切左段
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">quickSearch</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">j</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="c1">// 切左段
-</span><span class="c1"></span>            <span class="k">return</span> <span class="n">quickSearch</span><span class="o">(</span><span class="n">nums</span><span class="o">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">high</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
-        <span class="o">}</span>
+        <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
     <span class="o">}</span>
 
-    <span class="c1">// 快排切分，返回下标j，使得比nums[j]小的数都在j的左边，比nums[j]大的数都在j的右边。
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">high</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 选择 nums 的第一个元素作为基准数, 记作 pivot
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">low</span><span class="o">];</span>
-        
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">low</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">high</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-
-        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 让 i 从左向右找到一个大等于基准数的值
-</span><span class="c1"></span>            <span class="c1">//      如果没有找到,则 i 会移动到最后一个元素上，此时 i = high
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(++</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">high</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">;</span>
-
-            <span class="c1">// 让 j 找到一个小等于基准数的值
-</span><span class="c1"></span>            <span class="c1">//      如果没有找到,
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(--</span><span class="n">j</span> <span class="o">&gt;=</span> <span class="n">low</span> <span class="o">&amp;&amp;</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">;</span>
-
-            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// i 与 j 已经相遇
-</span><span class="c1"></span>                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 交换 num[i] num[j]
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">t</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-            <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 将基准数与 num[j] 交换
-</span><span class="c1"></span>        <span class="n">nums</span><span class="o">[</span><span class="n">low</span><span class="o">]</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-        <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">pivot</span><span class="o">;</span>
-
-        <span class="c1">// 此时, num[j] 比左侧任意值都要大
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">j</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h2 id="23堆">2.3、堆</h2>
@@ -351,6 +318,7 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/</a></p>
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/</a></p>
 ]]></description>
 </item><item>
     <title>14、剑指 Offer 20. 表示数值的字符串</title>
