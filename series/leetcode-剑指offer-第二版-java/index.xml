@@ -4,7 +4,72 @@
         <link>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
         <description>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 17 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 20 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+    <title>16、剑指 Offer 10- II. 青蛙跳台阶问题</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</link>
+    <pubDate>Mon, 20 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- II. 青蛙跳台阶问题</a> 难度简单</p>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：n = 2
+输出：2
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：n = 7
+输出：21
+</code></pre><p><strong>示例 3：</strong></p>
+<pre tabindex="0"><code>输入：n = 0
+输出：1
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= n &lt;= 100</code></li>
+</ul>
+<p>注意：本题与主站 70 题相同：https://leetcode-cn.com/problems/climbing-stairs/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21动态规划">2.1、动态规划</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>此类求 <em>多少种可能性</em> 的题目一般都有 <strong>递推性质</strong> ，即 <code>f(n)</code> 和 <code>f(n-1) ... f(1)</code> 之间是有联系的。</p>
+<p>设跳上 <code>n</code> 级台阶有 <code>f(n)</code> 种跳法。在所有跳法中，青蛙的最后一步只有两种情况： <strong>跳上 1 级或 2 级台阶</strong>。</p>
+<ul>
+<li>当为 <code>1</code> 级台阶： 剩 <code>n-1</code> 个台阶，此情况共有 <code>f(n-1)</code> 种跳法；</li>
+<li>当为 <code>2</code> 级台阶： 剩 <code>n-2</code> 个台阶，此情况共有 <code>f(n-2)</code> 种跳法。</li>
+</ul>
+<p><code>f(n)</code> 为以上两种情况之和，即 <code>f(n)=f(n-1)+f(n-2)</code> ，以上递推性质为斐波那契数列。本题可转化为 求斐波那契数列第 n 项的值。与 <a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/" target="_blank" rel="noopener noreffer">面试题10- I. 斐波那契数列</a> 等价，唯一的不同在于起始数字不同。</p>
+<ul>
+<li>
+<p>青蛙跳台阶问题： <code>f(0)=1 , f(1)=1 , f(2)=2</code> ；</p>
+</li>
+<li>
+<p>斐波那契数列问题： <code>f(0)=0 , f(1)=1 , f(2)=1</code> 。</p>
+</li>
+</ul>
+<a class="lightgallery" href="/post_images/image-20210921222328456.png" title="/post_images/image-20210921222328456.png" data-thumbnail="/post_images/image-20210921222328456.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>本题如果使用递归实现，时间会超限，因此使用循环。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N) ， 计算 f(n) 需循环 n 次，每轮循环内计算操作使用 O(1) 。</p>
+<p><strong>空间复杂度</strong>：O(1) ，几个标志变量使用常数大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">numWays</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">c</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="n">1000000007</span><span class="o">;</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/</a></p>
+]]></description>
+</item><item>
     <title>15、剑指 Offer 40. 最小的k个数</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</link>
     <pubDate>Fri, 17 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -1256,92 +1321,6 @@ Output: [-1]
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/</a></p>
-]]></description>
-</item><item>
-    <title>6、剑指 Offer 22. 链表中倒数第k个节点</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/6.html</link>
-    <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/6.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 22. 链表中倒数第k个节点</a> 难度简单</p>
-<p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。</p>
-<p>例如，一个链表有 <code>6</code> 个节点，从头节点开始，它们的值依次是 <code>1、2、3、4、5、6</code>。这个链表的倒数第 <code>3</code> 个节点是值为 <code>4</code> 的节点。</p>
-<p><strong>示例：</strong></p>
-<pre tabindex="0"><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k = 2.
-
-返回链表 4-&gt;5.
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21双指针二次遍历">2.1、双指针二次遍历</h2>
-<h3 id="核心思路">核心思路：</h3>
-<ol>
-<li>先遍历统计链表长度，记为 count ；</li>
-<li>设置一个指针走 (n-k) 步，即可找到链表倒数第 k 个节点。</li>
-</ol>
-<p>这也是最容易想到的解法</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p>时间复杂度 O(N) ： 需要两次遍历，因此至多为 2N 。
-空间复杂度 O(1) ： 需要一个辅助指针，使用常数大小的额外空间。</p>
-<h3 id="代码">代码：</h3>
-<p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
-<ol>
-<li>head为空指针；</li>
-<li>k大于链表的长度；</li>
-<li>输入的参数k为0；</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">getKthFromEnd</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
-
-        <span class="c1">// 第一次遍历链表,计算总节点数
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">count</span><span class="o">++;</span>
-            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 第二次遍历链表,找到倒数第k个元素
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="n">k</span><span class="o">;</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="n">index</span><span class="o">--;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22双指针单次遍历">2.2、双指针单次遍历</h2>
-<h3 id="核心思路-1">核心思路：</h3>
-<p>不需要知道链表长度，指针 1 先走 k-1 步，然后指针 2 和指针 1 同时前进，当指针 1 指向链表最后一个元素时，指针 2 即为所求。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p>时间复杂度 O(N) ： N 为链表长度；总体看， 指针 1 走了 N 步， 指针 走了 (N-k)(N−k) 步。
-空间复杂度 O(1)： 双指针 former , latter 使用常数大小的额外空间。</p>
-<h3 id="代码-1">代码：</h3>
-<p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
-<ol>
-<li>head为空指针；</li>
-<li>k大于链表的长度；</li>
-<li>输入的参数k为0；</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">getKthFromEnd</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">head</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">ListNode</span> <span class="n">former</span> <span class="o">=</span> <span class="n">head</span><span class="o">,</span> <span class="n">latter</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
-
-        <span class="c1">// 让指针 1 先走 k 步
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">former</span> <span class="o">=</span> <span class="n">former</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-
-        <span class="c1">// 让指针1 和指针 2 同步移动, 待指针 2 走至链表尾结点时, 指针 1 指向的结点就是符合题意的答案
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">former</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">former</span> <span class="o">=</span> <span class="n">former</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="n">latter</span> <span class="o">=</span> <span class="n">latter</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">latter</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/</a></p>
 ]]></description>
 </item></channel>
 </rss>
