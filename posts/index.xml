@@ -4,7 +4,7 @@
         <link>https://sugarless.top/posts.html</link>
         <description>所有文章 | 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 26 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/posts.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/posts.html" rel="self" type="application/rss+xml" /><item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
     <link>https://sugarless.top/posts/mark/1.html</link>
     <pubDate>Tue, 31 Dec 2019 00:00:00 &#43;0000</pubDate><author>
@@ -188,6 +188,140 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="https://www.allhistory.com" target="_blank" rel="noopener noreffer">https://www.allhistory.com</a></p>
 <h3 id="2西窗烛--古诗">2、西窗烛 / 古诗</h3>
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
+</item><item>
+    <title>19、剑指 Offer 59 - I. 滑动窗口的最大值</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</link>
+    <pubDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
+<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
+<p><strong>示例:</strong></p>
+<pre tabindex="0"><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+</code></pre><p><strong>提示：</strong></p>
+<p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<p>注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21优先队列">2.1、优先队列</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
+<p>对于本题而言，初始时，我们将数组 nums 的前 k 个元素放入优先队列中。每当我们向右移动窗口时，我们就可以把一个新的元素放入优先队列中，此时堆顶的元素就是堆中所有元素的最大值。然而这个最大值可能并不在滑动窗口中，在这种情况下，这个值在数组 nums 中的位置出现在滑动窗口左边界的左侧。因此，当我们后续继续向右移动窗口时，这个值就永远不可能出现在滑动窗口中了，我们可以将其永久地从优先队列中移除。</p>
+<p>我们不断地移除堆顶的元素，直到其确实出现在滑动窗口中。此时，堆顶元素就是滑动窗口中的最大值。为了方便判断堆顶元素与滑动窗口的位置关系，我们可以在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
+<p><strong>空间复杂度</strong>：O(n)，即为优先队列需要使用的空间。<strong>这里所有的空间复杂度分析都不考虑返回的答案需要的 O(n) 空间，只计算额外的空间使用</strong>。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件 / 特殊情况
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+
+        <span class="c1">// 为了方便判断堆顶元素与滑动窗口的位置关系
+</span><span class="c1"></span>        <span class="c1">// 我们在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。
+</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pair1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">pair2</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// 值是否相同？
+</span><span class="c1"></span>                <span class="c1">// 如果不同,则根据数值大小来判断权重
+</span><span class="c1"></span>                <span class="c1">// 如果相同,则根据索引大小来判断权重
+</span><span class="c1"></span>                <span class="k">return</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">?</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">:</span> <span class="n">pair2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="c1">// 将数组 nums 的前 k 个元素放入优先队列中
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
+        <span class="o">}</span>
+
+        <span class="c1">// answer
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+        <span class="c1">// 第一个结果 -&gt; 数组 nums 的前 k 个元素中的最大值 -&gt; 大根堆的堆顶元素
+</span><span class="c1"></span>        <span class="n">ans</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
+
+        <span class="c1">// 循环处理剩下的元素
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 把一个新的元素放入优先队列中
+</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
+            <span class="c1">// 去除出现在滑动窗口左边界的左侧的值，因为这个值永远不可能出现在滑动窗口中了
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="c1">// 向 answer 中写入当前滑动窗口内的最大值
+</span><span class="c1"></span>            <span class="n">ans</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22单调队列">2.2、单调队列</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
+<a class="lightgallery" href="/post_images/image-20210927225830146.png" title="/post_images/image-20210927225830146.png" data-thumbnail="/post_images/image-20210927225830146.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>借助 deque 这个双端队列，我们可以将获取滑动窗口内最大值的时间复杂度从 O(k) 降低至 O(1)，这也是本题的难点。</p>
+<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreffer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
+<p><strong>空间复杂度</strong>：O(k) ，双端队列 deque 中最多同时存储 k 个元素（即窗口大小）。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件 / 特殊情况
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+
+        <span class="c1">// 双端队列 仅包含窗口内的元素，且严格
+</span><span class="c1"></span>        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="c1">// 答案
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+
+        <span class="c1">// 未形成窗口
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
+
+            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
+</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="c1">// deque 的第一个元素即为当前窗口的最大值
+</span><span class="c1"></span>        <span class="n">answer</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
+
+        <span class="c1">// 形成窗口后
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// i-k 是已经在区间外了, 如果首位等于 nums[i-k], 那么说明此时首位值已经不再区间内了，需要删除
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+
+            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
+            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
+</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="c1">// deque 的第一个元素即为当前窗口的最大值
+</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
+]]></description>
 </item><item>
     <title>18、剑指 Offer 25. 合并两个排序的链表</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</link>
@@ -1330,65 +1464,6 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p>即刻 - 油百万：<a href="https://m.okjike.com/originalPosts/6136198602cb2b0010e286d9" target="_blank" rel="noopener noreffer">https://m.okjike.com/originalPosts/6136198602cb2b0010e286d9</a></p>
 <p>即刻 - 油百万：<a href="https://m.okjike.com/originalPosts/613d9d6a67d511001031ad9c" target="_blank" rel="noopener noreffer">https://m.okjike.com/originalPosts/613d9d6a67d511001031ad9c</a></p>
 <p>微博 - 知乎官微道歉声明原文：<a href="https://weibo.com/1904769205/KxfvMybtj" target="_blank" rel="noopener noreffer">https://weibo.com/1904769205/KxfvMybtj</a></p>
-]]></description>
-</item><item>
-    <title>12、剑指 Offer 10- I. 斐波那契数列</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html</link>
-    <pubDate>Tue, 07 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- I. 斐波那契数列</a> 难度简单</p>
-<p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项（即 <code>F(N)</code>）。斐波那契数列的定义如下：</p>
-<pre tabindex="0"><code>F(0) = 0,   F(1) = 1
-F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
-</code></pre><p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
-<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：n = 2
-输出：1
-</code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：n = 5
-输出：5
-</code></pre><p><strong>提示：</strong></p>
-<ul>
-<li><code>0 &lt;= n &lt;= 100</code></li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21动态规划">2.1、动态规划</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>斐波那契数的边界条件是 F(0)=0 和 F(1)=1。当 n&gt;1 时，每一项的和都等于前两项的和，因此有如下递推关系：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">F(n)=F(n-1)+F(n-2)
-</code></pre></div><p>由于斐波那契数存在递推关系，因此可以使用动态规划求解。动态规划的状态转移方程即为上述递推关系，边界条件为 F(0) 和 F(1)。</p>
-<p>计算过程中，答案需要取模 1e9+7。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度 O(N)</strong>：计算 f(n) 需循环 n 次，每轮循环内计算操作使用 O(1)。</p>
-<p><strong>空间复杂度 O(1)</strong>：几个标志变量使用常数大小的额外空间。</p>
-<h3 id="code">Code：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">fib</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kd">final</span> <span class="kt">int</span> <span class="n">MOD</span> <span class="o">=</span> <span class="n">1000000007</span><span class="o">;</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span> 
-            <span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span> 
-            <span class="n">r</span> <span class="o">=</span> <span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="o">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22矩阵快速幂待续">2.2、矩阵快速幂（待续）</h2>
-<p>动态规划的时间复杂度是 O(n)。使用矩阵快速幂的方法可以降低时间复杂度。</p>
-<h3 id="核心思路-1">核心思路：</h3>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(log n)。</p>
-<p><strong>空间复杂度</strong>：O(1)。</p>
-<h3 id="code-1">Code：</h3>
-<h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/</a></p>
 ]]></description>
 </item></channel>
 </rss>
