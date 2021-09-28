@@ -4,7 +4,90 @@
         <link>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
         <description>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+    <title>20、剑指 Offer 26. 树的子结构</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</link>
+    <pubDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
+<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
+<p>B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。</p>
+<p>例如:
+给定的树 A:</p>
+<p>    3<br>
+   / \<br>
+  4  5<br>
+ / \<br>
+1  2</p>
+<p>给定的树 B：</p>
+<p>  4<br>
+ /<br>
+1</p>
+<p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：A = [1,2,3], B = [3,1]
+输出：false
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：A = [3,4,5,1,2], B = [4,1]
+输出：true
+</code></pre><p><strong>限制：</strong></p>
+<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 10000
+</code></pre><h1 id="二解法">二、解法</h1>
+<h2 id="21递归法">2.1、递归法</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>若树 B 是树 A 的子结构，则子结构的根节点可能为树 A 的任意一个节点。因此，判断树 B 是否是树 A 的子结构，需完成以下两步工作：</p>
+<ol>
+<li>先序遍历树 A 中的每个节点 Na；（对应函数 <code>isSubStructure(A, B)</code>）</li>
+<li>判断树 A 中以 Na 为根节点的子树是否包含树 B。（对应函数 <code>recur(A, B)</code>）</li>
+</ol>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(MN) ，其中 M,N 分别为树 A 和 树 B 的节点数量；先序遍历树 A 占用 O(M) ，每次调用 recur(A, B) 判断占用 O(N)。</p>
+<p><strong>空间复杂度</strong>：O(M) ，当树 A 和树 B 都退化为链表时，递归调用深度最大。当 M≤N 时，遍历树 A 与递归判断的总递归深度为 M ；当 M&gt;N 时，最差情况为遍历至树 A 叶子节点，此时总递归深度为 M。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubStructure</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 如果 A 或 B 为空
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B、A 相同
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的左子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的右子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 递归判断两棵树是否一致
+</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">recur</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/</a></p>
+]]></description>
+</item><item>
     <title>19、剑指 Offer 59 - I. 滑动窗口的最大值</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</link>
     <pubDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -1248,159 +1331,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/</a></p>
 <p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/</a></p>
-]]></description>
-</item><item>
-    <title>11、剑指 Offer 29. 顺时针打印矩阵</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html</link>
-    <pubDate>Sat, 04 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
-<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
-输出：[1,2,3,6,9,8,7,4,5]
-</code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]
-输出：[1,2,3,4,8,12,11,10,9,5,6,7]
-</code></pre><p><strong>限制：</strong></p>
-<ul>
-<li><code>0 &lt;= matrix.length &lt;= 100</code></li>
-<li><code>0 &lt;= matrix[i].length &lt;= 100</code></li>
-</ul>
-<p>注意：本题与主站 54 题相同：https://leetcode-cn.com/problems/spiral-matrix/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21四相边界法">2.1、四相边界法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>已知顺时针打印矩阵的顺序是 <strong>“从左向右、从上向下、从右向左、从下向上”</strong> 循环，考虑设定矩阵的“左、上、右、下”四个边界，模拟以上矩阵遍历顺序。</p>
-<ul>
-<li>上边界 ( top )、下边界 ( bottom )；</li>
-<li>左边界 ( left )、右边界 ( right )；</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>打印方向</th>
-<th>1. 根据边界打印</th>
-<th style="text-align:left">2. 边界向内收缩</th>
-<th>3. 是否打印完毕</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>从左向右</td>
-<td>左边界<code>l</code> ，右边界 <code>r</code></td>
-<td style="text-align:left">上边界 <code>t</code> 加 11</td>
-<td>是否 <code>t &gt; b</code></td>
-</tr>
-<tr>
-<td>从上向下</td>
-<td>上边界 <code>t</code> ，下边界<code>b</code></td>
-<td style="text-align:left">右边界 <code>r</code> 减 11</td>
-<td>是否 <code>l &gt; r</code></td>
-</tr>
-<tr>
-<td>从右向左</td>
-<td>右边界 <code>r</code> ，左边界<code>l</code></td>
-<td style="text-align:left">下边界 <code>b</code> 减 11</td>
-<td>是否 <code>t &gt; b</code></td>
-</tr>
-<tr>
-<td>从下向上</td>
-<td>下边界 <code>b</code> ，上边界<code>t</code></td>
-<td style="text-align:left">左边界 <code>l</code> 加 11</td>
-<td>是否 <code>l &gt; r</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(MN)， M, N 分别为矩阵行数和列数。</p>
-<p><strong>空间复杂度</strong>：O(1)， 四个边界 <code>l</code> , <code>r</code> , <code>t</code> , <code>b</code> 使用常数大小的 <strong>额外</strong> 空间（ <code>res</code> 为必须使用的空间）。</p>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">t</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[(</span><span class="n">r</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">*</span> <span class="o">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">1</span><span class="o">)];</span>
-        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-                <span class="n">res</span><span class="o">[</span><span class="n">x</span><span class="o">++]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">t</span><span class="o">][</span><span class="n">i</span><span class="o">];</span> <span class="c1">// left to right.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(++</span><span class="n">t</span> <span class="o">&gt;</span> <span class="n">b</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
-            
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">t</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-                <span class="n">res</span><span class="o">[</span><span class="n">x</span><span class="o">++]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">r</span><span class="o">];</span> <span class="c1">// top to bottom.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">l</span> <span class="o">&gt;</span> <span class="o">--</span><span class="n">r</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
-            
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">l</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>
-                <span class="n">res</span><span class="o">[</span><span class="n">x</span><span class="o">++]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">b</span><span class="o">][</span><span class="n">i</span><span class="o">];</span> <span class="c1">// right to left.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">t</span> <span class="o">&gt;</span> <span class="o">--</span><span class="n">b</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
-            
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="o">;</span> <span class="n">i</span><span class="o">--)</span>
-                <span class="n">res</span><span class="o">[</span><span class="n">x</span><span class="o">++]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">l</span><span class="o">];</span> <span class="c1">// bottom to top.
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(++</span><span class="n">l</span> <span class="o">&gt;</span> <span class="n">r</span><span class="o">)</span> <span class="k">break</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22辅助矩阵法">2.2、辅助矩阵法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
-<p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵 visited，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将 visited 中的对应位置的元素设为已访问。</p>
-<p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
-<p><strong>空间复杂度</strong>：O(mn)，需要创建一个大小为 m×n 的矩阵 visited 记录每个位置是否被访问过。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 获取矩阵的行列数
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
-        <span class="c1">// 构造辅助矩阵
-</span><span class="c1"></span>        <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">rows</span><span class="o">][</span><span class="n">columns</span><span class="o">];</span>
-        <span class="c1">// 计算矩阵元素个数总和
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">total</span> <span class="o">=</span> <span class="n">rows</span> <span class="o">*</span> <span class="n">columns</span><span class="o">;</span>
-
-        <span class="c1">// 答案
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">total</span><span class="o">];</span>
-
-        <span class="c1">// 当前坐标
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="c1">// 方向
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[][]</span> <span class="n">directions</span> <span class="o">=</span> <span class="o">{{</span><span class="n">0</span><span class="o">,</span> <span class="n">1</span><span class="o">},</span> <span class="o">{</span><span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">},</span> <span class="o">{</span><span class="n">0</span><span class="o">,</span> <span class="o">-</span><span class="n">1</span><span class="o">},</span> <span class="o">{-</span><span class="n">1</span><span class="o">,</span> <span class="n">0</span><span class="o">}};</span>
-        <span class="c1">// 当前是哪个方向
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">directionIndex</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">total</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 将当前元素写入 result
-</span><span class="c1"></span>            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">];</span>
-
-            <span class="c1">// 在辅助矩阵中标注已访问过
-</span><span class="c1"></span>            <span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="c1">// 计算当前方向的下一个坐标
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">nextRow</span> <span class="o">=</span> <span class="n">row</span> <span class="o">+</span> <span class="n">directions</span><span class="o">[</span><span class="n">directionIndex</span><span class="o">][</span><span class="n">0</span><span class="o">],</span> <span class="n">nextColumn</span> <span class="o">=</span> <span class="n">column</span> <span class="o">+</span> <span class="n">directions</span><span class="o">[</span><span class="n">directionIndex</span><span class="o">][</span><span class="n">1</span><span class="o">];</span>
-            <span class="c1">// 判断下一个坐标是否超限或已被访问过
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">nextRow</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">nextRow</span> <span class="o">&gt;=</span> <span class="n">rows</span> <span class="o">||</span> <span class="n">nextColumn</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">nextColumn</span> <span class="o">&gt;=</span> <span class="n">columns</span> <span class="o">||</span> <span class="n">visited</span><span class="o">[</span><span class="n">nextRow</span><span class="o">][</span><span class="n">nextColumn</span><span class="o">])</span> <span class="o">{</span>
-                <span class="c1">// 顺时针转向 90°
-</span><span class="c1"></span>                <span class="n">directionIndex</span> <span class="o">=</span> <span class="o">(</span><span class="n">directionIndex</span> <span class="o">+</span> <span class="n">1</span><span class="o">)</span> <span class="o">%</span> <span class="n">4</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 按照当前方向，走一步
-</span><span class="c1"></span>            <span class="n">row</span> <span class="o">+=</span> <span class="n">directions</span><span class="o">[</span><span class="n">directionIndex</span><span class="o">][</span><span class="n">0</span><span class="o">];</span>
-            <span class="n">column</span> <span class="o">+=</span> <span class="n">directions</span><span class="o">[</span><span class="n">directionIndex</span><span class="o">][</span><span class="n">1</span><span class="o">];</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/</a></p>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/</a></p>
 ]]></description>
 </item></channel>
 </rss>

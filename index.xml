@@ -4,7 +4,7 @@
         <link>https://sugarless.top/</link>
         <description>無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://sugarless.top/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
@@ -190,6 +190,89 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="https://www.allhistory.com" target="_blank" rel="noopener noreffer">https://www.allhistory.com</a></p>
 <h3 id="2西窗烛--古诗">2、西窗烛 / 古诗</h3>
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
+</item><item>
+    <title>20、剑指 Offer 26. 树的子结构</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</link>
+    <pubDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
+<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
+<p>B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。</p>
+<p>例如:
+给定的树 A:</p>
+<p>    3<br>
+   / \<br>
+  4  5<br>
+ / \<br>
+1  2</p>
+<p>给定的树 B：</p>
+<p>  4<br>
+ /<br>
+1</p>
+<p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：A = [1,2,3], B = [3,1]
+输出：false
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：A = [3,4,5,1,2], B = [4,1]
+输出：true
+</code></pre><p><strong>限制：</strong></p>
+<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 10000
+</code></pre><h1 id="二解法">二、解法</h1>
+<h2 id="21递归法">2.1、递归法</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>若树 B 是树 A 的子结构，则子结构的根节点可能为树 A 的任意一个节点。因此，判断树 B 是否是树 A 的子结构，需完成以下两步工作：</p>
+<ol>
+<li>先序遍历树 A 中的每个节点 Na；（对应函数 <code>isSubStructure(A, B)</code>）</li>
+<li>判断树 A 中以 Na 为根节点的子树是否包含树 B。（对应函数 <code>recur(A, B)</code>）</li>
+</ol>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(MN) ，其中 M,N 分别为树 A 和 树 B 的节点数量；先序遍历树 A 占用 O(M) ，每次调用 recur(A, B) 判断占用 O(N)。</p>
+<p><strong>空间复杂度</strong>：O(M) ，当树 A 和树 B 都退化为链表时，递归调用深度最大。当 M≤N 时，遍历树 A 与递归判断的总递归深度为 M ；当 M&gt;N 时，最差情况为遍历至树 A 叶子节点，此时总递归深度为 M。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubStructure</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 如果 A 或 B 为空
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B、A 相同
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的左子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的右子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 递归判断两棵树是否一致
+</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">recur</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/</a></p>
+]]></description>
 </item><item>
     <title>19、剑指 Offer 59 - I. 滑动窗口的最大值</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</link>
@@ -1394,78 +1477,6 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/</a></p>
-]]></description>
-</item><item>
-    <title>知乎就月饼吃坏肚子致歉</title>
-    <link>https://sugarless.top/posts/news/zhihu-apologizes-for-the-mooncake-incident.html</link>
-    <pubDate>Wed, 08 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/news/zhihu-apologizes-for-the-mooncake-incident.html</guid>
-    <description><![CDATA[<p>知乎送给大 V 的月饼吃了之后拉肚子，原因是这批月饼用的糖醇（麦芽糖醇）代替糖，而摄入大量糖醇会导致腹泻，有些人喝太多代糖饮料会腹泻也是同样原因，这回真“泻药”了。。。</p>
-<p>不得不说，月饼的外包装还是挺好看的。</p>
-<figure><a class="lightgallery" href="/post_images/image-20210909161118120.png" title="/post_images/image-20210909161118120.png" data-thumbnail="/post_images/image-20210909161118120.png" data-sub-html="<h2>from 即刻 - 油百万</h2>">
-        
-    </a><figcaption class="image-caption">from 即刻 - 油百万</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210909160738423.png" title="/post_images/image-20210909160738423.png" data-thumbnail="/post_images/image-20210909160738423.png" data-sub-html="<h2>from 即刻 - 油百万</h2>">
-        
-    </a><figcaption class="image-caption">from 即刻 - 油百万</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210909160914669.png" title="/post_images/image-20210909160914669.png" data-thumbnail="/post_images/image-20210909160914669.png" data-sub-html="<h2>from 即刻 - 油百万</h2>">
-        
-    </a><figcaption class="image-caption">from 即刻 - 油百万</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210909160941837.png" title="/post_images/image-20210909160941837.png" data-thumbnail="/post_images/image-20210909160941837.png" data-sub-html="<h2>from 即刻 - 油百万</h2>">
-        
-    </a><figcaption class="image-caption">from 即刻 - 油百万</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210913115606456.png" title="/post_images/image-20210913115606456.png" data-thumbnail="/post_images/image-20210913115606456.png" data-sub-html="<h2>from 即刻 - 油百万</h2>">
-        
-    </a><figcaption class="image-caption">from 即刻 - 油百万</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<p>知乎官方微博原文截图</p>
-<figure><a class="lightgallery" href="/post_images/image-20210909020717395.png" title="/post_images/image-20210909020717395.png" data-thumbnail="/post_images/image-20210909020717395.png" data-sub-html="<h2>官方微博账号道歉声明</h2>">
-        
-    </a><figcaption class="image-caption">官方微博账号道歉声明</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<p>微博原文中的 P3，是此次月饼采销的负责人发言。</p>
-<figure><a class="lightgallery" href="/post_images/0024UdtXly1gu9gw8412xj60t416ctfg02.jpg" title="/post_images/0024UdtXly1gu9gw8412xj60t416ctfg02.jpg" data-thumbnail="/post_images/0024UdtXly1gu9gw8412xj60t416ctfg02.jpg" data-sub-html="<h2>此次月饼采销负责人发言</h2>">
-        
-    </a><figcaption class="image-caption">此次月饼采销负责人发言</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<p>在官方出面道歉前，其实已经有知乎用户给出了相关解释。</p>
-<figure><a class="lightgallery" href="/post_images/0d95b77fef1102bed4ec663f4986e6af2050e42f.jpg@518w.webp" title="/post_images/0d95b77fef1102bed4ec663f4986e6af2050e42f.jpg@518w.webp" data-thumbnail="/post_images/0d95b77fef1102bed4ec663f4986e6af2050e42f.jpg@518w.webp" data-sub-html="<h2>知乎用户爆料</h2>">
-        
-    </a><figcaption class="image-caption">知乎用户爆料</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<p>官方账号道歉声明微博下对控评不满的网友们。</p>
-<figure><a class="lightgallery" href="/post_images/242aade9ae3be74133a3afe98cdbff51e5f5bb76.jpg@518w.webp" title="/post_images/242aade9ae3be74133a3afe98cdbff51e5f5bb76.jpg@518w.webp" data-thumbnail="/post_images/242aade9ae3be74133a3afe98cdbff51e5f5bb76.jpg@518w.webp" data-sub-html="<h2>网友们</h2>">
-        
-    </a><figcaption class="image-caption">网友们</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210909021633620.png" title="/post_images/image-20210909021633620.png" data-thumbnail="/post_images/image-20210909021633620.png" data-sub-html="<h2>网友们</h2>">
-        
-    </a><figcaption class="image-caption">网友们</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<figure><a class="lightgallery" href="/post_images/image-20210909021829820.png" title="/post_images/image-20210909021829820.png" data-thumbnail="/post_images/image-20210909021829820.png" data-sub-html="<h2>网友们</h2>">
-        
-    </a><figcaption class="image-caption">网友们</figcaption>
-    </figure>
-<!-- raw HTML omitted -->
-<h1 id="ref">REF</h1>
-<p>即刻 - 油百万：<a href="https://m.okjike.com/originalPosts/6136198602cb2b0010e286d9" target="_blank" rel="noopener noreffer">https://m.okjike.com/originalPosts/6136198602cb2b0010e286d9</a></p>
-<p>即刻 - 油百万：<a href="https://m.okjike.com/originalPosts/613d9d6a67d511001031ad9c" target="_blank" rel="noopener noreffer">https://m.okjike.com/originalPosts/613d9d6a67d511001031ad9c</a></p>
-<p>微博 - 知乎官微道歉声明原文：<a href="https://weibo.com/1904769205/KxfvMybtj" target="_blank" rel="noopener noreffer">https://weibo.com/1904769205/KxfvMybtj</a></p>
 ]]></description>
 </item></channel>
 </rss>
