@@ -193,6 +193,7 @@
 </code></pre></div><p>150 线程并发测试后，并没有发现有异常情况了。根据实际业务需求，可以增加等待超时机制。</p>
 <h1 id="四ref">四、REF</h1>
 <p><a href="https://redis.io/commands/set" target="_blank" rel="noopener noreffer">https://redis.io/commands/set</a></p>
+<p><a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener noreffer">http://www.redis.cn/commands/set.html</a></p>
 <p><a href="https://github.com/phpredis/phpredis#set" target="_blank" rel="noopener noreffer">https://github.com/phpredis/phpredis#set</a></p>
 <p><a href="https://www.jianshu.com/p/a1ebab8ce78a" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/a1ebab8ce78a</a></p>
 <p><a href="https://blog.csdn.net/qq_34337272/article/details/81072874" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_34337272/article/details/81072874</a></p>]]></description>
