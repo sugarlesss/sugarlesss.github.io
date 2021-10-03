@@ -195,7 +195,7 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<h4 id="剑指-offer-37-序列化二叉树httpsleetcode-cncomproblemsxu-lie-hua-er-cha-shu-lcof-难度困难236收藏分享切换为英文接收动态反馈"><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 37. 序列化二叉树</a> 难度困难236收藏分享切换为英文接收动态反馈</h4>
+<p><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 37. 序列化二叉树</a> 难度困难236收藏分享切换为英文接收动态反馈</p>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
 <p>你需要设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 <p>**提示：**输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 <a href="https://support.leetcode-cn.com/hc/kb/article/1194353/" target="_blank" rel="noopener noreffer">LeetCode 序列化二叉树的格式</a>。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
