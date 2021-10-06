@@ -4,7 +4,21 @@
         <link>https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</link>
         <description>软件 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+    <title>ADB - Android Debug Bridge</title>
+    <link>https://sugarless.top/posts/adb.html</link>
+    <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/adb.html</guid>
+    <description><![CDATA[<p>ADB，即 Android Debug Bridge，是 Android 开发/测试人员不可替代的强大工具，其功能包括但不限于：安装卸载应用、拷贝推送文件、查看设备硬件信息、查看应用程序占用资源、在设备执行 shell 命令等。</p>
+<p>在使用 python uiautomator2 这个库折腾安卓模拟器时，为了使用 adb 连接模拟机，我找到了此工具。</p>
+<p>GitHub：<a href="https://github.com/koush/UniversalAdbDriver" target="_blank" rel="noopener noreffer">https://github.com/koush/UniversalAdbDriver</a></p>
+<p>官网：<a href="https://adb.clockworkmod.com/" target="_blank" rel="noopener noreffer">https://adb.clockworkmod.com</a></p>
+<p>安装完成之后，将安装目录加入系统环境变量的 PATH 中即可。</p>
+<pre tabindex="0"><code>C:\Users\Administrator&gt;adb -v
+Android Debug Bridge version 1.0.31
+</code></pre>]]></description>
+</item><item>
     <title>SoftPerfect RAM Disk 内存盘工具</title>
     <link>https://sugarless.top/posts/ram-disk-tool.html</link>
     <pubDate>Fri, 07 Aug 2020 00:00:00 &#43;0000</pubDate><author>

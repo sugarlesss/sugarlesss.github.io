@@ -200,7 +200,10 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p>你需要设计一个算法来实现二叉树的序列化与反序列化。这里不限定你的序列 / 反序列化算法执行逻辑，你只需要保证一个二叉树可以被序列化为一个字符串并且将这个字符串反序列化为原始的树结构。</p>
 <p>**提示：**输入输出格式与 LeetCode 目前使用的方式一致，详情请参阅 <a href="https://support.leetcode-cn.com/hc/kb/article/1194353/" target="_blank" rel="noopener noreffer">LeetCode 序列化二叉树的格式</a>。你并非必须采取这种方式，你也可以采用其他的方法解决这个问题。</p>
 <p><strong>示例：</strong></p>
-<p></p>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20210930122450456.jpg" title="/post_images/image-20210930122450456.jpg" data-thumbnail="/post_images/image-20210930122450456.jpg">
+        
+    </a>
 <pre tabindex="0"><code>输入：root = [1,2,3,null,null,4,5]
 输出：[1,2,3,null,null,4,5]
 </code></pre><p>注意：本题与主站 297 题相同：https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/</p>
