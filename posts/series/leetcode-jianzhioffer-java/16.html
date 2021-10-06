@@ -5,35 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">16、剑指 Offer 10- II. 青蛙跳台阶问题 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="16、剑指 Offer 10- II. 青蛙跳台阶问题" />
-<meta property="og:description" content="一、题目 剑指 Offer 10- II. 青蛙跳台阶问题 难度简单 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。 答案需" />
+    <title class="pjax-title">16、剑指 Offer 40. 最小的k个数 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="16、剑指 Offer 40. 最小的k个数" />
+<meta property="og:description" content="一、题目 剑指 Offer 40. 最小的k个数 难度简单 输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-20T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-20T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-09-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-14T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="16、剑指 Offer 10- II. 青蛙跳台阶问题"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 10- II. 青蛙跳台阶问题 难度简单 一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 n 级的台阶总共有多少种跳法。 答案需"/>
+<meta name="twitter:title" content="16、剑指 Offer 40. 最小的k个数"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 40. 最小的k个数 难度简单 输入整数数组 arr ，找出其中最小的 k 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="next" href="https://sugarless.top/posts/what-is-2fa.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "16、剑指 Offer 10- II. 青蛙跳台阶问题",
+        "headline": "16、剑指 Offer 40. 最小的k个数",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/16.html"
-        },"genre": "posts","wordcount":  615 ,
-        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/16.html","datePublished": "2021-09-20T00:00:00+00:00","dateModified": "2021-09-20T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","wordcount":  1354 ,
+        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/16.html","datePublished": "2021-09-14T00:00:00+00:00","dateModified": "2021-09-14T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -114,12 +114,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">16、剑指 Offer 10- II. 青蛙跳台阶问题</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">16、剑指 Offer 40. 最小的k个数</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-20">2021-09-20</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-20">2021-09-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 615 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/16.html" class="leancloud_visitors" data-flag-title="16、剑指 Offer 10- II. 青蛙跳台阶问题">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-14">2021-09-14</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-14">2021-09-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1354 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/16.html" class="leancloud_visitors" data-flag-title="16、剑指 Offer 40. 最小的k个数">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -132,11 +132,25 @@
     <li><a href="#一题目">一、题目</a></li>
     <li><a href="#二解法">二、解法</a>
       <ul>
-        <li><a href="#21动态规划">2.1、动态规划</a>
+        <li><a href="#21排序面试时也许会被直接-pass-不推荐使用">2.1、排序（面试时也许会被直接 PASS ，不推荐使用）</a>
           <ul>
             <li><a href="#核心思路">核心思路</a></li>
             <li><a href="#复杂度分析">复杂度分析</a></li>
             <li><a href="#code">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#22快速排序思想">2.2、快速排序思想</a>
+          <ul>
+            <li><a href="#核心思路-1">核心思路</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析</a></li>
+            <li><a href="#code-1">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#23堆">2.3、堆</a>
+          <ul>
+            <li><a href="#核心思路-2">核心思路</a></li>
+            <li><a href="#复杂度分析-2">复杂度分析</a></li>
+            <li><a href="#code-2">Code</a></li>
           </ul>
         </li>
       </ul>
@@ -145,74 +159,136 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- II. 青蛙跳台阶问题</a> 难度简单</p>
-<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
-<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 40. 最小的k个数</a> 难度简单</p>
+<p>输入整数数组 <code>arr</code> ，找出其中最小的 <code>k</code> 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p>
 <p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：n = 2
-输出：2
+<pre tabindex="0"><code>输入：arr = [3,2,1], k = 2
+输出：[1,2] 或者 [2,1]
 </code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：n = 7
-输出：21
-</code></pre><p><strong>示例 3：</strong></p>
-<pre tabindex="0"><code>输入：n = 0
-输出：1
-</code></pre><p><strong>提示：</strong></p>
+<pre tabindex="0"><code>输入：arr = [0,1,2,1], k = 1
+输出：[0]
+</code></pre><p><strong>限制：</strong></p>
 <ul>
-<li><code>0 &lt;= n &lt;= 100</code></li>
+<li><code>0 &lt;= k &lt;= arr.length &lt;= 10000</code></li>
+<li><code>0 &lt;= arr[i] &lt;= 10000</code></li>
 </ul>
-<p>注意：本题与主站 70 题相同：https://leetcode-cn.com/problems/climbing-stairs/</p>
 <h1 id="二解法">二、解法</h1>
-<h2 id="21动态规划">2.1、动态规划</h2>
+<h2 id="21排序面试时也许会被直接-pass-不推荐使用">2.1、排序（面试时也许会被直接 PASS ，不推荐使用）</h2>
 <h3 id="核心思路">核心思路</h3>
-<p>此类求 <em>多少种可能性</em> 的题目一般都有 <strong>递推性质</strong> ，即 <code>f(n)</code> 和 <code>f(n-1) ... f(1)</code> 之间是有联系的。</p>
-<p>设跳上 <code>n</code> 级台阶有 <code>f(n)</code> 种跳法。在所有跳法中，青蛙的最后一步只有两种情况： <strong>跳上 1 级或 2 级台阶</strong>。</p>
-<ul>
-<li>当为 <code>1</code> 级台阶： 剩 <code>n-1</code> 个台阶，此情况共有 <code>f(n-1)</code> 种跳法；</li>
-<li>当为 <code>2</code> 级台阶： 剩 <code>n-2</code> 个台阶，此情况共有 <code>f(n-2)</code> 种跳法。</li>
-</ul>
-<p><code>f(n)</code> 为以上两种情况之和，即 <code>f(n)=f(n-1)+f(n-2)</code> ，以上递推性质为斐波那契数列。本题可转化为 求斐波那契数列第 n 项的值。与 <a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/mian-shi-ti-10-i-fei-bo-na-qi-shu-lie-dong-tai-gui/" target="_blank" rel="noopener noreffer">面试题10- I. 斐波那契数列</a> 等价，唯一的不同在于起始数字不同。</p>
-<ul>
-<li>
-<p>青蛙跳台阶问题： <code>f(0)=1 , f(1)=1 , f(2)=2</code> ；</p>
-</li>
-<li>
-<p>斐波那契数列问题： <code>f(0)=0 , f(1)=1 , f(2)=1</code> 。</p>
-</li>
-</ul>
-<a class="lightgallery" href="../../../post_images/image-20210921222328456.png" title="/post_images/image-20210921222328456.png" data-thumbnail="/post_images/image-20210921222328456.png">
-        <img
-            class="lazyload"
-            data-src="../../../post_images/image-20210921222328456.png"
-            data-srcset="../../../post_images/image-20210921222328456.png, ../../../post_images/image-20210921222328456.png 1.5x, ../../../post_images/image-20210921222328456.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210921222328456.png"
-        />
-    </a>
-<!-- raw HTML omitted -->
-<p>本题如果使用递归实现，时间会超限，因此使用循环。</p>
+<p>对原数组从小到大排序后取出前 <code>k</code> 个数即可。</p>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N) ， 计算 f(n) 需循环 n 次，每轮循环内计算操作使用 O(1) 。</p>
-<p><strong>空间复杂度</strong>：O(1) ，几个标志变量使用常数大小的额外空间。</p>
+<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 <code>arr</code> 的长度，算法的时间复杂度即排序的时间复杂度。</p>
+<p><strong>空间复杂度</strong>：O(log n)，排序所需额外的空间复杂度为 O(log n)。</p>
 <h3 id="code">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">numWays</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">c</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">)</span> <span class="o">%</span> <span class="n">1000000007</span><span class="o">;</span>
-            <span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="o">;</span>
-            <span class="n">b</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getLeastNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+
+        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
         <span class="o">}</span>
-        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22快速排序思想">2.2、快速排序思想</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>题目只要求返回最小的 k 个数，对这 k 个数的顺序并没有要求。因此，只需要将数组划分为 最小的 k 个数 和 其他数字 两部分即可，而快速排序的哨兵划分可完成此目标。</p>
+<p>根据快速排序原理，如果某次哨兵划分后 基准数正好是第 k+1 小的数字 ，那么此时基准数左边的所有数字便是题目所求的 最小的 k 个数 。</p>
+<p>根据此思路，考虑在每次哨兵划分后，判断基准数在数组中的索引是否等于 k ，若 true 则直接返回此时数组的前 k 个数字即可。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)， 因为我们是要找下标为 k 的元素，第一次切分的时候需要遍历整个数组 (0 ~ n) 找到了下标是 j 的元素，假如 k 比 j 小的话，那么我们下次切分只要遍历数组 (0~k-1)的元素，反之如果 k 比 j 大的话，那下次切分只要遍历数组 (k+1～n) 的元素，总之可以看作每次调用 partition 遍历的元素数目都是上一次遍历的 1/2，因此时间复杂度是 N + N/2 + N/4 + &hellip; + N/N = 2N, 因此时间复杂度是 O(N)。</p>
+<p><strong>空间复杂度</strong>：O(log N)，划分函数的平均递归深度为 O(log N)。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 入口
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getLeastNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="k">return</span> <span class="n">arr</span><span class="o">;</span>
+        <span class="c1">// 递归调用
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// quick_sort() 的功能不是排序整个数组，而是搜索并返回最小的 k 个数.
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">quickSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="kt">int</span> <span class="n">left</span><span class="o">,</span> <span class="kt">int</span> <span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">right</span><span class="o">;</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">])</span> <span class="n">j</span><span class="o">--;</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span> <span class="o">&amp;&amp;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">arr</span><span class="o">[</span><span class="n">left</span><span class="o">])</span> <span class="n">i</span><span class="o">++;</span>
+            <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">swap</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">k</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">left</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">)</span> <span class="k">return</span> <span class="n">quickSort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">Arrays</span><span class="o">.</span><span class="na">copyOf</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">k</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">swap</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">i</span><span class="o">,</span> <span class="kt">int</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+        <span class="n">arr</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="23堆">2.3、堆</h2>
+<h3 id="核心思路-2">核心思路</h3>
+<p>我们用一个大根堆实时维护数组的前 k 小值。首先将前 k 个数插入大根堆中，随后从第 k+1 个数开始遍历，如果当前遍历到的数比大根堆的堆顶的数要小，就把堆顶的数弹出，再插入当前遍历到的数。最后将大根堆里的数存入数组返回即可。</p>
+<h3 id="复杂度分析-2">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：时间复杂度：O(n log k)，其中 n 是数组 arr 的长度。由于大根堆实时维护前 k 小值，所以插入删除都是 O(log k) 的时间复杂度，最坏情况下数组里 n 个数都会插入，所以一共需要 O(n log k) 的时间复杂度。</p>
+<p><strong>空间复杂度</strong>：O(k)，因为大根堆里最多 k 个数。</p>
+<h3 id="code-2">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">getLeastNumbers</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界情况
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{};</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 结果
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+
+        <span class="c1">// 优先级队列
+</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;(</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="c1">// 自定义比较器, 使之成为大顶堆.  默认为大顶堆
+</span><span class="c1"></span>            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Integer</span> <span class="n">num1</span><span class="o">,</span> <span class="n">Integer</span> <span class="n">num2</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="n">num2</span> <span class="o">-</span> <span class="n">num1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="c1">// 向优先队列中插入 arr 的前 k 个元素
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 循环处理剩下的的元素
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 如果队首元素(也就是队列中权值最大的那个元素)大于当前的值
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+                <span class="c1">// 删除队首元素
+</span><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+                <span class="c1">// 向优先队列中插入当前元素
+</span><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 依次取出优先级队列的元素，构造数据
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-20</span>
+                <span>更新于 2021-09-14</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -231,8 +307,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/15.html" class="prev" rel="prev" title="15、剑指 Offer 40. 最小的k个数"><i class="fas fa-angle-left fa-fw"></i>15、剑指 Offer 40. 最小的k个数</a>
-            <a href="../../../posts/series/leetcode-jianzhioffer-java/17.html" class="next" rel="next" title="17、剑指 Offer 13. 机器人的运动范围">17、剑指 Offer 13. 机器人的运动范围<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/15.html" class="prev" rel="prev" title="15、剑指 Offer 25. 合并两个排序的链表"><i class="fas fa-angle-left fa-fw"></i>15、剑指 Offer 25. 合并两个排序的链表</a>
+            <a href="../../../posts/what-is-2fa.html" class="next" rel="next" title="2FA 是什么？">2FA 是什么？<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

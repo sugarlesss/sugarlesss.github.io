@@ -5,11 +5,659 @@
         <description>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
-    <title>23、剑指 Offer 37. 序列化二叉树</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</link>
+    <title>29、剑指 Offer 20. 表示数值的字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</link>
     <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<h4 id="剑指-offer-20-表示数值的字符串httpsleetcode-cncomproblemsbiao-shi-shu-zhi-de-zi-fu-chuan-lcof-难度中等"><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 20. 表示数值的字符串</a> 难度中等</h4>
+<p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
+<p><strong>数值</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>若干空格</li>
+<li>一个 <strong>小数</strong> 或者 <strong>整数</strong></li>
+<li>（可选）一个 <code>'e'</code> 或 <code>'E'</code> ，后面跟着一个 <strong>整数</strong></li>
+<li>若干空格</li>
+</ol>
+<p><strong>小数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>下述格式之一：
+<ol>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code></li>
+<li>至少一位数字，后面跟着一个点 <code>'.'</code> ，后面再跟着至少一位数字</li>
+<li>一个点 <code>'.'</code> ，后面跟着至少一位数字</li>
+</ol>
+</li>
+</ol>
+<p><strong>整数</strong>（按顺序）可以分成以下几个部分：</p>
+<ol>
+<li>（可选）一个符号字符（<code>'+'</code> 或 <code>'-'</code>）</li>
+<li>至少一位数字</li>
+</ol>
+<p>部分<strong>数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;+100&quot;, &quot;5e2&quot;, &quot;-123&quot;, &quot;3.1416&quot;, &quot;-1E-16&quot;, &quot;0123&quot;]</code></li>
+</ul>
+<p>部分<strong>非数值</strong>列举如下：</p>
+<ul>
+<li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
+</ul>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：s = &quot;0&quot;
+输出：true
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：s = &quot;e&quot;
+输出：false
+</code></pre><p><strong>示例 3：</strong></p>
+<pre tabindex="0"><code>输入：s = &quot;.&quot;
+输出：false
+</code></pre><p><strong>示例 4：</strong></p>
+<pre tabindex="0"><code>输入：s = &quot;    .1  &quot;
+输出：true
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s.length &lt;= 20</code></li>
+<li><code>s</code> 仅含英文字母（大写和小写），数字（<code>0-9</code>），加号 <code>'+'</code> ，减号 <code>'-'</code> ，空格 <code>' '</code> 或者点 <code>'.'</code> 。</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21确定有限状态自动机官方题解">2.1、确定有限状态自动机（官方题解）</h2>
+<h3 id="核心思路">核心思路</h3>
+<p><strong>预备知识</strong></p>
+<p>确定有限状态自动机（以下简称「自动机」）是一类计算模型。它包含一系列状态，这些状态中：</p>
+<p>有一个特殊的状态，被称作「初始状态」。
+还有一系列状态被称为「接受状态」，它们组成了一个特殊的集合。其中，一个状态可能既是「初始状态」，也是「接受状态」。
+起初，这个自动机处于「初始状态」。随后，它顺序地读取字符串中的每一个字符，并根据当前状态和读入的字符，按照某个事先约定好的「转移规则」，从当前状态转移到下一个状态；当状态转移完成后，它就读取下一个字符。当字符串全部读取完毕后，如果自动机处于某个「接受状态」，则判定该字符串「被接受」；否则，判定该字符串「被拒绝」。</p>
+<p>注意：如果输入的过程中某一步转移失败了，即不存在对应的「转移规则」，此时计算将提前中止。在这种情况下我们也判定该字符串「被拒绝」。</p>
+<p>一个自动机，总能够回答某种形式的「对于给定的输入字符串 S，判断其是否满足条件 P」的问题。在本题中，条件 P 即为「构成合法的表示数值的字符串」。</p>
+<p>自动机驱动的编程，可以被看做一种暴力枚举方法的延伸：它穷尽了在任何一种情况下，对应任何的输入，需要做的事情。</p>
+<p>自动机在计算机科学领域有着广泛的应用。在算法领域，它与大名鼎鼎的字符串查找算法「KMP」算法有着密切的关联；在工程领域，它是实现「正则表达式」的基础。</p>
+<p><strong>问题描述</strong></p>
+<p>在 <a href="https://en.cppreference.com/w/cpp/language/floating_literal" target="_blank" rel="noopener noreffer">C++ 文档</a> 中，描述了一个合法的数值字符串应当具有的格式。具体而言，它包含以下部分：</p>
+<p>符号位，即 ++、-− 两种符号
+整数部分，即由若干字符 0-90−9 组成的字符串
+小数点
+小数部分，其构成与整数部分相同
+指数部分，其中包含开头的字符 \text{e}e（大写小写均可）、可选的符号位，和整数部分
+相比于 C++ 文档而言，本题还有一点额外的不同，即允许字符串首末两端有一些额外的空格。</p>
+<p>在上面描述的五个部分中，每个部分都不是必需的，但也受一些额外规则的制约，如：</p>
+<p>如果符号位存在，其后面必须跟着数字或小数点。
+小数点的前后两侧，至少有一侧是数字。</p>
+<p><strong>思路与算法</strong></p>
+<p>根据上面的描述，现在可以定义自动机的「状态集合」了。那么怎么挖掘出所有可能的状态呢？一个常用的技巧是，用「当前处理到字符串的哪个部分」当作状态的表述。根据这一技巧，不难挖掘出所有状态：</p>
+<p>起始的空格
+符号位
+整数部分
+左侧有整数的小数点
+左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
+小数部分
+字符 e
+指数部分的符号位
+指数部分的整数部分
+末尾的空格
+下一步是找出「初始状态」和「接受状态」的集合。根据题意，「初始状态」应当为状态 1，而「接受状态」的集合则为状态 3、状态 4、状态 6、状态 9 以及状态 10。换言之，字符串的末尾要么是空格，要么是数字，要么是小数点，但前提是小数点的前面有数字。</p>
+<p>最后，需要定义「转移规则」。结合数值字符串应当具备的格式，将自动机转移的过程以图解的方式表示出来：</p>
+<a class="lightgallery" href="/post_images/image-20210913110127164.png" title="/post_images/image-20210913110127164.png" data-thumbnail="/post_images/image-20210913110127164.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>比较上图与「预备知识」一节中对自动机的描述，可以看出有一点不同：</p>
+<p>我们没有单独地考虑每种字符，而是划分为若干类。由于全部 10 个数字字符彼此之间都等价，因此只需定义一种统一的「数字」类型即可。对于正负号也是同理。
+在实际代码中，我们需要处理转移失败的情况。例如当位于状态 1（起始空格）时，没有对应字符 e 的状态。为了处理这种情况，我们可以创建一个特殊的拒绝状态。如果当前状态下没有对应读入字符的「转移规则」，我们就转移到这个特殊的拒绝状态。一旦自动机转移到这个特殊状态，我们就可以立即判定该字符串不「被接受」。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)，其中 n 为字符串的长度。我们需要遍历字符串的每个字符，其中状态转移所需的时间复杂度为 O(1)。</p>
+<p><strong>空间复杂度</strong>：O(1)，只需要创建固定大小的状态转移表。</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 有限状态集合
+</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">State</span> <span class="o">{</span>
+        <span class="c1">// 起始的空格
+</span><span class="c1"></span>        <span class="n">STATE_INITIAL</span><span class="o">,</span>
+        <span class="c1">// 整数部分符号位
+</span><span class="c1"></span>        <span class="n">STATE_INT_SIGN</span><span class="o">,</span>
+        <span class="c1">// 整数部分
+</span><span class="c1"></span>        <span class="n">STATE_INTEGER</span><span class="o">,</span>
+        <span class="c1">// 左侧有整数的小数点
+</span><span class="c1"></span>        <span class="n">STATE_POINT</span><span class="o">,</span>
+        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
+</span><span class="c1"></span>        <span class="n">STATE_POINT_WITHOUT_INT</span><span class="o">,</span>
+        <span class="c1">// 小数部分
+</span><span class="c1"></span>        <span class="n">STATE_FRACTION</span><span class="o">,</span>
+        <span class="c1">// 字符 e
+</span><span class="c1"></span>        <span class="n">STATE_EXP</span><span class="o">,</span>
+        <span class="c1">// 指数部分的符号位
+</span><span class="c1"></span>        <span class="n">STATE_EXP_SIGN</span><span class="o">,</span>
+        <span class="c1">// 指数部分的整数部分
+</span><span class="c1"></span>        <span class="n">STATE_EXP_NUMBER</span><span class="o">,</span>
+        <span class="c1">// 末尾的空格
+</span><span class="c1"></span>        <span class="n">STATE_END</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 字符类型集合
+</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">CharType</span> <span class="o">{</span>
+        <span class="c1">// 数字
+</span><span class="c1"></span>        <span class="n">CHAR_NUMBER</span><span class="o">,</span>
+        <span class="c1">// 字符 e
+</span><span class="c1"></span>        <span class="n">CHAR_EXP</span><span class="o">,</span>
+        <span class="c1">// 小数点
+</span><span class="c1"></span>        <span class="n">CHAR_POINT</span><span class="o">,</span>
+        <span class="c1">// 正负号
+</span><span class="c1"></span>        <span class="n">CHAR_SIGN</span><span class="o">,</span>
+        <span class="c1">// 空格
+</span><span class="c1"></span>        <span class="n">CHAR_SPACE</span><span class="o">,</span>
+        <span class="c1">// 非法字符
+</span><span class="c1"></span>        <span class="n">CHAR_ILLEGAL</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 状态机
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;</span> <span class="n">transfer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;();</span>
+
+
+        <span class="c1">// 空格（初始状态） 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">initialMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="c1">// 空格
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">);</span>
+            <span class="c1">// 整数
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="c1">// 小数点
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+            <span class="c1">// 正负号
+</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">,</span> <span class="n">initialMap</span><span class="o">);</span>
+
+
+        <span class="c1">// 整数部分符号位 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">intSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">,</span> <span class="n">intSignMap</span><span class="o">);</span>
+
+
+        <span class="c1">// 整数部分 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">integerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">,</span> <span class="n">integerMap</span><span class="o">);</span>
+
+        <span class="c1">// 左侧有整数的小数点 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">,</span> <span class="n">pointMap</span><span class="o">);</span>
+
+        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分) 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointWithoutIntMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">,</span> <span class="n">pointWithoutIntMap</span><span class="o">);</span>
+
+        <span class="c1">// 小数部分
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">fractionMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">,</span> <span class="n">fractionMap</span><span class="o">);</span>
+
+        <span class="c1">// 字符 e 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">,</span> <span class="n">expMap</span><span class="o">);</span>
+
+        <span class="c1">// 指数部分的符号位 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">,</span> <span class="n">expSignMap</span><span class="o">);</span>
+
+        <span class="c1">// 指数部分的整数部分 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expNumberMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">,</span> <span class="n">expNumberMap</span><span class="o">);</span>
+
+        <span class="c1">// 末尾的空格 的所有可转移状态
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">endMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+        <span class="o">}};</span>
+        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">,</span> <span class="n">endMap</span><span class="o">);</span>
+
+
+        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="c1">// 初始状态
+</span><span class="c1"></span>        <span class="n">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">;</span>
+
+        <span class="c1">// 循环处理每个字符, 模拟状态转移
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 获取当前字符的类型
+</span><span class="c1"></span>            <span class="n">CharType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">toCharType</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+
+            <span class="k">if</span> <span class="o">(!</span><span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 获取字符的类型
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">CharType</span> <span class="nf">toCharType</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_ILLEGAL</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22确定有限状态自动机评论区">2.2、确定有限状态自动机（评论区）</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>本题使用有限状态自动机。根据字符类型和合法数值的特点，先定义状态，再画出状态转移图，最后编写代码即可。</p>
+<p><strong>字符类型</strong>：</p>
+<p>空格 「 」、数字「 0—9 」 、正负号 「 +− 」 、小数点 「 . 」 、幂符号 「 eE 」 。</p>
+<p><strong>状态定义</strong>：</p>
+<p>按照字符串从左到右的顺序，定义以下 9 种状态。</p>
+<ul>
+<li>开始的空格</li>
+<li>幂符号前的正负号</li>
+<li>小数点前的数字</li>
+<li>小数点、小数点后的数字</li>
+<li>当小数点前为空格时，小数点、小数点后的数字</li>
+<li>幂符号</li>
+<li>幂符号后的正负号</li>
+<li>幂符号后的数字</li>
+<li>结尾的空格</li>
+</ul>
+<p><strong>结束状态</strong>：</p>
+<p>合法的结束状态有 2, 3, 7, 8 。</p>
+<a class="lightgallery" href="/post_images/image-20210913105508562.png" title="/post_images/image-20210913105508562.png" data-thumbnail="/post_images/image-20210913105508562.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：其中 N 为字符串 s 的长度，判断需遍历字符串，每轮状态转移的使用 O(1) 时间。</p>
+<p><strong>空间复杂度</strong>：states 和 p 使用常数大小的额外空间。</p>
+<h3 id="code-1">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">HashMap</span><span class="o">[]</span> <span class="n">states</span> <span class="o">=</span> <span class="o">{</span>
+                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 0. start with &#39;blank&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 1. &#39;sign&#39; before &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 2. &#39;digit&#39; before &#39;dot&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>              <span class="c1">// 3. &#39;digit&#39; after &#39;dot&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 4. &#39;digit&#39; after &#39;dot&#39; (‘blank’ before &#39;dot&#39;)
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 5. &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 6. &#39;sign&#39; after &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 7. &#39;digit&#39; after &#39;e&#39;
+</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}}</span>                                         <span class="c1">// 8. end with &#39;blank&#39;
+</span><span class="c1"></span>        <span class="o">};</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">char</span> <span class="n">t</span><span class="o">;</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;d&#39;</span><span class="o">;</span>       <span class="c1">// digit
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;s&#39;</span><span class="o">;</span>  <span class="c1">// sign
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;e&#39;</span><span class="o">;</span>  <span class="c1">// e or E
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>    <span class="c1">// dot, blank
+</span><span class="c1"></span>            <span class="k">else</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;?&#39;</span><span class="o">;</span>                           <span class="c1">// unknown
+</span><span class="c1"></span>            <span class="k">if</span><span class="o">(!</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">containsKey</span><span class="o">(</span><span class="n">t</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">2</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">3</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">7</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">8</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="23常规解法">2.3、常规解法</h2>
+<h3 id="核心思路-2">核心思路</h3>
+<blockquote>
+<p>什么有限状态自动机的我不太懂，常规解法可以做就不想搞这种可能只有这道题会用到的解法。</p>
+</blockquote>
+<p>我首先想到的是判断否 false 而不是判断是 true，毕竟有这么多条件满足才能判断 true，但是只要有一个条件不满足就可以判断 false，最后代码的效率也还可以，那么接下来进入正题吧：</p>
+<ol>
+<li>
+<p>首先定义了四个flag，对应四种字符</p>
+<ul>
+<li>是否有数字：hasNum</li>
+<li>是否有e：hasE</li>
+<li>是否有正负符号：hasSign</li>
+<li>是否有点：hasDot</li>
+</ul>
+</li>
+<li>
+<p>其余还定义了字符串长度 n 以及字符串索引 index</p>
+</li>
+<li>
+<p>先处理一下开头的空格，index 相应的后移</p>
+</li>
+<li>
+<p>然后进入循环，遍历字符串</p>
+<ul>
+<li>如果当前字符 c 是数字：将 hasNum 置为 true ，index 往后移动一直到非数字或遍历到末尾位置；如果已遍历到末尾 ( index == n ) ，结束循环</li>
+<li>如果当前字符 c 是 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ：如果 e 已经出现或者当前 e 之前没有出现过数字，返回 fasle ；否则令 hasE = true ，并且将其他 3 个 flag 全部置为 false ，因为要开始遍历 e 后面的新数字了</li>
+<li>如果当前字符 c 是 + 或-：如果已经出现过 + 或 - 或者已经出现过数字或者已经出现过 &lsquo;.&rsquo; ，返回 flase ；否则令 hasSign = true</li>
+<li>如果当前字符 c 是 &lsquo;.&rsquo; ：如果已经出现过 &lsquo;.&rsquo; 或者已经出现过 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ，返回 false ；否则令 hasDot = true</li>
+<li>如果当前字符 c 是 ' ' ：结束循环，因为可能是末尾的空格了，但也有可能是字符串中间的空格，在循环外继续处理</li>
+<li>如果当前字符 c 是除了上面 5 种情况以外的其他字符，直接返回 false</li>
+</ul>
+</li>
+<li>
+<p>处理空格，index 相应的后移</p>
+</li>
+<li>
+<p>如果当前索引 index 与字符串长度相等，说明遍历到了末尾，但是还要满足 hasNum 为 true 才可以最终返回 true ，因为如果字符串里全是符号没有数字的话是不行的，而且 e 后面没有数字也是不行的，但是没有符号是可以的，所以 4 个 flag 里只要判断一下 hasNum 就行；所以最后返回的是 hasNum &amp;&amp; index == n</p>
+</li>
+<li>
+<p>如果字符串中间有空格，按以上思路是无法遍历到末尾的，index 不会与 n 相等，返回的就是 false</p>
+</li>
+</ol>
+<h3 id="复杂度分析-2">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)</p>
+<p><strong>空间复杂度</strong>：O(1)</p>
+<h3 id="code-2">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasE</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="kt">boolean</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">){</span>
+            <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">){</span>
+                <span class="n">index</span><span class="o">++;</span>
+                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">){</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasE</span> <span class="o">||</span> <span class="o">!</span><span class="n">hasNum</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasE</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasSign</span> <span class="o">||</span> <span class="n">hasNum</span> <span class="o">||</span> <span class="n">hasDot</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">){</span>
+                <span class="k">if</span><span class="o">(</span><span class="n">hasDot</span> <span class="o">||</span> <span class="n">hasE</span><span class="o">){</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span>
+                <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">){</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="o">}</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+            <span class="n">index</span><span class="o">++;</span>
+        <span class="k">return</span> <span class="n">hasNum</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/</a></p>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/</a></p>
+<p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/</a></p>
+]]></description>
+</item><item>
+    <title>26、剑指 Offer 05. 替换空格</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/26.html</link>
+    <pubDate>Thu, 30 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/26.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 05. 替换空格</a> 难度简单</p>
+<p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成&quot;%20&quot;。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：s = &quot;We are happy.&quot;
+输出：&quot;We%20are%20happy.&quot;
+</code></pre><p><strong>限制：</strong></p>
+<pre tabindex="0"><code>0 &lt;= s 的长度 &lt;= 10000
+</code></pre><h1 id="二解法">二、解法</h1>
+<h2 id="21遍历添加">2.1、遍历添加</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>在 Python 和 Java 等语言中，字符串都被设计成「不可变」的类型，即无法直接修改字符串的某一位字符，需要新建一个字符串实现。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)。遍历使用 O(N)，每轮添加（修改）字符操作使用 O(1)；</p>
+<p><strong>空间复杂度</strong>：O(N)。新建的 StringBuilder 使用了线性大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="n">Character</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;%20&#34;</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22string-内置-replace-函数">2.2、String 内置 replace 函数</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>不说了，懂得都懂。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：</p>
+<p><strong>空间复杂度</strong>：</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">,</span> <span class="s">&#34;%20&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/</a></p>
+]]></description>
+</item><item>
+    <title>25、剑指 Offer 45. 把数组排成最小的数</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html</link>
+    <pubDate>Wed, 29 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 45. 把数组排成最小的数</a> 难度中等</p>
+<p>输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: [10,2]
+输出: &quot;102&quot;
+</code></pre><p><strong>示例 2:</strong></p>
+<pre tabindex="0"><code>输入: [3,30,34,5,9]
+输出: &quot;3033459&quot;
+</code></pre><p><strong>提示:</strong></p>
+<ul>
+<li><code>0 &lt; nums.length &lt;= 100</code></li>
+</ul>
+<p><strong>说明:</strong></p>
+<ul>
+<li>输出结果可能非常大，所以你需要返回一个字符串而不是整数</li>
+<li>拼接起来的数字可能会有前导 0，最后结果不需要去掉前导 0</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21自定义规则排序">2.1、自定义规则排序</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>此题求拼接起来的最小数字，本质上是一个排序问题。设数组 nums 中任意两数字的字符串为 x 和 y ，则规定 <strong>排序判断规则</strong> 为：</p>
+<ul>
+<li>若拼接字符串 x + y &gt; y + x，则 x 的权重比 y 大；</li>
+<li>反之，若 x + y &lt; y + x，则 y 的权重比 x 大；</li>
+</ul>
+<p>排序完成后，权重大的数排前面，权重小的数排后面。根据以上规则，套用任何排序方法对 nums 执行排序即可。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N logN) ，N 为最终返回值的字符数量（ strs 列表的长度 ≤ N ）；使用快排或内置函数的平均时间复杂度为 O(NlogN) ，最差为 O(N^2)。</p>
+<p><strong>空间复杂度</strong>：O(N) ，字符串列表 strs 占用线性大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<p>内置排序</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">minNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// nums[] -&gt; string[]
+</span><span class="c1"></span>        <span class="n">String</span><span class="o">[]</span> <span class="n">strs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+
+        <span class="c1">// 自定义规则排序
+</span><span class="c1">//        Arrays.sort(strs, (x, y) -&gt; (x + y).compareTo(y + x));
+</span><span class="c1"></span>        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
+            <span class="nd">@Override</span>
+            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">s1</span><span class="o">,</span> <span class="n">String</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="o">(</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="o">).</span><span class="na">compareTo</span><span class="o">((</span><span class="n">s2</span> <span class="o">+</span> <span class="n">s1</span><span class="o">));</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+
+        <span class="c1">// 拼接排序后的结果
+</span><span class="c1"></span>        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">strs</span><span class="o">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h3 id="code-1">Code</h3>
+<p>快速排序</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">minNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">strs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">strs</span><span class="o">)</span>
+            <span class="n">res</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span>
+        <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span><span class="o">((</span><span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]).</span><span class="na">compareTo</span><span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">j</span><span class="o">--;</span>
+            <span class="k">while</span><span class="o">((</span><span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]).</span><span class="na">compareTo</span><span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">i</span><span class="o">++;</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+            <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
+        <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
+        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/</a></p>
+]]></description>
+</item><item>
+    <title>23、剑指 Offer 26. 树的子结构</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</link>
+    <pubDate>Sun, 26 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
     </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
+<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
+<p>B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。</p>
+<p>例如:
+给定的树 A:</p>
+<p>    3<br>
+   / \<br>
+  4  5<br>
+ / \<br>
+1  2</p>
+<p>给定的树 B：</p>
+<p>  4<br>
+ /<br>
+1</p>
+<p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：A = [1,2,3], B = [3,1]
+输出：false
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：A = [3,4,5,1,2], B = [4,1]
+输出：true
+</code></pre><p><strong>限制：</strong></p>
+<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 10000
+</code></pre><h1 id="二解法">二、解法</h1>
+<h2 id="21递归法">2.1、递归法</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>若树 B 是树 A 的子结构，则子结构的根节点可能为树 A 的任意一个节点。因此，判断树 B 是否是树 A 的子结构，需完成以下两步工作：</p>
+<ol>
+<li>先序遍历树 A 中的每个节点 Na；（对应函数 <code>isSubStructure(A, B)</code>）</li>
+<li>判断树 A 中以 Na 为根节点的子树是否包含树 B。（对应函数 <code>recur(A, B)</code>）</li>
+</ol>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(MN) ，其中 M,N 分别为树 A 和 树 B 的节点数量；先序遍历树 A 占用 O(M) ，每次调用 recur(A, B) 判断占用 O(N)。</p>
+<p><strong>空间复杂度</strong>：O(M) ，当树 A 和树 B 都退化为链表时，递归调用深度最大。当 M≤N 时，遍历树 A 与递归判断的总递归深度为 M ；当 M&gt;N 时，最差情况为遍历至树 A 叶子节点，此时总递归深度为 M。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubStructure</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 如果 A 或 B 为空
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B、A 相同
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的左子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// B 在 A 的右子树中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 递归判断树 A 是否包含 树 B
+</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">recur</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/</a></p>
+]]></description>
+</item><item>
+    <title>22、剑指 Offer 37. 序列化二叉树</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</link>
+    <pubDate>Fri, 24 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 37. 序列化二叉树</a> 难度困难236收藏分享切换为英文接收动态反馈</p>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
@@ -120,623 +768,11 @@
 <p><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/</a></p>
 ]]></description>
 </item><item>
-    <title>22、剑指 Offer 05. 替换空格</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</link>
-    <pubDate>Thu, 30 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 05. 替换空格</a> 难度简单</p>
-<p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成&quot;%20&quot;。</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;We are happy.&quot;
-输出：&quot;We%20are%20happy.&quot;
-</code></pre><p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= s 的长度 &lt;= 10000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21遍历添加">2.1、遍历添加</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>在 Python 和 Java 等语言中，字符串都被设计成「不可变」的类型，即无法直接修改字符串的某一位字符，需要新建一个字符串实现。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)。遍历使用 O(N)，每轮添加（修改）字符操作使用 O(1)；</p>
-<p><strong>空间复杂度</strong>：O(N)。新建的 StringBuilder 使用了线性大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="n">Character</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;%20&#34;</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22string-内置-replace-函数">2.2、String 内置 replace 函数</h2>
-<h3 id="核心思路-1">核心思路</h3>
-<p>不说了，懂得都懂。</p>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：</p>
-<p><strong>空间复杂度</strong>：</p>
-<h3 id="code-1">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">,</span> <span class="s">&#34;%20&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/</a></p>
-]]></description>
-</item><item>
-    <title>21、剑指 Offer 45. 把数组排成最小的数</title>
+    <title>21、剑指 Offer 10- II. 青蛙跳台阶问题</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/21.html</link>
-    <pubDate>Wed, 29 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+    <pubDate>Wed, 22 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/21.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 45. 把数组排成最小的数</a> 难度中等</p>
-<p>输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。</p>
-<p><strong>示例 1:</strong></p>
-<pre tabindex="0"><code>输入: [10,2]
-输出: &quot;102&quot;
-</code></pre><p><strong>示例 2:</strong></p>
-<pre tabindex="0"><code>输入: [3,30,34,5,9]
-输出: &quot;3033459&quot;
-</code></pre><p><strong>提示:</strong></p>
-<ul>
-<li><code>0 &lt; nums.length &lt;= 100</code></li>
-</ul>
-<p><strong>说明:</strong></p>
-<ul>
-<li>输出结果可能非常大，所以你需要返回一个字符串而不是整数</li>
-<li>拼接起来的数字可能会有前导 0，最后结果不需要去掉前导 0</li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21自定义规则排序">2.1、自定义规则排序</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>此题求拼接起来的最小数字，本质上是一个排序问题。设数组 nums 中任意两数字的字符串为 x 和 y ，则规定 <strong>排序判断规则</strong> 为：</p>
-<ul>
-<li>若拼接字符串 x + y &gt; y + x，则 x 的权重比 y 大；</li>
-<li>反之，若 x + y &lt; y + x，则 y 的权重比 x 大；</li>
-</ul>
-<p>排序完成后，权重大的数排前面，权重小的数排后面。根据以上规则，套用任何排序方法对 nums 执行排序即可。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N logN) ，N 为最终返回值的字符数量（ strs 列表的长度 ≤ N ）；使用快排或内置函数的平均时间复杂度为 O(NlogN) ，最差为 O(N^2)。</p>
-<p><strong>空间复杂度</strong>：O(N) ，字符串列表 strs 占用线性大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<p>内置排序</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">minNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// nums[] -&gt; string[]
-</span><span class="c1"></span>        <span class="n">String</span><span class="o">[]</span> <span class="n">strs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-
-        <span class="c1">// 自定义规则排序
-</span><span class="c1">//        Arrays.sort(strs, (x, y) -&gt; (x + y).compareTo(y + x));
-</span><span class="c1"></span>        <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">String</span> <span class="n">s1</span><span class="o">,</span> <span class="n">String</span> <span class="n">s2</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="o">(</span><span class="n">s1</span> <span class="o">+</span> <span class="n">s2</span><span class="o">).</span><span class="na">compareTo</span><span class="o">((</span><span class="n">s2</span> <span class="o">+</span> <span class="n">s1</span><span class="o">));</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-
-        <span class="c1">// 拼接排序后的结果
-</span><span class="c1"></span>        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-        <span class="k">for</span> <span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">strs</span><span class="o">)</span>
-            <span class="n">res</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-
-        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h3 id="code-1">Code</h3>
-<p>快速排序</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">minNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">strs</span> <span class="o">=</span> <span class="k">new</span> <span class="n">String</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
-            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">strs</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
-        <span class="n">StringBuilder</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-        <span class="k">for</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span> <span class="o">:</span> <span class="n">strs</span><span class="o">)</span>
-            <span class="n">res</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">s</span><span class="o">);</span>
-        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-    <span class="kt">void</span> <span class="nf">quickSort</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">strs</span><span class="o">,</span> <span class="kt">int</span> <span class="n">l</span><span class="o">,</span> <span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span>
-        <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">while</span><span class="o">((</span><span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]).</span><span class="na">compareTo</span><span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">j</span><span class="o">--;</span>
-            <span class="k">while</span><span class="o">((</span><span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]).</span><span class="na">compareTo</span><span class="o">(</span><span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">+</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="n">i</span><span class="o">++;</span>
-            <span class="n">tmp</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
-            <span class="n">strs</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">strs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">];</span>
-        <span class="n">strs</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
-        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">l</span><span class="o">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
-        <span class="n">quickSort</span><span class="o">(</span><span class="n">strs</span><span class="o">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">r</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/</a></p>
-]]></description>
-</item><item>
-    <title>20、剑指 Offer 26. 树的子结构</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</link>
-    <pubDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
-<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
-<p>B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。</p>
-<p>例如:
-给定的树 A:</p>
-<p>    3<br>
-   / \<br>
-  4  5<br>
- / \<br>
-1  2</p>
-<p>给定的树 B：</p>
-<p>  4<br>
- /<br>
-1</p>
-<p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：A = [1,2,3], B = [3,1]
-输出：false
-</code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：A = [3,4,5,1,2], B = [4,1]
-输出：true
-</code></pre><p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 10000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21递归法">2.1、递归法</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>若树 B 是树 A 的子结构，则子结构的根节点可能为树 A 的任意一个节点。因此，判断树 B 是否是树 A 的子结构，需完成以下两步工作：</p>
-<ol>
-<li>先序遍历树 A 中的每个节点 Na；（对应函数 <code>isSubStructure(A, B)</code>）</li>
-<li>判断树 A 中以 Na 为根节点的子树是否包含树 B。（对应函数 <code>recur(A, B)</code>）</li>
-</ol>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(MN) ，其中 M,N 分别为树 A 和 树 B 的节点数量；先序遍历树 A 占用 O(M) ，每次调用 recur(A, B) 判断占用 O(N)。</p>
-<p><strong>空间复杂度</strong>：O(M) ，当树 A 和树 B 都退化为链表时，递归调用深度最大。当 M≤N 时，遍历树 A 与递归判断的总递归深度为 M ；当 M&gt;N 时，最差情况为遍历至树 A 叶子节点，此时总递归深度为 M。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubStructure</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 如果 A 或 B 为空
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// B、A 相同
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// B 在 A 的左子树中
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// B 在 A 的右子树中
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 递归判断树 A 是否包含 树 B
-</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">recur</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/</a></p>
-]]></description>
-</item><item>
-    <title>19、剑指 Offer 59 - I. 滑动窗口的最大值</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</link>
-    <pubDate>Mon, 27 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
-<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
-<p><strong>示例:</strong></p>
-<pre tabindex="0"><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
-输出: [3,3,5,5,6,7] 
-解释: 
-
-  滑动窗口的位置                最大值
----------------               -----
-[1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7
-</code></pre><p><strong>提示：</strong></p>
-<p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
-<p>注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21优先队列">2.1、优先队列</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
-<p>对于本题而言，初始时，我们将数组 nums 的前 k 个元素放入优先队列中。每当我们向右移动窗口时，我们就可以把一个新的元素放入优先队列中，此时堆顶的元素就是堆中所有元素的最大值。然而这个最大值可能并不在滑动窗口中，在这种情况下，这个值在数组 nums 中的位置出现在滑动窗口左边界的左侧。因此，当我们后续继续向右移动窗口时，这个值就永远不可能出现在滑动窗口中了，我们可以将其永久地从优先队列中移除。</p>
-<p>我们不断地移除堆顶的元素，直到其确实出现在滑动窗口中。此时，堆顶元素就是滑动窗口中的最大值。为了方便判断堆顶元素与滑动窗口的位置关系，我们可以在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
-<p><strong>空间复杂度</strong>：O(n)，即为优先队列需要使用的空间。<strong>这里所有的空间复杂度分析都不考虑返回的答案需要的 O(n) 空间，只计算额外的空间使用</strong>。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件 / 特殊情况
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
-
-        <span class="c1">// 为了方便判断堆顶元素与滑动窗口的位置关系
-</span><span class="c1"></span>        <span class="c1">// 我们在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。
-</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
-            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pair1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">pair2</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// 值是否相同？
-</span><span class="c1"></span>                <span class="c1">// 如果不同,则根据数值大小来判断权重
-</span><span class="c1"></span>                <span class="c1">// 如果相同,则根据索引大小来判断权重
-</span><span class="c1"></span>                <span class="k">return</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">?</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">:</span> <span class="n">pair2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
-
-        <span class="c1">// 将数组 nums 的前 k 个元素放入优先队列中
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
-        <span class="o">}</span>
-
-        <span class="c1">// answer
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
-        <span class="c1">// 第一个结果 -&gt; 数组 nums 的前 k 个元素中的最大值 -&gt; 大根堆的堆顶元素
-</span><span class="c1"></span>        <span class="n">ans</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="c1">// 循环处理剩下的元素
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 把一个新的元素放入优先队列中
-</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
-            <span class="c1">// 去除出现在滑动窗口左边界的左侧的值，因为这个值永远不可能出现在滑动窗口中了
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="o">}</span>
-            <span class="c1">// 向 answer 中写入当前滑动窗口内的最大值
-</span><span class="c1"></span>            <span class="n">ans</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22单调队列">2.2、单调队列</h2>
-<h3 id="核心思路-1">核心思路</h3>
-<p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
-<a class="lightgallery" href="/post_images/image-20210927225830146.png" title="/post_images/image-20210927225830146.png" data-thumbnail="/post_images/image-20210927225830146.png">
-        
-    </a>
-<!-- raw HTML omitted -->
-<p>借助 deque 这个双端队列，我们可以将获取滑动窗口内最大值的时间复杂度从 O(k) 降低至 O(1)，这也是本题的难点。</p>
-<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreffer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
-<p><strong>空间复杂度</strong>：O(k) ，双端队列 deque 中最多同时存储 k 个元素（即窗口大小）。</p>
-<h3 id="code-1">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件 / 特殊情况
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="c1">// 双端队列 仅包含窗口内的元素，且严格
-</span><span class="c1"></span>        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
-        <span class="c1">// 答案
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
-
-        <span class="c1">// 未形成窗口
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
-
-            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
-</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-        <span class="o">}</span>
-        <span class="c1">// deque 的第一个元素即为当前窗口的最大值
-</span><span class="c1"></span>        <span class="n">answer</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
-
-        <span class="c1">// 形成窗口后
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// i-k 是已经在区间外了, 如果首位等于 nums[i-k], 那么说明此时首位值已经不再区间内了，需要删除
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
-
-            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
-            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
-</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-            <span class="c1">// deque 的第一个元素即为当前窗口的最大值
-</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
-]]></description>
-</item><item>
-    <title>18、剑指 Offer 25. 合并两个排序的链表</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</link>
-    <pubDate>Sun, 26 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 25. 合并两个排序的链表</a> 难度简单</p>
-<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。</p>
-<p><strong>示例1：</strong></p>
-<pre tabindex="0"><code>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4
-输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
-</code></pre><p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= 链表长度 &lt;= 1000
-</code></pre><p>注意：本题与主站 21 题相同：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21伪节点--迭代">2.1、伪节点 + 迭代</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>根据题目描述， 链表 L1 和 L2 是递增的，因此容易想到使用双指针遍历两链表，根据值的大小关系确定节点添加顺序，两节点指针交替前进，直至遍历完毕。</p>
-<p>引入伪头节点： 由于初始状态合并链表中无节点，因此循环第一轮时无法将节点添加到合并链表中。解决方案：初始化一个辅助节点 dumdum 作为合并链表的伪头节点，将各节点添加至 dumdum 之后。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(M+N) ：M,N 分别为链表 L1, L2 的长度，合并操作需遍历两链表。</p>
-<p><strong>空间复杂度</strong>：O(1)：节点引用 result, cursor 使用常数大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 初始化 result，生成一个伪节点，让其充当链表头
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="c1">// 游标
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
-
-        <span class="c1">// 当 l1 与 l2 都不为 null 时
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
-                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
-                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 如果其中一个为 null, 则将另外一个链表的所有元素都拼接到 result 后面
-</span><span class="c1"></span>        <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">l2</span><span class="o">;</span>
-        <span class="c1">// 返回伪节点的后续所有结点
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/</a></p>
-]]></description>
-</item><item>
-    <title>17、剑指 Offer 13. 机器人的运动范围</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</link>
-    <pubDate>Thu, 23 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<h4 id="剑指-offer-13-机器人的运动范围httpsleetcode-cncomproblemsji-qi-ren-de-yun-dong-fan-wei-lcof-难度中等"><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 13. 机器人的运动范围</a> 难度中等</h4>
-<p>地上有一个 m 行 n 列的方格，从坐标 <code>[0,0]</code> 到坐标 <code>[m-1,n-1]</code> 。一个机器人从坐标 <code>[0, 0] </code>的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当 k 为 18 时，机器人能够进入方格 [35, 37] ，因为 3+5+3+7=18 。但它不能进入方格 [35, 38]，因为 3+5+3+8=19 。请问该机器人能够到达多少个格子？</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：m = 2, n = 3, k = 1
-输出：3
-</code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：m = 3, n = 1, k = 0
-输出：1
-</code></pre><p><strong>提示：</strong></p>
-<ul>
-<li><code>1 &lt;= n,m &lt;= 100</code></li>
-<li><code>0 &lt;= k &lt;= 20</code></li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21dfs--剪枝">2.1、DFS + 剪枝</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>如果我们将行坐标和列坐标数位之和大于 <code>k</code> 的格子看作障碍物，那么这道题就是一道很传统的搜索题目，我们可以使用广度优先搜索或者深度优先搜索来解决它。与 <a href="https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/" target="_blank" rel="noopener noreffer">矩阵中的路径</a> 类似，是典型的<code>搜索 &amp; 回溯</code>问题。</p>
-<p>但需要注意的是，本题不是要求找<code>最长路径</code>，而是可达坐标的累计数量。也就是说不需要将<code>走过</code>的路径恢复至<code>未走过</code>的状态，只需要统计<code>走过</code>的格子的累计数量最大值即可。</p>
-<p>使用一个<code>m * n</code>大小的矩阵存储所有单元格的索引，记作 visited。借助这个访问记录矩阵，你就可以知道机器人已经走过了哪些格子，在这个过程中就可以统计走过的格子数量了。</p>
-<p>同时这道题还有一个隐藏的优化：我们在搜索的过程中搜索方向可以缩减为向右和向下，而不必再向上和向左进行搜索。</p>
-<p>矩阵中 <strong>满足数位和的解</strong> 构成的几何形状形如多个 <strong>等腰直角三角形</strong> 。</p>
-<p></p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(MN) ，最差情况下，机器人遍历矩阵所有单元格。</p>
-<p><strong>空间复杂度</strong>：最差情况下，<code>visited</code> 内存储矩阵所有单元格的索引，使用 O(MN) 的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="c1">// 访问记录矩阵
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-
-    <span class="c1">// 参数
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-    <span class="c1">// 入口
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">movingCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 初始化矩阵访问记录
-</span><span class="c1"></span>        <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
-
-        <span class="c1">// 初始化参数
-</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span>
-
-        <span class="c1">// 起点坐标
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">return</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 以 row, column 为起点移动一步
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">move</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">column</span><span class="o">,</span> <span class="kt">int</span> <span class="n">max</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 检查 row, column 是否超限
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">row</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">row</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">m</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">n</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 检查坐标是否合法
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">checkXY</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">k</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 检查该坐标是否已经走过
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="n">max</span> <span class="o">+=</span> <span class="n">1</span><span class="o">;</span>
-
-        <span class="c1">// 写入访问记录, 防止重复访问
-</span><span class="c1"></span>        <span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-
-        <span class="c1">// 上下左右四个方向递归调用
-</span><span class="c1">//        max = Math.max(max, move(row - 1, column, max));
-</span><span class="c1"></span>        <span class="n">max</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">max</span><span class="o">));</span>
-<span class="c1">//        max = Math.max(max, move(row, column - 1, max));
-</span><span class="c1"></span>        <span class="n">max</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">max</span><span class="o">));</span>
-
-
-        <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 检查坐标是否合法
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">checkXY</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 计算 x y 的数位和
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
-
-        <span class="k">return</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="n">k</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 求 number 的数位和
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">shuWeiSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
-            <span class="n">number</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22bfs">2.2、BFS</h2>
-<h3 id="核心思路-1">核心思路</h3>
-<p>BFS 和 DFS 两者目标都是遍历整个矩阵，不同点在于搜索顺序不同。DFS 是朝一个方向走到底，再回退，以此类推；BFS 则是按照“平推”的方式向前搜索。通常利用队列实现 BFS 。</p>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(MN) ，最差情况下，机器人遍历矩阵所有单元格，此时时间复杂度为 O(MN)。</p>
-<p><strong>空间复杂度</strong>：O(MN) ，最差情况下，<code>visited</code> 内存储矩阵所有单元格的索引，使用 O(MN) 的额外空间。</p>
-<h3 id="code-1">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">movingCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 辅助矩阵
-</span><span class="c1"></span>        <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
-        <span class="c1">// 可达坐标累计个数
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="c1">// 等待访问的坐标队列
-</span><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;();</span>
-        <span class="c1">// 设置初始坐标
-</span><span class="c1"></span>        <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">});</span>
-
-        <span class="c1">// 循环访问, 直到坐标队列为空
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 取数
-</span><span class="c1"></span>            <span class="kt">int</span><span class="o">[]</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="c1">// 获取当前坐标行列值
-</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">column</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
-
-            <span class="c1">// 检查行列坐标是否超限
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">row</span> <span class="o">&gt;=</span> <span class="n">m</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 检查坐标是否符合规则（障碍物判断）
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">checkXY</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 检查该坐标是否已被访问过
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">continue</span><span class="o">;</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 标记当前坐标已经访问过
-</span><span class="c1"></span>            <span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="c1">// 累计可达坐标+1
-</span><span class="c1"></span>            <span class="n">result</span><span class="o">++;</span>
-
-            <span class="c1">// 加入下方向的坐标
-</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">row</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">column</span><span class="o">});</span>
-            <span class="c1">// 加入右方向的坐标
-</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="n">1</span><span class="o">});</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 检查坐标是否合法
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">checkXY</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 计算 x y 的数位和
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
-
-        <span class="k">return</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="n">k</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 求 number 的数位和
-</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">shuWeiSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
-            <span class="n">number</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ben-ti-he-qi-ta-hui-su-suan-fa-de-ti-mu-ir9le/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ben-ti-he-qi-ta-hui-su-suan-fa-de-ti-mu-ir9le/</a></p>
-<p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ji-qi-ren-de-yun-dong-fan-wei-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ji-qi-ren-de-yun-dong-fan-wei-by-leetcode-solution/</a></p>
-]]></description>
-</item><item>
-    <title>16、剑指 Offer 10- II. 青蛙跳台阶问题</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</link>
-    <pubDate>Mon, 20 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- II. 青蛙跳台阶问题</a> 难度简单</p>
 <p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
@@ -797,11 +833,146 @@
 <p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/solution/mian-shi-ti-10-ii-qing-wa-tiao-tai-jie-wen-ti-dong/</a></p>
 ]]></description>
 </item><item>
-    <title>15、剑指 Offer 40. 最小的k个数</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</link>
+    <title>20、剑指 Offer 10- I. 斐波那契数列</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</link>
+    <pubDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- I. 斐波那契数列</a> 难度简单</p>
+<p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项（即 <code>F(N)</code>）。斐波那契数列的定义如下：</p>
+<pre tabindex="0"><code>F(0) = 0,   F(1) = 1
+F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
+</code></pre><p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：n = 2
+输出：1
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：n = 5
+输出：5
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= n &lt;= 100</code></li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21动态规划">2.1、动态规划</h2>
+<h3 id="核心思路">核心思路：</h3>
+<p>斐波那契数的边界条件是 F(0)=0 和 F(1)=1。当 n&gt;1 时，每一项的和都等于前两项的和，因此有如下递推关系：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">F(n)=F(n-1)+F(n-2)
+</code></pre></div><p>由于斐波那契数存在递推关系，因此可以使用动态规划求解。动态规划的状态转移方程即为上述递推关系，边界条件为 F(0) 和 F(1)。</p>
+<p>计算过程中，答案需要取模 1e9+7。</p>
+<h3 id="复杂度分析">复杂度分析：</h3>
+<p><strong>时间复杂度 O(N)</strong>：计算 f(n) 需循环 n 次，每轮循环内计算操作使用 O(1)。</p>
+<p><strong>空间复杂度 O(1)</strong>：几个标志变量使用常数大小的额外空间。</p>
+<h3 id="code">Code：</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">fib</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="n">MOD</span> <span class="o">=</span> <span class="n">1000000007</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">2</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">n</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span> 
+            <span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="o">;</span> 
+            <span class="n">r</span> <span class="o">=</span> <span class="o">(</span><span class="n">p</span> <span class="o">+</span> <span class="n">q</span><span class="o">)</span> <span class="o">%</span> <span class="n">MOD</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">r</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22矩阵快速幂待续">2.2、矩阵快速幂（待续）</h2>
+<p>动态规划的时间复杂度是 O(n)。使用矩阵快速幂的方法可以降低时间复杂度。</p>
+<h3 id="核心思路-1">核心思路：</h3>
+<h3 id="复杂度分析-1">复杂度分析：</h3>
+<p><strong>时间复杂度</strong>：O(log n)。</p>
+<p><strong>空间复杂度</strong>：O(1)。</p>
+<h3 id="code-1">Code：</h3>
+<h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/solution/fei-bo-na-qi-shu-lie-by-leetcode-solutio-hbss/</a></p>
+]]></description>
+</item><item>
+    <title>18、剑指 Offer 20. 表示数值的字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</link>
     <pubDate>Fri, 17 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</guid>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
+<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
+输出: 3 
+解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
+</code></pre><p><strong>示例 2:</strong></p>
+<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
+输出: 1
+解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
+</code></pre><p><strong>示例 3:</strong></p>
+<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
+输出: 3
+解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
+</code></pre><p>提示：</p>
+<ul>
+<li><code>s.length &lt;= 40000</code></li>
+</ul>
+<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21滑动窗口法">2.1、滑动窗口法</h2>
+<h3 id="核心思路">核心思路：</h3>
+<p>记 <code>left = 0</code> 为滑动窗口的左边界下标，<code>right = 0</code>为右边界下标。</p>
+<p>借助哈希表，在遍历字符串 s 时，使用哈希表 map 记录各字符最后一次出现的索引位置。</p>
+<p>在遍历过程中，不断右移滑动窗口的右下标 <code>right</code>，借助 <code>map</code> 判断 <code>s[right]</code> 字符是否已经遍历过。</p>
+<p>根据 <code>s[right]</code> 是否为第一次出现，有以下 2 种情况：</p>
+<ul>
+<li>是：则 map 中不存在 <code>key = s[right]</code>，此时无需更新左边界 left；</li>
+<li>否：则 map 中存在 <code>key = s[right]</code>，取 value ，得到 <code>s[right]</code> 末次出现的下标，记为 index 。更新左边界 left = Math.max ( index + 1, left ) ；</li>
+</ul>
+<p>更新 <code>s[right]</code> 末次出现的下标，记录滑动窗口的长度最大值 <code>right - left + 1</code> 即可。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)</p>
+<p><strong>空间复杂度</strong>：O(1)，字符的 ASCII 码范围为 00 ~ 127 ，哈希表 map 最多使用 O(128) = O(1) 大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLongestSubstring</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 遍历字符串 s 时，使用哈希表 map 统计各字符最后一次出现的索引位置
+</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+
+        <span class="c1">// left = 滑动窗口的左边界: result = 滑动窗口长度的最大值
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="c1">// 遍历字符串 s
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 当前字符
+</span><span class="c1"></span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
+
+            <span class="c1">// 如果 map 中存在 key = 当前字符
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
+                <span class="c1">// 更新滑动窗口的左边界
+</span><span class="c1"></span>                <span class="c1">// 左边界只允许向右移
+</span><span class="c1"></span>                <span class="n">left</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 更新当前字符末次出现的下标
+</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">),</span> <span class="n">right</span><span class="o">);</span>
+
+            <span class="c1">// 记录滑动窗口的长度最大值
+</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
+]]></description>
+</item><item>
+    <title>16、剑指 Offer 40. 最小的k个数</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</link>
+    <pubDate>Tue, 14 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 40. 最小的k个数</a> 难度简单</p>
 <p>输入整数数组 <code>arr</code> ，找出其中最小的 <code>k</code> 个数。例如，输入4、5、1、6、2、7、3、8这8个数字，则最小的4个数字是1、2、3、4。</p>
@@ -930,80 +1101,56 @@
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/</a></p>
 ]]></description>
 </item><item>
-    <title>14、剑指 Offer 20. 表示数值的字符串</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html</link>
-    <pubDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+    <title>15、剑指 Offer 25. 合并两个排序的链表</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</link>
+    <pubDate>Sun, 12 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html</guid>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
-<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
-<p><strong>示例 1:</strong></p>
-<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
-输出: 3 
-解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
-</code></pre><p><strong>示例 2:</strong></p>
-<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
-输出: 1
-解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
-</code></pre><p><strong>示例 3:</strong></p>
-<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
-输出: 3
-解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
-     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
-</code></pre><p>提示：</p>
-<ul>
-<li><code>s.length &lt;= 40000</code></li>
-</ul>
-<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
+<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 25. 合并两个排序的链表</a> 难度简单</p>
+<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。</p>
+<p><strong>示例1：</strong></p>
+<pre tabindex="0"><code>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4
+输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
+</code></pre><p><strong>限制：</strong></p>
+<pre tabindex="0"><code>0 &lt;= 链表长度 &lt;= 1000
+</code></pre><p>注意：本题与主站 21 题相同：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
 <h1 id="二解法">二、解法</h1>
-<h2 id="21滑动窗口法">2.1、滑动窗口法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>记 <code>left = 0</code> 为滑动窗口的左边界下标，<code>right = 0</code>为右边界下标。</p>
-<p>借助哈希表，在遍历字符串 s 时，使用哈希表 map 记录各字符最后一次出现的索引位置。</p>
-<p>在遍历过程中，不断右移滑动窗口的右下标 <code>right</code>，借助 <code>map</code> 判断 <code>s[right]</code> 字符是否已经遍历过。</p>
-<p>根据 <code>s[right]</code> 是否为第一次出现，有以下 2 种情况：</p>
-<ul>
-<li>是：则 map 中不存在 <code>key = s[right]</code>，此时无需更新左边界 left；</li>
-<li>否：则 map 中存在 <code>key = s[right]</code>，取 value ，得到 <code>s[right]</code> 末次出现的下标，记为 index 。更新左边界 left = Math.max ( index + 1, left ) ；</li>
-</ul>
-<p>更新 <code>s[right]</code> 末次出现的下标，记录滑动窗口的长度最大值 <code>right - left + 1</code> 即可。</p>
+<h2 id="21伪节点--迭代">2.1、伪节点 + 迭代</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>根据题目描述， 链表 L1 和 L2 是递增的，因此容易想到使用双指针遍历两链表，根据值的大小关系确定节点添加顺序，两节点指针交替前进，直至遍历完毕。</p>
+<p>引入伪头节点： 由于初始状态合并链表中无节点，因此循环第一轮时无法将节点添加到合并链表中。解决方案：初始化一个辅助节点 dumdum 作为合并链表的伪头节点，将各节点添加至 dumdum 之后。</p>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)</p>
-<p><strong>空间复杂度</strong>：O(1)，字符的 ASCII 码范围为 00 ~ 127 ，哈希表 map 最多使用 O(128) = O(1) 大小的额外空间。</p>
+<p><strong>时间复杂度</strong>：O(M+N) ：M,N 分别为链表 L1, L2 的长度，合并操作需遍历两链表。</p>
+<p><strong>空间复杂度</strong>：O(1)：节点引用 result, cursor 使用常数大小的额外空间。</p>
 <h3 id="code">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLongestSubstring</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 遍历字符串 s 时，使用哈希表 map 统计各字符最后一次出现的索引位置
-</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化 result，生成一个伪节点，让其充当链表头
+</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+        <span class="c1">// 游标
+</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
 
-        <span class="c1">// left = 滑动窗口的左边界: result = 滑动窗口长度的最大值
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="c1">// 遍历字符串 s
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 当前字符
-</span><span class="c1"></span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 如果 map 中存在 key = 当前字符
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 更新滑动窗口的左边界
-</span><span class="c1"></span>                <span class="c1">// 左边界只允许向右移
-</span><span class="c1"></span>                <span class="n">left</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+        <span class="c1">// 当 l1 与 l2 都不为 null 时
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
+                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
             <span class="o">}</span>
-
-            <span class="c1">// 更新当前字符末次出现的下标
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">),</span> <span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 记录滑动窗口的长度最大值
-</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="c1">// 如果其中一个为 null, 则将另外一个链表的所有元素都拼接到 result 后面
+</span><span class="c1"></span>        <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">l2</span><span class="o">;</span>
+        <span class="c1">// 返回伪节点的后续所有结点
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
+<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/</a></p>
 ]]></description>
 </item></channel>
 </rss>

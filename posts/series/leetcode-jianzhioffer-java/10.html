@@ -5,35 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">10、剑指 Offer 04. 二维数组中的查找 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="10、剑指 Offer 04. 二维数组中的查找" />
-<meta property="og:description" content="一、题目 剑指 Offer 04. 二维数组中的查找 难度中等 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请" />
+    <title class="pjax-title">10、剑指 Offer 13. 机器人的运动范围 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="10、剑指 Offer 13. 机器人的运动范围" />
+<meta property="og:description" content="一、题目 剑指 Offer 13. 机器人的运动范围 难度中等 地上有一个 m 行 n 列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-04T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-04T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-09-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-05T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="10、剑指 Offer 04. 二维数组中的查找"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 04. 二维数组中的查找 难度中等 在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请"/>
+<meta name="twitter:title" content="10、剑指 Offer 13. 机器人的运动范围"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 13. 机器人的运动范围 难度中等 地上有一个 m 行 n 列的方格，从坐标 [0,0] 到坐标 [m-1,n-1] 。一个机器人从坐标 [0, 0] 的格子开始移动，它每次可以向左、右、"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/12.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/10.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/9.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/11.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "10、剑指 Offer 04. 二维数组中的查找",
+        "headline": "10、剑指 Offer 13. 机器人的运动范围",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/10.html"
-        },"genre": "posts","wordcount":  997 ,
-        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/10.html","datePublished": "2021-09-04T00:00:00+00:00","dateModified": "2021-09-04T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","wordcount":  1512 ,
+        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/10.html","datePublished": "2021-09-05T00:00:00+00:00","dateModified": "2021-09-05T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -114,12 +114,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">10、剑指 Offer 04. 二维数组中的查找</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">10、剑指 Offer 13. 机器人的运动范围</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-04">2021-09-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-04">2021-09-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 997 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/10.html" class="leancloud_visitors" data-flag-title="10、剑指 Offer 04. 二维数组中的查找">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-05">2021-09-05</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-05">2021-09-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1512 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/10.html" class="leancloud_visitors" data-flag-title="10、剑指 Offer 13. 机器人的运动范围">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -129,21 +129,33 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一题目">一、题目</a></li>
-    <li><a href="#二解法">二、解法</a>
+    <li><a href="#一题目">一、题目</a>
       <ul>
-        <li><a href="#21旋转法线性查找">2.1、旋转法（线性查找）</a>
+        <li>
           <ul>
-            <li><a href="#核心思想">核心思想：</a></li>
-            <li><a href="#复杂度分析">复杂度分析：</a></li>
-            <li><a href="#代码">代码：</a></li>
+            <li>
+              <ul>
+                <li><a href="#剑指-offer-13-机器人的运动范围httpsleetcode-cncomproblemsji-qi-ren-de-yun-dong-fan-wei-lcof-难度中等"><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a> 难度中等</a></li>
+              </ul>
+            </li>
           </ul>
         </li>
-        <li><a href="#22暴力法">2.2、暴力法</a>
+      </ul>
+    </li>
+    <li><a href="#二解法">二、解法</a>
+      <ul>
+        <li><a href="#21dfs--剪枝">2.1、DFS + 剪枝</a>
           <ul>
-            <li><a href="#核心思想-1">核心思想：</a></li>
-            <li><a href="#复杂度分析-1">复杂度分析：</a></li>
-            <li><a href="#代码-1">代码：</a></li>
+            <li><a href="#核心思路">核心思路</a></li>
+            <li><a href="#复杂度分析">复杂度分析</a></li>
+            <li><a href="#code">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#22bfs">2.2、BFS</a>
+          <ul>
+            <li><a href="#核心思路-1">核心思路</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析</a></li>
+            <li><a href="#code-1">Code</a></li>
           </ul>
         </li>
       </ul>
@@ -152,122 +164,206 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 04. 二维数组中的查找</a> 难度中等</p>
-<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个高效的函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
-<p><strong>示例:</strong></p>
-<p>现有矩阵 matrix 如下：</p>
-<pre tabindex="0"><code>[
-  [1,   4,  7, 11, 15],
-  [2,   5,  8, 12, 19],
-  [3,   6,  9, 16, 22],
-  [10, 13, 14, 17, 24],
-  [18, 21, 23, 26, 30]
-]
-</code></pre><p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
-<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
-<p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= n &lt;= 1000
-0 &lt;= m &lt;= 1000
-</code></pre><p>**注意：**本题与主站 240 题相同：https://leetcode-cn.com/problems/search-a-2d-matrix-ii/</p>
+<h4 id="剑指-offer-13-机器人的运动范围httpsleetcode-cncomproblemsji-qi-ren-de-yun-dong-fan-wei-lcof-难度中等"><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 13. 机器人的运动范围</a> 难度中等</h4>
+<p>地上有一个 m 行 n 列的方格，从坐标 <code>[0,0]</code> 到坐标 <code>[m-1,n-1]</code> 。一个机器人从坐标 <code>[0, 0] </code>的格子开始移动，它每次可以向左、右、上、下移动一格（不能移动到方格外），也不能进入行坐标和列坐标的数位之和大于k的格子。例如，当 k 为 18 时，机器人能够进入方格 [35, 37] ，因为 3+5+3+7=18 。但它不能进入方格 [35, 38]，因为 3+5+3+8=19 。请问该机器人能够到达多少个格子？</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：m = 2, n = 3, k = 1
+输出：3
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：m = 3, n = 1, k = 0
+输出：1
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= n,m &lt;= 100</code></li>
+<li><code>0 &lt;= k &lt;= 20</code></li>
+</ul>
 <h1 id="二解法">二、解法</h1>
-<h2 id="21旋转法线性查找">2.1、旋转法（线性查找）</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>如下图所示，我们将矩阵逆时针旋转 45° ，并将其转化为图形式，发现其类似于 二叉搜索树 ，即对于每个元素，其左分支元素更小、右分支元素更大。因此，通过从 “根节点” 开始搜索，遇到比 target 大的元素就向左，反之向右，即可找到目标值 target 。</p>
+<h2 id="21dfs--剪枝">2.1、DFS + 剪枝</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>如果我们将行坐标和列坐标数位之和大于 <code>k</code> 的格子看作障碍物，那么这道题就是一道很传统的搜索题目，我们可以使用广度优先搜索或者深度优先搜索来解决它。与 <a href="https://leetcode-cn.com/problems/ju-zhen-zhong-de-lu-jing-lcof/solution/mian-shi-ti-12-ju-zhen-zhong-de-lu-jing-shen-du-yo/" target="_blank" rel="noopener noreffer">矩阵中的路径</a> 类似，是典型的<code>搜索 &amp; 回溯</code>问题。</p>
+<p>但需要注意的是，本题不是要求找<code>最长路径</code>，而是可达坐标的累计数量。也就是说不需要将<code>走过</code>的路径恢复至<code>未走过</code>的状态，只需要统计<code>走过</code>的格子的累计数量最大值即可。</p>
+<p>使用一个<code>m * n</code>大小的矩阵存储所有单元格的索引，记作 visited。借助这个访问记录矩阵，你就可以知道机器人已经走过了哪些格子，在这个过程中就可以统计走过的格子数量了。</p>
+<p>同时这道题还有一个隐藏的优化：我们在搜索的过程中搜索方向可以缩减为向右和向下，而不必再向上和向左进行搜索。</p>
+<p>矩阵中 <strong>满足数位和的解</strong> 构成的几何形状形如多个 <strong>等腰直角三角形</strong> 。</p>
 <p><img
         class="lazyload"
-        data-src="../../../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png"
-        data-srcset="../../../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png, ../../../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png 1.5x, ../../../post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png 2x"
+        data-src="../../../post_images/image-20210926223549456.png"
+        data-srcset="../../../post_images/image-20210926223549456.png, ../../../post_images/image-20210926223549456.png 1.5x, ../../../post_images/image-20210926223549456.png 2x"
         data-sizes="auto"
-        alt="/post_images/6584ea93812d27112043d203ea90e4b0950117d45e0452d0c630fcb247fbc4af-Picture1.png"
-        title="Picture1.png"
+        alt="/post_images/image-20210926223549456.png"
+        title="Picture9.png"
     /></p>
-<p>“根节点” 对应的是矩阵的 “左下角” 和 “右上角” 元素，也就是上图标注蓝色的 3 和 7，实际上以这两个元素为起点搜索都可以。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(M+N)，其中，N 和 M 分别为矩阵行数和列数，此算法最多循环 M+N 次。</p>
-<p><strong>空间复杂度</strong>：O(1)， <code>i</code>, <code>j</code>  指针使用常数大小额外空间。</p>
-<h3 id="代码">代码：</h3>
-<p>以左下角为起点，向上搜索</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(MN) ，最差情况下，机器人遍历矩阵所有单元格。</p>
+<p><strong>空间复杂度</strong>：最差情况下，<code>visited</code> 内存储矩阵所有单元格的索引，使用 O(MN) 的额外空间。</p>
+<h3 id="code">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 将左下角元素作为起点（初始下标）
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="c1">// 访问记录矩阵
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
 
-        <span class="c1">// 循环寻找
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">i</span><span class="o">--;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">j</span><span class="o">++;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
+    <span class="c1">// 参数
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+    <span class="c1">// 入口
+</span><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">movingCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化矩阵访问记录
+</span><span class="c1"></span>        <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+
+        <span class="c1">// 初始化参数
+</span><span class="c1"></span>        <span class="k">this</span><span class="o">.</span><span class="na">m</span> <span class="o">=</span> <span class="n">m</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">k</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span>
+
+        <span class="c1">// 起点坐标
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">column</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="k">return</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 以 row, column 为起点移动一步
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">move</span><span class="o">(</span><span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">int</span> <span class="n">column</span><span class="o">,</span> <span class="kt">int</span> <span class="n">max</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 检查 row, column 是否超限
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">row</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">row</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">m</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="k">this</span><span class="o">.</span><span class="na">n</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="c1">// 检查坐标是否合法
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">checkXY</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">k</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 检查该坐标是否已经走过
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="n">max</span> <span class="o">+=</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="c1">// 写入访问记录, 防止重复访问
+</span><span class="c1"></span>        <span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="c1">// 上下左右四个方向递归调用
+</span><span class="c1">//        max = Math.max(max, move(row - 1, column, max));
+</span><span class="c1"></span>        <span class="n">max</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">max</span><span class="o">));</span>
+<span class="c1">//        max = Math.max(max, move(row, column - 1, max));
+</span><span class="c1"></span>        <span class="n">max</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">max</span><span class="o">,</span> <span class="n">move</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">max</span><span class="o">));</span>
+
+
+        <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
     <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>或以右上角为起点，向下搜索</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+
+    <span class="c1">// 检查坐标是否合法
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">checkXY</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="c1">// 将右上角元素作为起点（初始下标）
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+        <span class="c1">// 计算 x y 的数位和
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
 
-        <span class="c1">// 循环寻找
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">j</span><span class="o">--;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">i</span><span class="o">++;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
+        <span class="k">return</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="n">k</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 求 number 的数位和
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">shuWeiSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+            <span class="n">number</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
         <span class="o">}</span>
-
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h2 id="22暴力法">2.2、暴力法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>如果不考虑二维数组排好序的特点，则直接遍历整个二维数组的每一个元素，判断目标值是否在二维数组中存在。</p>
-<p>依次遍历二维数组的每一行和每一列。如果找到一个元素等于目标值，则返回 true。如果遍历完毕仍未找到等于目标值的元素，则返回 false。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(nm)。二维数组中的每个元素都被遍历，因此时间复杂度为二维数组的大小。</p>
-<p><strong>空间复杂度</strong>：O(1)。</p>
-<h3 id="代码-1">代码：</h3>
+</code></pre></div><h2 id="22bfs">2.2、BFS</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>BFS 和 DFS 两者目标都是遍历整个矩阵，不同点在于搜索顺序不同。DFS 是朝一个方向走到底，再回退，以此类推；BFS 则是按照“平推”的方式向前搜索。通常利用队列实现 BFS 。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(MN) ，最差情况下，机器人遍历矩阵所有单元格，此时时间复杂度为 O(MN)。</p>
+<p><strong>空间复杂度</strong>：O(MN) ，最差情况下，<code>visited</code> 内存储矩阵所有单元格的索引，使用 O(MN) 的额外空间。</p>
+<h3 id="code-1">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">findNumberIn2DArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 处理边界条件
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">movingCount</span><span class="o">(</span><span class="kt">int</span> <span class="n">m</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 辅助矩阵
+</span><span class="c1"></span>        <span class="kt">boolean</span><span class="o">[][]</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">boolean</span><span class="o">[</span><span class="n">m</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+        <span class="c1">// 可达坐标累计个数
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="c1">// 等待访问的坐标队列
+</span><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;();</span>
+        <span class="c1">// 设置初始坐标
+</span><span class="c1"></span>        <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">,</span> <span class="n">0</span><span class="o">});</span>
+
+        <span class="c1">// 循环访问, 直到坐标队列为空
+</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 取数
+</span><span class="c1"></span>            <span class="kt">int</span><span class="o">[]</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="c1">// 获取当前坐标行列值
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">row</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">0</span><span class="o">],</span> <span class="n">column</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
+
+            <span class="c1">// 检查行列坐标是否超限
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">row</span> <span class="o">&gt;=</span> <span class="n">m</span> <span class="o">||</span> <span class="n">column</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 检查坐标是否符合规则（障碍物判断）
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">checkXY</span><span class="o">(</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 检查该坐标是否已被访问过
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">continue</span><span class="o">;</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 标记当前坐标已经访问过
+</span><span class="c1"></span>            <span class="n">visited</span><span class="o">[</span><span class="n">row</span><span class="o">][</span><span class="n">column</span><span class="o">]</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="c1">// 累计可达坐标+1
+</span><span class="c1"></span>            <span class="n">result</span><span class="o">++;</span>
+
+            <span class="c1">// 加入下方向的坐标
+</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">row</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">column</span><span class="o">});</span>
+            <span class="c1">// 加入右方向的坐标
+</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">row</span><span class="o">,</span> <span class="n">column</span> <span class="o">+</span> <span class="n">1</span><span class="o">});</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 检查坐标是否合法
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">checkXY</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">0</span> <span class="o">||</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
             <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="c1">// 获取矩阵的行列值
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">rows</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span><span class="o">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="n">0</span><span class="o">].</span><span class="na">length</span><span class="o">;</span>
+        <span class="c1">// 计算 x y 的数位和
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">x</span><span class="o">)</span> <span class="o">+</span> <span class="n">shuWeiSum</span><span class="o">(</span><span class="n">y</span><span class="o">);</span>
 
-        <span class="c1">// 遍历矩阵每个元素查找
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">rows</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">columns</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
+        <span class="k">return</span> <span class="n">sum</span> <span class="o">&gt;</span> <span class="n">k</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 求 number 的数位和
+</span><span class="c1"></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">shuWeiSum</span><span class="o">(</span><span class="kt">int</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+            <span class="n">number</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
         <span class="o">}</span>
-        
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">sum</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/</a></p>
-<p><a href="https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-b-3/</a></p>
+<p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ben-ti-he-qi-ta-hui-su-suan-fa-de-ti-mu-ir9le/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ben-ti-he-qi-ta-hui-su-suan-fa-de-ti-mu-ir9le/</a></p>
+<p><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ji-qi-ren-de-yun-dong-fan-wei-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/solution/ji-qi-ren-de-yun-dong-fan-wei-by-leetcode-solution/</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-04</span>
+                <span>更新于 2021-09-05</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -286,8 +382,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/11.html" class="prev" rel="prev" title="11、剑指 Offer 29. 顺时针打印矩阵"><i class="fas fa-angle-left fa-fw"></i>11、剑指 Offer 29. 顺时针打印矩阵</a>
-            <a href="../../../posts/series/leetcode-jianzhioffer-java/12.html" class="next" rel="next" title="12、剑指 Offer 10- I. 斐波那契数列">12、剑指 Offer 10- I. 斐波那契数列<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/9.html" class="prev" rel="prev" title="9、剑指 Offer 29. 顺时针打印矩阵"><i class="fas fa-angle-left fa-fw"></i>9、剑指 Offer 29. 顺时针打印矩阵</a>
+            <a href="../../../posts/series/leetcode-jianzhioffer-java/11.html" class="next" rel="next" title="11、剑指 Offer 06. 从尾到头打印链表">11、剑指 Offer 06. 从尾到头打印链表<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

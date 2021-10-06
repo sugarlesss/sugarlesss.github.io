@@ -5,35 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">14、剑指 Offer 20. 表示数值的字符串 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="14、剑指 Offer 20. 表示数值的字符串" />
-<meta property="og:description" content="一、题目 剑指 Offer 48. 最长不含重复字符的子字符串 难度中等 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。 示例 1: 输入:" />
+    <title class="pjax-title">14、剑指 Offer 59 - I. 滑动窗口的最大值 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="14、剑指 Offer 59 - I. 滑动窗口的最大值" />
+<meta property="og:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-15T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-09-11T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-11T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="14、剑指 Offer 20. 表示数值的字符串"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 48. 最长不含重复字符的子字符串 难度中等 请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。 示例 1: 输入:"/>
+<meta name="twitter:title" content="14、剑指 Offer 59 - I. 滑动窗口的最大值"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html" /><link rel="prev" href="https://sugarless.top/posts/what-is-2fa.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/14.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/13.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "14、剑指 Offer 20. 表示数值的字符串",
+        "headline": "14、剑指 Offer 59 - I. 滑动窗口的最大值",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/14.html"
-        },"genre": "posts","wordcount":  869 ,
-        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/14.html","datePublished": "2021-09-15T00:00:00+00:00","dateModified": "2021-09-15T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","wordcount":  1748 ,
+        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/14.html","datePublished": "2021-09-11T00:00:00+00:00","dateModified": "2021-09-11T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -114,12 +114,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">14、剑指 Offer 20. 表示数值的字符串</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">14、剑指 Offer 59 - I. 滑动窗口的最大值</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-15">2021-09-15</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-15">2021-09-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 869 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/14.html" class="leancloud_visitors" data-flag-title="14、剑指 Offer 20. 表示数值的字符串">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1748 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/14.html" class="leancloud_visitors" data-flag-title="14、剑指 Offer 59 - I. 滑动窗口的最大值">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -132,11 +132,18 @@
     <li><a href="#一题目">一、题目</a></li>
     <li><a href="#二解法">二、解法</a>
       <ul>
-        <li><a href="#21滑动窗口法">2.1、滑动窗口法</a>
+        <li><a href="#21优先队列">2.1、优先队列</a>
           <ul>
-            <li><a href="#核心思路">核心思路：</a></li>
+            <li><a href="#核心思路">核心思路</a></li>
             <li><a href="#复杂度分析">复杂度分析</a></li>
             <li><a href="#code">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#22单调队列">2.2、单调队列</a>
+          <ul>
+            <li><a href="#核心思路-1">核心思路</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析</a></li>
+            <li><a href="#code-1">Code</a></li>
           </ul>
         </li>
       </ul>
@@ -145,79 +152,143 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
-<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
-<p><strong>示例 1:</strong></p>
-<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
-输出: 3 
-解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
-</code></pre><p><strong>示例 2:</strong></p>
-<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
-输出: 1
-解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
-</code></pre><p><strong>示例 3:</strong></p>
-<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
-输出: 3
-解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
-     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
-</code></pre><p>提示：</p>
-<ul>
-<li><code>s.length &lt;= 40000</code></li>
-</ul>
-<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
+<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
+<p><strong>示例:</strong></p>
+<pre tabindex="0"><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
+输出: [3,3,5,5,6,7] 
+解释: 
+
+  滑动窗口的位置                最大值
+---------------               -----
+[1  3  -1] -3  5  3  6  7       3
+ 1 [3  -1  -3] 5  3  6  7       3
+ 1  3 [-1  -3  5] 3  6  7       5
+ 1  3  -1 [-3  5  3] 6  7       5
+ 1  3  -1  -3 [5  3  6] 7       6
+ 1  3  -1  -3  5 [3  6  7]      7
+</code></pre><p><strong>提示：</strong></p>
+<p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
+<p>注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/</p>
 <h1 id="二解法">二、解法</h1>
-<h2 id="21滑动窗口法">2.1、滑动窗口法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>记 <code>left = 0</code> 为滑动窗口的左边界下标，<code>right = 0</code>为右边界下标。</p>
-<p>借助哈希表，在遍历字符串 s 时，使用哈希表 map 记录各字符最后一次出现的索引位置。</p>
-<p>在遍历过程中，不断右移滑动窗口的右下标 <code>right</code>，借助 <code>map</code> 判断 <code>s[right]</code> 字符是否已经遍历过。</p>
-<p>根据 <code>s[right]</code> 是否为第一次出现，有以下 2 种情况：</p>
-<ul>
-<li>是：则 map 中不存在 <code>key = s[right]</code>，此时无需更新左边界 left；</li>
-<li>否：则 map 中存在 <code>key = s[right]</code>，取 value ，得到 <code>s[right]</code> 末次出现的下标，记为 index 。更新左边界 left = Math.max ( index + 1, left ) ；</li>
-</ul>
-<p>更新 <code>s[right]</code> 末次出现的下标，记录滑动窗口的长度最大值 <code>right - left + 1</code> 即可。</p>
+<h2 id="21优先队列">2.1、优先队列</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
+<p>对于本题而言，初始时，我们将数组 nums 的前 k 个元素放入优先队列中。每当我们向右移动窗口时，我们就可以把一个新的元素放入优先队列中，此时堆顶的元素就是堆中所有元素的最大值。然而这个最大值可能并不在滑动窗口中，在这种情况下，这个值在数组 nums 中的位置出现在滑动窗口左边界的左侧。因此，当我们后续继续向右移动窗口时，这个值就永远不可能出现在滑动窗口中了，我们可以将其永久地从优先队列中移除。</p>
+<p>我们不断地移除堆顶的元素，直到其确实出现在滑动窗口中。此时，堆顶元素就是滑动窗口中的最大值。为了方便判断堆顶元素与滑动窗口的位置关系，我们可以在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。</p>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)</p>
-<p><strong>空间复杂度</strong>：O(1)，字符的 ASCII 码范围为 00 ~ 127 ，哈希表 map 最多使用 O(128) = O(1) 大小的额外空间。</p>
+<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
+<p><strong>空间复杂度</strong>：O(n)，即为优先队列需要使用的空间。<strong>这里所有的空间复杂度分析都不考虑返回的答案需要的 O(n) 空间，只计算额外的空间使用</strong>。</p>
 <h3 id="code">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLongestSubstring</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 遍历字符串 s 时，使用哈希表 map 统计各字符最后一次出现的索引位置
-</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件 / 特殊情况
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
 
-        <span class="c1">// left = 滑动窗口的左边界: result = 滑动窗口长度的最大值
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
 
-        <span class="c1">// 遍历字符串 s
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 当前字符
-</span><span class="c1"></span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 如果 map 中存在 key = 当前字符
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 更新滑动窗口的左边界
-</span><span class="c1"></span>                <span class="c1">// 左边界只允许向右移
-</span><span class="c1"></span>                <span class="n">left</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
+        <span class="c1">// 为了方便判断堆顶元素与滑动窗口的位置关系
+</span><span class="c1"></span>        <span class="c1">// 我们在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。
+</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pair1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">pair2</span><span class="o">)</span> <span class="o">{</span>
+                <span class="c1">// 值是否相同？
+</span><span class="c1"></span>                <span class="c1">// 如果不同,则根据数值大小来判断权重
+</span><span class="c1"></span>                <span class="c1">// 如果相同,则根据索引大小来判断权重
+</span><span class="c1"></span>                <span class="k">return</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">?</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">:</span> <span class="n">pair2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
             <span class="o">}</span>
+        <span class="o">});</span>
 
-            <span class="c1">// 更新当前字符末次出现的下标
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">),</span> <span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 记录滑动窗口的长度最大值
-</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
+        <span class="c1">// 将数组 nums 的前 k 个元素放入优先队列中
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
         <span class="o">}</span>
 
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="c1">// answer
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+        <span class="c1">// 第一个结果 -&gt; 数组 nums 的前 k 个元素中的最大值 -&gt; 大根堆的堆顶元素
+</span><span class="c1"></span>        <span class="n">ans</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
+
+        <span class="c1">// 循环处理剩下的元素
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 把一个新的元素放入优先队列中
+</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
+            <span class="c1">// 去除出现在滑动窗口左边界的左侧的值，因为这个值永远不可能出现在滑动窗口中了
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+            <span class="o">}</span>
+            <span class="c1">// 向 answer 中写入当前滑动窗口内的最大值
+</span><span class="c1"></span>            <span class="n">ans</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22单调队列">2.2、单调队列</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
+<a class="lightgallery" href="../../../post_images/image-20210927225830146.png" title="/post_images/image-20210927225830146.png" data-thumbnail="/post_images/image-20210927225830146.png">
+        <img
+            class="lazyload"
+            data-src="../../../post_images/image-20210927225830146.png"
+            data-srcset="../../../post_images/image-20210927225830146.png, ../../../post_images/image-20210927225830146.png 1.5x, ../../../post_images/image-20210927225830146.png 2x"
+            data-sizes="auto"
+            alt="/post_images/image-20210927225830146.png"
+        />
+    </a>
+<!-- raw HTML omitted -->
+<p>借助 deque 这个双端队列，我们可以将获取滑动窗口内最大值的时间复杂度从 O(k) 降低至 O(1)，这也是本题的难点。</p>
+<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreffer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
+<p><strong>空间复杂度</strong>：O(k) ，双端队列 deque 中最多同时存储 k 个元素（即窗口大小）。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 边界条件 / 特殊情况
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+
+        <span class="c1">// 双端队列 仅包含窗口内的元素，且严格
+</span><span class="c1"></span>        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
+        <span class="c1">// 答案
+</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+
+        <span class="c1">// 未形成窗口
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
+
+            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
+</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="c1">// deque 的第一个元素即为当前窗口的最大值
+</span><span class="c1"></span>        <span class="n">answer</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
+
+        <span class="c1">// 形成窗口后
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// i-k 是已经在区间外了, 如果首位等于 nums[i-k], 那么说明此时首位值已经不再区间内了，需要删除
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+
+            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
+</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
+                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
+            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
+</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="c1">// deque 的第一个元素即为当前窗口的最大值
+</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-15</span>
+                <span>更新于 2021-09-11</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -236,8 +307,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="../../../posts/what-is-2fa.html" class="prev" rel="prev" title="2FA 是什么？"><i class="fas fa-angle-left fa-fw"></i>2FA 是什么？</a>
-            <a href="../../../posts/series/leetcode-jianzhioffer-java/15.html" class="next" rel="next" title="15、剑指 Offer 40. 最小的k个数">15、剑指 Offer 40. 最小的k个数<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/13.html" class="prev" rel="prev" title="13、剑指 Offer 04. 二维数组中的查找"><i class="fas fa-angle-left fa-fw"></i>13、剑指 Offer 04. 二维数组中的查找</a>
+            <a href="../../../posts/series/leetcode-jianzhioffer-java/15.html" class="next" rel="next" title="15、剑指 Offer 25. 合并两个排序的链表">15、剑指 Offer 25. 合并两个排序的链表<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
