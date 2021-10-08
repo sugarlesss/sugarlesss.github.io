@@ -968,6 +968,96 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
 ]]></description>
 </item><item>
+    <title>17、剑指 Offer 62. 圆圈中最后剩下的数字</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</link>
+    <pubDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 62. 圆圈中最后剩下的数字</a> 难度简单</p>
+<p>0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。</p>
+<p>例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入: n = 5, m = 3
+输出: 3
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入: n = 10, m = 17
+输出: 2
+</code></pre><p><strong>限制：</strong></p>
+<ul>
+<li><code>1 &lt;= n &lt;= 10^5</code></li>
+<li><code>1 &lt;= m &lt;= 10^6</code></li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21动态规划">2.1、动态规划</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>设 dp[n,m] 表示在 n 个数字序列（0~n-1）中不断删除第 m 个数字后，最后剩下那一个数。</p>
+<p>假设 n=5，m=3，则 dp[5,3] 的初始化数组是：</p>
+<p><code>0 1 2 3 4</code></p>
+<p>若 n=4，m=3，则 dp[5-1,3] 也就是 dp[4,3] 的初始化数组是：</p>
+<p><code>0 1 2 3</code></p>
+<p>从初始化数组可以看出，dp[5,3] 和 dp[4,3] 最终的结果是不一样的。而 dp[5,3] 删掉一个数字后的数组应该是：</p>
+<p><code>3 4 0 1</code></p>
+<p>这个数组咱们给他取名为 dp'[4,3]，它是不是跟 dp[4,3] 有一些联系呢？咱们把他俩的初始数组放在一起比较：</p>
+<p>dp[4,3]：<code>0 1 2 3</code></p>
+<p>dp'[4,3]：<code>3 4 0 1</code></p>
+<p>从上面可能还是看不出具体区别，因此我们来看 dp[n-1,m] 和 dp'[n-1,m]的初始数组区别：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">dp[n-1,m]</th>
+<th style="text-align:center">0</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">n-1-m</th>
+<th style="text-align:center">n-m</th>
+<th style="text-align:center">…</th>
+<th style="text-align:center">n-3</th>
+<th style="text-align:center">n-2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">dp’[n-1,m]</td>
+<td style="text-align:center">m</td>
+<td style="text-align:center">m+1</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">n-1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">m-3</td>
+<td style="text-align:center">m-2</td>
+</tr>
+</tbody>
+</table>
+<p>观察上面的表格，我们发现 dp[n-1,m] 和 dp'[n-1,m] 的初始数组有如下规律：</p>
+<p><code>dp'[n-1,m] = ( dp[n-1,m] + m ) % n</code></p>
+<p>因为 dp[n,m] = dp'[n-1,m]，所以咱们就找出了 dp[n,m] 到 dp[n-1,m] 之间的映射关系，也就是：</p>
+<p>dp[n,m] = ( dp[n−1,m] + m ) % n</p>
+<p>考虑边界条件，n 肯定是要大于1的；此外当 n=1 时，就只剩下一个数了，那就是 0。因此得出状态转移方程为：</p>
+<p><code>dp[n,m]=0, n=1</code></p>
+<p><code>dp[n,m] = ( dp[n−1,m] + m ) % n, 1&lt;n</code></p>
+<p>观察状态转移方程式，发现 m 是不变的而且 dp[n,m] 只跟 dp[n-1,m] 有关，因此可以直接使用一个变量来代替 dp[n,m]，然后从下往上递推实现。</p>
+<p>另外，因为 dp[5,3] 的初始数组是 <code>0 1 2 3 4</code>，值与下标相同，即上述规律适用于数组下标。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(n)</p>
+<p><strong>空间复杂度</strong>：O(1)</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lastRemaining</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="o">(</span><span class="n">answer</span> <span class="o">+</span> <span class="n">m</span><span class="o">)</span> <span class="o">%</span> <span class="n">i</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/</a></p>
+]]></description>
+</item><item>
     <title>16、剑指 Offer 40. 最小的k个数</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/16.html</link>
     <pubDate>Tue, 14 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -1099,58 +1189,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/zui-xiao-de-kge-shu-by-leetcode-solution/</a></p>
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/3chong-jie-fa-miao-sha-topkkuai-pai-dui-er-cha-sou/</a></p>
 <p><a href="https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/solution/jian-zhi-offer-40-zui-xiao-de-k-ge-shu-j-9yze/</a></p>
-]]></description>
-</item><item>
-    <title>15、剑指 Offer 25. 合并两个排序的链表</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</link>
-    <pubDate>Sun, 12 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/15.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 25. 合并两个排序的链表</a> 难度简单</p>
-<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。</p>
-<p><strong>示例1：</strong></p>
-<pre tabindex="0"><code>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4
-输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
-</code></pre><p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= 链表长度 &lt;= 1000
-</code></pre><p>注意：本题与主站 21 题相同：https://leetcode-cn.com/problems/merge-two-sorted-lists/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21伪节点--迭代">2.1、伪节点 + 迭代</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>根据题目描述， 链表 L1 和 L2 是递增的，因此容易想到使用双指针遍历两链表，根据值的大小关系确定节点添加顺序，两节点指针交替前进，直至遍历完毕。</p>
-<p>引入伪头节点： 由于初始状态合并链表中无节点，因此循环第一轮时无法将节点添加到合并链表中。解决方案：初始化一个辅助节点 dumdum 作为合并链表的伪头节点，将各节点添加至 dumdum 之后。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(M+N) ：M,N 分别为链表 L1, L2 的长度，合并操作需遍历两链表。</p>
-<p><strong>空间复杂度</strong>：O(1)：节点引用 result, cursor 使用常数大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 初始化 result，生成一个伪节点，让其充当链表头
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="c1">// 游标
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
-
-        <span class="c1">// 当 l1 与 l2 都不为 null 时
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
-                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
-                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 如果其中一个为 null, 则将另外一个链表的所有元素都拼接到 result 后面
-</span><span class="c1"></span>        <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">l2</span><span class="o">;</span>
-        <span class="c1">// 返回伪节点的后续所有结点
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/</a></p>
 ]]></description>
 </item></channel>
 </rss>
