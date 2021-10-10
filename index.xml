@@ -4,7 +4,7 @@
         <link>https://sugarless.top/</link>
         <description>無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://sugarless.top/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
@@ -190,6 +190,20 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="https://www.allhistory.com" target="_blank" rel="noopener noreffer">https://www.allhistory.com</a></p>
 <h3 id="2西窗烛--古诗">2、西窗烛 / 古诗</h3>
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
+</item><item>
+    <title>Mathpix Snip - Convert images to LaTeX</title>
+    <link>https://sugarless.top/posts/mathpix.html</link>
+    <pubDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/mathpix.html</guid>
+    <description><![CDATA[<p>在编写论文 、博客等内容时，想要输入数学公式就比较麻烦了。如果你使用 Mathpix Snip，<strong>只需要截个图，Mathpix Snip就可以将截图中的公式自动转化为 LaTex 代码表达式</strong>，我们只需要简单地修改修改就可以直接插入到<strong>LaTex或Word中</strong>，公式较为清晰规范的话是不需要修改的。<strong>而且可以识别手写的公式</strong>。</p>
+<p>官网：<a href="https://mathpix.com/" target="_blank" rel="noopener noreffer">https://mathpix.com/</a></p>
+<p>下载：<a href="https://mathpix.com/#downloads" target="_blank" rel="noopener noreffer">https://mathpix.com/#downloads</a></p>
+<p>如果使用 edu 教育邮箱注册 mathpix 账户，每天有 100 次的免费额度。</p>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20211010201350465.png" title="/post_images/image-20211010201350465.png" data-thumbnail="/post_images/image-20211010201350465.png">
+        
+    </a>]]></description>
 </item><item>
     <title>29、剑指 Offer 20. 表示数值的字符串</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</link>
@@ -1175,82 +1189,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/</a></p>
-]]></description>
-</item><item>
-    <title>18、剑指 Offer 20. 表示数值的字符串</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</link>
-    <pubDate>Fri, 17 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
-<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
-<p><strong>示例 1:</strong></p>
-<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
-输出: 3 
-解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
-</code></pre><p><strong>示例 2:</strong></p>
-<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
-输出: 1
-解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
-</code></pre><p><strong>示例 3:</strong></p>
-<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
-输出: 3
-解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
-     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
-</code></pre><p>提示：</p>
-<ul>
-<li><code>s.length &lt;= 40000</code></li>
-</ul>
-<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21滑动窗口法">2.1、滑动窗口法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>记 <code>left = 0</code> 为滑动窗口的左边界下标，<code>right = 0</code>为右边界下标。</p>
-<p>借助哈希表，在遍历字符串 s 时，使用哈希表 map 记录各字符最后一次出现的索引位置。</p>
-<p>在遍历过程中，不断右移滑动窗口的右下标 <code>right</code>，借助 <code>map</code> 判断 <code>s[right]</code> 字符是否已经遍历过。</p>
-<p>根据 <code>s[right]</code> 是否为第一次出现，有以下 2 种情况：</p>
-<ul>
-<li>是：则 map 中不存在 <code>key = s[right]</code>，此时无需更新左边界 left；</li>
-<li>否：则 map 中存在 <code>key = s[right]</code>，取 value ，得到 <code>s[right]</code> 末次出现的下标，记为 index 。更新左边界 left = Math.max ( index + 1, left ) ；</li>
-</ul>
-<p>更新 <code>s[right]</code> 末次出现的下标，记录滑动窗口的长度最大值 <code>right - left + 1</code> 即可。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)</p>
-<p><strong>空间复杂度</strong>：O(1)，字符的 ASCII 码范围为 00 ~ 127 ，哈希表 map 最多使用 O(128) = O(1) 大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLongestSubstring</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 遍历字符串 s 时，使用哈希表 map 统计各字符最后一次出现的索引位置
-</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
-
-        <span class="c1">// left = 滑动窗口的左边界: result = 滑动窗口长度的最大值
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="c1">// 遍历字符串 s
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 当前字符
-</span><span class="c1"></span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 如果 map 中存在 key = 当前字符
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 更新滑动窗口的左边界
-</span><span class="c1"></span>                <span class="c1">// 左边界只允许向右移
-</span><span class="c1"></span>                <span class="n">left</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 更新当前字符末次出现的下标
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">),</span> <span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 记录滑动窗口的长度最大值
-</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
 ]]></description>
 </item></channel>
 </rss>

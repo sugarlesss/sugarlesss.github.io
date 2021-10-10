@@ -4,7 +4,21 @@
         <link>https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</link>
         <description>软件 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html" rel="self" type="application/rss+xml" /><item>
+    <title>Mathpix Snip - Convert images to LaTeX</title>
+    <link>https://sugarless.top/posts/mathpix.html</link>
+    <pubDate>Sun, 10 Oct 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/mathpix.html</guid>
+    <description><![CDATA[<p>在编写论文 、博客等内容时，想要输入数学公式就比较麻烦了。如果你使用 Mathpix Snip，<strong>只需要截个图，Mathpix Snip就可以将截图中的公式自动转化为 LaTex 代码表达式</strong>，我们只需要简单地修改修改就可以直接插入到<strong>LaTex或Word中</strong>，公式较为清晰规范的话是不需要修改的。<strong>而且可以识别手写的公式</strong>。</p>
+<p>官网：<a href="https://mathpix.com/" target="_blank" rel="noopener noreffer">https://mathpix.com/</a></p>
+<p>下载：<a href="https://mathpix.com/#downloads" target="_blank" rel="noopener noreffer">https://mathpix.com/#downloads</a></p>
+<p>如果使用 edu 教育邮箱注册 mathpix 账户，每天有 100 次的免费额度。</p>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20211010201350465.png" title="/post_images/image-20211010201350465.png" data-thumbnail="/post_images/image-20211010201350465.png">
+        
+    </a>]]></description>
+</item><item>
     <title>ADB - Android Debug Bridge</title>
     <link>https://sugarless.top/posts/adb.html</link>
     <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>

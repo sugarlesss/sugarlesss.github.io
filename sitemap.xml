@@ -5,11 +5,14 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
             <loc>https://sugarless.top/posts/mark/1.html</loc><lastmod>2021-08-04T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.top/categories.html</loc><lastmod>2021-10-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sugarless.top/posts/mathpix.html</loc><lastmod>2021-10-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sugarless.top/posts.html</loc><lastmod>2021-10-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sugarless.top/</loc><lastmod>2021-10-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-10-10T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</loc><lastmod>2021-10-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</loc><lastmod>2021-10-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sugarless.top/posts.html</loc><lastmod>2021-10-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://sugarless.top/series.html</loc><lastmod>2021-10-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
-            <loc>https://sugarless.top/</loc><lastmod>2021-10-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/26.html</loc><lastmod>2021-09-30T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html</loc><lastmod>2021-09-29T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url><url>
             <loc>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</loc><lastmod>2021-09-26T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url><url>
@@ -23,7 +26,6 @@
             <loc>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://sugarless.top/tags/2fa.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://sugarless.top/posts/what-is-2fa.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
-            <loc>https://sugarless.top/categories.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://sugarless.top/tags/%E4%B8%A4%E6%AD%A5%E9%AA%8C%E8%AF%81.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://sugarless.top/categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
             <loc>https://sugarless.top/tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC.html</loc><lastmod>2021-09-15T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url><url>
@@ -107,7 +109,6 @@
             <loc>https://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</loc><lastmod>2020-12-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.top/posts/adb.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.top/categories/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.top/tags/ssh.html</loc><lastmod>2020-11-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.top/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</loc><lastmod>2020-11-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
