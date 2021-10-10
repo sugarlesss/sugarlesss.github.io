@@ -5,17 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">19、剑指 Offer 59 - I. 滑动窗口的最大值 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="19、剑指 Offer 59 - I. 滑动窗口的最大值" />
-<meta property="og:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:" />
+    <title class="pjax-title">19、剑指 Offer 46. 把数字翻译成字符串 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="19、剑指 Offer 46. 把数字翻译成字符串" />
+<meta property="og:description" content="一、题目 剑指 Offer 46. 把数字翻译成字符串 难度中等 给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-27T00:00:00+00:00" />
+<meta property="article:published_time" content="2021-09-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-19T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="19、剑指 Offer 59 - I. 滑动窗口的最大值"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:"/>
+<meta name="twitter:title" content="19、剑指 Offer 46. 把数字翻译成字符串"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 46. 把数字翻译成字符串 难度中等 给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
@@ -27,13 +27,13 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "19、剑指 Offer 59 - I. 滑动窗口的最大值",
+        "headline": "19、剑指 Offer 46. 把数字翻译成字符串",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/19.html"
-        },"genre": "posts","wordcount":  1748 ,
-        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/19.html","datePublished": "2021-09-27T00:00:00+00:00","dateModified": "2021-09-27T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+        },"genre": "posts","keywords": "动态规划","wordcount":  1208 ,
+        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/19.html","datePublished": "2021-09-19T00:00:00+00:00","dateModified": "2021-09-19T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -114,12 +114,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">19、剑指 Offer 59 - I. 滑动窗口的最大值</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">19、剑指 Offer 46. 把数字翻译成字符串</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-27">2021-09-27</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-27">2021-09-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1748 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/19.html" class="leancloud_visitors" data-flag-title="19、剑指 Offer 59 - I. 滑动窗口的最大值">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-19">2021-09-19</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-19">2021-09-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1208 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/19.html" class="leancloud_visitors" data-flag-title="19、剑指 Offer 46. 把数字翻译成字符串">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -132,14 +132,14 @@
     <li><a href="#一题目">一、题目</a></li>
     <li><a href="#二解法">二、解法</a>
       <ul>
-        <li><a href="#21优先队列">2.1、优先队列</a>
+        <li><a href="#21动态规划--字符串遍历">2.1、动态规划 + 字符串遍历</a>
           <ul>
             <li><a href="#核心思路">核心思路</a></li>
             <li><a href="#复杂度分析">复杂度分析</a></li>
             <li><a href="#code">Code</a></li>
           </ul>
         </li>
-        <li><a href="#22单调队列">2.2、单调队列</a>
+        <li><a href="#22动态规划--数字求余">2.2、动态规划 + 数字求余</a>
           <ul>
             <li><a href="#核心思路-1">核心思路</a></li>
             <li><a href="#复杂度分析-1">复杂度分析</a></li>
@@ -152,143 +152,102 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
-<p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
-<p><strong>示例:</strong></p>
-<pre tabindex="0"><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
-输出: [3,3,5,5,6,7] 
-解释: 
-
-  滑动窗口的位置                最大值
----------------               -----
-[1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 46. 把数字翻译成字符串</a> 难度中等</p>
+<p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: 12258
+输出: 5
+解释: 12258有5种不同的翻译，分别是&quot;bccfi&quot;, &quot;bwfi&quot;, &quot;bczi&quot;, &quot;mcfi&quot;和&quot;mzi&quot;
 </code></pre><p><strong>提示：</strong></p>
-<p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
-<p>注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/</p>
+<ul>
+<li><code>0 &lt;= num &lt; 2^31</code></li>
+</ul>
 <h1 id="二解法">二、解法</h1>
-<h2 id="21优先队列">2.1、优先队列</h2>
+<h2 id="21动态规划--字符串遍历">2.1、动态规划 + 字符串遍历</h2>
 <h3 id="核心思路">核心思路</h3>
-<p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
-<p>对于本题而言，初始时，我们将数组 nums 的前 k 个元素放入优先队列中。每当我们向右移动窗口时，我们就可以把一个新的元素放入优先队列中，此时堆顶的元素就是堆中所有元素的最大值。然而这个最大值可能并不在滑动窗口中，在这种情况下，这个值在数组 nums 中的位置出现在滑动窗口左边界的左侧。因此，当我们后续继续向右移动窗口时，这个值就永远不可能出现在滑动窗口中了，我们可以将其永久地从优先队列中移除。</p>
-<p>我们不断地移除堆顶的元素，直到其确实出现在滑动窗口中。此时，堆顶元素就是滑动窗口中的最大值。为了方便判断堆顶元素与滑动窗口的位置关系，我们可以在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。</p>
+<p><strong>动态规划推导过程</strong>：</p>
+<p>根据题意， num $=x_{1} x_{2} \ldots x_{i-2} x_{i-1} x_{i} \ldots x_{n-1} x_{n}$ </p>
+<p>记数字 num 第 i 位数字为  $ x_{i} $ </p>
+<p>例如： $12258=x_{1} x_{2} x_{3} x_{4} x_{5}$ </p>
+<ul>
+<li>当整体翻译   $x_{1} x_{2}$  时，  $x_{1} x_{2} x_{3} x_{4} x_{5}$  的方案数为  $f(i-2)$ </li>
+<li>当单独翻译   $x_{1}$  时，  $x_{1} x_{2} x_{3} x_{4} x_{5}$  的方案数为  $f(i-1)$ </li>
+</ul>
+<p>方案的递推关系：</p>
+  $f(i)=\left\{\begin{array}{c}f(i-2)+f(i-1), \text { 若数字 } x_{i-1} x_{i} \text { 可被翻译 } \\ f(i-1), \text { 若数字 } x_{i-1} x_{i} \text { 不可被翻译 }\end{array}\right.$ 
+<p>根据题意，可被翻译的两位数区间：  $x_{i-1}=0$  时，组成的两位数是无法被翻译的（例如 00, 01, 02,⋯ ），因此区间为 [10, 25] 。</p>
+<p>因此，状态转移方程：</p>
+ $d p[i]= \begin{cases}d p[i-1]+d p[i-2] & , 10 x_{i-1}+x_{i} \in[10,25] \\ d p[i-1] & , 10 x_{i-1}+x_{i} \in[0,10) \cup(25,99]\end{cases}$ 
+<p>初始状态：dp[0] = dp[1] = 1 ，即 “无数字” 和 “第 1 位数字” 的翻译方法数量均为 1</p>
+<blockquote>
+<p>当 numnum 第 1,2 位的组成的数字 ∈[10,25] 时，显然应有 2 种翻译方法，即 dp[2] = dp[1] + dp[0] = 2 ，而显然 dp[1] = 1 ，因此推出 dp[0] = 1 。</p>
+</blockquote>
+<p><strong>字符串遍历法</strong>：</p>
+<p>为获取数字的各位  $x_{i}$  ，考虑先将数字 num 转化为字符串 s ，通过遍历 s 实现动态规划。</p>
+<p>空间使用优化： 由于 dp[i] 只与 dp[i - 1] 有关，因此可使用两个变量 a, b 分别记录 dp[i], dp[i - 1] ，两变量交替前进即可。此方法可省去 dp 列表使用的 O(N) 的额外空间。</p>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
-<p><strong>空间复杂度</strong>：O(n)，即为优先队列需要使用的空间。<strong>这里所有的空间复杂度分析都不考虑返回的答案需要的 O(n) 空间，只计算额外的空间使用</strong>。</p>
+<p><strong>时间复杂度</strong>：O(N)，N 为字符串 s 的长度（即数字 num 的位数 log(num) ），其决定了循环次数。</p>
+<p><strong>空间复杂度</strong>：O(N)，字符串 s 使用 O(N) 大小的额外空间。</p>
 <h3 id="code">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件 / 特殊情况
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">translateNum</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// int 转为字符串
+</span><span class="c1"></span>        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
 
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="c1">// dp[1]=dp[0]=1, a b 作为缓存变量, 替代 dp 数组, 节省空间
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
 
-        <span class="c1">// 为了方便判断堆顶元素与滑动窗口的位置关系
-</span><span class="c1"></span>        <span class="c1">// 我们在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。
-</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(</span><span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;()</span> <span class="o">{</span>
-            <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">pair1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">pair2</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// 值是否相同？
-</span><span class="c1"></span>                <span class="c1">// 如果不同,则根据数值大小来判断权重
-</span><span class="c1"></span>                <span class="c1">// 如果相同,则根据索引大小来判断权重
-</span><span class="c1"></span>                <span class="k">return</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">!=</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">?</span> <span class="n">pair2</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">:</span> <span class="n">pair2</span><span class="o">[</span><span class="n">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">pair1</span><span class="o">[</span><span class="n">1</span><span class="o">];</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
+        <span class="c1">// 从 dp[2] 开始算
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 向前取两位字符
+</span><span class="c1"></span>            <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">2</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
 
-        <span class="c1">// 将数组 nums 的前 k 个元素放入优先队列中
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
+            <span class="c1">// c=dp[i], 判断 tmp 是否在区间 [10,25] 中
+</span><span class="c1"></span>            <span class="c1">// * 若在, 令 dp[i]=dp[i-1]+dp[i-2], 即 c=a+b
+</span><span class="c1"></span>            <span class="c1">// * 若不在, 令 dp[i]=dp[i-1]
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">tmp</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;25&#34;</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">?</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">:</span> <span class="n">a</span><span class="o">;</span>
+
+            <span class="c1">// 更新 dp[i] 前, 将 dp[i-1] 的值存入 dp[i-2], 即 b=a
+</span><span class="c1"></span>            <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+            <span class="c1">// 更新 dp[i]
+</span><span class="c1"></span>            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
         <span class="o">}</span>
 
-        <span class="c1">// answer
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">ans</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
-        <span class="c1">// 第一个结果 -&gt; 数组 nums 的前 k 个元素中的最大值 -&gt; 大根堆的堆顶元素
-</span><span class="c1"></span>        <span class="n">ans</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="c1">// 循环处理剩下的元素
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 把一个新的元素放入优先队列中
-</span><span class="c1"></span>            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">i</span><span class="o">});</span>
-            <span class="c1">// 去除出现在滑动窗口左边界的左侧的值，因为这个值永远不可能出现在滑动窗口中了
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">1</span><span class="o">]</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="o">}</span>
-            <span class="c1">// 向 answer 中写入当前滑动窗口内的最大值
-</span><span class="c1"></span>            <span class="n">ans</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()[</span><span class="n">0</span><span class="o">];</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><h2 id="22单调队列">2.2、单调队列</h2>
+</code></pre></div><h2 id="22动态规划--数字求余">2.2、动态规划 + 数字求余</h2>
 <h3 id="核心思路-1">核心思路</h3>
-<p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
-<a class="lightgallery" href="../../../post_images/image-20210927225830146.png" title="/post_images/image-20210927225830146.png" data-thumbnail="/post_images/image-20210927225830146.png">
-        <img
-            class="lazyload"
-            data-src="../../../post_images/image-20210927225830146.png"
-            data-srcset="../../../post_images/image-20210927225830146.png, ../../../post_images/image-20210927225830146.png 1.5x, ../../../post_images/image-20210927225830146.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210927225830146.png"
-        />
-    </a>
-<!-- raw HTML omitted -->
-<p>借助 deque 这个双端队列，我们可以将获取滑动窗口内最大值的时间复杂度从 O(k) 降低至 O(1)，这也是本题的难点。</p>
-<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreffer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
+<p>此题的动态规划计算是 对称 的 ，即 从左向右 遍历（从第 dp[2] 计算至 dp[n] ）和 从右向左 遍历（从第 dp[n - 2] 计算至 dp[0] ）所得方案数一致。</p>
+<p>上述方法虽然已经节省了 dp 列表的空间占用，但字符串 s 仍使用了 O(N) 大小的额外空间。</p>
+<p>利用求余运算 num % 10 和求整运算 num // 10 ，可获取数字 num 的各位数字（获取顺序为个位、十位、百位…）。</p>
+<p>自此，字符串 s 的空间占用也被省去，空间复杂度从 O(N) 降至 O(1) 。</p>
 <h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
-<p><strong>空间复杂度</strong>：O(k) ，双端队列 deque 中最多同时存储 k 个元素（即窗口大小）。</p>
+<p><strong>时间复杂度</strong>：O(N) ，N 为字符串 s 的长度（即数字 num 的位数 log(num) ），其决定了循环次数。</p>
+<p><strong>空间复杂度</strong>：O(1) ，几个变量使用常数大小的额外空间。</p>
 <h3 id="code-1">Code</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 边界条件 / 特殊情况
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
-
-        <span class="c1">// 双端队列 仅包含窗口内的元素，且严格
-</span><span class="c1"></span>        <span class="n">Deque</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">deque</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
-        <span class="c1">// 答案
-</span><span class="c1"></span>        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
-
-        <span class="c1">// 未形成窗口
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
-
-            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
-</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">translateNum</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">num</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">num</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">tmp</span> <span class="o">&gt;=</span> <span class="n">10</span> <span class="o">&amp;&amp;</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="n">25</span><span class="o">)</span> <span class="o">?</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">:</span> <span class="n">a</span><span class="o">;</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
         <span class="o">}</span>
-        <span class="c1">// deque 的第一个元素即为当前窗口的最大值
-</span><span class="c1"></span>        <span class="n">answer</span><span class="o">[</span><span class="n">0</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
-
-        <span class="c1">// 形成窗口后
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// i-k 是已经在区间外了, 如果首位等于 nums[i-k], 那么说明此时首位值已经不再区间内了，需要删除
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">()</span> <span class="o">==</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
-
-            <span class="c1">// 删除 deque 中所有小于 nums[i] 的元素
-</span><span class="c1"></span>            <span class="k">while</span> <span class="o">(!</span><span class="n">deque</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekLast</span><span class="o">()</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">])</span>
-                <span class="n">deque</span><span class="o">.</span><span class="na">removeLast</span><span class="o">();</span>
-            <span class="c1">// 向 deque 末尾添加新元素 nums[i]
-</span><span class="c1"></span>            <span class="n">deque</span><span class="o">.</span><span class="na">addLast</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-            <span class="c1">// deque 的第一个元素即为当前窗口的最大值
-</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">k</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">deque</span><span class="o">.</span><span class="na">peekFirst</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-27</span>
+                <span>更新于 2021-09-19</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -301,14 +260,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../../../tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html">动态规划</a></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="../../../">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/18.html" class="prev" rel="prev" title="18、剑指 Offer 25. 合并两个排序的链表"><i class="fas fa-angle-left fa-fw"></i>18、剑指 Offer 25. 合并两个排序的链表</a>
-            <a href="../../../posts/series/leetcode-jianzhioffer-java/20.html" class="next" rel="next" title="20、剑指 Offer 26. 树的子结构">20、剑指 Offer 26. 树的子结构<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/18.html" class="prev" rel="prev" title="18、剑指 Offer 20. 表示数值的字符串"><i class="fas fa-angle-left fa-fw"></i>18、剑指 Offer 20. 表示数值的字符串</a>
+            <a href="../../../posts/series/leetcode-jianzhioffer-java/20.html" class="next" rel="next" title="20、剑指 Offer 10- I. 斐波那契数列">20、剑指 Offer 10- I. 斐波那契数列<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
@@ -333,7 +292,7 @@
     })();
 </script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="../../../lib/valine/Valine.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{"valine":{"appId":"UwoDT0XASeRI4paQdHT521cA-gzGzoHsz","appKey":"jxCFXucPvPxAt87kWCh2grun","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","meta":["nick","mail","link"],"pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="../../../lib/valine/valine.min.css"><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript" src="../../../lib/valine/Valine.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../lib/katex/katex.min.js"></script><script type="text/javascript" src="../../../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../../../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../../../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{"valine":{"appId":"UwoDT0XASeRI4paQdHT521cA-gzGzoHsz","appKey":"jxCFXucPvPxAt87kWCh2grun","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","meta":["nick","mail","link"],"pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="../../../lib/valine/valine.min.css"><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../../../lib/katex/katex.min.css"><link rel="stylesheet" href="../../../lib/katex/copy-tex.min.css"></div>
 </body>
 
 </html>

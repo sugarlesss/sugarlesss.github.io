@@ -1,0 +1,107 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>动态规划 - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.top/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html</link>
+        <description>动态规划 - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 19 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.html" rel="self" type="application/rss+xml" /><item>
+    <title>19、剑指 Offer 46. 把数字翻译成字符串</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</link>
+    <pubDate>Sun, 19 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/19.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 46. 把数字翻译成字符串</a> 难度中等</p>
+<p>给定一个数字，我们按照如下规则把它翻译为字符串：0 翻译成 “a” ，1 翻译成 “b”，……，11 翻译成 “l”，……，25 翻译成 “z”。一个数字可能有多个翻译。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: 12258
+输出: 5
+解释: 12258有5种不同的翻译，分别是&quot;bccfi&quot;, &quot;bwfi&quot;, &quot;bczi&quot;, &quot;mcfi&quot;和&quot;mzi&quot;
+</code></pre><p><strong>提示：</strong></p>
+<ul>
+<li><code>0 &lt;= num &lt; 2^31</code></li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21动态规划--字符串遍历">2.1、动态规划 + 字符串遍历</h2>
+<h3 id="核心思路">核心思路</h3>
+<p><strong>动态规划推导过程</strong>：</p>
+<p>根据题意， num $=x_{1} x_{2} \ldots x_{i-2} x_{i-1} x_{i} \ldots x_{n-1} x_{n}$ </p>
+<p>记数字 num 第 i 位数字为  $ x_{i} $ </p>
+<p>例如： $12258=x_{1} x_{2} x_{3} x_{4} x_{5}$ </p>
+<ul>
+<li>当整体翻译   $x_{1} x_{2}$  时，  $x_{1} x_{2} x_{3} x_{4} x_{5}$  的方案数为  $f(i-2)$ </li>
+<li>当单独翻译   $x_{1}$  时，  $x_{1} x_{2} x_{3} x_{4} x_{5}$  的方案数为  $f(i-1)$ </li>
+</ul>
+<p>方案的递推关系：</p>
+  $f(i)=\left\{\begin{array}{c}f(i-2)+f(i-1), \text { 若数字 } x_{i-1} x_{i} \text { 可被翻译 } \\ f(i-1), \text { 若数字 } x_{i-1} x_{i} \text { 不可被翻译 }\end{array}\right.$ 
+<p>根据题意，可被翻译的两位数区间：  $x_{i-1}=0$  时，组成的两位数是无法被翻译的（例如 00, 01, 02,⋯ ），因此区间为 [10, 25] 。</p>
+<p>因此，状态转移方程：</p>
+ $d p[i]= \begin{cases}d p[i-1]+d p[i-2] & , 10 x_{i-1}+x_{i} \in[10,25] \\ d p[i-1] & , 10 x_{i-1}+x_{i} \in[0,10) \cup(25,99]\end{cases}$ 
+<p>初始状态：dp[0] = dp[1] = 1 ，即 “无数字” 和 “第 1 位数字” 的翻译方法数量均为 1</p>
+<blockquote>
+<p>当 numnum 第 1,2 位的组成的数字 ∈[10,25] 时，显然应有 2 种翻译方法，即 dp[2] = dp[1] + dp[0] = 2 ，而显然 dp[1] = 1 ，因此推出 dp[0] = 1 。</p>
+</blockquote>
+<p><strong>字符串遍历法</strong>：</p>
+<p>为获取数字的各位  $x_{i}$  ，考虑先将数字 num 转化为字符串 s ，通过遍历 s 实现动态规划。</p>
+<p>空间使用优化： 由于 dp[i] 只与 dp[i - 1] 有关，因此可使用两个变量 a, b 分别记录 dp[i], dp[i - 1] ，两变量交替前进即可。此方法可省去 dp 列表使用的 O(N) 的额外空间。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)，N 为字符串 s 的长度（即数字 num 的位数 log(num) ），其决定了循环次数。</p>
+<p><strong>空间复杂度</strong>：O(N)，字符串 s 使用 O(N) 大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">translateNum</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// int 转为字符串
+</span><span class="c1"></span>        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">);</span>
+
+        <span class="c1">// dp[1]=dp[0]=1, a b 作为缓存变量, 替代 dp 数组, 节省空间
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="c1">// 从 dp[2] 开始算
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 向前取两位字符
+</span><span class="c1"></span>            <span class="n">String</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">i</span> <span class="o">-</span> <span class="n">2</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+
+            <span class="c1">// c=dp[i], 判断 tmp 是否在区间 [10,25] 中
+</span><span class="c1"></span>            <span class="c1">// * 若在, 令 dp[i]=dp[i-1]+dp[i-2], 即 c=a+b
+</span><span class="c1"></span>            <span class="c1">// * 若不在, 令 dp[i]=dp[i-1]
+</span><span class="c1"></span>            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;10&#34;</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="n">0</span> <span class="o">&amp;&amp;</span> <span class="n">tmp</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="s">&#34;25&#34;</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="n">0</span> <span class="o">?</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">:</span> <span class="n">a</span><span class="o">;</span>
+
+            <span class="c1">// 更新 dp[i] 前, 将 dp[i-1] 的值存入 dp[i-2], 即 b=a
+</span><span class="c1"></span>            <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+            <span class="c1">// 更新 dp[i]
+</span><span class="c1"></span>            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22动态规划--数字求余">2.2、动态规划 + 数字求余</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>此题的动态规划计算是 对称 的 ，即 从左向右 遍历（从第 dp[2] 计算至 dp[n] ）和 从右向左 遍历（从第 dp[n - 2] 计算至 dp[0] ）所得方案数一致。</p>
+<p>上述方法虽然已经节省了 dp 列表的空间占用，但字符串 s 仍使用了 O(N) 大小的额外空间。</p>
+<p>利用求余运算 num % 10 和求整运算 num // 10 ，可获取数字 num 的各位数字（获取顺序为个位、十位、百位…）。</p>
+<p>自此，字符串 s 的空间占用也被省去，空间复杂度从 O(N) 降至 O(1) 。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N) ，N 为字符串 s 的长度（即数字 num 的位数 log(num) ），其决定了循环次数。</p>
+<p><strong>空间复杂度</strong>：O(1) ，几个变量使用常数大小的额外空间。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">translateNum</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">1</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="n">num</span> <span class="o">!=</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">num</span> <span class="o">/=</span> <span class="n">10</span><span class="o">;</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">10</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">10</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">;</span>
+            <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="o">(</span><span class="n">tmp</span> <span class="o">&gt;=</span> <span class="n">10</span> <span class="o">&amp;&amp;</span> <span class="n">tmp</span> <span class="o">&lt;=</span> <span class="n">25</span><span class="o">)</span> <span class="o">?</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">:</span> <span class="n">a</span><span class="o">;</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/</a></p>
+]]></description>
+</item></channel>
+</rss>
