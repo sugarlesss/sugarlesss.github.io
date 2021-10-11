@@ -570,6 +570,118 @@
 <p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/solution/mian-shi-ti-45-ba-shu-zu-pai-cheng-zui-xiao-de-s-4/</a></p>
 ]]></description>
 </item><item>
+    <title>24、剑指 Offer 57. 和为s的两个数字</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html</link>
+    <pubDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 57. 和为s的两个数字</a> 难度简单</p>
+<p>输入一个递增排序的数组和一个数字 s ，在数组中查找两个数，使得它们的和正好是 s 。如果有多对数字的和等于 s ，则输出任意一对即可。</p>
+<p><strong>示例 1：</strong></p>
+<pre tabindex="0"><code>输入：nums = [2,7,11,15], target = 9
+输出：[2,7] 或者 [7,2]
+</code></pre><p><strong>示例 2：</strong></p>
+<pre tabindex="0"><code>输入：nums = [10,26,30,31,47,60], target = 40
+输出：[10,30] 或者 [30,10]
+</code></pre><p><strong>限制：</strong></p>
+<ul>
+<li>$ 1 &lt;= nums.length &lt;= 10^5 $</li>
+<li>$ 1 &lt;= nums[i] &lt;= 10^6 $</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21对撞双指针法">2.1、对撞双指针法</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>利用 HashMap 可以通过遍历数组找到数字组合，时间和空间复杂度均为 O(N) 。但本题的 $nums$ 是 <strong>排序数组</strong> ，因此可使用 <strong>双指针法</strong> 将空间复杂度降低至 O(1) 。</p>
+<h4 id="算法流程"><strong>算法流程</strong>：</h4>
+<ol>
+<li>
+<p><strong>初始化：</strong> 双指针 $i , j$ 分别指向数组 $nums $的左右两端 <em>（俗称对撞双指针）</em>。</p>
+</li>
+<li>
+<p><strong>循环搜索：</strong> 当双指针相遇时跳出；</p>
+<ol>
+<li>计算和 $s = nums[i] + nums[j]$ ；</li>
+<li>若 $s &gt; target$ ，则指针 $j$ 向左移动，即执行 $j = j - 1$ ；</li>
+<li>若 $s &lt; target$ ，则指针 $i$ 向右移动，即执行 $i = i + 1$ ；</li>
+<li>若 $s = target$ ，立即返回数组 $[ nums[i], nums[j] ]$ ；</li>
+</ol>
+</li>
+<li>
+<p>返回空数组，代表无和为 $target$ 的数字组合。</p>
+</li>
+</ol>
+<h4 id="正确性证明">正确性证明：</h4>
+<blockquote>
+<p>记每个状态为 $S(i, j)$ ，即 $S(i, j) = nums[i] + nums[j]$ 。假设 $S(i, j) &lt; target$ ，则执行 $i = i + 1$ ，即状态切换至 $S(i + 1, j)$ 。</p>
+</blockquote>
+<ul>
+<li>状态 $S(i, j)$ 切换至 $S(i + 1, j)$ ，则会消去一行元素，相当于 消去了状态集合 ${S(i, i + 1), S(i, i + 2), &hellip;, S(i, j - 2), S(i, j - 1), S(i, j) }$ 。（由于双指针都是向中间收缩，因此这些状态之后不可能再遇到）。</li>
+<li>由于 $nums$ 是排序数组，因此这些 <strong>消去的状态</strong> 都一定满足 $S(i, j) &lt; target$ ，即这些状态都 <strong>不是解</strong> 。</li>
+<li>结论： 以上分析已证明 “每次指针 $i$ 的移动操作，都不会导致解的丢失” ，即指针 $i$ 的移动操作是 安全的 ；同理，对于指针 $j$ 可得出同样推论；因此，此双指针法是正确的。</li>
+</ul>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20211011123131456.png" title="/post_images/image-20211011123131456.png" data-thumbnail="/post_images/image-20211011123131456.png">
+        
+    </a>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)，N 为数组 $nums $ 的长度；双指针共同线性遍历整个数组。</p>
+<p><strong>空间复杂度</strong>：O(1)，变量 $i, j$ 使用常数大小的额外空间。</p>
+<h3 id="code">Code</h3>
+<p>因题目限定 $ 1 &lt;= nums[i] &lt;= 10^6 $ ，所以判断条件用相加后的结果不会溢出。如果两个操作数都是正整数，则使用$target - nums[i]$ 跟 $nums[j]$ 比较，这样保证不会溢出。因为 $nums[i]$ 可能是负数， $target - nums[i]$ 也可能越界，因此用 long 型去比可能是最安全的。</p>
+<p>同样的例子还有二分查找，$(left + right) / 2$ 可以用 $left + ((rigth - left) &raquo; 1))$ 代替。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+
+            <span class="k">if</span><span class="o">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">j</span><span class="o">--;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">};</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22哈希表">2.2、哈希表</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>使用暴力枚举的时间复杂度较高的原因是寻找 $target - nums[i]$ 的时间复杂度过高。因此，使用哈希表可以将寻找 $target - nums[i]$ 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
+<p>因本题的 $nums$ 是 <strong>排序数组</strong> ，实际上使用 <strong>双指针法</strong> 可以将空间复杂度也降低至 O(1) ，但如果 $nums$ 是无序的，可以使用哈希表解法。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)，其中 N 是数组中的元素数量。对于每一个 $nums[i]$ ，我们可以 O(1) 地寻找 $target - nums[i]$ 。</p>
+<p><strong>空间复杂度</strong>：O(N)，其中 N 是数组中的元素数量。主要为哈希表的开销。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化哈希表
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">hashtable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
+
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 查询哈希表中是否存在 target - nums[i]
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">hashtable</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+                <span class="c1">// 如果存在, 返回 [ target - nums[i], nums[i] ]
+</span><span class="c1"></span>                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">hashtable</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]),</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]};</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 将 nums[i] 插入到哈希表中，保证不会让 nums[i] 和自己匹配
+</span><span class="c1"></span>            <span class="n">hashtable</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 没有找到符合条件的解, 返回 [ 0, 0 ]
+</span><span class="c1"></span>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/solution/mian-shi-ti-57-he-wei-s-de-liang-ge-shu-zi-shuang-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/solution/mian-shi-ti-57-he-wei-s-de-liang-ge-shu-zi-shuang-/</a></p>
+<p><a href="https://leetcode-cn.com/problems/two-sum/solution/liang-shu-zhi-he-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/two-sum/solution/liang-shu-zhi-he-by-leetcode-solution/</a></p>
+]]></description>
+</item><item>
     <title>23、剑指 Offer 26. 树的子结构</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</link>
     <pubDate>Sun, 26 Sep 2021 00:00:00 &#43;0000</pubDate><author>
@@ -1065,96 +1177,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
-]]></description>
-</item><item>
-    <title>17、剑指 Offer 62. 圆圈中最后剩下的数字</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</link>
-    <pubDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/17.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 62. 圆圈中最后剩下的数字</a> 难度简单</p>
-<p>0,1,···,n-1 这 n 个数字排成一个圆圈，从数字 0 开始，每次从这个圆圈里删除第 m 个数字（删除后从下一个数字开始计数）。求出这个圆圈里剩下的最后一个数字。</p>
-<p>例如，0、1、2、3、4 这 5 个数字组成一个圆圈，从数字 0 开始每次删除第 3 个数字，则删除的前 4 个数字依次是 2、0、4、1，因此最后剩下的数字是 3。</p>
-<p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入: n = 5, m = 3
-输出: 3
-</code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入: n = 10, m = 17
-输出: 2
-</code></pre><p><strong>限制：</strong></p>
-<ul>
-<li><code>1 &lt;= n &lt;= 10^5</code></li>
-<li><code>1 &lt;= m &lt;= 10^6</code></li>
-</ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21动态规划">2.1、动态规划</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>设 dp[n,m] 表示在 n 个数字序列（0~n-1）中不断删除第 m 个数字后，最后剩下那一个数。</p>
-<p>假设 n=5，m=3，则 dp[5,3] 的初始化数组是：</p>
-<p><code>0 1 2 3 4</code></p>
-<p>若 n=4，m=3，则 dp[5-1,3] 也就是 dp[4,3] 的初始化数组是：</p>
-<p><code>0 1 2 3</code></p>
-<p>从初始化数组可以看出，dp[5,3] 和 dp[4,3] 最终的结果是不一样的。而 dp[5,3] 删掉一个数字后的数组应该是：</p>
-<p><code>3 4 0 1</code></p>
-<p>这个数组咱们给他取名为 dp'[4,3]，它是不是跟 dp[4,3] 有一些联系呢？咱们把他俩的初始数组放在一起比较：</p>
-<p>dp[4,3]：<code>0 1 2 3</code></p>
-<p>dp'[4,3]：<code>3 4 0 1</code></p>
-<p>从上面可能还是看不出具体区别，因此我们来看 dp[n-1,m] 和 dp'[n-1,m]的初始数组区别：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">dp[n-1,m]</th>
-<th style="text-align:center">0</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">…</th>
-<th style="text-align:center">n-1-m</th>
-<th style="text-align:center">n-m</th>
-<th style="text-align:center">…</th>
-<th style="text-align:center">n-3</th>
-<th style="text-align:center">n-2</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">dp’[n-1,m]</td>
-<td style="text-align:center">m</td>
-<td style="text-align:center">m+1</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">n-1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">…</td>
-<td style="text-align:center">m-3</td>
-<td style="text-align:center">m-2</td>
-</tr>
-</tbody>
-</table>
-<p>观察上面的表格，我们发现 dp[n-1,m] 和 dp'[n-1,m] 的初始数组有如下规律：</p>
-<p><code>dp'[n-1,m] = ( dp[n-1,m] + m ) % n</code></p>
-<p>因为 dp[n,m] = dp'[n-1,m]，所以咱们就找出了 dp[n,m] 到 dp[n-1,m] 之间的映射关系，也就是：</p>
-<p>dp[n,m] = ( dp[n−1,m] + m ) % n</p>
-<p>考虑边界条件，n 肯定是要大于1的；此外当 n=1 时，就只剩下一个数了，那就是 0。因此得出状态转移方程为：</p>
-<p><code>dp[n,m]=0, n=1</code></p>
-<p><code>dp[n,m] = ( dp[n−1,m] + m ) % n, 1&lt;n</code></p>
-<p>观察状态转移方程式，发现 m 是不变的而且 dp[n,m] 只跟 dp[n-1,m] 有关，因此可以直接使用一个变量来代替 dp[n,m]，然后从下往上递推实现。</p>
-<p>另外，因为 dp[5,3] 的初始数组是 <code>0 1 2 3 4</code>，值与下标相同，即上述规律适用于数组下标。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n)</p>
-<p><strong>空间复杂度</strong>：O(1)</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lastRemaining</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">answer</span> <span class="o">=</span> <span class="o">(</span><span class="n">answer</span> <span class="o">+</span> <span class="n">m</span><span class="o">)</span> <span class="o">%</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/</a></p>
 ]]></description>
 </item></channel>
 </rss>

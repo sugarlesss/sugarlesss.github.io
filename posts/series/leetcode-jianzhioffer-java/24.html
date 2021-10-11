@@ -5,35 +5,35 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">23、剑指 Offer 26. 树的子结构 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="23、剑指 Offer 26. 树的子结构" />
-<meta property="og:description" content="一、题目 剑指 Offer 26. 树的子结构 难度中等 输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构) B 是 A 的子结构， 即 A 中有出" />
+    <title class="pjax-title">24、剑指 Offer 57. 和为s的两个数字 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="24、剑指 Offer 57. 和为s的两个数字" />
+<meta property="og:description" content="一、题目 剑指 Offer 57. 和为s的两个数字 难度简单 输入一个递增排序的数组和一个数字 s ，在数组中查找两个数，使得它们的和正好是 s 。如果有多对数字的和等于" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-09-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-09-26T00:00:00+00:00" />
+<meta property="og:url" content="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-09-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-09-28T00:00:00+00:00" />
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="23、剑指 Offer 26. 树的子结构"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 26. 树的子结构 难度中等 输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构) B 是 A 的子结构， 即 A 中有出"/>
+<meta name="twitter:title" content="24、剑指 Offer 57. 和为s的两个数字"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 57. 和为s的两个数字 难度简单 输入一个递增排序的数组和一个数字 s ，在数组中查找两个数，使得它们的和正好是 s 。如果有多对数字的和等于"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html" /><link rel="prev" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html" /><link rel="next" href="https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "23、剑指 Offer 26. 树的子结构",
+        "headline": "24、剑指 Offer 57. 和为s的两个数字",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/23.html"
-        },"genre": "posts","wordcount":  592 ,
-        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/23.html","datePublished": "2021-09-26T00:00:00+00:00","dateModified": "2021-09-26T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/24.html"
+        },"genre": "posts","keywords": "数学推导, 双指针, HashMap","wordcount":  1224 ,
+        "url": "https:\/\/sugarless.top\/posts\/series\/leetcode-jianzhioffer-java\/24.html","datePublished": "2021-09-28T00:00:00+00:00","dateModified": "2021-09-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -114,12 +114,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">23、剑指 Offer 26. 树的子结构</h1><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">24、剑指 Offer 57. 和为s的两个数字</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-26">2021-09-26</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-26">2021-09-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 592 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/23.html" class="leancloud_visitors" data-flag-title="23、剑指 Offer 26. 树的子结构">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-28">2021-09-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-28">2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1224 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;<span id="/posts/series/leetcode-jianzhioffer-java/24.html" class="leancloud_visitors" data-flag-title="24、剑指 Offer 57. 和为s的两个数字">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -132,11 +132,23 @@
     <li><a href="#一题目">一、题目</a></li>
     <li><a href="#二解法">二、解法</a>
       <ul>
-        <li><a href="#21递归法">2.1、递归法</a>
+        <li><a href="#21对撞双指针法">2.1、对撞双指针法</a>
           <ul>
-            <li><a href="#核心思路">核心思路</a></li>
+            <li><a href="#核心思路">核心思路</a>
+              <ul>
+                <li><a href="#算法流程"><strong>算法流程</strong>：</a></li>
+                <li><a href="#正确性证明">正确性证明：</a></li>
+              </ul>
+            </li>
             <li><a href="#复杂度分析">复杂度分析</a></li>
             <li><a href="#code">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#22哈希表">2.2、哈希表</a>
+          <ul>
+            <li><a href="#核心思路-1">核心思路</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析</a></li>
+            <li><a href="#code-1">Code</a></li>
           </ul>
         </li>
       </ul>
@@ -145,86 +157,121 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
-<p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
-<p>B 是 A 的子结构， 即 A 中有出现和 B 相同的结构和节点值。</p>
-<p>例如:
-给定的树 A:</p>
-<p>    3<br>
-   / \<br>
-  4  5<br>
- / \<br>
-1  2</p>
-<p>给定的树 B：</p>
-<p>  4<br>
- /<br>
-1</p>
-<p>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
+<p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 57. 和为s的两个数字</a> 难度简单</p>
+<p>输入一个递增排序的数组和一个数字 s ，在数组中查找两个数，使得它们的和正好是 s 。如果有多对数字的和等于 s ，则输出任意一对即可。</p>
 <p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：A = [1,2,3], B = [3,1]
-输出：false
+<pre tabindex="0"><code>输入：nums = [2,7,11,15], target = 9
+输出：[2,7] 或者 [7,2]
 </code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：A = [3,4,5,1,2], B = [4,1]
-输出：true
+<pre tabindex="0"><code>输入：nums = [10,26,30,31,47,60], target = 40
+输出：[10,30] 或者 [30,10]
 </code></pre><p><strong>限制：</strong></p>
-<pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 10000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21递归法">2.1、递归法</h2>
+<ul>
+<li>$ 1 &lt;= nums.length &lt;= 10^5 $</li>
+<li>$ 1 &lt;= nums[i] &lt;= 10^6 $</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<h2 id="21对撞双指针法">2.1、对撞双指针法</h2>
 <h3 id="核心思路">核心思路</h3>
-<p>若树 B 是树 A 的子结构，则子结构的根节点可能为树 A 的任意一个节点。因此，判断树 B 是否是树 A 的子结构，需完成以下两步工作：</p>
+<p>利用 HashMap 可以通过遍历数组找到数字组合，时间和空间复杂度均为 O(N) 。但本题的 $nums$ 是 <strong>排序数组</strong> ，因此可使用 <strong>双指针法</strong> 将空间复杂度降低至 O(1) 。</p>
+<h4 id="算法流程"><strong>算法流程</strong>：</h4>
 <ol>
-<li>先序遍历树 A 中的每个节点 Na；（对应函数 <code>isSubStructure(A, B)</code>）</li>
-<li>判断树 A 中以 Na 为根节点的子树是否包含树 B。（对应函数 <code>recur(A, B)</code>）</li>
+<li>
+<p><strong>初始化：</strong> 双指针 $i , j$ 分别指向数组 $nums $的左右两端 <em>（俗称对撞双指针）</em>。</p>
+</li>
+<li>
+<p><strong>循环搜索：</strong> 当双指针相遇时跳出；</p>
+<ol>
+<li>计算和 $s = nums[i] + nums[j]$ ；</li>
+<li>若 $s &gt; target$ ，则指针 $j$ 向左移动，即执行 $j = j - 1$ ；</li>
+<li>若 $s &lt; target$ ，则指针 $i$ 向右移动，即执行 $i = i + 1$ ；</li>
+<li>若 $s = target$ ，立即返回数组 $[ nums[i], nums[j] ]$ ；</li>
 </ol>
+</li>
+<li>
+<p>返回空数组，代表无和为 $target$ 的数字组合。</p>
+</li>
+</ol>
+<h4 id="正确性证明">正确性证明：</h4>
+<blockquote>
+<p>记每个状态为 $S(i, j)$ ，即 $S(i, j) = nums[i] + nums[j]$ 。假设 $S(i, j) &lt; target$ ，则执行 $i = i + 1$ ，即状态切换至 $S(i + 1, j)$ 。</p>
+</blockquote>
+<ul>
+<li>状态 $S(i, j)$ 切换至 $S(i + 1, j)$ ，则会消去一行元素，相当于 消去了状态集合 ${S(i, i + 1), S(i, i + 2), &hellip;, S(i, j - 2), S(i, j - 1), S(i, j) }$ 。（由于双指针都是向中间收缩，因此这些状态之后不可能再遇到）。</li>
+<li>由于 $nums$ 是排序数组，因此这些 <strong>消去的状态</strong> 都一定满足 $S(i, j) &lt; target$ ，即这些状态都 <strong>不是解</strong> 。</li>
+<li>结论： 以上分析已证明 “每次指针 $i$ 的移动操作，都不会导致解的丢失” ，即指针 $i$ 的移动操作是 安全的 ；同理，对于指针 $j$ 可得出同样推论；因此，此双指针法是正确的。</li>
+</ul>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="../../../post_images/image-20211011123131456.png" title="/post_images/image-20211011123131456.png" data-thumbnail="/post_images/image-20211011123131456.png">
+        <img
+            class="lazyload"
+            data-src="../../../post_images/image-20211011123131456.png"
+            data-srcset="../../../post_images/image-20211011123131456.png, ../../../post_images/image-20211011123131456.png 1.5x, ../../../post_images/image-20211011123131456.png 2x"
+            data-sizes="auto"
+            alt="/post_images/image-20211011123131456.png"
+        />
+    </a>
 <h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(MN) ，其中 M,N 分别为树 A 和 树 B 的节点数量；先序遍历树 A 占用 O(M) ，每次调用 recur(A, B) 判断占用 O(N)。</p>
-<p><strong>空间复杂度</strong>：O(M) ，当树 A 和树 B 都退化为链表时，递归调用深度最大。当 M≤N 时，遍历树 A 与递归判断的总递归深度为 M ；当 M&gt;N 时，最差情况为遍历至树 A 叶子节点，此时总递归深度为 M。</p>
+<p><strong>时间复杂度</strong>：O(N)，N 为数组 $nums $ 的长度；双指针共同线性遍历整个数组。</p>
+<p><strong>空间复杂度</strong>：O(1)，变量 $i, j$ 使用常数大小的额外空间。</p>
 <h3 id="code">Code</h3>
+<p>因题目限定 $ 1 &lt;= nums[i] &lt;= 10^6 $ ，所以判断条件用相加后的结果不会溢出。如果两个操作数都是正整数，则使用$target - nums[i]$ 跟 $nums[j]$ 比较，这样保证不会溢出。因为 $nums[i]$ 可能是负数， $target - nums[i]$ 也可能越界，因此用 long 型去比可能是最安全的。</p>
+<p>同样的例子还有二分查找，$(left + right) / 2$ 可以用 $left + ((rigth - left) &raquo; 1))$ 代替。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isSubStructure</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 如果 A 或 B 为空
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+
+        <span class="k">while</span><span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+
+            <span class="k">if</span><span class="o">(</span><span class="n">s</span> <span class="o">&lt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">++;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">s</span> <span class="o">&gt;</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">j</span><span class="o">--;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span> <span class="o">{</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">};</span>
+            <span class="o">}</span>
         <span class="o">}</span>
 
-        <span class="c1">// B、A 相同
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// B 在 A 的左子树中
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// B 在 A 的右子树中
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">isSubStructure</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
     <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22哈希表">2.2、哈希表</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>使用暴力枚举的时间复杂度较高的原因是寻找 $target - nums[i]$ 的时间复杂度过高。因此，使用哈希表可以将寻找 $target - nums[i]$ 的时间复杂度降低到从 O(N) 降低到 O(1)。</p>
+<p>因本题的 $nums$ 是 <strong>排序数组</strong> ，实际上使用 <strong>双指针法</strong> 可以将空间复杂度也降低至 O(1) ，但如果 $nums$ 是无序的，可以使用哈希表解法。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：O(N)，其中 N 是数组中的元素数量。对于每一个 $nums[i]$ ，我们可以 O(1) 地寻找 $target - nums[i]$ 。</p>
+<p><strong>空间复杂度</strong>：O(N)，其中 N 是数组中的元素数量。主要为哈希表的开销。</p>
+<h3 id="code-1">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">twoSum</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">target</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 初始化哈希表
+</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">hashtable</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">);</span>
 
-    <span class="c1">// 递归判断树 A 是否包含 树 B
-</span><span class="c1"></span>    <span class="kt">boolean</span> <span class="nf">recur</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">A</span><span class="o">,</span> <span class="n">TreeNode</span> <span class="n">B</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">B</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nums</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 查询哈希表中是否存在 target - nums[i]
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">hashtable</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]))</span> <span class="o">{</span>
+                <span class="c1">// 如果存在, 返回 [ target - nums[i], nums[i] ]
+</span><span class="c1"></span>                <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">hashtable</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">target</span> <span class="o">-</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]),</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]};</span>
+            <span class="o">}</span>
+
+            <span class="c1">// 将 nums[i] 插入到哈希表中，保证不会让 nums[i] 和自己匹配
+</span><span class="c1"></span>            <span class="n">hashtable</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">],</span> <span class="n">nums</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
         <span class="o">}</span>
 
-        <span class="k">if</span> <span class="o">(</span><span class="n">A</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">A</span><span class="o">.</span><span class="na">val</span> <span class="o">!=</span> <span class="n">B</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">left</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">left</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">recur</span><span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">right</span><span class="o">,</span> <span class="n">B</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+        <span class="c1">// 没有找到符合条件的解, 返回 [ 0, 0 ]
+</span><span class="c1"></span>        <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/solution/mian-shi-ti-26-shu-de-zi-jie-gou-xian-xu-bian-li-p/</a></p>
+<p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/solution/mian-shi-ti-57-he-wei-s-de-liang-ge-shu-zi-shuang-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/solution/mian-shi-ti-57-he-wei-s-de-liang-ge-shu-zi-shuang-/</a></p>
+<p><a href="https://leetcode-cn.com/problems/two-sum/solution/liang-shu-zhi-he-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/two-sum/solution/liang-shu-zhi-he-by-leetcode-solution/</a></p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-09-26</span>
+                <span>更新于 2021-09-28</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -237,14 +284,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../../../tags/%E6%95%B0%E5%AD%A6%E6%8E%A8%E5%AF%BC.html">数学推导</a>,&nbsp;<a href="../../../tags/%E5%8F%8C%E6%8C%87%E9%92%88.html">双指针</a>,&nbsp;<a href="../../../tags/hashmap.html">HashMap</a></section>
         <section>
             <span><a href="#" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="../../../">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/22.html" class="prev" rel="prev" title="22、剑指 Offer 37. 序列化二叉树"><i class="fas fa-angle-left fa-fw"></i>22、剑指 Offer 37. 序列化二叉树</a>
-            <a href="../../../posts/series/leetcode-jianzhioffer-java/24.html" class="next" rel="next" title="24、剑指 Offer 57. 和为s的两个数字">24、剑指 Offer 57. 和为s的两个数字<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../../../posts/series/leetcode-jianzhioffer-java/23.html" class="prev" rel="prev" title="23、剑指 Offer 26. 树的子结构"><i class="fas fa-angle-left fa-fw"></i>23、剑指 Offer 26. 树的子结构</a>
+            <a href="../../../posts/series/leetcode-jianzhioffer-java/25.html" class="next" rel="next" title="25、剑指 Offer 45. 把数组排成最小的数">25、剑指 Offer 45. 把数组排成最小的数<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
