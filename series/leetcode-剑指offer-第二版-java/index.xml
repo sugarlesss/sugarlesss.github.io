@@ -4,10 +4,10 @@
         <link>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
         <description>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
     <title>29、剑指 Offer 20. 表示数值的字符串</title>
     <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</link>
-    <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate><author>
+    <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
@@ -421,6 +421,228 @@
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/</a></p>
+]]></description>
+</item><item>
+    <title>27、剑指 Offer 17. 打印从1到最大的n位数</title>
+    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/27.html</link>
+    <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/27.html</guid>
+    <description><![CDATA[<h1 id="一题目">一、题目</h1>
+<p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 17. 打印从1到最大的n位数</a> 难度简单</p>
+<p>输入数字 <code>n</code>，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
+<p><strong>示例 1:</strong></p>
+<pre tabindex="0"><code>输入: n = 1
+输出: [1,2,3,4,5,6,7,8,9]
+</code></pre><p>说明：</p>
+<ul>
+<li>用返回一个整数列表来代替打印</li>
+<li>n 为正整数</li>
+</ul>
+<h1 id="二解法">二、解法</h1>
+<p>这道题在面试环节时，基本都要考察大数情况的。</p>
+<h2 id="21迭代法">2.1、迭代法</h2>
+<h3 id="核心思路">核心思路</h3>
+<p>由于本题要求返回 int 类型数组，相当于默认所有数字都在 int32 整型取值范围内，因此不考虑大数越界问题。</p>
+<p>只需定义区间 $[1, 10^n - 1]$ 和步长 1 ，通过 for 循环生成结果列表并返回即可。</p>
+<h3 id="复杂度分析">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
+<p><strong>空间复杂度</strong>： $O(1)$，建立列表需使用 $O(1)$ 大小的额外空间（ 列表作为返回结果，不计入额外空间 ）。</p>
+<h3 id="code">Code</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">end</span><span class="o">];</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="22大数打印解法">2.2、大数打印解法</h2>
+<h3 id="核心思路-1">核心思路</h3>
+<p>实际上，本题的主要考点是大数越界情况下的打印。需要解决以下三个问题：</p>
+<ol>
+<li>
+<p>表示大数的变量类型
+无论是 short / int / long &hellip; 任意变量类型，数字的取值范围都是有限的。因此，大数的表示应用字符串 String 类型。</p>
+</li>
+<li>
+<p>生成数字的字符串集</p>
+</li>
+</ol>
+<ul>
+<li>使用 int 类型时，每轮可通过 +1 生成下个数字，而此方法无法应用至 String 类型。并且， String 类型的数字的进位操作效率较低，例如 &ldquo;9999&rdquo; 至 &ldquo;10000&rdquo; 需要从个位到千位循环判断，进位 4 次。</li>
+<li>观察可知，生成的列表实际上是 n 位 0 - 9 的 <strong>全排列</strong> ，因此可避开进位操作，通过递归生成数字的 String 列表。</li>
+</ul>
+<ol start="3">
+<li>递归生成全排列</li>
+</ol>
+<p>基于分治算法的思想，先固定高位，向低位递归，当个位已被固定时，添加数字的字符串。例如当 n = 2 时（数字范围 1 - 99 ），固定十位为 0 - 9 ，按顺序依次开启递归，固定个位 0 - 9 ，终止递归并添加数字字符串。</p>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20211011153020456.png" title="/post_images/image-20211011153020456.png" data-thumbnail="/post_images/image-20211011153020456.png">
+        
+    </a>
+<p>根据以上方法，可初步编写全排列代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span> <span class="c1">// 解
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">n</span><span class="o">;</span> <span class="c1">// 题目给定的 n
+</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span> <span class="c1">// num=缓冲区, charset=字符集
+</span><span class="c1"></span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span> <span class="c1">// 数字字符串集
+</span><span class="c1"></span>        <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">n</span><span class="o">];</span> <span class="c1">// 定义长度为 n 的字符列表
+</span><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span> <span class="c1">// 开启全排列递归
+</span><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 删除最后多余的逗号
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span> <span class="c1">// 转化为字符串并返回
+</span><span class="c1"></span>    <span class="o">}</span>
+
+    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 终止条件：已固定完所有位
+</span><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span> <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
+</span><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">i</span> <span class="o">:</span> <span class="n">charset</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 遍历 ‘0‘ - ’9‘
+</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// 固定第 x 位为 i
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 开启固定第 x + 1 位
+</span><span class="c1"></span>        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>在此方法下，各数字字符串被逗号隔开，共同组成长字符串。返回的数字集字符串如下所示：</p>
+<pre tabindex="0"><code>输入：n = 1
+输出：&quot;0,1,2,3,4,5,6,7,8,9&quot;
+
+输入：n = 2
+输出：&quot;00,01,02,...,10,11,12,...,97,98,99&quot;
+
+输入：n = 3
+输出：&quot;000,001,002,...,100,101,102,...,997,998,999&quot;
+</code></pre><p>观察可知，当前的生成方法仍有以下问题：</p>
+<ol>
+<li>诸如 00, 01, 02, ⋯ 应显示为 0, 1, 2, ⋯ ，即应 <strong>删除高位多余的 0</strong> ;</li>
+<li>此方法从 0 开始生成，而题目要求 <strong>列表从 1 开始</strong> ；</li>
+</ol>
+<p>以上两个问题的解决方法如下：</p>
+<ol>
+<li>
+<p>改造上述实现的 dfs(x) 函数</p>
+<ul>
+<li>
+<p>令其成为“dfs(x,n) = 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位”，这样可以将不同位长的数值全排列拆分出来。</p>
+</li>
+<li>
+<p>原先的 dfs(3) 要将 1~3 位的数值全排列全部计算出来，改造后将会拆分为 dfs(0,1)+dfs(0,2)+dfs(0,3)。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>在字符集上做文章</p>
+<ul>
+<li>通过判断 dfs(x,n) 中 x 是否为 0 ，若是，说明当前还在固定下标为 0 的那一位, 即第一位数字（数值的最高位）,此时只需遍历字符集的 &lsquo;1&rsquo;~&lsquo;9&rsquo;, 反之则遍历 &lsquo;0&rsquo;~&lsquo;9&rsquo;</li>
+</ul>
+</li>
+</ol>
+<p>通过上述两个步骤，即可解决上述的两个问题。</p>
+<h3 id="复杂度分析-1">复杂度分析</h3>
+<p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
+<p><strong>空间复杂度</strong>： $O(10^n)$，结果列表的长度为 $10^n-1$ ，各数字字符串的长度区间为 $1, 2, &hellip;, n$ ，因此占用 $O(10^n)$ 大小的额外空间。</p>
+<h3 id="code-1">Code</h3>
+<p>为 <strong>正确表示大数</strong> ，以下代码的返回值为数字字符串集拼接而成的长字符串。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 解
+</span><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="c1">// 字符集
+</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
+    <span class="c1">// 缓冲区
+</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 结果
+</span><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+
+        <span class="c1">// 开启全排列递归
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 定义长度为 n 的字符数组缓冲区
+</span><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 删除最后多余的逗号
+</span><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+        <span class="c1">// 转化为字符串并返回
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 终止条件：已固定完所有位
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
+</span><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
+</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+            <span class="c1">// 开启固定第 x + 1 位
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>本题要求输出 int 类型数组。为 <strong>运行通过</strong> ，可在添加数字字符串 s 前，将其转化为 int 类型。代码如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+    <span class="c1">// 当前已求解数字个数, 作为游标使用
+</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+    <span class="c1">// 解
+</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span><span class="o">;</span>
+
+    <span class="c1">// 字符集
+</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
+    <span class="c1">// 缓冲区
+</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 根据解的已知个数初始化空间
+</span><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">];</span>
+
+        <span class="c1">// 开启全排列递归
+</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 定义长度为 n 的字符数组缓冲区
+</span><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 转化为字符串并返回
+</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
+</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 终止条件：已固定完所有位
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 将缓冲区的字符串转换为 int , 加入解
+</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">count</span><span class="o">++]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">));</span>
+            <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
+</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+            <span class="c1">// 开启固定第 x + 1 位
+</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/</a></p>
 ]]></description>
 </item><item>
     <title>26、剑指 Offer 05. 替换空格</title>
@@ -1101,82 +1323,6 @@ F(N) = F(N - 1) + F(N - 2), 其中 N &gt; 1.
 <span class="o">}</span>
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/solution/mian-shi-ti-46-ba-shu-zi-fan-yi-cheng-zi-fu-chua-6/</a></p>
-]]></description>
-</item><item>
-    <title>18、剑指 Offer 20. 表示数值的字符串</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</link>
-    <pubDate>Fri, 17 Sep 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/18.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 48. 最长不含重复字符的子字符串</a> 难度中等</p>
-<p>请从字符串中找出一个最长的不包含重复字符的子字符串，计算该最长子字符串的长度。</p>
-<p><strong>示例 1:</strong></p>
-<pre tabindex="0"><code>输入: &quot;abcabcbb&quot;
-输出: 3 
-解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。
-</code></pre><p><strong>示例 2:</strong></p>
-<pre tabindex="0"><code>输入: &quot;bbbbb&quot;
-输出: 1
-解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。
-</code></pre><p><strong>示例 3:</strong></p>
-<pre tabindex="0"><code>输入: &quot;pwwkew&quot;
-输出: 3
-解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。
-     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。
-</code></pre><p>提示：</p>
-<ul>
-<li><code>s.length &lt;= 40000</code></li>
-</ul>
-<p>注意：本题与主站 3 题相同：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21滑动窗口法">2.1、滑动窗口法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>记 <code>left = 0</code> 为滑动窗口的左边界下标，<code>right = 0</code>为右边界下标。</p>
-<p>借助哈希表，在遍历字符串 s 时，使用哈希表 map 记录各字符最后一次出现的索引位置。</p>
-<p>在遍历过程中，不断右移滑动窗口的右下标 <code>right</code>，借助 <code>map</code> 判断 <code>s[right]</code> 字符是否已经遍历过。</p>
-<p>根据 <code>s[right]</code> 是否为第一次出现，有以下 2 种情况：</p>
-<ul>
-<li>是：则 map 中不存在 <code>key = s[right]</code>，此时无需更新左边界 left；</li>
-<li>否：则 map 中存在 <code>key = s[right]</code>，取 value ，得到 <code>s[right]</code> 末次出现的下标，记为 index 。更新左边界 left = Math.max ( index + 1, left ) ；</li>
-</ul>
-<p>更新 <code>s[right]</code> 末次出现的下标，记录滑动窗口的长度最大值 <code>right - left + 1</code> 即可。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)</p>
-<p><strong>空间复杂度</strong>：O(1)，字符的 ASCII 码范围为 00 ~ 127 ，哈希表 map 最多使用 O(128) = O(1) 大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lengthOfLongestSubstring</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 遍历字符串 s 时，使用哈希表 map 统计各字符最后一次出现的索引位置
-</span><span class="c1"></span>        <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">Character</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">map</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">();</span>
-
-        <span class="c1">// left = 滑动窗口的左边界: result = 滑动窗口长度的最大值
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">0</span><span class="o">,</span> <span class="n">result</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="c1">// 遍历字符串 s
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">right</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 当前字符
-</span><span class="c1"></span>            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 如果 map 中存在 key = 当前字符
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">c</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 更新滑动窗口的左边界
-</span><span class="c1"></span>                <span class="c1">// 左边界只允许向右移
-</span><span class="c1"></span>                <span class="n">left</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">map</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">c</span><span class="o">)</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">left</span><span class="o">);</span>
-            <span class="o">}</span>
-
-            <span class="c1">// 更新当前字符末次出现的下标
-</span><span class="c1"></span>            <span class="n">map</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">right</span><span class="o">),</span> <span class="n">right</span><span class="o">);</span>
-
-            <span class="c1">// 记录滑动窗口的长度最大值
-</span><span class="c1"></span>            <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">max</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">right</span> <span class="o">-</span> <span class="n">left</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/solution/mian-shi-ti-48-zui-chang-bu-han-zhong-fu-zi-fu-d-9/</a></p>
 ]]></description>
 </item></channel>
 </rss>
