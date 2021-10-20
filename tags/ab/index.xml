@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>ab - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/ab.html</link>
+        <link>https://sugarless.cn/tags/ab.html</link>
         <description>ab - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/ab.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/ab.html" rel="self" type="application/rss+xml" /><item>
     <title>使用 apache benchmark 对 API 进行压力测试</title>
-    <link>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</link>
+    <link>https://sugarless.cn/posts/stress-test-the-api-using-apache-benchmark.html</link>
     <pubDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</guid>
+    </author><guid>https://sugarless.cn/posts/stress-test-the-api-using-apache-benchmark.html</guid>
     <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 ab</span>
 yum -y install httpd-tools

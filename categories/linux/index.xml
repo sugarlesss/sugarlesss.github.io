@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Linux - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/linux.html</link>
+        <link>https://sugarless.cn/categories/linux.html</link>
         <description>Linux - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/linux.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/linux.html" rel="self" type="application/rss+xml" /><item>
     <title>Linux 服务器出现大量 TIME_WAIT 状态的连接</title>
-    <link>https://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</link>
+    <link>https://sugarless.cn/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</link>
     <pubDate>Sun, 03 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</guid>
     <description><![CDATA[<p>在高并发短连接的 TCP 服务器上，当服务器处理完请求后立刻主动正常关闭连接。这个场景下会出现大量 socket 处于 TIME_WAIT 状态。如果客户端的并发量持续很高，此时部分客户端就会显示连接不上。</p>
 <p>高并发可以让服务器在短时间范围内同时占用大量端口，而端口有个 0~65535 的范围，并不是很多，刨除系统和其他服务要用的，剩下的就更少了。</p>
 <p>在这个场景中，短连接表示 “业务处理 + 传输数据的时间 远远小于 TIMEWAIT 超时的时间” 的连接。Linux 默认的 TIME_WAIT 时长一般是 60 秒。</p>
@@ -39,10 +39,10 @@ net.ipv4.tcp_fin_timeout</p>
 <a href="https://zhuanlan.zhihu.com/p/79507132" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/79507132</a></p>]]></description>
 </item><item>
     <title>如何编写一个 Linux Systemd Service？</title>
-    <link>https://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</link>
+    <link>https://sugarless.cn/posts/how-to-create-a-linux-systemd-service.html</link>
     <pubDate>Tue, 01 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-create-a-linux-systemd-service.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-create-a-linux-systemd-service.html</guid>
     <description><![CDATA[<p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>
 <h1 id="一如何创建一个服务">一、如何创建一个服务？</h1>
 <p>这里假设你已经自行编译安装好了 nginx，下面我们来创建一个 nginx.service 文件</p>
@@ -121,10 +121,10 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 <a href="https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service" target="_blank" rel="noopener noreffer">https://zh.opensuse.org/openSUSE:How_to_write_a_systemd_service</a></p>]]></description>
 </item><item>
     <title>CentOS SSH 登录太慢的解决方法</title>
-    <link>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</link>
+    <link>https://sugarless.cn/posts/solution-for-ssh-login-too-slow.html</link>
     <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</guid>
+    </author><guid>https://sugarless.cn/posts/solution-for-ssh-login-too-slow.html</guid>
     <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>
 <p>SSH 登录太慢可能是 DNS 解析的问题，默认配置下 sshd 初次接受 ssh 客户端连接的时候会自动反向解析客户端 IP 以得到 ssh 客户端的域名或主机名。如果这个时候 DNS 的反向解析不正确，sshd 就会等到 DNS 解析超时后才提供 ssh 连接，这样就造成连接时间过长、ssh 客户端等待的情况，一般为 10-30 秒左右。有个简单的解决办法就是在 sshd 的配置文件（sshd_config）里取消 sshd 的反向 DNS 解析。</p>
 <p>编辑 ssh 配置文件</p>
@@ -135,10 +135,10 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 </code></pre></div>]]></description>
 </item><item>
     <title>SSH 远程会话管理工具 – screen使用教程</title>
-    <link>https://sugarless.top/posts/ssh-remote-session-management-tool-screen-tutorial.html</link>
+    <link>https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/ssh-remote-session-management-tool-screen-tutorial.html</guid>
+    </author><guid>https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html</guid>
     <description><![CDATA[<p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>
 <h1 id="一screen-是什么">一、screen 是什么？</h1>
 <p>Screen 是一个可以在多个进程之间多路复用一个物理终端的全屏窗口管理器。Screen 中有会话的概念，用户可以在一个 screen 会话中创建多个 screen 窗口，在每一个 screen 窗口中就像操作一个真实的 telnet/SSH 连接窗口那样。</p>
@@ -166,10 +166,10 @@ Ctrl+a p ：上一个窗口
 Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>]]></description>
 </item><item>
     <title>如何使用 SSH 远程登录 Linux 服务器</title>
-    <link>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
+    <link>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
     <pubDate>Sun, 25 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
     <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>
 <p>在设计上，SSH 是 Telnet 和非安全 shell 的替代品。Telnet 和 Berkeley rlogin、rsh、rexec 等协议采用明文传输，使用不可靠的密码，容易遭到监听、嗅探和中间人攻击 [5]。SSH 旨在保证非安全网络环境（例如互联网）中信息加密完整可靠。</p>
 <h1 id="一windows-远程登录-linux">一、Windows 远程登录 Linux</h1>
@@ -196,10 +196,10 @@ ssh root@192.168.1.1 -p <span class="m">22</span>
 </code></pre></div>]]></description>
 </item><item>
     <title>Linux Shell 脚本入门</title>
-    <link>https://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</link>
+    <link>https://sugarless.cn/posts/getting-started-with-linux-shell-scripting.html</link>
     <pubDate>Fri, 31 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/getting-started-with-linux-shell-scripting.html</guid>
+    </author><guid>https://sugarless.cn/posts/getting-started-with-linux-shell-scripting.html</guid>
     <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>
 <p>直接放脚本，Mark 一下防止以后忘记…</p>
 <p>复制脚本内容，保存为 *.sh 文件，运行 bash *.sh 结合查看脚本的输出情况来理解命令更佳。</p>
@@ -371,10 +371,10 @@ demoFun
 </code></pre></div>]]></description>
 </item><item>
     <title>Linux 服务器使用 Cloudflare 搭建 DDNS</title>
-    <link>https://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</link>
+    <link>https://sugarless.cn/posts/linux-server-using-cloudflare-to-build-ddns-service.html</link>
     <pubDate>Sat, 25 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/linux-server-using-cloudflare-to-build-ddns-service.html</guid>
+    </author><guid>https://sugarless.cn/posts/linux-server-using-cloudflare-to-build-ddns-service.html</guid>
     <description><![CDATA[<p>在 Linux 服务器 IP 可能发生变动的情况下，使用 DDNS（Dynamic Domain Name Server / 动态域名服务）可以随时将本地服务器的 IP 更新至域名解析。DDNS 的作用和适用范围不再赘述，下面说明如何配置。</p>
 <h1 id="一准备工作">一、准备工作</h1>
 <p>注册一个 cloudflare 账号后，按照 cloudflare 给出的提示，将域名接入 cloudflare，让 cloudflare 接管你的域名。</p>
@@ -407,10 +407,10 @@ crontab -e
 </code></pre></div>]]></description>
 </item><item>
     <title>Linux 使用 crontab 执行定时任务</title>
-    <link>https://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</link>
+    <link>https://sugarless.cn/posts/linux-using-crontab-to-execute-timed-tasks.html</link>
     <pubDate>Mon, 20 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
+    </author><guid>https://sugarless.cn/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
     <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>
 <h1 id="一命令格式及其含义">一、命令格式及其含义</h1>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#语义</span>
@@ -460,10 +460,10 @@ crontab -l
 <p>Linux 计划任务 Crontab 实例详解：<a href="https://www.osyunwei.com/archives/5039.html" target="_blank" rel="noopener noreffer">https://www.osyunwei.com/archives/5039.html</a></p>]]></description>
 </item><item>
     <title>Linux 使用 nmap 进行端口扫描</title>
-    <link>https://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</link>
+    <link>https://sugarless.cn/posts/using-nmap-for-port-scanning-on-linux-systems.html</link>
     <pubDate>Sun, 19 May 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/using-nmap-for-port-scanning-on-linux-systems.html</guid>
+    </author><guid>https://sugarless.cn/posts/using-nmap-for-port-scanning-on-linux-systems.html</guid>
     <description><![CDATA[<p>目前端口扫描可以通过 web 版本的端口扫描进行简单的测试，一次性扫描的端口数量一般也会有限制。通常情况下，如果仅仅是扫描一些常用端口，如上图所示的网页版端口扫描可以满足。如果想折腾一下，或者是对自己的主机进行安全检查之类的，还是使用 Linux 系统下的 nmap 工具进行扫描会比较方便一点。</p>
 <h1 id="一安装-nmap">一、安装 nmap</h1>
 <p>使用 yum 安装 nmap</p>

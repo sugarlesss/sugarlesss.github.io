@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>折腾 - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/%E6%8A%98%E8%85%BE.html</link>
+        <link>https://sugarless.cn/categories/%E6%8A%98%E8%85%BE.html</link>
         <description>折腾 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E6%8A%98%E8%85%BE.html" rel="self" type="application/rss+xml" /><item>
     <title>github webhook 配合宝塔 webhook 自动化部署</title>
-    <link>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</link>
+    <link>https://sugarless.cn/posts/github-webhook-and-btpanel-webhook.html</link>
     <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/github-webhook-and-btpanel-webhook.html</guid>
+    </author><guid>https://sugarless.cn/posts/github-webhook-and-btpanel-webhook.html</guid>
     <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
 <h1 id="一关于-webhook">一、关于 webhook</h1>
 <p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
@@ -54,10 +54,10 @@ git pull;
 <p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
-    <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
 <p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
 <p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
@@ -574,10 +574,10 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
     <title>hugo 一键部署</title>
-    <link>https://sugarless.top/posts/hugo-one-click-deployment.html</link>
+    <link>https://sugarless.cn/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/hugo-one-click-deployment.html</guid>
+    </author><guid>https://sugarless.cn/posts/hugo-one-click-deployment.html</guid>
     <description><![CDATA[<p>一键发布文章</p>
 <p>本操作只在 windows 平台下实践过，其他平台可自行尝试。</p>
 <p>先安装 git bash ，官网：https://git-scm.com/downloads</p>
@@ -602,10 +602,10 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>PS：如果需要同时同步到 Github 和 Gitee ，可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a> ，并修改 git blog 对应的命令。</p>]]></description>
 </item><item>
     <title>如何下载 ts 流媒体视频</title>
-    <link>https://sugarless.top/posts/how-to-download-ts-streaming-video.html</link>
+    <link>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-download-ts-streaming-video.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
 <p></p>
 <p>文件内容大致像这样：</p>
@@ -619,10 +619,10 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 </code></pre></div><p></p>]]></description>
 </item><item>
     <title>frp 内网穿透</title>
-    <link>https://sugarless.top/posts/how-to-use-frp.html</link>
+    <link>https://sugarless.cn/posts/how-to-use-frp.html</link>
     <pubDate>Sun, 20 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-frp.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-frp.html</guid>
     <description><![CDATA[<p>frp 是一个基于 Go 语言开发的专注于内网穿透的高性能的反向代理应用，支持 TCP、UDP、HTTP、HTTPS 等多种协议。可以将内网服务以安全、便捷的方式通过具有公网 IP 节点的中转暴露到公网。frp 上手难度低，配置起来并不算困难。</p>
 <p>Github：<a href="https://github.com/fatedier/frp" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp</a></p>
 <p>官网：<a href="https://gofrp.org/" target="_blank" rel="noopener noreffer">https://gofrp.org</a></p>
@@ -747,10 +747,10 @@ systemctl disable frp #取消开机自启动
 <p><a href="https://zhuanlan.zhihu.com/p/129076009" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/129076009</a></p>]]></description>
 </item><item>
     <title>使用 apache benchmark 对 API 进行压力测试</title>
-    <link>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</link>
+    <link>https://sugarless.cn/posts/stress-test-the-api-using-apache-benchmark.html</link>
     <pubDate>Sat, 13 Jun 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/stress-test-the-api-using-apache-benchmark.html</guid>
+    </author><guid>https://sugarless.cn/posts/stress-test-the-api-using-apache-benchmark.html</guid>
     <description><![CDATA[<p>在开发 API 完成后，测试的环节中免不了要进行压力测试。postman 的 runner 只支持串行化测试，不支持并发。jmeter 需要在本机上安装 JDK，且需要配置好 JAVA 环境变量，安装略显复杂，软件界面对小白并不友好，非开箱即用的工具。权衡之后，我个人推荐任何对压力测试毫无经验的人优先选择使用 Linux 环境下的 ab（apache benchmark）压测工具进行压力测试。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 ab</span>
 yum -y install httpd-tools
@@ -804,10 +804,10 @@ Percentage of the requests served within a certain <span class="nb">time</span> 
 </code></pre></div><p>比较重要的也就是最后这部分的 percent line 了，jmeter 只有 90%、95%、99% 这三个量级，ab 从 50% 到 100% 都有。</p>]]></description>
 </item><item>
     <title>使用 Gogs 搭建私有的 GitServer</title>
-    <link>https://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</link>
+    <link>https://sugarless.cn/posts/building-a-private-gitserver-with-gogs.html</link>
     <pubDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/building-a-private-gitserver-with-gogs.html</guid>
+    </author><guid>https://sugarless.cn/posts/building-a-private-gitserver-with-gogs.html</guid>
     <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>
 <p>本文命令于 CentOS7 系统中测试通过。</p>
 <p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>

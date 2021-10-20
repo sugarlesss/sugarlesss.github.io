@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>PHP - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/php.html</link>
+        <link>https://sugarless.cn/categories/php.html</link>
         <description>PHP - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/php.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/php.html" rel="self" type="application/rss+xml" /><item>
     <title>PHP计算当天剩余秒数最方便和最快的方法</title>
-    <link>https://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</link>
+    <link>https://sugarless.cn/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</link>
     <pubDate>Tue, 12 Jan 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html</guid>
     <description><![CDATA[<p>结论推导</p>
 <h1 id="一结论">一、结论</h1>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="c1"># 最方便
@@ -29,10 +29,10 @@
 <p><a href="https://segmentfault.com/a/1190000019844608" target="_blank" rel="noopener noreffer">https://segmentfault.com/a/1190000019844608</a></p>]]></description>
 </item><item>
     <title>PHP基于引用特性实现的无限级分类树</title>
-    <link>https://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</link>
+    <link>https://sugarless.cn/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</link>
     <pubDate>Wed, 16 Dec 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
+    </author><guid>https://sugarless.cn/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</guid>
     <description><![CDATA[<p>无限级分类树生成可以使用递归或引用实现，但递归效率太慢，使用引用特性实现会是一个更好的方式。</p>
 <h1 id="源码">源码</h1>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span>
@@ -201,10 +201,10 @@
 </code></pre></div>]]></description>
 </item><item>
     <title>ThinkPHP5.1 如何使用 Redis 实现悲观锁</title>
-    <link>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</link>
+    <link>https://sugarless.cn/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</link>
     <pubDate>Sun, 30 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</guid>
+    </author><guid>https://sugarless.cn/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html</guid>
     <description><![CDATA[<p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>
 <p>在用户量 / 客户端数量比较少的时候，只要系统的业务逻辑是正确的，一般都不会发现有什么问题。但随着用户量 / 客户端数量逐渐增多，高并发带来的问题就会逐渐出现，而脏读是众多问题的其中之一。</p>
 <h1 id="一无并发控制会带来什么问题">一、无并发控制，会带来什么问题？</h1>

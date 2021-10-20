@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>脚本 - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/%E8%84%9A%E6%9C%AC.html</link>
+        <link>https://sugarless.cn/tags/%E8%84%9A%E6%9C%AC.html</link>
         <description>脚本 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E8%84%9A%E6%9C%AC.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E8%84%9A%E6%9C%AC.html" rel="self" type="application/rss+xml" /><item>
     <title>Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</title>
-    <link>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</link>
+    <link>https://sugarless.cn/posts/baidu-seo-submission-tool-developed-using-python.html</link>
     <pubDate>Tue, 31 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
+    </author><guid>https://sugarless.cn/posts/baidu-seo-submission-tool-developed-using-python.html</guid>
     <description><![CDATA[<p>有兴趣的可以自行部署在服务器上，做成每日自动提交，或者 webhook 触发等。</p>
 <p>百度提交页面：https://ziyuan.baidu.com/linksubmit/index</p>
 <p>通过此页面可以向百度搜索主动推送资源，同时百度也提供了 API 提交接口，这样可以缩短爬虫发现网站链接的时间，但百度不保证收录和展现效果。</p>

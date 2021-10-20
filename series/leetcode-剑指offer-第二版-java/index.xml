@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
+        <link>https://sugarless.cn/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html</link>
         <description>LeetCode-剑指offer-第二版-java - 专栏 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" rel="self" type="application/rss+xml" /><item>
     <title>29、剑指 Offer 20. 表示数值的字符串</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/29.html</link>
     <pubDate>Sun, 03 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/29.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/29.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <h4 id="剑指-offer-20-表示数值的字符串httpsleetcode-cncomproblemsbiao-shi-shu-zhi-de-zi-fu-chuan-lcof-难度中等"><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 20. 表示数值的字符串</a> 难度中等</h4>
 <p>请实现一个函数用来判断字符串是否表示<strong>数值</strong>（包括整数和小数）。</p>
@@ -424,10 +424,10 @@
 ]]></description>
 </item><item>
     <title>28、剑指 Offer 36. 二叉搜索树与双向链表</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/28.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/28.html</link>
     <pubDate>Sat, 02 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/28.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/28.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 36. 二叉搜索树与双向链表</a> 难度中等</p>
 <p>输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的循环双向链表。要求不能创建任何新的节点，只能调整树中节点指针的指向。</p>
@@ -548,10 +548,10 @@
 ]]></description>
 </item><item>
     <title>27、剑指 Offer 17. 打印从1到最大的n位数</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/27.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/27.html</link>
     <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/27.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/27.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 17. 打印从1到最大的n位数</a> 难度简单</p>
 <p>输入数字 <code>n</code>，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
@@ -770,10 +770,10 @@
 ]]></description>
 </item><item>
     <title>26、剑指 Offer 05. 替换空格</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/26.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/26.html</link>
     <pubDate>Thu, 30 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/26.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/26.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 05. 替换空格</a> 难度简单</p>
 <p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成&quot;%20&quot;。</p>
@@ -822,10 +822,10 @@
 ]]></description>
 </item><item>
     <title>25、剑指 Offer 45. 把数组排成最小的数</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/25.html</link>
     <pubDate>Wed, 29 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/25.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/25.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 45. 把数组排成最小的数</a> 难度中等</p>
 <p>输入一个非负整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。</p>
@@ -917,10 +917,10 @@
 ]]></description>
 </item><item>
     <title>24、剑指 Offer 57. 和为s的两个数字</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/24.html</link>
     <pubDate>Tue, 28 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/24.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/24.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 57. 和为s的两个数字</a> 难度简单</p>
 <p>输入一个递增排序的数组和一个数字 s ，在数组中查找两个数，使得它们的和正好是 s 。如果有多对数字的和等于 s ，则输出任意一对即可。</p>
@@ -1029,10 +1029,10 @@
 ]]></description>
 </item><item>
     <title>23、剑指 Offer 26. 树的子结构</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/23.html</link>
     <pubDate>Sun, 26 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/23.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/23.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 26. 树的子结构</a> 难度中等</p>
 <p>输入两棵二叉树 A 和 B，判断 B 是不是 A 的子结构。(约定空树不是任意一个树的子结构)</p>
@@ -1112,10 +1112,10 @@
 ]]></description>
 </item><item>
     <title>22、剑指 Offer 37. 序列化二叉树</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/22.html</link>
     <pubDate>Fri, 24 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/22.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/22.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 37. 序列化二叉树</a> 难度困难236收藏分享切换为英文接收动态反馈</p>
 <p>请实现两个函数，分别用来序列化和反序列化二叉树。</p>
@@ -1227,10 +1227,10 @@
 ]]></description>
 </item><item>
     <title>21、剑指 Offer 10- II. 青蛙跳台阶问题</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/21.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/21.html</link>
     <pubDate>Wed, 22 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/21.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/21.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/qing-wa-tiao-tai-jie-wen-ti-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- II. 青蛙跳台阶问题</a> 难度简单</p>
 <p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
@@ -1292,10 +1292,10 @@
 ]]></description>
 </item><item>
     <title>20、剑指 Offer 10- I. 斐波那契数列</title>
-    <link>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</link>
+    <link>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/20.html</link>
     <pubDate>Tue, 21 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/series/leetcode-jianzhioffer-java/20.html</guid>
+    </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/20.html</guid>
     <description><![CDATA[<h1 id="一题目">一、题目</h1>
 <p><a href="https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 10- I. 斐波那契数列</a> 难度简单</p>
 <p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项（即 <code>F(N)</code>）。斐波那契数列的定义如下：</p>

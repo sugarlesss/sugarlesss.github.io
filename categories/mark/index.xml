@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Mark - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/mark.html</link>
+        <link>https://sugarless.cn/categories/mark.html</link>
         <description>Mark - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/mark.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/mark.html" rel="self" type="application/rss+xml" /><item>
     <title>[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</title>
-    <link>https://sugarless.top/posts/mark/1.html</link>
+    <link>https://sugarless.cn/posts/mark/1.html</link>
     <pubDate>Tue, 31 Dec 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/mark/1.html</guid>
+    </author><guid>https://sugarless.cn/posts/mark/1.html</guid>
     <description><![CDATA[<p>内容不定期持续更新，感谢每一位开源项目作者为全世界开发者做出的杰出贡献。本文主要分享一些我平时收集到的一些好物，东西可能比较杂乱。涵盖开源项目、免费的工具站、好用的客户端工具、优秀的付费网站和来路不明的沙雕网站。</p>
 <h1 id="github-开源项目">Github 开源项目</h1>
 <h2 id="功能性网站">功能性网站</h2>
@@ -190,10 +190,10 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p><a href="http://lib.xcz.im/library" target="_blank" rel="noopener noreffer">http://lib.xcz.im/library</a></p>]]></description>
 </item><item>
     <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</title>
-    <link>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</link>
+    <link>https://sugarless.cn/posts/how-to-use-alibaba-cloud-toolkit.html</link>
     <pubDate>Fri, 06 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-alibaba-cloud-toolkit.html</guid>
     <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>
 <p>内置终端 Terminal：在 IDE 内，开发者可通过内置终端 Terminal 快速登录远程服务器，减少频繁切换的烦恼。 不仅支持阿里云服务器 ECS，也可以用于所有支持标准 SSH 协议的机器。</p>
 <p>文件上传：Cloud Toolkit 帮助开发者在 IDE 内，一键将本地或远程 URL 文件上传至服务器指定目录。 简化繁琐的上传环节，无需各种 FTP、SCP 工具频繁切换。 更为重要的是，文件上传完毕后，还支持文件解压缩、程序启动等命令执行。</p>
@@ -282,10 +282,10 @@ tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
 <p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreffer">https://www.bilibili.com/video/BV1ga4y1474K</a></p>]]></description>
 </item><item>
     <title>JQuery 如何优雅的发起一个 ajax 请求</title>
-    <link>https://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</link>
+    <link>https://sugarless.cn/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</link>
     <pubDate>Thu, 27 Feb 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
     <description><![CDATA[<p>你还在发起 ajax 请求时在 data 里写上一大堆参数，或是手动拼接参数字符串吗？</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;http://example.com/...&#34;</span><span class="p">;</span>
 <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>

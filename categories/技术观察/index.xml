@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>技术观察 - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html</link>
+        <link>https://sugarless.cn/categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html</link>
         <description>技术观察 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html" rel="self" type="application/rss+xml" /><item>
     <title>2FA 是什么？</title>
-    <link>https://sugarless.top/posts/what-is-2fa.html</link>
+    <link>https://sugarless.cn/posts/what-is-2fa.html</link>
     <pubDate>Wed, 15 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/what-is-2fa.html</guid>
+    </author><guid>https://sugarless.cn/posts/what-is-2fa.html</guid>
     <description><![CDATA[<p>两步验证是什么东西？为什么当年的 QQ 令牌可以离线生成动态验证码？</p>
 <h1 id="一2fa-是什么">一、2FA 是什么？</h1>
 <p>2FA，2 Factor Authentication，双因子验证，是一种安全密码验证方式。区别于传统的密码验证，由于传统的密码验证是由一组静态信息组成，如：字符、图像、手势等，很容易被获取，相对不安全。2FA是基于时间、历史长度、实物（信用卡、SMS手机、令牌、指纹）等自然变量结合一定的加密算法组合出一组动态密码，一般每 30 / 60 秒刷新一次。不容易被获取和破解，相对安全。</p>

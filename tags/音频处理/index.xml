@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>音频处理 - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</link>
+        <link>https://sugarless.cn/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html</link>
         <description>音频处理 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E9%9F%B3%E9%A2%91%E5%A4%84%E7%90%86.html" rel="self" type="application/rss+xml" /><item>
     <title>关于音视频文案提取</title>
-    <link>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</link>
+    <link>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/about-extract-copywriting-from-audio-or-video.html</guid>
+    </author><guid>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</guid>
     <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
 <p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
 <p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>

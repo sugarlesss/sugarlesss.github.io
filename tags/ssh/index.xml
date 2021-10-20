@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>ssh - 标签 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/tags/ssh.html</link>
+        <link>https://sugarless.cn/tags/ssh.html</link>
         <description>ssh - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/tags/ssh.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/ssh.html" rel="self" type="application/rss+xml" /><item>
     <title>CentOS SSH 登录太慢的解决方法</title>
-    <link>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</link>
+    <link>https://sugarless.cn/posts/solution-for-ssh-login-too-slow.html</link>
     <pubDate>Sat, 28 Nov 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/solution-for-ssh-login-too-slow.html</guid>
+    </author><guid>https://sugarless.cn/posts/solution-for-ssh-login-too-slow.html</guid>
     <description><![CDATA[<p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>
 <p>SSH 登录太慢可能是 DNS 解析的问题，默认配置下 sshd 初次接受 ssh 客户端连接的时候会自动反向解析客户端 IP 以得到 ssh 客户端的域名或主机名。如果这个时候 DNS 的反向解析不正确，sshd 就会等到 DNS 解析超时后才提供 ssh 连接，这样就造成连接时间过长、ssh 客户端等待的情况，一般为 10-30 秒左右。有个简单的解决办法就是在 sshd 的配置文件（sshd_config）里取消 sshd 的反向 DNS 解析。</p>
 <p>编辑 ssh 配置文件</p>
@@ -20,10 +20,10 @@
 </code></pre></div>]]></description>
 </item><item>
     <title>如何使用 SSH 远程登录 Linux 服务器</title>
-    <link>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
+    <link>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
     <pubDate>Sun, 25 Aug 2019 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</guid>
     <description><![CDATA[<p>Secure Shell（安全外壳协议，简称 SSH）是一种加密的网络传输协议，可在不安全的网络中为网络服务提供安全的传输环境。SSH 通过在网络中创建安全隧道来实现 SSH 客户端与服务器之间的连接。虽然任何网络服务都可以通过 SSH 实现安全传输，SSH 最常见的用途是远程登录系统，通常利用 SSH 来传输命令行界面和远程执行命令。</p>
 <p>在设计上，SSH 是 Telnet 和非安全 shell 的替代品。Telnet 和 Berkeley rlogin、rsh、rexec 等协议采用明文传输，使用不可靠的密码，容易遭到监听、嗅探和中间人攻击 [5]。SSH 旨在保证非安全网络环境（例如互联网）中信息加密完整可靠。</p>
 <h1 id="一windows-远程登录-linux">一、Windows 远程登录 Linux</h1>

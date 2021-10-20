@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Nginx - 分类 - 無糖的小宇宙</title>
-        <link>https://sugarless.top/categories/nginx.html</link>
+        <link>https://sugarless.cn/categories/nginx.html</link>
         <description>Nginx - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.top/categories/nginx.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/nginx.html" rel="self" type="application/rss+xml" /><item>
     <title>Nginx 根据特定请求参数做限流</title>
-    <link>https://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</link>
+    <link>https://sugarless.cn/posts/nginx-limits-flow-based-on-specific-request-parameters.html</link>
     <pubDate>Thu, 17 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
+    </author><guid>https://sugarless.cn/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
     <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>
 <p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from = wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
 <h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
@@ -46,10 +46,10 @@ rate 支持 r/s 和 r/m 两种模式。</p>
 <p>limit_req_zone 或是 limit_conn_zone 对请求的限制有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。但 IP 是针对全体用户做的限流，显然不能满足我们的需求。所以我们需要使用 map 模块来匹配特定的请求参数生成一个变量，将这个变量作为 limit_req_zone 或是 limit_conn_zone 的 key，这样就可以实现我们的需求了。</p>]]></description>
 </item><item>
     <title>Nginx 针对特定路径或入口文件限流</title>
-    <link>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</link>
+    <link>https://sugarless.cn/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</link>
     <pubDate>Wed, 16 Sep 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
+    </author><guid>https://sugarless.cn/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
     <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>
 <p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
 <h1 id="一编写-location-规则">一、编写 location 规则</h1>
@@ -88,10 +88,10 @@ limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不�
 <p>使用 jmeter 等相关并发测试工具可以测到，确实对 /app/index.php/ 请求做了并发量的限制，超出并发量的部分 nginx 会默认返回 503。</p>]]></description>
 </item><item>
     <title>基于 nginx 实现的负载均衡</title>
-    <link>https://sugarless.top/posts/load-balancing-based-on-nginx.html</link>
+    <link>https://sugarless.cn/posts/load-balancing-based-on-nginx.html</link>
     <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/load-balancing-based-on-nginx.html</guid>
+    </author><guid>https://sugarless.cn/posts/load-balancing-based-on-nginx.html</guid>
     <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>
 <p>如果手上没有足够数量的公网云服务器，本地使用虚拟机环境搭建集群做负载均衡测试是最省钱的做法，也方便做快照恢复。</p>
 <h1 id="一准备工作">一、准备工作</h1>
@@ -196,10 +196,10 @@ limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不�
 </ul>]]></description>
 </item><item>
     <title>Nginx 日志全自动切割脚本</title>
-    <link>https://sugarless.top/posts/nginx-log-auto-chunk-script.html</link>
+    <link>https://sugarless.cn/posts/nginx-log-auto-chunk-script.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.top/posts/nginx-log-auto-chunk-script.html</guid>
+    </author><guid>https://sugarless.cn/posts/nginx-log-auto-chunk-script.html</guid>
     <description><![CDATA[<p>自动切割目标目录下的所有 .log 文件，即使新建站点，产生新的日志需要切割，也无需修改脚本。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="c1">#自动版日志切割 无需设置</span>
