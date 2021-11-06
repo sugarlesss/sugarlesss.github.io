@@ -1432,8 +1432,8 @@ conda update &lt;包名&gt; 更新指定包
     <span class="err">&#39;followed&#39;:</span> <span class="err">False,</span>
     <span class="err">&#39;accountStatus&#39;:</span> <span class="err">0,</span>
     <span class="err">&#39;nickname&#39;:</span> <span class="err">&#39;名劍動天倦收天&#39;,</span>
-    <span class="err">&#39;avatarUrl&#39;:</span> <span class="err">&#39;http://p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;,</span>
-    <span class="err">&#39;gender&#39;:</span> <span class="err">1,</span>
+    <span class="err">&#39;avatarUrl&#39;:</span> <span class="err">&#39;http:</span><span class="c1">//p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;,
+</span><span class="c1"></span>    <span class="err">&#39;gender&#39;:</span> <span class="err">1,</span>
     <span class="err">&#39;expertTags&#39;:</span> <span class="err">None,</span>
     <span class="err">&#39;experts&#39;:</span> <span class="err">None,</span>
     <span class="err">&#39;followeds&#39;:</span> <span class="err">13,</span>

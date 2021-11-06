@@ -45,7 +45,7 @@
         function setTheme(theme) {document.body.setAttribute('theme', theme);}
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
-        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('light' === 'light' || 'light' === 'dark' || 'light' === 'black') setTheme('light'), saveTheme('light'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
         let themeColorMeta = getMeta('theme-color');
         if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
     </script>
@@ -56,7 +56,7 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
                         <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
@@ -98,7 +98,7 @@
                     <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -305,8 +305,8 @@
     <span class="err">&#39;followed&#39;:</span> <span class="err">False,</span>
     <span class="err">&#39;accountStatus&#39;:</span> <span class="err">0,</span>
     <span class="err">&#39;nickname&#39;:</span> <span class="err">&#39;名劍動天倦收天&#39;,</span>
-    <span class="err">&#39;avatarUrl&#39;:</span> <span class="err">&#39;http://p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;,</span>
-    <span class="err">&#39;gender&#39;:</span> <span class="err">1,</span>
+    <span class="err">&#39;avatarUrl&#39;:</span> <span class="err">&#39;http:</span><span class="c1">//p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;,
+</span><span class="c1"></span>    <span class="err">&#39;gender&#39;:</span> <span class="err">1,</span>
     <span class="err">&#39;expertTags&#39;:</span> <span class="err">None,</span>
     <span class="err">&#39;experts&#39;:</span> <span class="err">None,</span>
     <span class="err">&#39;followeds&#39;:</span> <span class="err">13,</span>
