@@ -16,7 +16,7 @@
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
-<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/categories.html" /><link rel="stylesheet" href="./lib/normalize/normalize.min.css"><link rel="stylesheet" href="./css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="./lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/animate/animate.min.css">
@@ -27,8 +27,8 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -95,7 +95,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/python.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Python
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Python <sup>11</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/baidu-seo-submission-tool-developed-using-python.html" class="archive-item-link">Python 百度 SEO 工具脚本 | 百度普通收录 API 提交工具</a>
@@ -114,7 +114,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/linux.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Linux
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Linux <sup>9</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html" class="archive-item-link">Linux 服务器出现大量 TIME_WAIT 状态的连接</a>
@@ -133,7 +133,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E6%8A%98%E8%85%BE.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;折腾
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;折腾 <sup>7</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/github-webhook-and-btpanel-webhook.html" class="archive-item-link">github webhook 配合宝塔 webhook 自动化部署</a>
@@ -152,7 +152,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E8%BD%AF%E4%BB%B6.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;软件
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;软件 <sup>6</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/mathpix.html" class="archive-item-link">Mathpix Snip - Convert images to LaTeX</a>
@@ -171,7 +171,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/nginx.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Nginx
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Nginx <sup>4</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/nginx-limits-flow-based-on-specific-request-parameters.html" class="archive-item-link">Nginx 根据特定请求参数做限流</a>
@@ -186,7 +186,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/mark.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Mark
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Mark <sup>3</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/mark/1.html" class="archive-item-link">[ 置顶 ] 🚩 Github 项目 / 工具站点 / 有趣的站点</a>
@@ -199,7 +199,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/mysql.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;MySQL
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;MySQL <sup>3</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html" class="archive-item-link">MySQL5.7 生产环境推荐参数配置</a>
@@ -212,7 +212,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/php.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;PHP
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;PHP <sup>3</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/how-to-use-php-to-calculate-the-number-of-seconds-left-in-the-day.html" class="archive-item-link">PHP计算当天剩余秒数最方便和最快的方法</a>
@@ -225,7 +225,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E9%97%B2%E8%81%8A.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;闲聊
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;闲聊 <sup>3</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/setting-up-windows-ip-dns-using-bat-scripts.html" class="archive-item-link">Windows 使用 .bat 批处理脚本设置 IP、DNS </a>
@@ -238,7 +238,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/news.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;news
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;news <sup>2</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/news/zhihu-apologizes-for-the-mooncake-incident.html" class="archive-item-link">知乎就月饼吃坏肚子致歉</a>
@@ -249,7 +249,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/java.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Java
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Java <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/how-to-use-alibaba-cloud-toolkit.html" class="archive-item-link">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</a>
@@ -258,7 +258,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/redis.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Redis
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Redis <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" class="archive-item-link">ThinkPHP5.1 如何使用 Redis 实现悲观锁</a>
@@ -267,7 +267,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/spring-boot.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;Spring Boot
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;Spring Boot <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/spring-boot-configuration-file-chinese-encoding-error.html" class="archive-item-link">Spring Boot 配置文件中文乱码</a>
@@ -276,7 +276,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;互联网观察
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;互联网观察 <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/bilibili-video-numbering-rules-upgrade.html" class="archive-item-link">如何理解 B 站 AV 号规则升级为 BV 号这件事？</a>
@@ -285,7 +285,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;性能优化
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;性能优化 <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/what-is-cdn.html" class="archive-item-link">CDN 是什么？ 有多贵？</a>
@@ -294,7 +294,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E6%8A%80%E6%9C%AF%E8%A7%82%E5%AF%9F.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;技术观察
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;技术观察 <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/what-is-2fa.html" class="archive-item-link">2FA 是什么？</a>
@@ -303,7 +303,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;计算机基础
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;计算机基础 <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/about-hyper-threading-technology.html" class="archive-item-link">关于超线程技术</a>
@@ -320,16 +320,19 @@
             <i class="fas fa-comment fa-fw"></i>
         </a>
     </div><div class="assets"><script type="text/javascript" src="./lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="./lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="./lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="./lib/topbar/topbar.min.js"></script><script type="text/javascript" src="./lib/pjax/pjax.min.js"></script><script type="text/javascript" src="./js/theme.min.js"></script><script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-</script></div>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="./lib/katex/katex.min.css"><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

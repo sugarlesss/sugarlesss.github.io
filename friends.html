@@ -18,7 +18,7 @@
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
-<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/friends.html" /><link rel="next" href="https://sugarless.cn/about.html" /><link rel="stylesheet" href="./lib/normalize/normalize.min.css"><link rel="stylesheet" href="./css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="./lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/animate/animate.min.css">
@@ -46,8 +46,8 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -111,7 +111,7 @@
 </div>
 <main class="main">
             <div class="container"><div class="page single special"><h1 class="single-title animate__animated animate__pulse animate__faster">友链 / 朋友们</h1><div class="content" id="content"><h1 id="我的朋友们">我的朋友们</h1>
-<a target="_blank" href=https://sugarless.top title=無糖的小宇宙 class="friend-link">
+<a target="_blank" href="https://sugarless.top" title="無糖的小宇宙" class="friend-link" rel="noopener noreferrer">
     <div class="friend-link-div">
         <div class="friend-link-avatar"><img
         class="lazyload"
@@ -119,16 +119,18 @@
         data-srcset="https://avatars.githubusercontent.com/u/49931320?v=4, https://avatars.githubusercontent.com/u/49931320?v=4 1.5x, https://avatars.githubusercontent.com/u/49931320?v=4 2x"
         data-sizes="auto"
         alt="https://avatars.githubusercontent.com/u/49931320?v=4"
-        title="https://avatars.githubusercontent.com/u/49931320?v=4" height="62" width="62"
+        title="https://avatars.githubusercontent.com/u/49931320?v=4"
     /></div>
         <div class="friend-link-info">
-            
-            <i class="friend-name">無糖的小宇宙</i>
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">無糖的小宇宙</i>
+            </div>
             <p class="friend-bio">Life is too short to not live wild.</p>
         </div>
     </div>
 </a>
-<a target="_blank" href=https://blog.keyboardman.fun/ title=KeyBoardman（我的旧博客） class="friend-link">
+<a target="_blank" href="https://blog.keyboardman.fun/" title="KeyBoardman（我的旧博客）" class="friend-link" rel="noopener noreferrer">
     <div class="friend-link-div">
         <div class="friend-link-avatar"><img
         class="lazyload"
@@ -136,16 +138,18 @@
         data-srcset="https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png, https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png 1.5x, https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png 2x"
         data-sizes="auto"
         alt="https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png"
-        title="https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png" height="62" width="62"
+        title="https://cdn.jsdelivr.net/gh/1Gbps/static/blog/img/logo.png"
     /></div>
         <div class="friend-link-info">
-            
-            <i class="friend-name">KeyBoardman（我的旧博客）</i>
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">KeyBoardman（我的旧博客）</i>
+            </div>
             <p class="friend-bio">已识乾坤大 犹怜草木青。</p>
         </div>
     </div>
 </a>
-<a target="_blank" href=https://crowndaisy.com/ title=CrownDaisy class="friend-link">
+<a target="_blank" href="https://crowndaisy.com/" title="CrownDaisy" class="friend-link" rel="noopener noreferrer">
     <div class="friend-link-div">
         <div class="friend-link-avatar"><img
         class="lazyload"
@@ -153,16 +157,18 @@
         data-srcset="https://crowndaisy.com/images/avatar.png?v=1622653808628, https://crowndaisy.com/images/avatar.png?v=1622653808628 1.5x, https://crowndaisy.com/images/avatar.png?v=1622653808628 2x"
         data-sizes="auto"
         alt="https://crowndaisy.com/images/avatar.png?v=1622653808628"
-        title="https://crowndaisy.com/images/avatar.png?v=1622653808628" height="62" width="62"
+        title="https://crowndaisy.com/images/avatar.png?v=1622653808628"
     /></div>
         <div class="friend-link-info">
-            
-            <i class="friend-name">CrownDaisy</i>
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">CrownDaisy</i>
+            </div>
             <p class="friend-bio">Less is more.</p>
         </div>
     </div>
 </a>
-<a target="_blank" href=https://www.bytecho.net/ title=字节星球 class="friend-link">
+<a target="_blank" href="https://www.bytecho.net/" title="字节星球" class="friend-link" rel="noopener noreferrer">
     <div class="friend-link-div">
         <div class="friend-link-avatar"><img
         class="lazyload"
@@ -170,16 +176,18 @@
         data-srcset="https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d=, https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d= 1.5x, https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d= 2x"
         data-sizes="auto"
         alt="https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d="
-        title="https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d=" height="62" width="62"
+        title="https://gravatar.bytecho.net/avatar/49be1cd2f6ebd919516cb79883b96905?s=100&amp;r=PG&amp;d="
     /></div>
         <div class="friend-link-info">
-            
-            <i class="friend-name">字节星球</i>
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">字节星球</i>
+            </div>
             <p class="friend-bio">丰富想象力，激发创造力.</p>
         </div>
     </div>
 </a>
-<a target="_blank" href=https://www.bytecho.net/ title=青阳のBlog class="friend-link">
+<a target="_blank" href="https://www.bytecho.net/" title="青阳のBlog" class="friend-link" rel="noopener noreferrer">
     <div class="friend-link-div">
         <div class="friend-link-avatar"><img
         class="lazyload"
@@ -187,11 +195,13 @@
         data-srcset="https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg, https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg 1.5x, https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg 2x"
         data-sizes="auto"
         alt="https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg"
-        title="https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg" height="62" width="62"
+        title="https://pic.hipyt.cn/pic/2021/01/14/adcb59359bbb9.jpeg"
     /></div>
         <div class="friend-link-info">
-            
-            <i class="friend-name">青阳のBlog</i>
+            <div class="friend-name-div">
+                <i class="fas fa-user-circle fa-fw"></i>
+                <i class="friend-name">青阳のBlog</i>
+            </div>
             <p class="friend-bio">一个爱琢磨的人</p>
         </div>
     </div>
@@ -212,16 +222,19 @@
             <i class="fas fa-comment fa-fw"></i>
         </a>
     </div><div class="assets"><script type="text/javascript" src="./lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="./lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="./lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="./lib/topbar/topbar.min.js"></script><script type="text/javascript" src="./lib/pjax/pjax.min.js"></script><script type="text/javascript" src="./js/theme.min.js"></script><script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-</script></div>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="./lib/katex/katex.min.css"><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

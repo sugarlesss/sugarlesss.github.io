@@ -16,7 +16,7 @@
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
-<meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png"><link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/series.html" /><link rel="stylesheet" href="./lib/normalize/normalize.min.css"><link rel="stylesheet" href="./css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="./lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/animate/animate.min.css">
@@ -27,8 +27,8 @@
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
-        let themeColorMeta = getMeta('theme-color');
-        if (document.body.getAttribute('theme') != 'light') themeColorMeta.content = '#000000';
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
     </script>
     <div id="back-to-top"></div>
     <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
@@ -95,18 +95,18 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;LeetCode-剑指offer-第二版-java
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;LeetCode-剑指offer-第二版-java <sup>30</sup>
                                 </a>
                             </h3><article class="archive-item">
-                                    <a href="./posts/series/leetcode-jianzhioffer-java/29.html" class="archive-item-link">29、剑指 Offer 20. 表示数值的字符串</a>
+                                    <a href="./posts/series/leetcode-jianzhioffer-java/0.html" class="archive-item-link">开篇</a>
                                 </article><article class="archive-item">
-                                    <a href="./posts/series/leetcode-jianzhioffer-java/28.html" class="archive-item-link">28、剑指 Offer 36. 二叉搜索树与双向链表</a>
+                                    <a href="./posts/series/leetcode-jianzhioffer-java/1.html" class="archive-item-link">1、剑指 Offer 24. 反转链表</a>
                                 </article><article class="archive-item">
-                                    <a href="./posts/series/leetcode-jianzhioffer-java/27.html" class="archive-item-link">27、剑指 Offer 17. 打印从1到最大的n位数</a>
+                                    <a href="./posts/series/leetcode-jianzhioffer-java/2.html" class="archive-item-link">2、剑指 Offer 09. 用两个栈实现队列</a>
                                 </article><article class="archive-item">
-                                    <a href="./posts/series/leetcode-jianzhioffer-java/26.html" class="archive-item-link">26、剑指 Offer 05. 替换空格</a>
+                                    <a href="./posts/series/leetcode-jianzhioffer-java/3.html" class="archive-item-link">3、剑指 Offer 03. 数组中重复的数字</a>
                                 </article><article class="archive-item">
-                                    <a href="./posts/series/leetcode-jianzhioffer-java/25.html" class="archive-item-link">25、剑指 Offer 45. 把数组排成最小的数</a>
+                                    <a href="./posts/series/leetcode-jianzhioffer-java/4.html" class="archive-item-link">4、剑指 Offer 51. 数组中的逆序对</a>
                                 </article><span class="more-post">
                                     <a href="./series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html" class="more-single-link">更多 >></a>
                                 </span></div>
@@ -114,7 +114,7 @@
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="./series/%E6%B5%8B%E8%AF%95%E4%B8%93%E6%A0%8F.html">
-                                    <i class="far fa-folder fa-fw"></i>&nbsp;测试专栏
+                                    <i class="far fa-folder fa-fw"></i>&nbsp;测试专栏 <sup>1</sup>
                                 </a>
                             </h3><article class="archive-item">
                                     <a href="./posts/about.html" class="archive-item-link">关于博客</a>
@@ -131,16 +131,19 @@
             <i class="fas fa-comment fa-fw"></i>
         </a>
     </div><div class="assets"><script type="text/javascript" src="./lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="./lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="./lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="./lib/topbar/topbar.min.js"></script><script type="text/javascript" src="./lib/pjax/pjax.min.js"></script><script type="text/javascript" src="./js/theme.min.js"></script><script>
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();
-</script></div>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?52571b1ef562fd6b75913d18cafd5eae";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
 
-<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="./lib/katex/katex.min.css"><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></div>
+<div class="pjax-assets"><script type="text/javascript" src="./lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="./lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="./lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="./lib/katex/katex.min.js"></script><script type="text/javascript" src="./lib/katex/auto-render.min.js"></script><script type="text/javascript" src="./lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="./lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="./lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="./lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="./lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>
