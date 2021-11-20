@@ -68,10 +68,10 @@
             <loc>https://sugarless.cn/tags/%E7%99%BE%E5%BA%A6.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E8%84%9A%E6%9C%AC.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/github.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/posts/github-webhook-and-btpanel-webhook.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/categories/how-to-use.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/webhook.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/categories/%E6%8A%98%E8%85%BE.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E8%87%AA%E5%8A%A8%E5%8C%96%E9%83%A8%E7%BD%B2.html</loc><lastmod>2021-09-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/b-%E7%AB%99.html</loc><lastmod>2021-08-08T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/categories/%E4%BA%92%E8%81%94%E7%BD%91%E8%A7%82%E5%AF%9F.html</loc><lastmod>2021-08-08T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -106,7 +106,7 @@
             <loc>https://sugarless.cn/tags/%E8%BD%AF%E4%BB%B6.html</loc><lastmod>2021-07-14T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/about.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/friends.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html</loc><lastmod>2021-07-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/batch-file-fixed-prefix-removal-using-python.html</loc><lastmod>2021-06-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/categories/php.html</loc><lastmod>2021-01-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -115,8 +115,8 @@
             <loc>https://sugarless.cn/categories/linux.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/how-to-resolve-a-large-number-of-tcp-connections-with-time_wait-status.html</loc><lastmod>2021-01-03T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/frp.html</loc><lastmod>2020-12-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/posts/how-to-use-frp.html</loc><lastmod>2020-12-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F.html</loc><lastmod>2020-12-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/posts/how-to-use-frp.html</loc><lastmod>2020-12-20T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/infinite-level-classification-tree-based-on-php-reference-feature.html</loc><lastmod>2020-12-16T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/adb.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/how-to-create-a-linux-systemd-service.html</loc><lastmod>2020-12-01T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -143,8 +143,10 @@
             <loc>https://sugarless.cn/tags/%E9%AB%98%E5%8F%AF%E7%94%A8.html</loc><lastmod>2020-08-24T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/ram-disk-tool.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E5%86%85%E5%AD%98%E7%9B%98.html</loc><lastmod>2020-08-07T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/tags/ab.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/posts/stress-test-the-api-using-apache-benchmark.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/apache.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/api.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/%E5%8E%8B%E5%8A%9B%E6%B5%8B%E8%AF%95.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/posts/how-to-stress-test-the-api-using-apache-benchmark.html</loc><lastmod>2020-06-13T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/nginx-log-auto-chunk-script.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/tags/%E6%97%A5%E5%BF%97.html</loc><lastmod>2020-03-28T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
@@ -156,7 +158,10 @@
             <loc>https://sugarless.cn/categories/%E9%97%B2%E8%81%8A.html</loc><lastmod>2019-11-22T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/snipaste-simple-but-powerful-snipping-tool.html</loc><lastmod>2019-10-18T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</loc><lastmod>2019-09-12T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://sugarless.cn/posts/building-a-private-gitserver-with-gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/git.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/git-server.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/tags/gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</loc><lastmod>2019-09-02T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/potplayer-small-and-powerful-video-player.html</loc><lastmod>2019-08-31T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</loc><lastmod>2019-08-25T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://sugarless.cn/posts/hashcheck-a-small-and-useful-file-verification-tool.html</loc><lastmod>2019-08-21T00:00:00&#43;00:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

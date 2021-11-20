@@ -5,7 +5,7 @@
         <description>负载均衡 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1.html" rel="self" type="application/rss+xml" /><item>
-    <title>基于 nginx 实现的负载均衡</title>
+    <title>基于 Nginx 实现的负载均衡</title>
     <link>https://sugarless.cn/posts/load-balancing-based-on-nginx.html</link>
     <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>

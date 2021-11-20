@@ -1,0 +1,61 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Git - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/tags/git.html</link>
+        <description>Git - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/git.html" rel="self" type="application/rss+xml" /><item>
+    <title>如何使用 Gogs 搭建私有 Git Server</title>
+    <link>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</link>
+    <pubDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</guid>
+    <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>
+<p>本文命令于 CentOS7 系统中测试通过。</p>
+<p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
+<p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
+<p>文档：<a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
+<p>我比较习惯通过二进制文件安装 gogs，所以本文以二进制安装为例说明。有兴趣使用其他方法的朋友们可以自行尝试。</p>
+<h1 id="一添加-nginx-站点">一、添加 nginx 站点</h1>
+<p>将域名解析到你要安装的服务器 IP</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
+<span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">git.yourdomain.top</span><span class="p">;</span><span class="c1">#域名修改为你自己的
+</span><span class="c1"></span>    
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kn">access_log</span>  <span class="s">/home/git/yourdomain_access.log</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><h1 id="二安装并配置-gogs">二、安装并配置 gogs</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">adduser git <span class="c1">#创建用户 git</span>
+
+passwd git <span class="c1">#设置git用户的密码</span>
+
+groupadd git <span class="c1">#创建用户组 git</span>
+
+usermod -G git git <span class="c1">#将git用户添加到git用户组中</span>
+
+su git <span class="c1">#切换到git用户shell</span>
+
+<span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
+
+wget https://dl.gogs.io/0.11.91/gogs_0.11.91_linux_amd64.zip <span class="c1">#下载gogs</span>
+
+unzip gogs_0.11.91_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
+
+su <span class="c1">#切回root用户</span>
+
+cp /home/git/gogs/scripts/systemd/gogs.service /usr/lib/systemd/system/ <span class="c1">#复制service文件</span>
+
+systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用gogs服务（开机自启）</span>
+
+systemctl start gogs <span class="c1">#启动gogs</span>
+
+systemctl status gogs <span class="c1">#查看gogs运行状态</span>
+</code></pre></div><h1 id="注意事项">注意事项</h1>
+<p>如果你使用的是端口访问的方式，请在主机 IDC 控制台（阿里云或腾讯云等）设置对应的安全组规则，开放入方向的 3000 端口，并且在宝塔的安全设置中开放 3000 端口</p>
+<p>创建数据库请使用 utf-8 编码格式，不要 utf8mb4 。</p>]]></description>
+</item></channel>
+</rss>

@@ -5,11 +5,11 @@
         <description>流媒体 - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E6%B5%81%E5%AA%92%E4%BD%93.html" rel="self" type="application/rss+xml" /><item>
-    <title>如何下载 ts 流媒体视频</title>
-    <link>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</link>
+    <title>如何使用 FFmpeg 下载 ts 流媒体视频</title>
+    <link>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
 <p></p>
 <p>文件内容大致像这样：</p>

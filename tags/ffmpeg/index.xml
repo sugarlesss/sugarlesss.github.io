@@ -525,11 +525,11 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
 <p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
-    <title>如何下载 ts 流媒体视频</title>
-    <link>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</link>
+    <title>如何使用 FFmpeg 下载 ts 流媒体视频</title>
+    <link>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</link>
     <pubDate>Tue, 13 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
-    </author><guid>https://sugarless.cn/posts/how-to-download-ts-streaming-video.html</guid>
+    </author><guid>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
 <p></p>
 <p>文件内容大致像这样：</p>

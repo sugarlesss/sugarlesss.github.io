@@ -87,7 +87,7 @@ limit_rate 可以在 if 指令中，可以使用 if 指令匹配 URL 实现不�
 </blockquote>
 <p>使用 jmeter 等相关并发测试工具可以测到，确实对 /app/index.php/ 请求做了并发量的限制，超出并发量的部分 nginx 会默认返回 503。</p>]]></description>
 </item><item>
-    <title>基于 nginx 实现的负载均衡</title>
+    <title>基于 Nginx 实现的负载均衡</title>
     <link>https://sugarless.cn/posts/load-balancing-based-on-nginx.html</link>
     <pubDate>Mon, 24 Aug 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
