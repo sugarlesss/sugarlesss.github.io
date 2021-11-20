@@ -128,526 +128,6 @@
 </code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
 </item><item>
-    <title>关于音视频文案提取</title>
-    <link>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</link>
-    <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</guid>
-    <description><![CDATA[<p>长时间的电话 / 会议录音 / 演讲视频之类的各种音视频媒体文件的信息，如果有长期存储的需求的话，你可能会因为体积积太大，不方便进行信息检索而头疼。但如果转成文字，润色后整理成文字稿，无论是从存储体积或是信息检索方面，都会比直接存储音视频媒体更方便些。</p>
-<p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
-<p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
-</code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
-<p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
-<h2 id="11讯飞">1.1、讯飞</h2>
-<p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<ul>
-<li>套餐一（ 20 小时） 168 元 / 单价 8.4</li>
-<li>套餐二（ 200 小时） 980 元 / 单价 4.9</li>
-<li>套餐三（ 1000 小时） 3900 元 / 单价 3.9</li>
-<li>套餐四（ 3000 小时） 10500 元 / 单价 3.5</li>
-</ul>
-<h2 id="12百度云">1.2、百度云</h2>
-<p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按小时包预付费</p>
-<ul>
-<li>套餐一（ 1000 小时） 1200 元 / 单价 1.2</li>
-<li>套餐二（ 10000 小时） 9000 元 / 单价 0.9</li>
-<li>套餐三（ 100000 小时） 70000 元 / 单价 0.7</li>
-<li>套餐四（ 500000 小时） 300000 元 / 单价 0.6</li>
-</ul>
-<p>按调用时长后付费</p>
-<ul>
-<li>每小时 2 元，系统按用户实际使用，每小时出账单实时扣费，账户内需保留足量余额。</li>
-</ul>
-<h2 id="13腾讯云">1.3、腾讯云</h2>
-<p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/product/asr</a></p>
-<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
-<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://buy.cloud.tencent.com/asr</a></p>
-<p>录音文件识别（五小时内出结果）</p>
-<ul>
-<li>套餐一（ 60 小时） 90 元 / 单价 1.5</li>
-<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
-<li>套餐三（ 10000 小时） 10000 元 / 单价 1</li>
-<li>套餐四（ 100000 小时） 80000 元 / 单价 0.8</li>
-<li>套餐五（ 300000 小时） 210000 元 / 单价 0.7</li>
-</ul>
-<blockquote>
-<p>支持中文普通话、英语、粤语、日语、泰语。对时长5小时以内的录音文件进行识别，异步返回识别全部结果。<br>
-支持语音 URL 和本地语音文件两种请求方式。<br>
-语音 URL 的音频时长不能长于5小时，文件大小不超过512MB。<br>
-本地语音文件不能大于5MB。<br>
-提交录音文件识别请求后，在5小时内完成识别（半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
-支持回调或轮询的方式获取结果</p>
-</blockquote>
-<p>录音文件识别极速版（准实时）</p>
-<ul>
-<li>套餐一（ 30 小时） 72 元 / 单价 2.3</li>
-<li>套餐二（ 1000 小时） 1500 元 / 单价 1.5</li>
-<li>套餐三（ 10000 小时） 12000 元 / 单价 1.2</li>
-<li>套餐四（ 100000 小时） 110000 元 / 单价 1.1</li>
-<li>套餐五（ 300000 小时） 300000 元 / 单价 1</li>
-</ul>
-<blockquote>
-<p>仅支持中文普通话，使用者通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。<br>
-支持100MB以内音频文件的识别</p>
-</blockquote>
-<h2 id="14阿里云">1.4、阿里云</h2>
-<p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
-<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
-<p>录音文件识别（六小时内出结果）</p>
-<ul>
-<li>套餐一（ 40 小时） 100 元 / 单价 2.5</li>
-<li>套餐二（ 1000 小时） 1200 元 / 单价 1.2</li>
-<li>套餐三（ 20000 小时） 20000 元 / 单价 1</li>
-<li>套餐四（ 100000 小时） 90000 元 / 单价 0.9</li>
-<li>套餐五（ 250000 小时） 200000 元 / 单价 0.8</li>
-</ul>
-<p>录音文件识别极速版（30分钟以内时长的音频转写完成时间不超过10秒）</p>
-<ul>
-<li>套餐一（ 40 小时） 90 元 / 单价 2.5</li>
-<li>套餐二（ 1000 小时） 1560 元 / 单价 1.56</li>
-<li>套餐三（ 20000 小时） 26000 元 / 单价 1.3</li>
-<li>套餐四（ 100000 小时） 117000 元 / 单价 1.17</li>
-<li>套餐五（ 250000 小时） 260000  元 / 单价 1.04</li>
-</ul>
-<h1 id="二对接腾讯云">二、对接腾讯云</h1>
-<p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
-<ul>
-<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/developer</a></li>
-<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></li>
-</ul>
-<h2 id="21录音文件识别极速版v2">2.1、录音文件识别极速版（V2）</h2>
-<p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
-<p>极速版仅支持中文普通话，通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。支持100MB以内音频文件的识别。</p>
-<p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
-<p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
-<p>3）run it。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 录音文件识别极速版 v2版本</span>
-<span class="c1"># API 文档：https://cloud.tencent.com/document/api/1093/52097</span>
-<span class="c1"># 签名生成：https://cloud.tencent.com/document/api/1093/52097#sign</span>
-
-<span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">import</span> <span class="nn">time</span>
-
-<span class="kn">import</span> <span class="nn">hashlib</span>
-<span class="kn">import</span> <span class="nn">hmac</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-
-
-<span class="c1"># 调用者身份</span>
-<span class="k">class</span> <span class="nc">Credential</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">app_id</span><span class="p">,</span> <span class="n">secret_id</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">app_id</span> <span class="o">=</span> <span class="n">app_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secret_id</span> <span class="o">=</span> <span class="n">secret_id</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">secret_key</span>
-
-
-<span class="c1"># 服务端信息</span>
-<span class="k">class</span> <span class="nc">Server</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">protocol</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">uri</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">protocol</span> <span class="o">=</span> <span class="n">protocol</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">host</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">port</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">uri</span> <span class="o">=</span> <span class="n">uri</span>
-
-
-<span class="c1"># 打印日志</span>
-<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="nb">object</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&#34;INFO&#34;</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;[&#34;</span> <span class="o">+</span> <span class="n">level</span> <span class="o">+</span> <span class="s2">&#34;] &#34;</span> <span class="o">+</span> <span class="n">title</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">()</span>
-
-
-<span class="c1"># 获取时间戳</span>
-<span class="k">def</span> <span class="nf">getTimestamp</span><span class="p">():</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="c1"># return t # 原始时间数据</span>
-    <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>  <span class="c1"># 秒级时间戳</span>
-    <span class="c1"># return int(round(t * 1000))  # 毫秒级时间戳</span>
-    <span class="c1"># return int(round(t * 1000000))  # 微秒级时间戳</span>
-
-
-<span class="c1"># 字典序排序</span>
-<span class="k">def</span> <span class="nf">format_sign_string</span><span class="p">(</span><span class="n">param</span><span class="p">):</span>
-    <span class="n">param</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-    <span class="n">signstr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;POST</span><span class="si">{</span><span class="n">server</span><span class="o">.</span><span class="n">host</span> <span class="o">+</span> <span class="n">server</span><span class="o">.</span><span class="n">uri</span> <span class="o">+</span> <span class="n">credential</span><span class="o">.</span><span class="n">app_id</span><span class="si">}</span><span class="s2">&#34;</span>
-    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
-        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
-            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">break</span>
-    <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;?&#34;</span>
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">param</span><span class="p">:</span>
-        <span class="n">tmp</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">if</span> <span class="s1">&#39;appid&#39;</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tmp</span><span class="p">:</span>
-            <span class="n">signstr</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-            <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;=&#34;</span>
-        <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">signstr</span> <span class="o">+=</span> <span class="s2">&#34;&amp;&#34;</span>
-    <span class="n">signstr</span> <span class="o">=</span> <span class="n">signstr</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="k">return</span> <span class="n">signstr</span>
-
-
-<span class="c1"># 签名</span>
-<span class="k">def</span> <span class="nf">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">):</span>
-    <span class="n">hmacstr</span> <span class="o">=</span> <span class="n">hmac</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">secret_key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span>
-                       <span class="n">signstr</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">),</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">)</span><span class="o">.</span><span class="n">digest</span><span class="p">()</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">hmacstr</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">s</span>
-
-<span class="c1"># 调用者信息对象初始化</span>
-<span class="c1"># 在腾讯云控制台账号信息页面查看账号 APPID：https://console.cloud.tencent.com/developer</span>
-<span class="c1"># 访问管理页面获取 SecretID 和 SecretKey：https://console.cloud.tencent.com/cam/capi</span>
-<span class="n">APPID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="n">SECRET_ID</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="n">SECRET_KEY</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="n">credential</span> <span class="o">=</span> <span class="n">Credential</span><span class="p">(</span><span class="n">APPID</span><span class="p">,</span> <span class="n">SECRET_ID</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
-
-<span class="c1"># 服务端信息对象初始化</span>
-<span class="n">PROTOCOL</span> <span class="o">=</span> <span class="s2">&#34;https://&#34;</span>
-<span class="n">HOST</span> <span class="o">=</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span>
-<span class="n">PORT</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="n">URI</span> <span class="o">=</span> <span class="s2">&#34;/asr/flash/v1/&#34;</span>
-<span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">PROTOCOL</span><span class="p">,</span> <span class="n">HOST</span><span class="p">,</span> <span class="n">PORT</span><span class="p">,</span> <span class="n">URI</span><span class="p">)</span>
-
-<span class="c1"># 构造参数</span>
-<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># 用户在腾讯云注册账号 AppId 对应的 SecretId</span>
-    <span class="s2">&#34;secretid&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">credential</span><span class="o">.</span><span class="n">secret_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
-
-    <span class="c1"># 引擎模型类型。8k_zh：8k 中文普通话通用；16k_zh：16k 中文普通话通用；16k_zh_video：16k 音视频领域。</span>
-    <span class="s2">&#34;engine_type&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
-
-    <span class="c1"># 音频格式。支持 wav、pcm、ogg-opus、speex、silk、mp3、m4a、aac。</span>
-    <span class="s2">&#34;voice_format&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
-
-    <span class="c1"># 当前 UNIX 时间戳，如果与当前时间相差超过3分钟，会报签名失败错误。</span>
-    <span class="s2">&#34;timestamp&#34;</span><span class="p">:</span> <span class="n">getTimestamp</span><span class="p">(),</span>
-<span class="p">}</span>
-
-<span class="c1"># 是否开启说话人分离（目前支持中文普通话引擎），默认为0，0：不开启，1：开启。</span>
-<span class="c1"># params[&#34;speaker_diarization&#34;] = 0;</span>
-
-<span class="c1"># 是否过滤脏词（目前支持中文普通话引擎），默认为0。0：不过滤脏词；1：过滤脏词；2：将脏词替换为 *。</span>
-<span class="c1"># params[&#34;filter_dirty&#34;] = 0;</span>
-
-<span class="c1"># 是否过滤语气词（目前支持中文普通话引擎），默认为0。0：不过滤语气词；1：部分过滤；2：严格过滤。</span>
-<span class="c1"># params[&#34;filter_modal&#34;] = 0;</span>
-
-<span class="c1"># 是否过滤标点符号（目前支持中文普通话引擎），默认为0。0：不过滤，1：过滤句末标点，2：过滤所有标点。</span>
-<span class="c1"># params[&#34;filter_punc&#34;] = 0;</span>
-
-<span class="c1"># 是否进行阿拉伯数字智能转换，默认为1。0：全部转为中文数字；1：根据场景智能转换为阿拉伯数字。</span>
-<span class="n">params</span><span class="p">[</span><span class="s2">&#34;convert_num_mode&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-
-<span class="c1"># 是否显示词级别时间戳，默认为0。0：不显示；1：显示，不包含标点时间戳，2：显示，包含标点时间戳。</span>
-<span class="c1"># params[&#34;word_info&#34;] = 0;</span>
-
-<span class="c1"># 是否只识别首个声道，默认为1。0：识别所有声道；1：识别首个声道。</span>
-<span class="c1"># params[&#34;first_channel_only&#34;] = 1;</span>
-
-<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 params&#34;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
-
-<span class="c1"># 获取 signature</span>
-<span class="n">signstr</span> <span class="o">=</span> <span class="n">format_sign_string</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-<span class="n">signature</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">signstr</span><span class="p">,</span> <span class="n">SECRET_KEY</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signstr&#34;</span><span class="p">,</span> <span class="n">signstr</span><span class="p">)</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 signature&#34;</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
-
-<span class="c1"># 计算 URL</span>
-<span class="n">URL</span> <span class="o">=</span> <span class="n">server</span><span class="o">.</span><span class="n">protocol</span> <span class="o">+</span> <span class="n">signstr</span><span class="p">[</span><span class="mi">4</span><span class="p">::]</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">&#34;计算 URL&#34;</span><span class="p">,</span> <span class="n">URL</span><span class="p">)</span>
-
-<span class="c1"># 构造 header</span>
-<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&#34;Host&#34;</span><span class="p">:</span> <span class="s2">&#34;asr.cloud.tencent.com&#34;</span><span class="p">,</span>
-    <span class="s2">&#34;Authorization&#34;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">signature</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span>
-    <span class="c1"># &#34;Content-Type&#34;: &#34;application/octet-stream&#34;,</span>
-    <span class="c1"># &#34;Content-Length&#34;: &#34;请求长度，此处对应语音数据字节数，单位：字节&#34;</span>
-<span class="p">}</span>
-<span class="n">show</span><span class="p">(</span><span class="s2">&#34;生成 headers&#34;</span><span class="p">,</span> <span class="n">headers</span><span class="p">)</span>
-
-<span class="c1"># 音频路径</span>
-<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./外卖佣金到底有多高.mp3&#34;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="c1"># 读取音频数据</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-    <span class="c1"># 调用腾讯云语音识别 API</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-    <span class="n">responese</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-    <span class="n">code</span> <span class="o">=</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">code</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别失败&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">show</span><span class="p">(</span><span class="s2">&#34;识别成功&#34;</span><span class="p">,</span> <span class="n">responese</span><span class="p">)</span>
-
-    <span class="c1"># 一个channl_result对应一个声道的识别结果</span>
-    <span class="c1"># 大多数音频是单声道，对应一个channl_result</span>
-    <span class="k">for</span> <span class="n">channl_result</span> <span class="ow">in</span> <span class="n">responese</span><span class="p">[</span><span class="s2">&#34;flash_result&#34;</span><span class="p">]:</span>
-        <span class="n">channel_id</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;channel_id&#39;</span><span class="p">]</span>
-        <span class="n">text</span> <span class="o">=</span> <span class="n">channl_result</span><span class="p">[</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
-
-        <span class="n">show</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;channel_id: </span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#34;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
-
-</code></pre></div><p>输出</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">[INFO] 生成 params
-{&#39;secretid&#39;: &#39;xxxxxxxxxxxxxxxxxxx&#39;, &#39;engine_type&#39;: &#39;16k_zh&#39;, &#39;voice_format&#39;: &#39;mp3&#39;, &#39;timestamp&#39;: xxxxxxxxx, &#39;convert_num_mode&#39;: 1}
-
-[INFO] 生成 signstr
-POSTasr.cloud.tencent.com/asr/flash/v1/xxxxxxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxxxxx&amp;voice_format=mp3
-
-[INFO] 生成 signature
-xxxxxxxxxxxxxxxxxxx=
-
-[INFO] 计算 URL
-https://asr.cloud.tencent.com/asr/flash/v1/xxxxxxxxx?convert_num_mode=1&amp;engine_type=16k_zh&amp;secretid=xxxxxxxxxxxxxxxxxxxxxxxxxx&amp;timestamp=xxxxxxx&amp;voice_format=mp3
-
-[INFO] 生成 headers
-{&#39;Host&#39;: &#39;asr.cloud.tencent.com&#39;, &#39;Authorization&#39;: &#39;xxxxxxxxxxxxxxxxxxxxx=&#39;}
-
-[INFO] 识别成功
-{&#39;request_id&#39;: &#39;xxxxxxxxxxxxxxxxxx&#39;, &#39;code&#39;: 0, &#39;message&#39;: &#39;&#39;, &#39;audio_duration&#39;: xxxxxxxx, &#39;flash_result&#39;: [{&#39;text&#39;: &#39;测试音频转文字内容&#39;, &#39;start_time&#39;: xxxxxxxxx, &#39;end_time&#39;: xxxxxx, &#39;speaker_id&#39;: 0}]}]}
-
-[INFO] channel_id: 0
-测试音频转文字内容
-</code></pre></div><p>如果有特殊需求，根据可选的 params 参数去调整就好了。</p>
-<h2 id="22录音文件识别v3">2.2、录音文件识别（V3）</h2>
-<p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
-<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823</a></p>
-<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37822</a></p>
-<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
-<h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
-
-<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
-pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
-<p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./audio.mp3&#34;</span>
-
-<span class="c1"># 将录音转为字符串</span>
-<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="c1"># 读取音频数据</span>
-    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
-<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
-    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
-    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
-
-    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
-    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
-
-    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CreateRecTaskRequest</span><span class="p">()</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">        引擎模型类型。 这里的 k 指的是采样率
-</span><span class="s1">            电话场景： 
-</span><span class="s1">                • 8k_en：电话8k英语； 
-</span><span class="s1">                • 8k_zh：电话8k中文普通话通用； 
-</span><span class="s1">            
-</span><span class="s1">            非电话场景： 
-</span><span class="s1">                • 16k_zh：16k 中文普通话通用； 
-</span><span class="s1">                • 16k_zh_video：16k 音视频领域； 
-</span><span class="s1">                • 16k_en：16k 英语； 
-</span><span class="s1">                • 16k_ca：16k 粤语； 
-</span><span class="s1">                • 16k_ja：16k 日语； 
-</span><span class="s1">                • 16k_zh_edu 中文教育； 
-</span><span class="s1">                • 16k_en_edu 英文教育； 
-</span><span class="s1">                • 16k_zh_medical 医疗；
-</span><span class="s1">                • 16k_th 泰语；
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="s2">&#34;EngineModelType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
-
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            识别声道数。注意：录音识别会自动将音频转码为填写的识别声道数
-</span><span class="s1">                1：单声道；
-</span><span class="s1">                2：双声道（仅支持 8k_zh 引擎模）。
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="s2">&#34;ChannelNum&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            识别结果返回形式。
-</span><span class="s1">                0： 识别结果文本(含分段时间戳)； 
-</span><span class="s1">                1：词级别粒度的详细识别结果(不含标点，含语速值)；
-</span><span class="s1">                2：词级别粒度的详细识别结果（包含标点、语速值）
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="s2">&#34;ResTextFormat&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            语音数据来源。
-</span><span class="s1">                0：语音 URL；
-</span><span class="s1">                1：语音数据（post body）。
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-
-        <span class="s1">&#39;&#39;&#39;
-</span><span class="s1">            语音数据，当SourceType 值为1时必须填写，为0可不写。
-</span><span class="s1">                要base64编码(采用python语言时注意读取文件应该为string而不是byte，以byte格式读取后要decode()。
-</span><span class="s1">                编码后的数据不可带有回车换行符)。音频数据要小于5MB。
-</span><span class="s1">        &#39;&#39;&#39;</span>
-        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span>
-    <span class="p">}</span>
-    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">CreateRecTask</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
-
-<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-</code></pre></div><p>输出</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
-        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;f1234567-89a4-1234-12d3-d56bdd9aac1a&#34;</span>
-<span class="p">}</span>
-</code></pre></div><p>请求成功后，返回的 JSON 中 Data -&gt; TaskId 就是我们此次上传任务的 ID ，需要拿这个 ID 去轮训另一个接口，查询是否成功。</p>
-<h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
-<p>用 TaskID 查询识别结果。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">TaskId</span> <span class="o">=</span> <span class="mi">1234567890</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
-    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
-    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
-
-    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
-    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
-
-    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DescribeTaskStatusRequest</span><span class="p">()</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&#34;TaskId&#34;</span><span class="p">:</span> <span class="n">TaskId</span>
-    <span class="p">}</span>
-    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">DescribeTaskStatus</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
-
-<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-
-</code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;Data&#34;</span><span class="p">:{</span>
-        <span class="nt">&#34;TaskId&#34;</span><span class="p">:</span><span class="mi">1234567890</span><span class="p">,</span>
-        <span class="nt">&#34;Status&#34;</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span>
-        <span class="nt">&#34;StatusStr&#34;</span><span class="p">:</span><span class="s2">&#34;success&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;[0:0.000,1:0.320]  识别结果。\n[1:0.320,2:0.360]  识别结果。\n[2:0.360,3:0.380]  识别结果。\n[3:0.380,4:0.400]  识别结果。\n[4:0.400,5:0.420]  识别结果。\n&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;ErrorMsg&#34;</span><span class="p">:</span><span class="s2">&#34;&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;ResultDetail&#34;</span><span class="p">:</span><span class="kc">null</span>
-    <span class="p">},</span>
-    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-1234-1234-1234-b11234567890&#34;</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="23一句话识别v3">2.3、一句话识别（V3）</h2>
-<p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/product/1093/35646</a></p>
-<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
-<h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pip install --upgrade tencentcloud-sdk-python
-
-<span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
-pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</code></pre></div><h3 id="232源码">2.3.2、源码</h3>
-<p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">import</span> <span class="nn">base64</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.client_profile</span> <span class="kn">import</span> <span class="n">ClientProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.profile.http_profile</span> <span class="kn">import</span> <span class="n">HttpProfile</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.common.exception.tencent_cloud_sdk_exception</span> <span class="kn">import</span> <span class="n">TencentCloudSDKException</span>
-<span class="kn">from</span> <span class="nn">tencentcloud.asr.v20190614</span> <span class="kn">import</span> <span class="n">asr_client</span><span class="p">,</span> <span class="n">models</span>
-
-<span class="n">SecretId</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">SecretKey</span> <span class="o">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
-<span class="n">audio</span> <span class="o">=</span> <span class="s2">&#34;./一句话录音.mp3&#34;</span>
-
-<span class="c1"># 将录音转为字符串</span>
-<span class="n">Data</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="c1"># 读取音频数据</span>
-    <span class="n">Data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-
-<span class="n">Data</span> <span class="o">=</span> <span class="n">base64</span><span class="o">.</span><span class="n">b64encode</span><span class="p">(</span><span class="n">Data</span><span class="p">)</span>
-<span class="n">Data</span> <span class="o">=</span> <span class="n">Data</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
-
-<span class="k">try</span><span class="p">:</span>
-    <span class="n">cred</span> <span class="o">=</span> <span class="n">credential</span><span class="o">.</span><span class="n">Credential</span><span class="p">(</span><span class="n">SecretId</span><span class="p">,</span> <span class="n">SecretKey</span><span class="p">)</span>
-    <span class="n">httpProfile</span> <span class="o">=</span> <span class="n">HttpProfile</span><span class="p">()</span>
-    <span class="n">httpProfile</span><span class="o">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="s2">&#34;asr.tencentcloudapi.com&#34;</span>
-
-    <span class="n">clientProfile</span> <span class="o">=</span> <span class="n">ClientProfile</span><span class="p">()</span>
-    <span class="n">clientProfile</span><span class="o">.</span><span class="n">httpProfile</span> <span class="o">=</span> <span class="n">httpProfile</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">asr_client</span><span class="o">.</span><span class="n">AsrClient</span><span class="p">(</span><span class="n">cred</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="n">clientProfile</span><span class="p">)</span>
-
-    <span class="n">req</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">SentenceRecognitionRequest</span><span class="p">()</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&#34;ProjectId&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="s2">&#34;SubServiceType&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="s2">&#34;EngSerViceType&#34;</span><span class="p">:</span> <span class="s2">&#34;16k_zh&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;SourceType&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s2">&#34;Data&#34;</span><span class="p">:</span> <span class="n">Data</span><span class="p">,</span>
-        <span class="s2">&#34;VoiceFormat&#34;</span><span class="p">:</span> <span class="s2">&#34;mp3&#34;</span><span class="p">,</span>
-        <span class="s2">&#34;UsrAudioKey&#34;</span><span class="p">:</span> <span class="s2">&#34;uniqueKey-1&#34;</span><span class="p">,</span>
-    <span class="p">}</span>
-    <span class="n">req</span><span class="o">.</span><span class="n">from_json_string</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">params</span><span class="p">))</span>
-
-    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">SentenceRecognition</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">to_json_string</span><span class="p">())</span>
-
-<span class="k">except</span> <span class="n">TencentCloudSDKException</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
-</code></pre></div><p>输出：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-    <span class="nt">&#34;Result&#34;</span><span class="p">:</span><span class="s2">&#34;一句话录音识别内容&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;AudioDuration&#34;</span><span class="p">:</span><span class="mi">59996</span><span class="p">,</span>
-    <span class="nt">&#34;WordSize&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="nt">&#34;WordList&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
-    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-4307-46ae-1234-beb3eb051234&#34;</span>
-<span class="p">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
-<p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
-<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
-</item><item>
     <title>Python 批量去除文件固定前缀</title>
     <link>https://sugarless.cn/posts/batch-file-fixed-prefix-removal-using-python.html</link>
     <pubDate>Mon, 21 Jun 2021 00:00:00 &#43;0000</pubDate><author>
@@ -1448,5 +928,63 @@ conda update &lt;包名&gt; 更新指定包
     <span class="err">&#39;playlistCount&#39;:</span> <span class="err">5</span>
 <span class="p">}</span>
 </code></pre></div><p>人对技术要持有敬畏之心，慎用之。</p>]]></description>
+</item><item>
+    <title>Python 使用 configparser 库操作配置文件</title>
+    <link>https://sugarless.cn/posts/manipulating-configuration-files-with-the-python-configparser-library.html</link>
+    <pubDate>Mon, 19 Aug 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/manipulating-configuration-files-with-the-python-configparser-library.html</guid>
+    <description><![CDATA[<p>在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。</p>
+<h1 id="一新建配置文件">一、新建配置文件</h1>
+<p>在 python 项目中新建一个 conf 文件夹，并在此文件夹下创建一个 conf.ini 的文件用于存储配置信息。</p>
+<p>文件路径：./conf/conf.ini</p>
+<p>文件内容：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[EditionInfo]</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">1.0.0</span>
+</code></pre></div><h1 id="二源码">二、源码</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">configparser</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+ 
+ 
+<span class="k">def</span> <span class="nf">get_path</span><span class="p">(</span><span class="n">config_name</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;获取路径 返回运行本函数的文件绝对路径+config_name
+</span><span class="s2">    determine if application is a script file or frozen exe
+</span><span class="s2">    &#34;&#34;&#34;</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="p">,</span> <span class="s1">&#39;frozen&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+        <span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="vm">__file__</span><span class="p">:</span>
+        <span class="n">application_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span>
+    <span class="n">config_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">application_path</span><span class="p">,</span> <span class="n">config_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">config_path</span>
+ 
+ 
+<span class="c1"># 读取conf.ini</span>
+<span class="n">configPath</span> <span class="o">=</span> <span class="s2">&#34;conf</span><span class="se">\\</span><span class="s2">conf.ini&#34;</span>
+ 
+<span class="n">config</span> <span class="o">=</span> <span class="n">configparser</span><span class="o">.</span><span class="n">ConfigParser</span><span class="p">()</span>
+<span class="n">config</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">get_path</span><span class="p">(</span><span class="n">configPath</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">))</span>
+ 
+<span class="c1"># 获取conf中的section</span>
+<span class="n">sections</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">sections</span><span class="p">()</span>
+ 
+<span class="c1"># 获取第一个section中的所有option</span>
+<span class="n">paramList</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">options</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+ 
+<span class="c1"># 修改version的值</span>
+<span class="n">config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">paramList</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&#34;1.0.1&#34;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">configPath</span><span class="p">,</span> <span class="s2">&#34;w&#34;</span><span class="p">))</span>
+ 
+<span class="c1"># 获取version的值 方法1</span>
+<span class="n">version</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sections</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">paramList</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="c1"># 获取version的值 方法2</span>
+<span class="c1"># version = str(config.get(&#34;EditionInfo&#34;, &#34;version&#34;))</span>
+ 
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+</code></pre></div><p>可能有心人会注意到 get_path 的方法有点怪异，那是因为在写 python 程序中，有可能需要获取当前运行脚本的路径。打包成 exe 的脚本和直接运行地脚本在获取路径上稍微有点不同。</p>
+<p>get_path 的方法参考了这篇博客：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>
+<h1 id="ref">REF</h1>
+<p>python中获取打包成执行文件(exe)和脚本运行文件的路径
+：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>]]></description>
 </item></channel>
 </rss>
