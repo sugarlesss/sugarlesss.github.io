@@ -10,11 +10,16 @@
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/hugo-one-click-deployment.html</guid>
-    <description><![CDATA[<p>一键发布文章</p>
-<p>本操作只在 windows 平台下实践过，其他平台可自行尝试。</p>
-<p>先安装 git bash ，官网：https://git-scm.com/downloads</p>
-<p>确定 hugo 博客的根目录：public 的上级目录就是你博客的根目录，我的根目录是 D:\blog\src</p>
-<pre tabindex="0"><code>D:\BLOG\SRC
+    <description><![CDATA[<p>你还在为使用 hugo 发布文章时的繁琐步骤烦恼吗？</p>
+<blockquote>
+<p>本文默认你已经掌握了 hugo + Github Pages 的博客搭建。</p>
+<p>我会以 Windows 平台作为演示，其它系统可参照思路，大同小异。</p>
+</blockquote>
+<h1 id="一安装-git">一、安装 Git</h1>
+<p>先安装 git bash ，官网：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreffer">https://git-scm.com/downloads</a></p>
+<h1 id="二使-public-目录成为一个-git-repository">二、使 public 目录成为一个 git repository</h1>
+<p>博客源码存放目录：<code>D:\blog\src</code></p>
+<pre tabindex="0"><code>D:\blog\src
 │  config.toml
 ├─archetypes 
 ├─assets
@@ -25,12 +30,31 @@
 ├─resources
 ├─static
 └─themes
-</code></pre><p>将 git 仓库（xxx.github.io）的  .git 文件夹和 CNAME 文件复制一份到博客根目录的 public 文件夹中，使 public 目录成为一个仓库。</p>
-<p>配置 git alias 别名，这里我将 git blog 这个命令作为以后日常一键部署的命令，注意，此处的博客根目录不要填写错误。</p>
+</code></pre><p>接下来将 git 仓库（xxx.github.io）的  .git 文件夹和 CNAME 文件复制一份到博客根目录的 public 文件夹中，使 public 目录成为一个 git 仓库（repository）。</p>
+<blockquote>
+<p>这样 hugo 在 public 文件夹中生成的文件就可以直接使用 git 命令推送到 Github 了。</p>
+<p>如果配合 Github Webhook 使用，就可以把 xxx.github.io 当做源站了。在此基础上，你可以自行购买域名做 CDN 或者在自己的服务器上部署一个镜像站。</p>
+</blockquote>
+<h1 id="三配置一键命令">三、配置一键命令</h1>
+<p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
-</code></pre></div><p>以后写好文章之后，就可以在任意目录执行这个命令：</p>
+</code></pre></div><blockquote>
+<p>使用 alias 即可为一系列命令配置一个别名</p>
+</blockquote>
+<h1 id="四一键部署">四、一键部署</h1>
+<p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git blog
-</code></pre></div><p>即可一键渲染、并提交推送到 github 上了，配合 git pages 使用更佳。</p>
-<p>PS：如果需要同时同步到 Github 和 Gitee ，可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a> ，并修改 git blog 对应的命令。</p>]]></description>
+</code></pre></div><p>此时系统会自动执行下面的命令：</p>
+<pre tabindex="0"><code>cd D:\\blog\\src
+hugo
+cd D:\\blog\\src\\public
+git add .
+git commit -m 'update'
+git push
+</code></pre><p>这样就达到了我们的目的：通过一个命令就可以更新博客文件，并自动推送到 github 上。</p>
+<h1 id="补充">补充</h1>
+<p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
+<p>给你提个醒：<code>git push github</code> ，<code>git push gitee</code> 。</p>
+<p>希望本文能帮到正在使用 hugo 的你。</p>]]></description>
 </item></channel>
 </rss>
