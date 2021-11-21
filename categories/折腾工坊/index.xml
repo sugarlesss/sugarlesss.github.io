@@ -4,7 +4,112 @@
         <link>https://sugarless.cn/categories/%E6%8A%98%E8%85%BE%E5%B7%A5%E5%9D%8A.html</link>
         <description>折腾工坊 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E6%8A%98%E8%85%BE%E5%B7%A5%E5%9D%8A.html" rel="self" type="application/rss+xml" /><item>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E6%8A%98%E8%85%BE%E5%B7%A5%E5%9D%8A.html" rel="self" type="application/rss+xml" /><item>
+    <title>使用内存盘为系统加速</title>
+    <link>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</link>
+    <pubDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</guid>
+    <description><![CDATA[<p>作为硬盘来说，SSD 已经很快了，但内存更快。</p>
+<h1 id="一内存盘是什么">一、内存盘是什么？</h1>
+<p>内存盘即 RAM Disk，市面上实现 RAM Disk 的软件有很多，其主要功能是通过独特的软件算法将物理内存模拟成一个虚拟硬盘，在这个虚拟硬盘上的读写操作均在内存中完成。由于内存的读写速度远超硬盘（ HDD 与 SSD ），因此这个虚拟硬盘具有非常高的数据读写速度。</p>
+<h1 id="二比-ssd-更优秀的读写性能">二、比 SSD 更优秀的读写性能</h1>
+<p>在使用内存盘为系统加速之前，我想先向你展示一下内存盘（RAM Disk）与固态硬盘（Solid State Disk - SSD）之间的读写速度差距有多大。</p>
+<p>这是三星 970 EVO Plus 1TB 的读写速度：</p>
+<figure><a class="lightgallery" href="/post_images/image-20211120164509057.png" title="/post_images/image-20211120164509057.png" data-thumbnail="/post_images/image-20211120164509057.png" data-sub-html="<h2>三星 970 EVO Plus 1TB</h2>">
+        
+    </a><figcaption class="image-caption">三星 970 EVO Plus 1TB</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>这是 4GB 内存盘的读写速度：</p>
+<figure><a class="lightgallery" href="/post_images/image-20211121231824469.png" title="/post_images/image-20211121231824469.png" data-thumbnail="/post_images/image-20211121231824469.png" data-sub-html="<h2>4GB 内存盘</h2>">
+        
+    </a><figcaption class="image-caption">4GB 内存盘</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>从 CrystalDiskMark 给出的测试数据看，即便是与三星 970 EVO Plus 1T 这种中高端 SSD 相比，内存盘的性能依然是令人惊叹的。</p>
+<p>4K 随机读写性能：</p>
+<ul>
+<li>单线程 4K 读：提升了 18 倍；</li>
+<li>单线程 4K 写：提升了 6 倍；</li>
+<li>读 - 访问时间：降低至 5%；</li>
+<li>写 - 访问时间：降低至 16%；</li>
+</ul>
+<p>顺序读写性能：</p>
+<ul>
+<li>单线程顺序读：提升了 6 倍；</li>
+<li>单线程顺序写：提升了 3 倍；</li>
+</ul>
+<h1 id="三内存盘能用来存什么">三、内存盘能用来存什么？</h1>
+<p>由于内存盘是使用物理内存模拟成一个虚拟硬盘，所以容量注定比较小，你不太可能会往里面拷贝电影这种大体积文件，因此顺序读写性能带来的提升其实你感知不到，因此内存盘强大的 4K 随机读写性能才是我们应该关注的重点。</p>
+<blockquote>
+<p>需要注意的是，下面的截图中，G 盘是内存盘。</p>
+</blockquote>
+<h2 id="31windows-临时文件">3.1、Windows 临时文件</h2>
+<p>我将 Windows 临时文件夹设置在内存盘中，这样可以直接为操作系统加速。</p>
+<a class="lightgallery" href="/post_images/image-20211122003408522.png" title="/post_images/image-20211122003408522.png" data-thumbnail="/post_images/image-20211122003408522.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h2 id="22浏览器缓存">2.2、浏览器缓存</h2>
+<p>浏览器加载页面时会向缓存目录中写入大量小文件，而且浏览器还是日常高频使用的软件，非常适合使用内存盘加速。</p>
+<p>如果你使用的是 Chrome 或 Edge ，想要修改缓存目录就有些麻烦了。其他浏览器基本都是支持自定义缓存目录的。</p>
+<p>以 Edge 为例，输入 <code>edge://version/</code> 命令，找到配置文件目录：</p>
+<blockquote>
+<p>Chrome 浏览器输入：<code>chrome://version/</code></p>
+</blockquote>
+<a class="lightgallery" href="/post_images/image-20211122004149122.png" title="/post_images/image-20211122004149122.png" data-thumbnail="/post_images/image-20211122004149122.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>进入改目录后，删除 <code>Cache</code>  这个原缓存文件夹，打开 CMD（以管理员身份运行），使用 Mklink 命令建立原缓存目录与新缓存目录（位于内存盘中）的软连接。</p>
+<a class="lightgallery" href="/post_images/image-20211122003931961.png" title="/post_images/image-20211122003931961.png" data-thumbnail="/post_images/image-20211122003931961.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h2 id="33ide">3.3、IDE</h2>
+<p>虽然普通用户会从将浏览器缓存和 Windows 临时文件转移到内存盘中受益，但 IT 专业人士可能会发现内存盘更多的优势。</p>
+<p>例如，程序员可以通过将中间编译器输出重定向到内存盘来加速开发过程，数据库管理员可以通过使用内存盘来提高性能，如 tempdb，等等。</p>
+<p>我做 Java 后端开发的，平时使用 jetbrains 家的 IntelliJ IDEA 编译器作为日常开发工具。</p>
+<p>于是乎我直接把整个 idea 装到内存盘里去了&hellip; 无论是启动 idea、编译或运行项目，基本都要比原来快一截。</p>
+<a class="lightgallery" href="/post_images/image-20211122005905404.png" title="/post_images/image-20211122005905404.png" data-thumbnail="/post_images/image-20211122005905404.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<blockquote>
+<p>如果你不做额外设置的话，内存盘里的数据在重启系统后全部丢失，安装在内存盘的软件也会随之消失。</p>
+<p>因此，你如果需要重启电脑后保留内存盘里数据，你需要做一些额外设置，市面上的 RAM Disk 软件基本都支持这个功能。</p>
+</blockquote>
+<p>是的，我把 VS Code 也装内存盘里了。</p>
+<a class="lightgallery" href="/post_images/image-20211122010558738.png" title="/post_images/image-20211122010558738.png" data-thumbnail="/post_images/image-20211122010558738.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h1 id="四ram-disk-软件推荐">四、RAM Disk 软件推荐</h1>
+<p>我个人比较推荐你使用 SoftPerfect RAM Disk，特点是界面简洁，性能好。</p>
+<p>官网：<a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreffer">https://www.softperfect.com/products/ramdisk/</a></p>
+<p>度盘：<a href="https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w</a> 提取码：kcik</p>
+<h1 id="五测试环境补充">五、测试环境补充</h1>
+<h2 id="51鲁大师硬件参数">5.1、鲁大师硬件参数</h2>
+<a class="lightgallery" href="/post_images/image-20211121233834567.png" title="/post_images/image-20211121233834567.png" data-thumbnail="/post_images/image-20211121233834567.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<a class="lightgallery" href="/post_images/image-20211121234128545.png" title="/post_images/image-20211121234128545.png" data-thumbnail="/post_images/image-20211121234128545.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h2 id="52aida64-cache--memory-benchmark">5.2、AIDA64 Cache &amp; Memory Benchmark</h2>
+<a class="lightgallery" href="/post_images/image-20211121233725089.png" title="/post_images/image-20211121233725089.png" data-thumbnail="/post_images/image-20211121233725089.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h1 id="ref">REF</h1>
+<ul>
+<li><a href="https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html" target="_blank" rel="noopener noreffer">https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html</a></li>
+<li><a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreffer">https://www.softperfect.com/products/ramdisk/</a></li>
+</ul>]]></description>
+</item><item>
     <title>关于音视频文案提取</title>
     <link>https://sugarless.cn/posts/about-extract-copywriting-from-audio-or-video.html</link>
     <pubDate>Sat, 17 Jul 2021 00:00:00 &#43;0000</pubDate><author>
@@ -576,18 +681,5 @@ git push
 <p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
 <p>给你提个醒：<code>git push github</code> ，<code>git push gitee</code> 。</p>
 <p>希望本文能帮到正在使用 hugo 的你。</p>]]></description>
-</item><item>
-    <title>使用内存盘为系统加速</title>
-    <link>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</link>
-    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
-        <name>無糖</name>
-    </author><guid>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</guid>
-    <description><![CDATA[<p>作为硬盘来说，SSD 已经很快了，但内存更快。</p>
-<h1 id="一比-ssd-更优秀的读写性能">一、比 SSD 更优秀的读写性能</h1>
-<p>在使用内存盘为系统加速之前，我想先向你展示一下内存盘与 SSD 之间的读写速度差距。</p>
-<p>这是三星 970 EVO Plus 1TB 的读写速度：</p>
-<p></p>
-<p>这是 2GB 大小的内存盘读写速度：</p>
-<p></p>]]></description>
 </item></channel>
 </rss>
