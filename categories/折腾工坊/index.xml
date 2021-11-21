@@ -576,5 +576,18 @@ git push
 <p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
 <p>给你提个醒：<code>git push github</code> ，<code>git push gitee</code> 。</p>
 <p>希望本文能帮到正在使用 hugo 的你。</p>]]></description>
+</item><item>
+    <title>使用内存盘为系统加速</title>
+    <link>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</link>
+    <pubDate>Sat, 18 May 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</guid>
+    <description><![CDATA[<p>作为硬盘来说，SSD 已经很快了，但内存更快。</p>
+<h1 id="一比-ssd-更优秀的读写性能">一、比 SSD 更优秀的读写性能</h1>
+<p>在使用内存盘为系统加速之前，我想先向你展示一下内存盘与 SSD 之间的读写速度差距。</p>
+<p>这是三星 970 EVO Plus 1TB 的读写速度：</p>
+<p></p>
+<p>这是 2GB 大小的内存盘读写速度：</p>
+<p></p>]]></description>
 </item></channel>
 </rss>
