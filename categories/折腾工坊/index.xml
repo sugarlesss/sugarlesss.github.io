@@ -5,12 +5,13 @@
         <description>折腾工坊 - 分类 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E6%8A%98%E8%85%BE%E5%B7%A5%E5%9D%8A.html" rel="self" type="application/rss+xml" /><item>
-    <title>使用内存盘为系统加速</title>
+    <title>内存盘能为我们带来什么惊喜？</title>
     <link>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</link>
     <pubDate>Sun, 21 Nov 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</guid>
     <description><![CDATA[<p>作为硬盘来说，SSD 已经很快了，但内存更快。</p>
+<p>本文简单介绍一下使用内存盘为系统加速的几种姿势。</p>
 <h1 id="一内存盘是什么">一、内存盘是什么？</h1>
 <p>内存盘即 RAM Disk，市面上实现 RAM Disk 的软件有很多，其主要功能是通过独特的软件算法将物理内存模拟成一个虚拟硬盘，在这个虚拟硬盘上的读写操作均在内存中完成。由于内存的读写速度远超硬盘（ HDD 与 SSD ），因此这个虚拟硬盘具有非常高的数据读写速度。</p>
 <h1 id="二比-ssd-更优秀的读写性能">二、比 SSD 更优秀的读写性能</h1>
