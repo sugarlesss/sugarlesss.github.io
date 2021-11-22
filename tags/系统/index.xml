@@ -79,6 +79,10 @@
 <p>例如，程序员可以通过将中间编译器输出重定向到内存盘来加速开发过程，数据库管理员可以通过使用内存盘来提高性能，如 tempdb，等等。</p>
 <p>我做 Java 后端开发的，平时使用 jetbrains 家的 IntelliJ IDEA 编译器作为日常开发工具。</p>
 <p>于是乎我直接把整个 idea 装到内存盘里去了&hellip; 无论是启动 idea、编译或运行项目，基本都要比原来快一截。</p>
+<a class="lightgallery" href="/post_images/image-20211122152001707.png" title="/post_images/image-20211122152001707.png" data-thumbnail="/post_images/image-20211122152001707.png">
+        
+    </a>
+<!-- raw HTML omitted -->
 <a class="lightgallery" href="/post_images/image-20211122005905404.png" title="/post_images/image-20211122005905404.png" data-thumbnail="/post_images/image-20211122005905404.png">
         
     </a>
