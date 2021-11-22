@@ -63,7 +63,7 @@
         
     </a>
 <!-- raw HTML omitted -->
-<p>进入改目录后，删除 <code>Cache</code>  这个原缓存文件夹，打开 CMD（以管理员身份运行），使用 Mklink 命令建立原缓存目录与新缓存目录（位于内存盘中）的软连接。</p>
+<p>进入该目录后，删除 <code>Cache</code>  这个原缓存文件夹，打开 CMD（以管理员身份运行），使用 Mklink 命令建立原缓存目录与新缓存目录（位于内存盘中）的软连接。</p>
 <a class="lightgallery" href="/post_images/image-20211122003931961.png" title="/post_images/image-20211122003931961.png" data-thumbnail="/post_images/image-20211122003931961.png">
         
     </a>
