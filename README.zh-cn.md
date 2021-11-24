@@ -1,4 +1,4 @@
-# 無糖 | 博客
+# 無糖的小宇宙 | 博客
 
 [English README](https://github.com/sugarlesss/sugarlesss.github.io/blob/main/README.md) | 简体中文说明
 
