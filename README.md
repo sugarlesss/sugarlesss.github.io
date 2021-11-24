@@ -2,4 +2,6 @@
 
 <!-- ![avatar](./avatar.svg) -->
 
-<img src="./avatar.svg" width="50%" height="50%" align="center">
+<div align="center">
+    <img src="./avatar.svg" width="50%" height="50%" align="center">
+</div>
