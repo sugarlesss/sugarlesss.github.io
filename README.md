@@ -1,3 +1,3 @@
 # 博客
 
-![pic](./avatar.svg)
+![avatar](./avatar.svg)
