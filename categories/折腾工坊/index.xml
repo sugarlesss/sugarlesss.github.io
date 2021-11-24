@@ -642,7 +642,7 @@ pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-s
 <p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
 <p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
-    <title>hugo 一键部署</title>
+    <title>Hugo - 如何一键发布新文章？</title>
     <link>https://sugarless.cn/posts/hugo-one-click-deployment.html</link>
     <pubDate>Wed, 14 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
