@@ -4,31 +4,33 @@
         <link>https://sugarless.cn/tags/gogs.html</link>
         <description>Gogs - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
-            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/gogs.html" rel="self" type="application/rss+xml" /><item>
-    <title>如何使用 Gogs 搭建私有 Git Server</title>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 30 Nov 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/gogs.html" rel="self" type="application/rss+xml" /><item>
+    <title>如何拥有一个属于自己的 Github ？</title>
     <link>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</link>
-    <pubDate>Mon, 02 Sep 2019 00:00:00 &#43;0000</pubDate><author>
+    <pubDate>Tue, 30 Nov 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</guid>
-    <description><![CDATA[<p>比之 gitLab，gogs 在资源占用和性能上的优势是非常明显的。十分适合配置并不高的服务器搭建使用。官网是有搭建好的 demo，可以在线体验一下。</p>
-<p>本文命令于 CentOS7 系统中测试通过。</p>
+    <description><![CDATA[<p>自建 Git Server 有什么用？不用再忍受 Github 龟速网、无限数量私有库、数据不用托管在 Github 上，自己说了算。</p>
+<p>本文会以 CentOS7 + Nginx + Gogs 为例，教你如何安装配置，拥有一个属于自己的 “Github” 。</p>
+<h1 id="github-的过去">Github 的过去</h1>
+<p>自从 GitHub 在 2018 年被微软收购后，每个账号都能免费创建 5 个私有库了，当时非常高兴，觉得 Github 有微软在背后站台，未来可期。但 3 年后却发生了一件事，又一次提醒了我，原来 Github 已经被资本收购了。</p>
+<p>2021 年 7 月，由微软、OpenAI、GitHub 联合出品的自动代码生成 AI - Copilot 在推出后的第二天就深陷侵犯版权的质疑声中，惨遭开源社区网友炮轰。为了训练 Copilot ，GitHub 官方确认了他们会使用所有 GitHub 公开代码来训练 Copilot，并且不区分 License 类别。而在之前，明明官方有过 “Copilot是在GPL代码的基础上训练出来的” 这种说法，但之后 GitHub 的 CEO 又表示：&ldquo;每天都有数百名 GitHub 的开发者在使用 Copilot ，如果预览版进展顺利的话，我们将计划在未来某个时候将其扩展为付费产品。&quot;，完全就是一副视 General Public License 如无物的样子。</p>
+<p>富人和大公司带头冲版权，一边冲一边告诉大众，你们要遵守版权，不可以学我。（哄堂大笑</p>
+<h1 id="why-gogs-">Why Gogs ？</h1>
+<p>大公司普遍使用的是内部开发的 Git Server，像我们这样的个人开发者，选择一个开源 Git Server 自行搭建是比较适合的。</p>
+<p>我知道有几个不错的开源 Git Server 可以考虑：</p>
+<ul>
+<li>GitLab</li>
+<li>Gogs</li>
+<li>Gitea</li>
+<li>GitStack</li>
+</ul>
+<p>最终，我选择 Gogs 的主要原因是它资源占用极低，你甚至可以用树莓派来搭建一个 Gogs，1C2G 的配置轻轻松松带 Gogs。</p>
+<p>比之 GitLab，Gogs 在资源占用和性能上的优势是非常明显的，因此它十分适合配置并不高的服务器搭建使用。</p>
 <p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
+<p>演示站：<a href="https://try.gogs.io/" target="_blank" rel="noopener noreffer">https://try.gogs.io/</a></p>
 <p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
-<p>文档：<a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
-<p>我比较习惯通过二进制文件安装 gogs，所以本文以二进制安装为例说明。有兴趣使用其他方法的朋友们可以自行尝试。</p>
-<h1 id="一添加-nginx-站点">一、添加 nginx 站点</h1>
-<p>将域名解析到你要安装的服务器 IP</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
-<span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">git.yourdomain.top</span><span class="p">;</span><span class="c1">#域名修改为你自己的
-</span><span class="c1"></span>    
-    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kn">access_log</span>  <span class="s">/home/git/yourdomain_access.log</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h1 id="二安装并配置-gogs">二、安装并配置 gogs</h1>
+<h1 id="一安装-gogs">一、安装 Gogs</h1>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">adduser git <span class="c1">#创建用户 git</span>
 
 passwd git <span class="c1">#设置git用户的密码</span>
@@ -41,9 +43,9 @@ su git <span class="c1">#切换到git用户shell</span>
 
 <span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
 
-wget https://dl.gogs.io/0.11.91/gogs_0.11.91_linux_amd64.zip <span class="c1">#下载gogs</span>
+wget https://dl.gogs.io/0.12.3/gogs_0.12.3_linux_amd64.zip <span class="c1">#下载gogs</span>
 
-unzip gogs_0.11.91_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
+unzip gogs_0.12.3_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
 
 su <span class="c1">#切回root用户</span>
 
@@ -54,8 +56,109 @@ systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用go
 systemctl start gogs <span class="c1">#启动gogs</span>
 
 systemctl status gogs <span class="c1">#查看gogs运行状态</span>
-</code></pre></div><h1 id="注意事项">注意事项</h1>
-<p>如果你使用的是端口访问的方式，请在主机 IDC 控制台（阿里云或腾讯云等）设置对应的安全组规则，开放入方向的 3000 端口，并且在宝塔的安全设置中开放 3000 端口</p>
-<p>创建数据库请使用 utf-8 编码格式，不要 utf8mb4 。</p>]]></description>
+</code></pre></div><p>安装完成后，就可以用访问 http://ip:3000 配置 Gogs 了，不过我建议你别急着填下面的配置，先把 SSL 证书搞定，接着往下看吧。</p>
+<blockquote>
+<p>如果无法访问，说明服务器入方向的 3000 端口没有打开。</p>
+<ul>
+<li>
+<p>请在服务器供应商（如阿里云或腾讯云等）提供的控制面板设置对应的 防火墙/安全组 规则，开放入方向的 3000 端口。</p>
+</li>
+<li>
+<p>如果你使用了类似于宝塔之类的控制面板，请检查面板防火墙中是否中开放了 3000 端口。</p>
+</li>
+</ul>
+</blockquote>
+<a class="lightgallery" href="/post_images/image-20211130223902655.png" title="/post_images/image-20211130223902655.png" data-thumbnail="/post_images/image-20211130223902655.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h1 id="二配置域名与https">二、配置域名与HTTPS</h1>
+<h2 id="21配置域名访问">2.1、配置域名访问</h2>
+<p>将域名解析到服务器 IP 上，在 Nginx 配置文件中新增如下配置：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
+<span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
+</span><span class="c1"></span>    
+    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>这样就可以通过 HTTP 的方式访问 Gogs 了：http://git.yourdomain.com 。</p>
+<p>我们接着配置 SSL 证书，先不急着填写 Gogs 的配置，直接一步到位。</p>
+<a class="lightgallery" href="/post_images/image-20211130232845697.png" title="/post_images/image-20211130232845697.png" data-thumbnail="/post_images/image-20211130232845697.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<h2 id="22配置-ssl-证书">2.2、配置 SSL 证书</h2>
+<p>你可以按照下面的 Nginx 配置为模板，来配置你的 Gogs 站点。</p>
+<p>根据你的需求，你可以自由选择是否强制 HTTPS。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
+<span class="p">{</span>
+    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
+</span><span class="c1"></span>    
+    <span class="kn">ssl_certificate</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
+</span><span class="c1"></span>    <span class="kn">ssl_certificate_key</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
+</span><span class="c1"></span>    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+    <span class="kn">ssl_ciphers</span> <span class="s">EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5</span><span class="p">;</span>
+    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+    <span class="kn">ssl_session_cache</span> <span class="s">shared:SSL:10m</span><span class="p">;</span>
+    <span class="kn">ssl_session_timeout</span> <span class="mi">10m</span><span class="p">;</span>
+    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&#34;max-age=31536000&#34;</span><span class="p">;</span>
+	
+    <span class="c1"># HTTP 重定向到 HTTPS
+</span><span class="c1"></span>    <span class="c1"># if ($server_port !~ 443){
+</span><span class="c1"></span>    <span class="c1">#     rewrite ^(/.*)$ https://$host$1 permanent;
+</span><span class="c1"></span>    <span class="c1"># }
+</span><span class="c1"></span>    <span class="c1"># error_page 497  https://$host$request_uri;
+</span><span class="c1"></span>    
+    <span class="c1"># 反向代理
+</span><span class="c1"></span>    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">#禁止访问的文件或目录
+</span><span class="c1"></span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span>
+    <span class="p">{</span>
+        <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
+    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>配置完成后，你就可以通过 HTTPS 的方式访问 Gogs 了：https://git.yourdomain.com</p>
+<a class="lightgallery" href="/post_images/image-20211130233728858.png" title="/post_images/image-20211130233728858.png" data-thumbnail="/post_images/image-20211130233728858.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>现在我们可以开始填写 Gogs 的配置了。</p>
+<h1 id="三配置-gogs">三、配置 Gogs</h1>
+<p>此时我们已经配置好了 HTTPS 访问，那么在配置 Gogs 中有几处域名的设置需要注意。下面是一份样例配置，几处需要注意的域名我用红框标注出来了。</p>
+<a class="lightgallery" href="/post_images/image-20211130235300442.png" title="/post_images/image-20211130235300442.png" data-thumbnail="/post_images/image-20211130235300442.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>填写完配置后，点击立即安装，就完成了。</p>
+<a class="lightgallery" href="/post_images/image-20211130235544814.png" title="/post_images/image-20211130235544814.png" data-thumbnail="/post_images/image-20211130235544814.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>那么剩下的就跟 Github 一样，添加 SSH Key 到自己的账户中，就可以愉快建库冲浪了。</p>
+<blockquote>
+<p>Gogs 除了安装引导中的配置项，其实还有不少额外的配置。</p>
+<p>在 <code>custom/conf/app.ini</code> 文件中修改相应配置项的值即可。</p>
+<p>完整配置项样例：https://github.com/gogs/gogs/blob/main/conf/app.ini</p>
+<p>旧版本配置文件手册参考（中文）：https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md</p>
+</blockquote>
+<h1 id="ref">REF</h1>
+<p><a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
+<p><a href="https://gogs.io/docs/installation/configuration_and_run" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/configuration_and_run</a></p>
+<p><a href="https://www.zhihu.com/question/283143882/answer/434872781" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/283143882/answer/434872781</a></p>
+<p><a href="https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md" target="_blank" rel="noopener noreffer">https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md</a></p>]]></description>
 </item></channel>
 </rss>
