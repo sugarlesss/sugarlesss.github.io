@@ -26,7 +26,7 @@
 <li>GitStack</li>
 </ul>
 <p>最终，我选择 Gogs 的主要原因是它资源占用极低，你甚至可以用树莓派来搭建一个 Gogs，1C2G 的配置轻轻松松带 Gogs。</p>
-<p>比之 GitLab，Gogs 在资源占用和性能上的优势是非常明显的，因此它十分适合配置并不高的服务器搭建使用。</p>
+<p>比之 GitLab，Gogs 在资源占用和性能上的优势是非常明显的，因此它非常适合在硬件配置不高的服务器搭建。</p>
 <p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
 <p>演示站：<a href="https://try.gogs.io/" target="_blank" rel="noopener noreffer">https://try.gogs.io/</a></p>
 <p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
