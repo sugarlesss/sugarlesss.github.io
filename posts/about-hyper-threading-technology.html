@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/about-hyper-threading-technology.html"
-        },"genre": "posts","keywords": "CPU, 超线程","wordcount":  1721 ,
+        },"genre": "posts","keywords": "CPU, 超线程","wordcount":  1718 ,
         "url": "https:\/\/sugarless.cn\/posts\/about-hyper-threading-technology.html","datePublished": "2021-07-25T00:00:00+00:00","dateModified": "2021-07-25T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -119,7 +119,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/3000%E9%97%AE.html"><i class="far fa-folder fa-fw"></i>3000问</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1721 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-07-25">2021-07-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1718 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;<span id="/posts/about-hyper-threading-technology.html" class="leancloud_visitors" data-flag-title="为什么 CPU 的线程数是核心数的两倍？">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
@@ -138,7 +138,7 @@
             </div><div class="content" id="content"><p>4 核 8 线程，8 核 16 线程是啥意思？</p>
 <p>为什么不是 4 核 4 线程或 8 核 32 线程？</p>
 <h1 id="一关于超线程">一、关于超线程</h1>
-<p>超线程，其实是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
+<p>超线程是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
 <p>超线程技术其实是把一个 CPU 的物理核模拟成两个虚拟核用，通过此技术，英特尔实现在一个实体 CPU 物理核中，提供两个逻辑线程。让单个物理核心就能使用线程级的并行计算，进而兼容多线程操作系统和软件。超线程技术充分利用空闲 CPU 资源，在相同时间内完成更多工作。</p>
 <p>虽然采用超线程技术能够使得单个物理核心同时执行两个线程，但是当两个线程同时需要某个资源时，其中一个线程必须让出资源暂时挂起，直到这些资源空闲以后才能继续。因此，超线程的性能并不等于两个物理核心的性能。而且，超线程技术的 CPU 需要芯片组、操作系统和应用软件的支持，才能比较理想地发挥该项技术的优势。</p>
 <h1 id="二为什么超线程只虚拟出两个逻辑核">二、为什么超线程只虚拟出两个逻辑核？</h1>
