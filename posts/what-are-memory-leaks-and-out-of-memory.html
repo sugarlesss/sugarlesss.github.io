@@ -5,34 +5,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">为什么QQ令牌生成验证码不需要联网？ - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="为什么QQ令牌生成验证码不需要联网？" />
-<meta property="og:description" content="TOTP 算法的基本原理和实现" />
+    <title class="pjax-title">内存泄漏和内存溢出是什么？ - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="内存泄漏和内存溢出是什么？" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-12-05T00:00:00+00:00" />
+<meta property="og:url" content="https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-03T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-03T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="为什么QQ令牌生成验证码不需要联网？"/>
-<meta name="twitter:description" content="TOTP 算法的基本原理和实现"/>
+<meta name="twitter:title" content="内存泄漏和内存溢出是什么？"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><link rel="prev" href="https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/29.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html" /><link rel="prev" href="https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html" /><link rel="next" href="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "为什么QQ令牌生成验证码不需要联网？",
+        "headline": "内存泄漏和内存溢出是什么？",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/sugarless.cn\/posts\/about-time-based-one-time-password.html"
-        },"genre": "posts","wordcount":  815 ,
-        "url": "https:\/\/sugarless.cn\/posts\/about-time-based-one-time-password.html","datePublished": "2021-12-05T00:00:00+00:00","dateModified": "2021-12-05T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/sugarless.cn\/posts\/what-are-memory-leaks-and-out-of-memory.html"
+        },"genre": "posts","wordcount":  878 ,
+        "url": "https:\/\/sugarless.cn\/posts\/what-are-memory-leaks-and-out-of-memory.html","datePublished": "2021-12-03T00:00:00+00:00","dateModified": "2021-12-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -113,12 +113,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">为什么QQ令牌生成验证码不需要联网？</h1><h2 class="single-subtitle">关于 TOTP</h2><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">内存泄漏和内存溢出是什么？</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/3000%E9%97%AE.html"><i class="far fa-folder fa-fw"></i>3000问</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-05">2021-12-05</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-05">2021-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 815 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/about-time-based-one-time-password.html" class="leancloud_visitors" data-flag-title="为什么QQ令牌生成验证码不需要联网？">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-03">2021-12-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 878 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/what-are-memory-leaks-and-out-of-memory.html" class="leancloud_visitors" data-flag-title="内存泄漏和内存溢出是什么？">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -128,94 +128,47 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一qq令牌">一、QQ令牌</a>
+    <li><a href="#一内存泄漏和内存溢出">一、内存泄漏和内存溢出</a></li>
+    <li><a href="#二内存泄漏的分类">二、内存泄漏的分类</a>
       <ul>
-        <li><a href="#11手机-app">1.1、手机 APP</a></li>
-        <li><a href="#12硬件">1.2、硬件</a></li>
-      </ul>
-    </li>
-    <li><a href="#二totp-算法">二、TOTP 算法</a>
-      <ul>
-        <li><a href="#21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</a></li>
-        <li><a href="#22totp-的-javascript-实现">2.2、TOTP 的 JavaScript 实现</a></li>
+        <li><a href="#21常发性内存泄漏">2.1、常发性内存泄漏</a></li>
+        <li><a href="#22偶发性内存泄漏">2.2、偶发性内存泄漏</a></li>
+        <li><a href="#23一次性内存泄漏">2.3、一次性内存泄漏</a></li>
+        <li><a href="#24隐式内存泄漏">2.4、隐式内存泄漏</a></li>
       </ul>
     </li>
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>TOTP 算法的基本原理和实现</p>
-<h1 id="一qq令牌">一、QQ令牌</h1>
-<p>QQ 令牌是腾讯公司专为保护 QQ 帐号及游戏帐号安全的密保产品。QQ 令牌于 2010 年 7 月 6 日正式发布。无需联网，每隔 60 秒自动更新的动态密码是这款密保产品最大的特点，在登录、支付、游戏装备转让等敏感操作需要验证身份时，用户可以自主选择是否开启 QQ 令牌验证。</p>
-<p>QQ 令牌有手机 APP 和硬件实体两种。</p>
+            </div><div class="content" id="content"><h1 id="一内存泄漏和内存溢出">一、内存泄漏和内存溢出</h1>
+<p>内存泄漏 ( Memory Leak ) 指的是已分配的内存由于某种原因导致程序未释放或无法释放，造成程序继续占用已经不再使用的内存空间，令内存资源空耗。</p>
+<p>内存溢出 ( Out Of Memory，简称 OOM ) 是指系统中存在无法回收的内存或使用的内存过多，最终使得程序运行要用到的内存大于能提供的最大内存。</p>
+<p>由于内存泄漏缺陷具有隐蔽性、积累性的特征，比其他内存非法访问错误更难检测。因为内存泄漏的产生原因是内存块未被释放，属于遗漏型缺陷而不是过错型缺陷。此外，内存泄漏通常不会直接产生可观察的错误现象，而是逐渐积累，直到 OOM。</p>
 <blockquote>
-<p>QQ 令牌现已更名为 QQ 安全中心，动态密码更新间隔下调至 30 秒。</p>
+<p>内存泄漏最终会导致内存溢出。</p>
 </blockquote>
-<h2 id="11手机-app">1.1、手机 APP</h2>
-<figure><a class="lightgallery" href="../post_images/image-20211205123328343.png" title="/post_images/image-20211205123328343.png" data-thumbnail="/post_images/image-20211205123328343.png" data-sub-html="<h2>手机 APP</h2>">
-        <img
-            class="lazyload"
-            data-src="../post_images/image-20211205123328343.png"
-            data-srcset="../post_images/image-20211205123328343.png, ../post_images/image-20211205123328343.png 1.5x, ../post_images/image-20211205123328343.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20211205123328343.png"
-        />
-    </a><figcaption class="image-caption">手机 APP</figcaption>
-    </figure>
-<h2 id="12硬件">1.2、硬件</h2>
-<figure><a class="lightgallery" href="../post_images/image-20210913165747456.jpg" title="/post_images/image-20210913165747456.jpg" data-thumbnail="/post_images/image-20210913165747456.jpg" data-sub-html="<h2>QQ令牌 1代</h2>">
-        <img
-            class="lazyload"
-            data-src="../post_images/image-20210913165747456.jpg"
-            data-srcset="../post_images/image-20210913165747456.jpg, ../post_images/image-20210913165747456.jpg 1.5x, ../post_images/image-20210913165747456.jpg 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210913165747456.jpg"
-        />
-    </a><figcaption class="image-caption">QQ令牌 1代</figcaption>
-    </figure>
-<figure><a class="lightgallery" href="../post_images/image-20210913165713456.jpg" title="/post_images/image-20210913165713456.jpg" data-thumbnail="/post_images/image-20210913165713456.jpg" data-sub-html="<h2>QQ令牌 2代</h2>">
-        <img
-            class="lazyload"
-            data-src="../post_images/image-20210913165713456.jpg"
-            data-srcset="../post_images/image-20210913165713456.jpg, ../post_images/image-20210913165713456.jpg 1.5x, ../post_images/image-20210913165713456.jpg 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210913165713456.jpg"
-        />
-    </a><figcaption class="image-caption">QQ令牌 2代</figcaption>
-    </figure>
-<h1 id="二totp-算法">二、TOTP 算法</h1>
-<p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。在配置完成后，就不再需要与服务端通讯了，客户端使用 TOTP 算法就可以离线生成 30 秒有效期的 6 位数字验证码。它可以在离线的环境下为用户提供短时效的验证码，安全性比较高。</p>
-<h2 id="21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</h2>
-<p>那么<code>手机客户端</code>和<code>服务器</code>是如何保证在 <code>30</code> 秒期间都得到同一个 6 位数字验证码（哈希）呢？答案就是下面的公式。</p>
-<p><code>TC = floor((unixtime(now) − unixtime(T0)) / TS)</code></p>
-<p>上面的公式中，TC 表示一个时间计数器，<code>floor</code> 是向下取整函数，<code>unixtime(now)</code>是当前 Unix 时间戳，<code>unixtime(T0)</code>是约定的起始时间点的时间戳，默认是<code>0</code>，也就是1970年1月1日。TS 则是哈希有效期的时间长度，默认是30秒。因此，上面的公式就变成下面的形式。</p>
-<p><code>TC = floor(unixtime(now) / 30)</code></p>
-<p>所以，只要在 30 秒以内，TC 的值都是一样的。前提是服务器和手机的时间必须同步。接下来，就可以算出哈希了。</p>
-<p><code>TOTP = HASH(SecretKey, TC)</code></p>
-<p>上面代码中，<code>HASH</code>就是约定的哈希函数，默认是 SHA-1。</p>
-<h2 id="22totp-的-javascript-实现">2.2、TOTP 的 JavaScript 实现</h2>
-<p>TOTP 很容易写，各个语言都有实现。下面我用 JavaScript 实现<a href="https://github.com/simontabor/2fa" target="_blank" rel="noopener noreffer"><code>2fa</code></a>来演示一下真实代码。</p>
-<p>首先，安装这个模块。</p>
-<p><code>npm install --save 2fa</code></p>
-<p>然后，生成一个32位字符的密钥。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;2fa&#39;</span><span class="p">);</span>
-
-<span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx
-</span></code></pre></div><p>现在就可以生成哈希了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">);</span> <span class="c1">// 683464
-</span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub" target="_blank" rel="noopener noreffer">https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html" target="_blank" rel="noopener noreffer">http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html</a></p></div>
+<h1 id="二内存泄漏的分类">二、内存泄漏的分类</h1>
+<p>以产生的方式来分类，内存泄漏可以分为四类：</p>
+<h2 id="21常发性内存泄漏">2.1、常发性内存泄漏</h2>
+<p>发生内存泄漏的代码会被多次执行到，每次被执行时都会导致一块内存泄漏。</p>
+<h2 id="22偶发性内存泄漏">2.2、偶发性内存泄漏</h2>
+<p>发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。</p>
+<h2 id="23一次性内存泄漏">2.3、一次性内存泄漏</h2>
+<p>发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块且仅有一块内存发生泄漏。</p>
+<h2 id="24隐式内存泄漏">2.4、隐式内存泄漏</h2>
+<p>程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。从用户使用程序的角度来看，内存泄漏本身不会产生什么危害，作为一般的用户，根本感觉不到内存泄漏的存在。真正有危害的是内存泄漏的堆积，这会最终耗尽系统所有的内存。从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它更难被检测到。</p>
+<hr>
+<p>具体的例子等以后再补全&hellip;</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://zh.wikipedia.org/wiki/%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f" target="_blank" rel="noopener noreffer">https://zh.wikipedia.org/wiki/内存泄漏</a></p>
+<p><a href="https://baike.baidu.com/item/%e5%86%85%e5%ad%98%e6%ba%a2%e5%87%ba" target="_blank" rel="noopener noreffer">https://baike.baidu.com/item/内存溢出</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/103274367" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/103274367</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-12-05</span>
+                <span>更新于 2021-12-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -234,8 +187,8 @@
         </section>
     </div>
 
-    <div class="post-nav"><a href="../posts/what-are-memory-leaks-and-out-of-memory.html" class="prev" rel="prev" title="内存泄漏和内存溢出是什么？"><i class="fas fa-angle-left fa-fw"></i>内存泄漏和内存溢出是什么？</a>
-            <a href="../posts/series/leetcode-jianzhioffer-java/29.html" class="next" rel="next" title="29、剑指 Offer 20. 表示数值的字符串">29、剑指 Offer 20. 表示数值的字符串<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../posts/how-to-build-a-private-git-server-with-gogs.html" class="prev" rel="prev" title="如何拥有一个属于自己的 Github ？"><i class="fas fa-angle-left fa-fw"></i>如何拥有一个属于自己的 Github ？</a>
+            <a href="../posts/about-time-based-one-time-password.html" class="next" rel="next" title="为什么QQ令牌生成验证码不需要联网？">为什么QQ令牌生成验证码不需要联网？<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.

@@ -60,6 +60,35 @@
 <p><a href="https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub" target="_blank" rel="noopener noreffer">https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html" target="_blank" rel="noopener noreffer">http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html</a></p>]]></description>
 </item><item>
+    <title>内存泄漏和内存溢出是什么？</title>
+    <link>https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html</link>
+    <pubDate>Fri, 03 Dec 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html</guid>
+    <description><![CDATA[<h1 id="一内存泄漏和内存溢出">一、内存泄漏和内存溢出</h1>
+<p>内存泄漏 ( Memory Leak ) 指的是已分配的内存由于某种原因导致程序未释放或无法释放，造成程序继续占用已经不再使用的内存空间，令内存资源空耗。</p>
+<p>内存溢出 ( Out Of Memory，简称 OOM ) 是指系统中存在无法回收的内存或使用的内存过多，最终使得程序运行要用到的内存大于能提供的最大内存。</p>
+<p>由于内存泄漏缺陷具有隐蔽性、积累性的特征，比其他内存非法访问错误更难检测。因为内存泄漏的产生原因是内存块未被释放，属于遗漏型缺陷而不是过错型缺陷。此外，内存泄漏通常不会直接产生可观察的错误现象，而是逐渐积累，直到 OOM。</p>
+<blockquote>
+<p>内存泄漏最终会导致内存溢出。</p>
+</blockquote>
+<h1 id="二内存泄漏的分类">二、内存泄漏的分类</h1>
+<p>以产生的方式来分类，内存泄漏可以分为四类：</p>
+<h2 id="21常发性内存泄漏">2.1、常发性内存泄漏</h2>
+<p>发生内存泄漏的代码会被多次执行到，每次被执行时都会导致一块内存泄漏。</p>
+<h2 id="22偶发性内存泄漏">2.2、偶发性内存泄漏</h2>
+<p>发生内存泄漏的代码只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性的也许就变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。</p>
+<h2 id="23一次性内存泄漏">2.3、一次性内存泄漏</h2>
+<p>发生内存泄漏的代码只会被执行一次，或者由于算法上的缺陷，导致总会有一块且仅有一块内存发生泄漏。</p>
+<h2 id="24隐式内存泄漏">2.4、隐式内存泄漏</h2>
+<p>程序在运行过程中不停的分配内存，但是直到结束的时候才释放内存。严格的说这里并没有发生内存泄漏，因为最终程序释放了所有申请的内存。但是对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致最终耗尽系统的所有内存。所以，我们称这类内存泄漏为隐式内存泄漏。从用户使用程序的角度来看，内存泄漏本身不会产生什么危害，作为一般的用户，根本感觉不到内存泄漏的存在。真正有危害的是内存泄漏的堆积，这会最终耗尽系统所有的内存。从这个角度来说，一次性内存泄漏并没有什么危害，因为它不会堆积，而隐式内存泄漏危害性则非常大，因为较之于常发性和偶发性内存泄漏它更难被检测到。</p>
+<hr>
+<p>具体的例子等以后再补全&hellip;</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://zh.wikipedia.org/wiki/%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f" target="_blank" rel="noopener noreffer">https://zh.wikipedia.org/wiki/内存泄漏</a></p>
+<p><a href="https://baike.baidu.com/item/%e5%86%85%e5%ad%98%e6%ba%a2%e5%87%ba" target="_blank" rel="noopener noreffer">https://baike.baidu.com/item/内存溢出</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/103274367" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/103274367</a></p>]]></description>
+</item><item>
     <title>CDN 是什么？ 有多贵？</title>
     <link>https://sugarless.cn/posts/what-is-cdn.html</link>
     <pubDate>Mon, 02 Aug 2021 00:00:00 &#43;0000</pubDate><author>
