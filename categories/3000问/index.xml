@@ -32,7 +32,8 @@
     </a><figcaption class="image-caption">QQ令牌 2代</figcaption>
     </figure>
 <h1 id="二totp-算法">二、TOTP 算法</h1>
-<p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。在配置完成后，就不再需要与服务端通讯了，客户端使用 TOTP 算法就可以离线生成 30 秒有效期的 6 位数字验证码。它可以在离线的环境下为用户提供短时效的验证码，安全性比较高。</p>
+<p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。</p>
+<p>通常情况下，客户端在首次配置完成后，就不再需要与服务端通讯了。借助 TOTP 算法，客户端可以在离线环境下生成 30 秒有效期的 6 位数字验证码。因为不需要联网就能生成短时效的动态密码，所以安全性比较高，很多网站和应用都采用这种形式做两步验证（2FA）。</p>
 <h2 id="21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</h2>
 <p>那么<code>手机客户端</code>和<code>服务器</code>是如何保证在 <code>30</code> 秒期间都得到同一个 6 位数字验证码（哈希）呢？答案就是下面的公式。</p>
 <p><code>TC = floor((unixtime(now) − unixtime(T0)) / TS)</code></p>
