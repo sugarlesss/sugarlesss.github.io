@@ -5,13 +5,13 @@
         <description>CPU - 标签 - 無糖的小宇宙</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
             <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/cpu.html" rel="self" type="application/rss+xml" /><item>
-    <title>关于超线程技术</title>
+    <title>为什么 CPU 的线程数是核心数的两倍？</title>
     <link>https://sugarless.cn/posts/about-hyper-threading-technology.html</link>
     <pubDate>Sun, 25 Jul 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/about-hyper-threading-technology.html</guid>
     <description><![CDATA[<p>4 核 8 线程，8 核 16 线程是啥意思？</p>
-<p>为什么不是 4 核 4 线程或 8 核 10 线程、11 线程？</p>
+<p>为什么不是 4 核 4 线程或 8 核 32 线程？</p>
 <h1 id="一关于超线程">一、关于超线程</h1>
 <p>超线程，其实是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
 <p>超线程技术其实是把一个 CPU 的物理核模拟成两个虚拟核用，通过此技术，英特尔实现在一个实体 CPU 物理核中，提供两个逻辑线程。让单个物理核心就能使用线程级的并行计算，进而兼容多线程操作系统和软件。超线程技术充分利用空闲 CPU 资源，在相同时间内完成更多工作。</p>
