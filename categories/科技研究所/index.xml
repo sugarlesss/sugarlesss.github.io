@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>科技研究所 - 分类 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/categories/%E7%A7%91%E6%8A%80%E7%A0%94%E7%A9%B6%E6%89%80.html</link>
+        <description>科技研究所 - 分类 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/categories/%E7%A7%91%E6%8A%80%E7%A0%94%E7%A9%B6%E6%89%80.html" rel="self" type="application/rss+xml" /><item>
+    <title>为什么QQ令牌生成验证码不需要联网？</title>
+    <link>https://sugarless.cn/posts/about-time-based-one-time-password.html</link>
+    <pubDate>Sun, 05 Dec 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/about-time-based-one-time-password.html</guid>
+    <description><![CDATA[<p>TOTP 算法的基本原理和实现</p>
+<h1 id="一qq令牌">一、QQ令牌</h1>
+<p>QQ 令牌是腾讯公司专为保护 QQ 帐号及游戏帐号安全的密保产品。QQ 令牌于 2010 年 7 月 6 日正式发布。无需联网，每隔 60 秒自动更新的动态密码是这款密保产品最大的特点，在登录、支付、游戏装备转让等敏感操作需要验证身份时，用户可以自主选择是否开启 QQ 令牌验证。</p>
+<p>QQ 令牌有手机 APP 和硬件实体两种。</p>
+<blockquote>
+<p>QQ 令牌现已更名为 QQ 安全中心，动态密码更新间隔下调至 30 秒。</p>
+</blockquote>
+<h2 id="11手机-app">1.1、手机 APP</h2>
+<figure><a class="lightgallery" href="/post_images/image-20211205123328343.png" title="/post_images/image-20211205123328343.png" data-thumbnail="/post_images/image-20211205123328343.png" data-sub-html="<h2>手机 APP</h2>">
+        
+    </a><figcaption class="image-caption">手机 APP</figcaption>
+    </figure>
+<h2 id="12硬件">1.2、硬件</h2>
+<figure><a class="lightgallery" href="/post_images/image-20210913165747456.jpg" title="/post_images/image-20210913165747456.jpg" data-thumbnail="/post_images/image-20210913165747456.jpg" data-sub-html="<h2>QQ令牌 1代</h2>">
+        
+    </a><figcaption class="image-caption">QQ令牌 1代</figcaption>
+    </figure>
+<figure><a class="lightgallery" href="/post_images/image-20210913165713456.jpg" title="/post_images/image-20210913165713456.jpg" data-thumbnail="/post_images/image-20210913165713456.jpg" data-sub-html="<h2>QQ令牌 2代</h2>">
+        
+    </a><figcaption class="image-caption">QQ令牌 2代</figcaption>
+    </figure>
+<h1 id="二totp-算法">二、TOTP 算法</h1>
+<p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。</p>
+<p>通常情况下，客户端在首次配置完成后，就不再需要与服务端通讯了。借助 TOTP 算法，客户端可以在离线环境下生成 30 秒有效期的 6 位数字验证码。因为不需要联网就能生成短时效的动态密码，所以安全性比较高，很多网站和应用都采用这种形式做两步验证（2FA）。</p>
+<h2 id="21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</h2>
+<p>那么<code>手机客户端</code>和<code>服务器</code>是如何保证在 <code>30</code> 秒期间都得到同一个 6 位数字验证码（哈希）呢？答案就是下面的公式。</p>
+<p><code>TC = floor((unixtime(now) − unixtime(T0)) / TS)</code></p>
+<p>上面的公式中，TC 表示一个时间计数器，<code>floor</code> 是向下取整函数，<code>unixtime(now)</code>是当前 Unix 时间戳，<code>unixtime(T0)</code>是约定的起始时间点的时间戳，默认是<code>0</code>，也就是1970年1月1日。TS 则是哈希有效期的时间长度，默认是30秒。因此，上面的公式就变成下面的形式。</p>
+<p><code>TC = floor(unixtime(now) / 30)</code></p>
+<p>所以，只要在 30 秒以内，TC 的值都是一样的。前提是服务器和手机的时间必须同步。接下来，就可以算出哈希了。</p>
+<p><code>TOTP = HASH(SecretKey, TC)</code></p>
+<p>上面代码中，<code>HASH</code>就是约定的哈希函数，默认是 SHA-1。</p>
+<h2 id="22totp-的-javascript-实现">2.2、TOTP 的 JavaScript 实现</h2>
+<p>TOTP 很容易写，各个语言都有实现。下面我用 JavaScript 实现<a href="https://github.com/simontabor/2fa" target="_blank" rel="noopener noreffer"><code>2fa</code></a>来演示一下真实代码。</p>
+<p>首先，安装这个模块。</p>
+<p><code>npm install --save 2fa</code></p>
+<p>然后，生成一个32位字符的密钥。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;2fa&#39;</span><span class="p">);</span>
+
+<span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+<span class="p">});</span>
+<span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx
+</span></code></pre></div><p>现在就可以生成哈希了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">);</span> <span class="c1">// 683464
+</span></code></pre></div><h1 id="ref">REF</h1>
+<p><a href="https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub" target="_blank" rel="noopener noreffer">https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html" target="_blank" rel="noopener noreffer">http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html</a></p>]]></description>
+</item></channel>
+</rss>
