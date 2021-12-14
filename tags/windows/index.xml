@@ -1,0 +1,86 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Windows - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/tags/windows.html</link>
+        <description>Windows - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/windows.html" rel="self" type="application/rss+xml" /><item>
+    <title>如何获取连接过的 WIFI 的密码？</title>
+    <link>https://sugarless.cn/posts/how-to-get-the-wifi-password-that-has-been-connected-to-the-windows-system.html</link>
+    <pubDate>Fri, 08 Oct 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/how-to-get-the-wifi-password-that-has-been-connected-to-the-windows-system.html</guid>
+    <description><![CDATA[<p>本文以 Windows 系统与小米安卓系统 MIUI 为例，教你如何获取连接过的 WIFI 的密码。</p>
+<h1 id="一windows">一、Windows</h1>
+<p>以<code>管理员</code> 身份运行 <code>cmd</code> ，运行<code>netsh wlan show profile</code> 查看所有连接过的 WIFI，如下所示：</p>
+<pre tabindex="0"><code>C:\Windows\system32&gt;netsh wlan show profile
+
+接口 WLAN 上的配置文件:
+
+
+组策略配置文件(只读)
+---------------------------------
+    &lt;无&gt;
+
+用户配置文件
+-------------
+    所有用户配置文件 : TP-LINK_4C31E6
+    所有用户配置文件 : REBOX-01_5G
+    所有用户配置文件 : Redmi_3FD4_5G
+</code></pre><p>接着运行：<code>netsh wlan export profile folder=C:\ key=clear</code> 导出配置信息，如下所示：</p>
+<pre tabindex="0"><code>C:\Windows\system32&gt;netsh wlan export profile folder=C:\ key=clear
+
+接口配置文件“TP-LINK_4C31E6”已成功保存在文件“C:\WLAN-TP-LINK_4C31E6.xml”中。
+
+接口配置文件“REBOX-01_5G”已成功保存在文件“C:\WLAN-REBOX-01_5G.xml”中。
+
+接口配置文件“Redmi_3FD4_5G”已成功保存在文件“C:\WLAN-Redmi_3FD4_5G.xml”中。
+</code></pre><p>在 <code>C:\WLAN-REBOX-01_5G.xml</code> 配置文件中，<code>keyMaterial</code> 标签中的 <code>rebox1930</code> 就是 WIFI 密码了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+<span class="nt">&lt;WLANProfile</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v1&#34;</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+	<span class="nt">&lt;SSIDConfig&gt;</span>
+		<span class="nt">&lt;SSID&gt;</span>
+			<span class="nt">&lt;hex&gt;</span>5245424F582D30315F3547<span class="nt">&lt;/hex&gt;</span>
+			<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+		<span class="nt">&lt;/SSID&gt;</span>
+	<span class="nt">&lt;/SSIDConfig&gt;</span>
+	<span class="nt">&lt;connectionType&gt;</span>ESS<span class="nt">&lt;/connectionType&gt;</span>
+	<span class="nt">&lt;connectionMode&gt;</span>manual<span class="nt">&lt;/connectionMode&gt;</span>
+	<span class="nt">&lt;MSM&gt;</span>
+		<span class="nt">&lt;security&gt;</span>
+			<span class="nt">&lt;authEncryption&gt;</span>
+				<span class="nt">&lt;authentication&gt;</span>WPA2PSK<span class="nt">&lt;/authentication&gt;</span>
+				<span class="nt">&lt;encryption&gt;</span>AES<span class="nt">&lt;/encryption&gt;</span>
+				<span class="nt">&lt;useOneX&gt;</span>false<span class="nt">&lt;/useOneX&gt;</span>
+			<span class="nt">&lt;/authEncryption&gt;</span>
+			<span class="nt">&lt;sharedKey&gt;</span>
+				<span class="nt">&lt;keyType&gt;</span>passPhrase<span class="nt">&lt;/keyType&gt;</span>
+				<span class="nt">&lt;protected&gt;</span>false<span class="nt">&lt;/protected&gt;</span>
+				<span class="nt">&lt;keyMaterial&gt;</span>rebox1930<span class="nt">&lt;/keyMaterial&gt;</span>
+			<span class="nt">&lt;/sharedKey&gt;</span>
+		<span class="nt">&lt;/security&gt;</span>
+	<span class="nt">&lt;/MSM&gt;</span>
+	<span class="nt">&lt;MacRandomization</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v3&#34;</span><span class="nt">&gt;</span>
+		<span class="nt">&lt;enableRandomization&gt;</span>false<span class="nt">&lt;/enableRandomization&gt;</span>
+		<span class="nt">&lt;randomizationSeed&gt;</span>4220620975<span class="nt">&lt;/randomizationSeed&gt;</span>
+	<span class="nt">&lt;/MacRandomization&gt;</span>
+<span class="nt">&lt;/WLANProfile&gt;</span>
+</code></pre></div><h1 id="二小米安卓系统-miui">二、小米安卓系统 MIUI</h1>
+<p>系统设置 -&gt; WLAN，点击分享密码</p>
+<a class="lightgallery" href="/post_images/image-20211214150850666.png" title="/post_images/image-20211214150850666.png" data-thumbnail="/post_images/image-20211214150850666.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>截图保存此二维码</p>
+<a class="lightgallery" href="/post_images/image-20211214151258952.png" title="/post_images/image-20211214151258952.png" data-thumbnail="/post_images/image-20211214151258952.png">
+        
+    </a>
+<!-- raw HTML omitted -->
+<p>打开微信，扫描这个二维码，就可以看到红线处的密码 <code>rebox1930</code> 了。</p>
+<a class="lightgallery" href="/post_images/image-20211214151417855.png" title="/post_images/image-20211214151417855.png" data-thumbnail="/post_images/image-20211214151417855.png">
+        
+    </a>
+<!-- raw HTML omitted -->]]></description>
+</item></channel>
+</rss>
