@@ -134,7 +134,7 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl restart sshd
 </code></pre></div>]]></description>
 </item><item>
-    <title>SSH 远程会话管理工具 – screen使用教程</title>
+    <title>SSH 远程会话管理工具 – screen 使用教程</title>
     <link>https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html</link>
     <pubDate>Sat, 28 Mar 2020 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
@@ -149,11 +149,14 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 <p>PS：安装 epel ：https://blog.keyboardman.fun/linux/729.html</p>
 <h1 id="三screen-命令使用方法">三、screen 命令使用方法？</h1>
 <h2 id="31-创建-screen-会话">3.1 创建 screen 会话</h2>
-<p>可以先执行：screen -S lnmp ，screen 就会创建一个名字为 lnmp 的会话。 VPS 侦探 <a href="https://www.vpser.net/" target="_blank" rel="noopener noreffer">https://www.vpser.net/</a></p>
+<p>可以先执行：<code>screen -S lnmp</code>  ，screen 就会创建一个名字为 lnmp 的会话。</p>
 <h2 id="32-暂时离开保留-screen-会话中的任务或程序">3.2 暂时离开，保留 screen 会话中的任务或程序</h2>
 <p>当需要临时离开时（会话中的程序不会关闭，仍在运行）可以用快捷键 Ctrl+a d (即按住 Ctrl，依次再按 a,d)</p>
 <h2 id="33-恢复-screen-会话">3.3 恢复 screen 会话</h2>
-<p>当回来时可以再执行执行：screen -r lnmp 即可恢复到离开前创建的 lnmp 会话的工作界面。如果忘记了，或者当时没有指定会话名，可以执行：screen -ls screen 会列出当前存在的会话列表</p>
+<p>当回来时可以再执行执行：<code>screen -r lnmp</code>  即可恢复到离开前创建的 lnmp 会话的工作界面。如果忘记了，或者当时没有指定会话名，可以执行：<code>screen -ls screen</code>  会列出当前存在的会话列表。</p>
+<blockquote>
+<p>如果因为某种异常情况，但你断开了 SSH 连接，但 screen 状态为 Attached 时，可以使用 <code>screen -D -r lnmp</code> ，先踢掉前一用户，再登陆。</p>
+</blockquote>
 <h2 id="34-关闭-screen-的会话">3.4 关闭 screen 的会话</h2>
 <p>执行：exit ，会提示：[screen is terminating]，表示已经成功退出 screen 会话。</p>
 <h1 id="四远程演示">四、远程演示</h1>
@@ -163,7 +166,9 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 Ctrl+a w ：窗口列表
 Ctrl+a n ：下一个窗口
 Ctrl+a p ：上一个窗口
-Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>]]></description>
+Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.vpser.net/manage/screen.html" target="_blank" rel="noopener noreffer">https://www.vpser.net/manage/screen.html</a></p>]]></description>
 </item><item>
     <title>如何使用 SSH 远程登录 Linux 服务器</title>
     <link>https://sugarless.cn/posts/how-to-use-ssh-to-remotely-log-in-to-a-linux-server.html</link>
