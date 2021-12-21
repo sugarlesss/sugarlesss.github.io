@@ -1,0 +1,29 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>jsDelivr - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/tags/jsdelivr.html</link>
+        <description>jsDelivr - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 21 Dec 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/jsdelivr.html" rel="self" type="application/rss+xml" /><item>
+    <title>jsDelivr 中国区 ICP 许可证被吊销</title>
+    <link>https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html</link>
+    <pubDate>Tue, 21 Dec 2021 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html</guid>
+    <description><![CDATA[<p>jsdelivr 是一个免费开源的 CDN 服务站点。在过去的几年中，不少开发者使用它加速网站的静态资源文件。它依靠在中国大陆地区提供的免费且高速的 CDN 服务，深受广大站长和开发者好评。</p>
+<figure><a class="lightgallery" href="/post_images/images-20211221224058456.png" title="/post_images/images-20211221224058456.png" data-thumbnail="/post_images/images-20211221224058456.png" data-sub-html="<h2>jsdelivr 官网</h2>">
+        
+    </a><figcaption class="image-caption">jsdelivr 官网</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<p>然而非常不幸的是，昨天 jsDelivr 在国内的故障，并不是像往常一样的因为 SSL 证书过期导致资源无法访问，而是域名备案被吊销，导致国内 CDN 提供商<a href="https://www.wangsu.com/" target="_blank" rel="noopener noreffer">网宿</a>移除了 jsDelivr 的账号。目前 jsDelivr 国内线路为 <a href="https://fastly.com/" target="_blank" rel="noopener noreffer">Fastly</a>。</p>
+<p>昨天，<a href="https://www.jsdelivr.com/" target="_blank" rel="noopener noreffer">jsDelivr</a> 团队主要负责人 Dmitriy Akulov 在 jsDelivr 官方 <a href="https://github.com/jsdelivr/jsdelivr" target="_blank" rel="noopener noreffer">GitHub 仓库</a>的一条 issue 下发表了以下<a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">说明</a>：</p>
+<figure><a class="lightgallery" href="/post_images/images-20211222003005456.png" title="/post_images/images-20211222003005456.png" data-thumbnail="/post_images/images-20211222003005456.png" data-sub-html="<h2>官方说明</h2>">
+        
+    </a><figcaption class="image-caption">官方说明</figcaption>
+    </figure>
+<!-- raw HTML omitted -->
+<h1 id="ref">REF</h1>
+<p><a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996</a></p>]]></description>
+</item></channel>
+</rss>

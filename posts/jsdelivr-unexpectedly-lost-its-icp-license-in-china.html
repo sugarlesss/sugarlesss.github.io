@@ -5,34 +5,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">为什么QQ令牌生成验证码不需要联网？ - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="为什么QQ令牌生成验证码不需要联网？" />
-<meta property="og:description" content="TOTP 算法的基本原理和实现" />
+    <title class="pjax-title">jsDelivr 中国区 ICP 许可证被吊销 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="jsDelivr 中国区 ICP 许可证被吊销" />
+<meta property="og:description" content="" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-12-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-12-05T00:00:00+00:00" />
+<meta property="og:url" content="https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-12-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-12-21T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="为什么QQ令牌生成验证码不需要联网？"/>
-<meta name="twitter:description" content="TOTP 算法的基本原理和实现"/>
+<meta name="twitter:title" content="jsDelivr 中国区 ICP 许可证被吊销"/>
+<meta name="twitter:description" content=""/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><link rel="prev" href="https://sugarless.cn/posts/what-are-memory-leaks-and-out-of-memory.html" /><link rel="next" href="https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" /><link rel="prev" href="https://sugarless.cn/posts/about-time-based-one-time-password.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/29.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
     <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
     <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "为什么QQ令牌生成验证码不需要联网？",
+        "headline": "jsDelivr 中国区 ICP 许可证被吊销",
         "inLanguage": "zh-CN",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/sugarless.cn\/posts\/about-time-based-one-time-password.html"
-        },"genre": "posts","wordcount":  854 ,
-        "url": "https:\/\/sugarless.cn\/posts\/about-time-based-one-time-password.html","datePublished": "2021-12-05T00:00:00+00:00","dateModified": "2021-12-05T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@id": "https:\/\/sugarless.cn\/posts\/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html"
+        },"genre": "posts","keywords": "jsDelivr","wordcount":  224 ,
+        "url": "https:\/\/sugarless.cn\/posts\/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html","datePublished": "2021-12-21T00:00:00+00:00","dateModified": "2021-12-21T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
                 "@type": "Person",
@@ -113,12 +113,12 @@
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
         <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">为什么QQ令牌生成验证码不需要联网？</h1><h2 class="single-subtitle">关于 TOTP</h2><div class="post-meta">
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">jsDelivr 中国区 ICP 许可证被吊销</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
-                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E7%A7%91%E6%8A%80%E7%A0%94%E7%A9%B6%E6%89%80.html"><i class="far fa-folder fa-fw"></i>科技研究所</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-05">2021-12-05</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-05">2021-12-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 854 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;<span id="/posts/about-time-based-one-time-password.html" class="leancloud_visitors" data-flag-title="为什么QQ令牌生成验证码不需要联网？">
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/news.html"><i class="far fa-folder fa-fw"></i>news</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-12-21">2021-12-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 224 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;<span id="/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" class="leancloud_visitors" data-flag-title="jsDelivr 中国区 ICP 许可证被吊销">
                         <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
@@ -128,95 +128,42 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#一qq令牌">一、QQ令牌</a>
-      <ul>
-        <li><a href="#11手机-app">1.1、手机 APP</a></li>
-        <li><a href="#12硬件">1.2、硬件</a></li>
-      </ul>
-    </li>
-    <li><a href="#二totp-算法">二、TOTP 算法</a>
-      <ul>
-        <li><a href="#21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</a></li>
-        <li><a href="#22totp-的-javascript-实现">2.2、TOTP 的 JavaScript 实现</a></li>
-      </ul>
-    </li>
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>TOTP 算法的基本原理和实现</p>
-<h1 id="一qq令牌">一、QQ令牌</h1>
-<p>QQ 令牌是腾讯公司专为保护 QQ 帐号及游戏帐号安全的密保产品。QQ 令牌于 2010 年 7 月 6 日正式发布。无需联网，每隔 60 秒自动更新的动态密码是这款密保产品最大的特点，在登录、支付、游戏装备转让等敏感操作需要验证身份时，用户可以自主选择是否开启 QQ 令牌验证。</p>
-<p>QQ 令牌有手机 APP 和硬件实体两种。</p>
-<blockquote>
-<p>QQ 令牌现已更名为 QQ 安全中心，动态密码更新间隔下调至 30 秒。</p>
-</blockquote>
-<h2 id="11手机-app">1.1、手机 APP</h2>
-<figure><a class="lightgallery" href="../post_images/image-20211205123328343.png" title="/post_images/image-20211205123328343.png" data-thumbnail="/post_images/image-20211205123328343.png" data-sub-html="<h2>手机 APP</h2>">
+            </div><div class="content" id="content"><p>jsdelivr 是一个免费开源的 CDN 服务站点。在过去的几年中，不少开发者使用它加速网站的静态资源文件。它依靠在中国大陆地区提供的免费且高速的 CDN 服务，深受广大站长和开发者好评。</p>
+<figure><a class="lightgallery" href="../post_images/images-20211221224058456.png" title="/post_images/images-20211221224058456.png" data-thumbnail="/post_images/images-20211221224058456.png" data-sub-html="<h2>jsdelivr 官网</h2>">
         <img
             class="lazyload"
-            data-src="../post_images/image-20211205123328343.png"
-            data-srcset="../post_images/image-20211205123328343.png, ../post_images/image-20211205123328343.png 1.5x, ../post_images/image-20211205123328343.png 2x"
+            data-src="../post_images/images-20211221224058456.png"
+            data-srcset="../post_images/images-20211221224058456.png, ../post_images/images-20211221224058456.png 1.5x, ../post_images/images-20211221224058456.png 2x"
             data-sizes="auto"
-            alt="/post_images/image-20211205123328343.png"
+            alt="/post_images/images-20211221224058456.png"
         />
-    </a><figcaption class="image-caption">手机 APP</figcaption>
+    </a><figcaption class="image-caption">jsdelivr 官网</figcaption>
     </figure>
-<h2 id="12硬件">1.2、硬件</h2>
-<figure><a class="lightgallery" href="../post_images/image-20210913165747456.jpg" title="/post_images/image-20210913165747456.jpg" data-thumbnail="/post_images/image-20210913165747456.jpg" data-sub-html="<h2>QQ令牌 1代</h2>">
+<!-- raw HTML omitted -->
+<p>然而非常不幸的是，昨天 jsDelivr 在国内的故障，并不是像往常一样的因为 SSL 证书过期导致资源无法访问，而是域名备案被吊销，导致国内 CDN 提供商<a href="https://www.wangsu.com/" target="_blank" rel="noopener noreffer">网宿</a>移除了 jsDelivr 的账号。目前 jsDelivr 国内线路为 <a href="https://fastly.com/" target="_blank" rel="noopener noreffer">Fastly</a>。</p>
+<p>昨天，<a href="https://www.jsdelivr.com/" target="_blank" rel="noopener noreffer">jsDelivr</a> 团队主要负责人 Dmitriy Akulov 在 jsDelivr 官方 <a href="https://github.com/jsdelivr/jsdelivr" target="_blank" rel="noopener noreffer">GitHub 仓库</a>的一条 issue 下发表了以下<a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">说明</a>：</p>
+<figure><a class="lightgallery" href="../post_images/images-20211222003005456.png" title="/post_images/images-20211222003005456.png" data-thumbnail="/post_images/images-20211222003005456.png" data-sub-html="<h2>官方说明</h2>">
         <img
             class="lazyload"
-            data-src="../post_images/image-20210913165747456.jpg"
-            data-srcset="../post_images/image-20210913165747456.jpg, ../post_images/image-20210913165747456.jpg 1.5x, ../post_images/image-20210913165747456.jpg 2x"
+            data-src="../post_images/images-20211222003005456.png"
+            data-srcset="../post_images/images-20211222003005456.png, ../post_images/images-20211222003005456.png 1.5x, ../post_images/images-20211222003005456.png 2x"
             data-sizes="auto"
-            alt="/post_images/image-20210913165747456.jpg"
+            alt="/post_images/images-20211222003005456.png"
         />
-    </a><figcaption class="image-caption">QQ令牌 1代</figcaption>
+    </a><figcaption class="image-caption">官方说明</figcaption>
     </figure>
-<figure><a class="lightgallery" href="../post_images/image-20210913165713456.jpg" title="/post_images/image-20210913165713456.jpg" data-thumbnail="/post_images/image-20210913165713456.jpg" data-sub-html="<h2>QQ令牌 2代</h2>">
-        <img
-            class="lazyload"
-            data-src="../post_images/image-20210913165713456.jpg"
-            data-srcset="../post_images/image-20210913165713456.jpg, ../post_images/image-20210913165713456.jpg 1.5x, ../post_images/image-20210913165713456.jpg 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210913165713456.jpg"
-        />
-    </a><figcaption class="image-caption">QQ令牌 2代</figcaption>
-    </figure>
-<h1 id="二totp-算法">二、TOTP 算法</h1>
-<p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。</p>
-<p>通常情况下，客户端在首次配置完成后，就不再需要与服务端通讯了。借助 TOTP 算法，客户端可以在离线环境下生成 30 秒有效期的 6 位数字验证码。因为不需要联网就能生成短时效的动态密码，所以安全性比较高，很多网站和应用都采用这种形式做两步验证（2FA）。</p>
-<h2 id="21如何离线生成一个-30-秒有效期的-6-位数字验证码">2.1、如何离线生成一个 30 秒有效期的 6 位数字验证码？</h2>
-<p>那么<code>手机客户端</code>和<code>服务器</code>是如何保证在 <code>30</code> 秒期间都得到同一个 6 位数字验证码（哈希）呢？答案就是下面的公式。</p>
-<p><code>TC = floor((unixtime(now) − unixtime(T0)) / TS)</code></p>
-<p>上面的公式中，TC 表示一个时间计数器，<code>floor</code> 是向下取整函数，<code>unixtime(now)</code>是当前 Unix 时间戳，<code>unixtime(T0)</code>是约定的起始时间点的时间戳，默认是<code>0</code>，也就是1970年1月1日。TS 则是哈希有效期的时间长度，默认是30秒。因此，上面的公式就变成下面的形式。</p>
-<p><code>TC = floor(unixtime(now) / 30)</code></p>
-<p>所以，只要在 30 秒以内，TC 的值都是一样的。前提是服务器和手机的时间必须同步。接下来，就可以算出哈希了。</p>
-<p><code>TOTP = HASH(SecretKey, TC)</code></p>
-<p>上面代码中，<code>HASH</code>就是约定的哈希函数，默认是 SHA-1。</p>
-<h2 id="22totp-的-javascript-实现">2.2、TOTP 的 JavaScript 实现</h2>
-<p>TOTP 很容易写，各个语言都有实现。下面我用 JavaScript 实现<a href="https://github.com/simontabor/2fa" target="_blank" rel="noopener noreffer"><code>2fa</code></a>来演示一下真实代码。</p>
-<p>首先，安装这个模块。</p>
-<p><code>npm install --save 2fa</code></p>
-<p>然后，生成一个32位字符的密钥。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;2fa&#39;</span><span class="p">);</span>
-
-<span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx
-</span></code></pre></div><p>现在就可以生成哈希了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">);</span> <span class="c1">// 683464
-</span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub" target="_blank" rel="noopener noreffer">https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub</a></p>
-<p><a href="http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html" target="_blank" rel="noopener noreffer">http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html</a></p></div>
+<!-- raw HTML omitted -->
+<h1 id="ref">REF</h1>
+<p><a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2021-12-05</span>
+                <span>更新于 2021-12-21</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -229,14 +176,14 @@
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/jsdelivr.html">jsDelivr</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="../">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="../posts/what-are-memory-leaks-and-out-of-memory.html" class="prev" rel="prev" title="内存泄漏和内存溢出是什么？"><i class="fas fa-angle-left fa-fw"></i>内存泄漏和内存溢出是什么？</a>
-            <a href="../posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" class="next" rel="next" title="jsDelivr 中国区 ICP 许可证被吊销">jsDelivr 中国区 ICP 许可证被吊销<i class="fas fa-angle-right fa-fw"></i></a></div>
+    <div class="post-nav"><a href="../posts/about-time-based-one-time-password.html" class="prev" rel="prev" title="为什么QQ令牌生成验证码不需要联网？"><i class="fas fa-angle-left fa-fw"></i>为什么QQ令牌生成验证码不需要联网？</a>
+            <a href="../posts/series/leetcode-jianzhioffer-java/29.html" class="next" rel="next" title="29、剑指 Offer 20. 表示数值的字符串">29、剑指 Offer 20. 表示数值的字符串<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="valine" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
