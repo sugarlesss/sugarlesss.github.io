@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noodp" />
+    <title class="pjax-title">如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理" />
+<meta property="og:description" content="让我们从一个非常简单的思想实验开始。
+假设 A、B、C 三个素不相识的人待在一个房间里进行口头交流，此时 A 想要秘密地“传输”一条消息给 B，但又不能让 C 知道。为方便起见，假设这条消息只是 0 到 9 之间的一个数字。
+需要注意的是，A 说的任何话 B 和 C 都能听到，且 A 不能偷偷摸摸地耍小把戏，比如传纸条给 B 。那么 A 要如何才能做到呢？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://sugarless.cn/posts/the-basic-principle-of-diffie-hellman-key-exchange-protocol.html" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-01-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-16T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理"/>
+<meta name="twitter:description" content="让我们从一个非常简单的思想实验开始。
+假设 A、B、C 三个素不相识的人待在一个房间里进行口头交流，此时 A 想要秘密地“传输”一条消息给 B，但又不能让 C 知道。为方便起见，假设这条消息只是 0 到 9 之间的一个数字。
+需要注意的是，A 说的任何话 B 和 C 都能听到，且 A 不能偷偷摸摸地耍小把戏，比如传纸条给 B 。那么 A 要如何才能做到呢？"/>
+<meta name="application-name" content="無糖的小宇宙">
+<meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
+
+<meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/the-basic-principle-of-diffie-hellman-key-exchange-protocol.html" /><link rel="prev" href="https://sugarless.cn/posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/29.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/sugarless.cn\/posts\/the-basic-principle-of-diffie-hellman-key-exchange-protocol.html"
+        },"genre": "posts","keywords": "密码学, 加密通信, 迪菲赫尔曼, 密钥交换, 密钥协商","wordcount":  2419 ,
+        "url": "https:\/\/sugarless.cn\/posts\/the-basic-principle-of-diffie-hellman-key-exchange-protocol.html","datePublished": "2022-01-16T00:00:00+00:00","dateModified": "2022-01-16T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "無糖"},"author": {
+                "@type": "Person",
+                "name": "無糖"
+            },"description": ""
+    }
+    </script></head>
+
+<body header-desktop="" header-mobile=""><script type="text/javascript">
+        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
+        function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
+        if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
+        let metaColors = {'light': '#f8f8f8','dark': '#252627','black': '#000000'}
+        getMeta('theme-color').content = metaColors[document.body.getAttribute('theme')];
+    </script>
+    <div id="back-to-top"></div>
+    <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../message.html"><i class='fas fa-comments fa-fw'></i> 留言板 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../message.html" title=""><i class='fas fa-comments fa-fw'></i>留言板</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+            <div class="container"><div class="toc" id="toc-auto">
+        <h2 class="toc-title">目录</h2>
+        <div class="toc-content always-active" id="toc-content-auto"></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理</h1><div class="post-meta">
+            <div class="post-meta-line">
+                <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
+                </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/%E7%A7%91%E6%8A%80%E7%A0%94%E7%A9%B6%E6%89%80.html"><i class="far fa-folder fa-fw"></i>科技研究所</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2022-01-16">2022-01-16</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2022-01-16">2022-01-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2419 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id="/posts/the-basic-principle-of-diffie-hellman-key-exchange-protocol.html" class="leancloud_visitors" data-flag-title="如何在非安全信道进行安全通信？ - 迪菲赫尔曼密钥交换协议基本原理">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一如何告诉-b-">一、如何告诉 B ？</a>
+      <ul>
+        <li><a href="#11取模运算">1.1、取模运算</a></li>
+        <li><a href="#12幂运算">1.2、幂运算</a></li>
+        <li><a href="#13协议流程">1.3、协议流程</a>
+          <ul>
+            <li><a href="#1双方各挑选一个私人数字不公开">1）双方各挑选一个私人数字（不公开）</a></li>
+            <li><a href="#2双方约定两个数公开">2）双方约定两个数（公开）</a></li>
+            <li><a href="#3双方计算各自的-ppn公开">3）双方计算各自的 PPN（公开）</a></li>
+            <li><a href="#4计算共享密钥不公开">4）计算共享密钥（不公开）</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#二关于迪菲-赫尔曼密钥交换协议">二、关于迪菲-赫尔曼密钥交换协议</a>
+      <ul>
+        <li><a href="#21实践中的公钥加密">2.1、实践中的公钥加密</a></li>
+        <li><a href="#22为什么知道了-ppn-也无法反推出私人数字">2.2、为什么知道了 PPN 也无法反推出私人数字</a></li>
+      </ul>
+    </li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>让我们从一个非常简单的思想实验开始。</p>
+<p>假设 A、B、C 三个素不相识的人待在一个房间里进行口头交流，此时 A 想要秘密地“传输”一条消息给 B，但又不能让 C 知道。为方便起见，假设这条消息只是 0 到 9 之间的一个数字。</p>
+<p>需要注意的是，A 说的任何话 B 和 C 都能听到，且 A 不能偷偷摸摸地耍小把戏，比如传纸条给 B 。那么 A 要如何才能做到呢？</p>
+<h1 id="一如何告诉-b-">一、如何告诉 B ？</h1>
+<p>在告诉你如何做到之前，我需要先向你解释两个数学的基本运算。</p>
+<ul>
+<li>取模运算</li>
+<li>幂运算</li>
+</ul>
+<p>然后我会通过 <code>A 如何告诉 B</code>  这个简单的思想实验来向你解释<code>迪菲-赫尔曼密钥交换协议</code>的大致流程。</p>
+<p>之所以是<code>协议</code> 流程而不是<code>算法</code> 流程，是因为这个过程中需要 B 的参与。</p>
+<ul>
+<li>「协」字，代表的意思是必须有两个以上的参与者；</li>
+<li>「议」字，代表的意思是对参与者的⼀种行为约定和规范。</li>
+</ul>
+<p>好了，那么你现在已经知道这件事单靠 A 一个人努力是不行的了。</p>
+<h2 id="11取模运算">1.1、取模运算</h2>
+<p>取模运算（ mod ）是求两个数相除的余数。<code>x mod y = z</code>，我们将 <code>y</code>  称为<code>模数</code> ，<code>z</code>  称为余数。</p>
+<p>我举几个例子：</p>
+<ul>
+<li>5 mod 2 = 1 ，因为 5 除以 2 商 2 余1；</li>
+<li>10 mod 3 = 1 ，因为 10 除以 3 商 3 余1；</li>
+</ul>
+<h2 id="12幂运算">1.2、幂运算</h2>
+<p>幂运算，又称指数运算，表达式为 $ x^{n} $ ，其中 $ x $ 称为<code>底数</code> ，$ n $ 称为指数。通常指数写成上标，放在底数的右边。</p>
+<p>我举几个例子：</p>
+<ul>
+<li>$ 2^{3}=8 $ ，因为 $ 2 * 2 * 2=8 $ ；</li>
+<li>$ 3^{4}=81 $ ，因为 $ 3 * 3 * 3 * 3 =81 $ ；</li>
+</ul>
+<h2 id="13协议流程">1.3、协议流程</h2>
+<p>现在你已经理解取模运算和幂运算这两个基本数学运算了，接下来我来解释一下这件事要怎么做。</p>
+<h3 id="1双方各挑选一个私人数字不公开">1）双方各挑选一个私人数字（不公开）</h3>
+<p>为保证数学计算上尽可能简单，我们将在这个例子中使用非常小的数字。因此，假设</p>
+<ul>
+<li>A 挑选了 8 作为私人数字</li>
+<li>B 挑选了 9 作为私人数字</li>
+</ul>
+<p>私人数字是不对外公开的，自己默默记住就可以。</p>
+<h3 id="2双方约定两个数公开">2）双方约定两个数（公开）</h3>
+<p>双方需要约定两个数，分别作为取模运算的模数和幂运算的底数。</p>
+<p>为保证数学计算上尽可能简单，我也会使用非常小的数字。</p>
+<p>因此，假设 A 与 B 约定了 模数＝11，底数＝2。</p>
+<h3 id="3双方计算各自的-ppn公开">3）双方计算各自的 PPN（公开）</h3>
+<p>双方使用自己的私人数字、双方约定好的模数和底数计算各自的 PPN 。</p>
+<p>计算公式： $ PPN=约定的底数^{自己的私人数字} mod 约定的模数 $</p>
+<p>这个公式用文字写出来可能会显得有点儿诡异，但实际却很简单。</p>
+<ul>
+<li>A 的 PPN = $ 2^{8} mod 11 = 256 mod 11 = 3 $</li>
+<li>B 的 PPN = $ 2^{9} mod 11 = 512 mod 11 = 6 $</li>
+</ul>
+<h3 id="4计算共享密钥不公开">4）计算共享密钥（不公开）</h3>
+<p>双方使用自己的私人数字、对方的 PPN 和约定好的模数计算共享密钥。</p>
+<p>计算公式：$ 共享密钥＝对方的PPN^{自己私人数字} mod 约定的模数 $</p>
+<p>同样的，这个公式用文字写出来可能会显得有点儿诡异，但实际却很简单。</p>
+<ul>
+<li>A 计算出来的共享密钥 = $ 6^{8} mod 11 = 1679616 mod 11 = 4 $</li>
+<li>B 计算出来的共享密钥 = $ 3^{9} mod 11 = 19 683 mod 11 = 4 $</li>
+</ul>
+<p>现在你发现，A 与 B 都算出来了同样一个数字 4 了，这就回答了文章开头的思想实验。</p>
+<blockquote>
+<p>此处 A 与 B 计算出的共享密钥即为 A 要传输给 B 的“信息”。</p>
+</blockquote>
+<p>C 因为不知道 A 与 B 的私人数字，即使 C 知道了 A 与 B 公开约定的两个数（取模运算的模数和幂运算的底数）和 PPN ，也是无法计算出与相同的共享密钥的。</p>
+<blockquote>
+<p>整个协议过程中，除了 A、B（通信双方）的私人数字（私人密钥）不对外公开，其他都是透明可见的。共享密钥的保密性不依赖此协议流程的保密性，即使协议的计算流程公开，共享密钥也是安全的。</p>
+</blockquote>
+<h1 id="二关于迪菲-赫尔曼密钥交换协议">二、关于迪菲-赫尔曼密钥交换协议</h1>
+<p>通过上面的思想实验，我们知道运用幂运算和取模运算就可以让通信双方在完全没有对方任何预先信息的条件下，通过不安全信道共同建立起一个安全的共享密钥，而一旦建立了共享密钥，这两台电脑就能使用对称加密对后续所有的通信进行加密了。</p>
+<p>本文描述的协议流程被称为迪菲–赫尔曼密钥交换机制（DH）。这一机制以怀特菲德·迪菲（Whitfield Diffie）和马丁·赫尔曼（MartinHellman）的名字命名，他们俩于 1976 年首次发表了这一算法。每次你访问一个安全网站（以“https:”而非“http:”开头）时，你的计算机和与其通信的网站服务器之间都会建立一个共享密钥，使用的方法是迪菲–赫尔曼机制或工作原理类似的替代方法之一。除了最早的 DH（迪菲-赫尔曼密钥交换协议）之外，现在已经有 DHE / ECDHE 等变种了。</p>
+<p>迪菲-赫尔曼密钥交换协议被发明后不久就出现了 RSA （非对称加密算法），现在的 HTTPS 协议就是通过 RSA+ECDHE 来保证确保通信安全的。</p>
+<p>虽然迪菲-赫尔曼密钥交换本身是一个匿名（无认证）的密钥交换协议，它却是很多认证协议的基础。</p>
+<h2 id="21实践中的公钥加密">2.1、实践中的公钥加密</h2>
+<p>在实践中使用数字要远比我们在例子中使用的数字大。我们使用的模数很小（11），因此计算起来就很简单。但如果你选择的模数很小，那么私人数字的取值范围也会很小（因为你只能使用比模数小的私人数字）。而这也意味着有人可以使用计算机试出所有可能的私人数字，直到找到一个数字生成你的 PPN 。在上面的例子中，只有 11 个可能的私人数字，因此这个系统非常轻易就能被破解。相反，迪菲–赫尔曼机制在现实中运用时通常会使用几百个数位长的钟大小，这让可能的私人数字多得不可想象（比一万亿的一万亿次方还多得多）。即便如此，我们也需要小心地选取公开数字，以确保它们具有正确的数学性质。</p>
+<p>最重要的是，模数必须是一个素数——只有1和其自身两个除数。另一个有趣的要求是，约定的底数必须是约定的模数的本原根（primitive root）。这也意味着底数的幂最终将循环遍 [0, 模数) 区间上每个可能的值。在前文使用的例子中， 2 和 6 都是 11 的本原根，但 3 却不是—— 3 的幂循环的值有 3、9、5、4 和 1，却没有 2、6、7、8 和 10 。</p>
+<h2 id="22为什么知道了-ppn-也无法反推出私人数字">2.2、为什么知道了 PPN 也无法反推出私人数字</h2>
+<p>在上面的思想实验中，我们知道：</p>
+<ul>
+<li>A 的 PPN = $ 2^{8} mod 11 = 256 mod 11 = 3 $</li>
+</ul>
+<p>对于 C 来说，假设 $ A 的私人数字=x $，则有：</p>
+<ul>
+<li>A 的 PPN = $ 2^{x} mod 11 =  3 $</li>
+</ul>
+<p>那么 C 为什么无法通过 A 的 PPN 反推出他的私人数字？</p>
+<p>因为当模数 11 是一个很大的质数时，由于还没有一种方法能让计算机高效地计算离散对数，即使知道了底数（2） 和 A 的 PPN（3），也几乎算不出来 $ x $ 的值。</p>
+<p>离散对数求解难就是 DH 的数学基础理论。</p>
+<h1 id="ref">REF</h1>
+<p><a href="https://www.likecs.com/default/index/show?id=124371" target="_blank" rel="noopener noreffer">图解 ECDHE 密钥交换算法</a></p>
+<p><a href="https://weread.qq.com/web/reader/ca332270717d45ebca3214dkc9f326d018c9f0f895fb5e4" target="_blank" rel="noopener noreffer">改变未来的九大算法 第三章 公钥加密</a></p></div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-01-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="../tags/%E5%AF%86%E7%A0%81%E5%AD%A6.html">密码学</a>,&nbsp;<a href="../tags/%E5%8A%A0%E5%AF%86%E9%80%9A%E4%BF%A1.html">加密通信</a>,&nbsp;<a href="../tags/%E8%BF%AA%E8%8F%B2%E8%B5%AB%E5%B0%94%E6%9B%BC.html">迪菲赫尔曼</a>,&nbsp;<a href="../tags/%E5%AF%86%E9%92%A5%E4%BA%A4%E6%8D%A2.html">密钥交换</a>,&nbsp;<a href="../tags/%E5%AF%86%E9%92%A5%E5%8D%8F%E5%95%86.html">密钥协商</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="../">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="../posts/jsdelivr-unexpectedly-lost-its-icp-license-in-china.html" class="prev" rel="prev" title="jsDelivr 中国区 ICP 许可证被吊销"><i class="fas fa-angle-left fa-fw"></i>jsDelivr 中国区 ICP 许可证被吊销</a>
+            <a href="../posts/series/leetcode-jianzhioffer-java/29.html" class="next" rel="next" title="29、剑指 Offer 20. 表示数值的字符串">29、剑指 Offer 20. 表示数值的字符串<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+        </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
+                    <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+        </div></footer></div>
+
+    <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
+            <i class="fas fa-arrow-up fa-fw"></i>
+        </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            <i class="fas fa-comment fa-fw"></i>
+        </a>
+    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?a5260a580fd7f9b466f3dcfc35e45ac4";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script></div>
+
+<div class="pjax-assets"><script type="text/javascript" src="../lib/valine/Valine.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js"></script><script type="text/javascript" src="../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{"valine":{"appId":"UwoDT0XASeRI4paQdHT521cA-gzGzoHsz","appKey":"jxCFXucPvPxAt87kWCh2grun","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","meta":["nick","mail","link"],"pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/valine/valine.min.css">
+    <noscript><link rel="stylesheet" href="../lib/valine/valine.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/lightgallery/lightgallery.min.css">
+    <noscript><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/katex.min.css">
+    <noscript><link rel="stylesheet" href="../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
+    <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript></div>
+</body>
+
+</html>
