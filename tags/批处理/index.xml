@@ -1,0 +1,49 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>批处理 - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/tags/%E6%89%B9%E5%A4%84%E7%90%86.html</link>
+        <description>批处理 - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 22 Nov 2019 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E6%89%B9%E5%A4%84%E7%90%86.html" rel="self" type="application/rss+xml" /><item>
+    <title>Windows 使用 .bat 批处理脚本设置 IP、DNS </title>
+    <link>https://sugarless.cn/posts/setting-up-windows-ip-dns-using-bat-scripts.html</link>
+    <pubDate>Fri, 22 Nov 2019 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/setting-up-windows-ip-dns-using-bat-scripts.html</guid>
+    <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>
+<h1 id="一dhcp">一、DHCP</h1>
+<p>将如下内容保存为 set_WLAN_DHCP.bat 文件</p>
+<p>设置为自动获取IP/DNS</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> off
+%
+设置UTF-8 防止中文乱码
+%
+chcp 65001
+ 
+<span class="k">echo</span> 设置IP信息自动获取
+netsh interface ip set address <span class="s2">&#34;WLAN&#34;</span> source=dhcp
+<span class="k">echo</span> 设置DNS自动获取
+netsh interface ip set dnsservers <span class="s2">&#34;WLAN&#34;</span> source=dhcp
+<span class="k">echo</span> 完成
+<span class="k">pause</span>
+</code></pre></div><h1 id="二静态-ip">二、静态 IP</h1>
+<p>将如下内容保存为 set_WLAN_StaticIP.bat 文件</p>
+<p>设置为静态IP/DNS</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> off
+%
+设置UTF-8 防止中文乱码
+%
+chcp 65001
+
+<span class="k">echo</span> 设置IP、子网掩码及网关
+netsh interface ip set address name=<span class="s2">&#34;WLAN&#34;</span> static 192.168.11.119 255.255.255.0 192.168.11.1 1 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 设置主DNS
+netsh interface ip set dns name=<span class="s2">&#34;WLAN&#34;</span> static 192.168.11.1 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 设置副DNS
+netsh interface ip add dns name=<span class="s2">&#34;WLAN&#34;</span> 114.114.114.114 2 <span class="p">&gt;</span>nul
+<span class="k">echo</span> 完成
+<span class="k">pause</span>
+</code></pre></div><p>PS：两个脚本中的 “WLAN” 是因为我的笔记本无线网卡名称为 WLAN</p>
+<p></p>]]></description>
+</item></channel>
+</rss>
