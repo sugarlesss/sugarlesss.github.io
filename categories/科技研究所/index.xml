@@ -129,7 +129,7 @@
         
     </a><figcaption class="image-caption">QQ令牌 2代</figcaption>
     </figure>
-<p>那么 QQ 令牌为什么无需联网，就能每隔 30 秒自动更新动态密码？答案是 TOTP 算法，下面我们简单介绍一下 TOTP 算法的基本原理和实现。</p>
+<p>那么 QQ 令牌为什么无需联网，就能每隔 30 秒自动更新动态密码？答案是 TOTP 算法，下面我们简单介绍一下它的基本原理和实现。</p>
 <h1 id="二totp-算法">二、TOTP 算法</h1>
 <p>TOTP 的全称是&quot;基于时间的一次性密码&quot;（Time-based One-time Password）。它是公认的可靠解决方案，已经写入国际标准 <a href="https://tools.ietf.org/html/rfc6238" target="_blank" rel="noopener noreffer">RFC6238</a>。</p>
 <p>通常情况下，客户端在首次配置完成后，就不再需要与服务端通讯了。借助 TOTP 算法，客户端可以在离线环境下生成 30 秒有效期的 6 位数字验证码。因为不需要联网就能生成短时效的动态密码，所以安全性比较高，很多网站和应用都采用这种形式做两步验证（2FA）。</p>
