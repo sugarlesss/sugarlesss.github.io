@@ -135,27 +135,27 @@
 <p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from = wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
 <h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
 <p>在 nginx 的 http 部分写入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
-<span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
-  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
 <p>这里的 rate 我设为了每秒处理 30 个请求，如果 limit_req 没有设置 burst，则默认为 0。<br>
 rate 支持 r/s 和 r/m 两种模式。</p>
 </blockquote>
 <p>在 server 部分写入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
-  <span class="c1">#limit_rate 512k;
-</span><span class="c1"></span>  
-  <span class="c1">#宝塔PHP文件处理
-</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
-  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
-  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#limit_rate 512k;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">#宝塔PHP文件处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
 <p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
 <h1 id="四原理">四、原理</h1>
 <p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>

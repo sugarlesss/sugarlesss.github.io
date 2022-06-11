@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/27.html"
-        },"genre": "posts","keywords": "大数, 全排列","wordcount":  2280 ,
+        },"genre": "posts","keywords": "大数, 全排列","wordcount":  2274 ,
         "url": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/27.html","datePublished": "2021-10-01T00:00:00+00:00","dateModified": "2021-10-01T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -118,7 +118,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-01">2021-10-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-10-01">2021-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2280 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-10-01">2021-10-01</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-10-01">2021-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2274 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -170,17 +170,17 @@
 <p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
 <p><strong>空间复杂度</strong>： $O(1)$，建立列表需使用 $O(1)$ 大小的额外空间（ 列表作为返回结果，不计入额外空间 ）。</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">end</span><span class="o">];</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22大数打印解法">2.2、大数打印解法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">end</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">end</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">answer</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="22大数打印解法">2.2、大数打印解法</h2>
 <h3 id="核心思路-1">核心思路</h3>
 <p>实际上，本题的主要考点是大数越界情况下的打印。需要解决以下三个问题：</p>
 <ol>
@@ -211,40 +211,40 @@
         />
     </a>
 <p>根据以上方法，可初步编写全排列代码：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span> <span class="c1">// 解
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">n</span><span class="o">;</span> <span class="c1">// 题目给定的 n
-</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span> <span class="c1">// num=缓冲区, charset=字符集
-</span><span class="c1"></span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
-        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span> <span class="c1">// 数字字符串集
-</span><span class="c1"></span>        <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">n</span><span class="o">];</span> <span class="c1">// 定义长度为 n 的字符列表
-</span><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span> <span class="c1">// 开启全排列递归
-</span><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 删除最后多余的逗号
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span> <span class="c1">// 转化为字符串并返回
-</span><span class="c1"></span>    <span class="o">}</span>
-
-    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 终止条件：已固定完所有位
-</span><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span> <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
-</span><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">i</span> <span class="o">:</span> <span class="n">charset</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 遍历 ‘0‘ - ’9‘
-</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// 固定第 x 位为 i
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 开启固定第 x + 1 位
-</span><span class="c1"></span>        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>在此方法下，各数字字符串被逗号隔开，共同组成长字符串。返回的数字集字符串如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span> <span class="c1">// 解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">n</span><span class="o">;</span> <span class="c1">// 题目给定的 n
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">,</span> <span class="n">charset</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span> <span class="c1">// num=缓冲区, charset=字符集
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">this</span><span class="o">.</span><span class="na">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span> <span class="c1">// 数字字符串集
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">n</span><span class="o">];</span> <span class="c1">// 定义长度为 n 的字符列表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">);</span> <span class="c1">// 开启全排列递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 删除最后多余的逗号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span> <span class="c1">// 转化为字符串并返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 终止条件：已固定完所有位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span> <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">char</span> <span class="n">i</span> <span class="o">:</span> <span class="n">charset</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// 遍历 ‘0‘ - ’9‘
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span> <span class="c1">// 固定第 x 位为 i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">);</span> <span class="c1">// 开启固定第 x + 1 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>在此方法下，各数字字符串被逗号隔开，共同组成长字符串。返回的数字集字符串如下所示：</p>
 <pre tabindex="0"><code>输入：n = 1
-输出：&quot;0,1,2,3,4,5,6,7,8,9&quot;
+输出：&#34;0,1,2,3,4,5,6,7,8,9&#34;
 
 输入：n = 2
-输出：&quot;00,01,02,...,10,11,12,...,97,98,99&quot;
+输出：&#34;00,01,02,...,10,11,12,...,97,98,99&#34;
 
 输入：n = 3
-输出：&quot;000,001,002,...,100,101,102,...,997,998,999&quot;
+输出：&#34;000,001,002,...,100,101,102,...,997,998,999&#34;
 </code></pre><p>观察可知，当前的生成方法仍有以下问题：</p>
 <ol>
 <li>诸如 00, 01, 02, ⋯ 应显示为 0, 1, 2, ⋯ ，即应 <strong>删除高位多余的 0</strong> ;</li>
@@ -276,99 +276,99 @@
 <p><strong>空间复杂度</strong>： $O(10^n)$，结果列表的长度为 $10^n-1$ ，各数字字符串的长度区间为 $1, 2, &hellip;, n$ ，因此占用 $O(10^n)$ 大小的额外空间。</p>
 <h3 id="code-1">Code</h3>
 <p>为 <strong>正确表示大数</strong> ，以下代码的返回值为数字字符串集拼接而成的长字符串。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="c1">// 解
-</span><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="c1">// 字符集
-</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
-    <span class="c1">// 缓冲区
-</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 结果
-</span><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-
-        <span class="c1">// 开启全排列递归
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 定义长度为 n 的字符数组缓冲区
-</span><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 删除最后多余的逗号
-</span><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
-        <span class="c1">// 转化为字符串并返回
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 终止条件：已固定完所有位
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
-</span><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
-</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="c1">// 开启固定第 x + 1 位
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>本题要求输出 int 类型数组。为 <strong>运行通过</strong> ，可在添加数字字符串 s 前，将其转化为 int 类型。代码如下所示：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="c1">// 当前已求解数字个数, 作为游标使用
-</span><span class="c1"></span>    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-    <span class="c1">// 解
-</span><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span><span class="o">;</span>
-
-    <span class="c1">// 字符集
-</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
-    <span class="c1">// 缓冲区
-</span><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 根据解的已知个数初始化空间
-</span><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">];</span>
-
-        <span class="c1">// 开启全排列递归
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 定义长度为 n 的字符数组缓冲区
-</span><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 转化为字符串并返回
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
-</span><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 终止条件：已固定完所有位
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 将缓冲区的字符串转换为 int , 加入解
-</span><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">count</span><span class="o">++]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">));</span>
-            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
-</span><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="c1">// 开启固定第 x + 1 位
-</span><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 字符集
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 开启全排列递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 定义长度为 n 的字符数组缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 删除最后多余的逗号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">answer</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">answer</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 转化为字符串并返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 终止条件：已固定完所有位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 拼接 num 并添加至 res 尾部，使用逗号隔开
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">answer</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">)</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 开启固定第 x + 1 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>本题要求输出 int 类型数组。为 <strong>运行通过</strong> ，可在添加数字字符串 s 前，将其转化为 int 类型。代码如下所示：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 当前已求解数字个数, 作为游标使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 字符集
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span> <span class="o">=</span> <span class="o">{</span><span class="sc">&#39;0&#39;</span><span class="o">,</span> <span class="sc">&#39;1&#39;</span><span class="o">,</span> <span class="sc">&#39;2&#39;</span><span class="o">,</span> <span class="sc">&#39;3&#39;</span><span class="o">,</span> <span class="sc">&#39;4&#39;</span><span class="o">,</span> <span class="sc">&#39;5&#39;</span><span class="o">,</span> <span class="sc">&#39;6&#39;</span><span class="o">,</span> <span class="sc">&#39;7&#39;</span><span class="o">,</span> <span class="sc">&#39;8&#39;</span><span class="o">,</span> <span class="sc">&#39;9&#39;</span><span class="o">};</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">char</span><span class="o">[]</span> <span class="n">num</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 根据解的已知个数初始化空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[(</span><span class="kt">int</span><span class="o">)</span> <span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="n">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="n">1</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 开启全排列递归
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 定义长度为 n 的字符数组缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">num</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 生成长度为 n 的数字字符串，正在确定下标为 0 的那一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">0</span><span class="o">,</span> <span class="n">i</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 转化为字符串并返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 生成长度为 n 的数字字符串，当前正在确定下标为 x 的那一位（缓冲区 num 的数组下标）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 终止条件：已固定完所有位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 将缓冲区的字符串转换为 int , 加入解
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">answer</span><span class="o">[</span><span class="n">count</span><span class="o">++]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">String</span><span class="o">.</span><span class="na">valueOf</span><span class="o">(</span><span class="n">num</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 去除前导0：若当前还在固定下标为 0 的那一位, 则说明是第一位数字（即数值最高位）, 只遍历字符集的 &#39;1&#39;~&#39;9&#39;, 反之则遍历 &#39;0&#39;~&#39;9&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="o">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">?</span> <span class="n">1</span> <span class="o">:</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="n">chars</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">index</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 固定第 x 位为 i, 对应到缓冲区下标为 x-1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">num</span><span class="o">[</span><span class="n">x</span><span class="o">]</span> <span class="o">=</span> <span class="n">chars</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 开启固定第 x + 1 位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">dfs</span><span class="o">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">1</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/</a></p>
 </div>
 

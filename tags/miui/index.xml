@@ -36,37 +36,37 @@
 
 接口配置文件“Redmi_3FD4_5G”已成功保存在文件“C:\WLAN-Redmi_3FD4_5G.xml”中。
 </code></pre><p>在 <code>C:\WLAN-REBOX-01_5G.xml</code> 配置文件中，<code>keyMaterial</code> 标签中的 <code>rebox1930</code> 就是 WIFI 密码了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
-<span class="nt">&lt;WLANProfile</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v1&#34;</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
-	<span class="nt">&lt;SSIDConfig&gt;</span>
-		<span class="nt">&lt;SSID&gt;</span>
-			<span class="nt">&lt;hex&gt;</span>5245424F582D30315F3547<span class="nt">&lt;/hex&gt;</span>
-			<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
-		<span class="nt">&lt;/SSID&gt;</span>
-	<span class="nt">&lt;/SSIDConfig&gt;</span>
-	<span class="nt">&lt;connectionType&gt;</span>ESS<span class="nt">&lt;/connectionType&gt;</span>
-	<span class="nt">&lt;connectionMode&gt;</span>manual<span class="nt">&lt;/connectionMode&gt;</span>
-	<span class="nt">&lt;MSM&gt;</span>
-		<span class="nt">&lt;security&gt;</span>
-			<span class="nt">&lt;authEncryption&gt;</span>
-				<span class="nt">&lt;authentication&gt;</span>WPA2PSK<span class="nt">&lt;/authentication&gt;</span>
-				<span class="nt">&lt;encryption&gt;</span>AES<span class="nt">&lt;/encryption&gt;</span>
-				<span class="nt">&lt;useOneX&gt;</span>false<span class="nt">&lt;/useOneX&gt;</span>
-			<span class="nt">&lt;/authEncryption&gt;</span>
-			<span class="nt">&lt;sharedKey&gt;</span>
-				<span class="nt">&lt;keyType&gt;</span>passPhrase<span class="nt">&lt;/keyType&gt;</span>
-				<span class="nt">&lt;protected&gt;</span>false<span class="nt">&lt;/protected&gt;</span>
-				<span class="nt">&lt;keyMaterial&gt;</span>rebox1930<span class="nt">&lt;/keyMaterial&gt;</span>
-			<span class="nt">&lt;/sharedKey&gt;</span>
-		<span class="nt">&lt;/security&gt;</span>
-	<span class="nt">&lt;/MSM&gt;</span>
-	<span class="nt">&lt;MacRandomization</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v3&#34;</span><span class="nt">&gt;</span>
-		<span class="nt">&lt;enableRandomization&gt;</span>false<span class="nt">&lt;/enableRandomization&gt;</span>
-		<span class="nt">&lt;randomizationSeed&gt;</span>4220620975<span class="nt">&lt;/randomizationSeed&gt;</span>
-	<span class="nt">&lt;/MacRandomization&gt;</span>
-<span class="nt">&lt;/WLANProfile&gt;</span>
-</code></pre></div><h1 id="二小米安卓系统-miui">二、小米安卓系统 MIUI</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;WLANProfile</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;SSIDConfig&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;SSID&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;hex&gt;</span>5245424F582D30315F3547<span class="nt">&lt;/hex&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/SSID&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/SSIDConfig&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;connectionType&gt;</span>ESS<span class="nt">&lt;/connectionType&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;connectionMode&gt;</span>manual<span class="nt">&lt;/connectionMode&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;MSM&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;security&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;authEncryption&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;authentication&gt;</span>WPA2PSK<span class="nt">&lt;/authentication&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;encryption&gt;</span>AES<span class="nt">&lt;/encryption&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;useOneX&gt;</span>false<span class="nt">&lt;/useOneX&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/authEncryption&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;sharedKey&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;keyType&gt;</span>passPhrase<span class="nt">&lt;/keyType&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;protected&gt;</span>false<span class="nt">&lt;/protected&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;keyMaterial&gt;</span>rebox1930<span class="nt">&lt;/keyMaterial&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/sharedKey&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/security&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/MSM&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;MacRandomization</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v3&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;enableRandomization&gt;</span>false<span class="nt">&lt;/enableRandomization&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;randomizationSeed&gt;</span>4220620975<span class="nt">&lt;/randomizationSeed&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/MacRandomization&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/WLANProfile&gt;</span>
+</span></span></code></pre></div><h1 id="二小米安卓系统-miui">二、小米安卓系统 MIUI</h1>
 <p>系统设置 -&gt; WLAN，点击分享密码</p>
 <a class="lightgallery" href="/post_images/image-20211214150850666.png" title="/post_images/image-20211214150850666.png" data-thumbnail="/post_images/image-20211214150850666.png">
         

@@ -160,32 +160,32 @@
 <p><strong>时间复杂度</strong>：O(M+N) ：M,N 分别为链表 L1, L2 的长度，合并操作需遍历两链表。</p>
 <p><strong>空间复杂度</strong>：O(1)：节点引用 result, cursor 使用常数大小的额外空间。</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 初始化 result，生成一个伪节点，让其充当链表头
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
-        <span class="c1">// 游标
-</span><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
-
-        <span class="c1">// 当 l1 与 l2 都不为 null 时
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
-                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
-                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 如果其中一个为 null, 则将另外一个链表的所有元素都拼接到 result 后面
-</span><span class="c1"></span>        <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">l2</span><span class="o">;</span>
-        <span class="c1">// 返回伪节点的后续所有结点
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">ListNode</span> <span class="nf">mergeTwoLists</span><span class="o">(</span><span class="n">ListNode</span> <span class="n">l1</span><span class="o">,</span> <span class="n">ListNode</span> <span class="n">l2</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 初始化 result，生成一个伪节点，让其充当链表头
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ListNode</span><span class="o">(</span><span class="n">0</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 游标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">result</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 当 l1 与 l2 都不为 null 时
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="o">(</span><span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">l2</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">l1</span><span class="o">.</span><span class="na">val</span> <span class="o">&lt;</span> <span class="n">l2</span><span class="o">.</span><span class="na">val</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">l1</span> <span class="o">=</span> <span class="n">l1</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">l2</span> <span class="o">=</span> <span class="n">l2</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 如果其中一个为 null, 则将另外一个链表的所有元素都拼接到 result 后面
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">cursor</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">l1</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">?</span> <span class="n">l1</span> <span class="o">:</span> <span class="n">l2</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 返回伪节点的后续所有结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/solution/mian-shi-ti-25-he-bing-liang-ge-pai-xu-de-lian-b-2/</a></p>
 </div>
 

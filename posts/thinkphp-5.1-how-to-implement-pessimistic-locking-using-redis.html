@@ -155,22 +155,22 @@
 <p>在用户量 / 客户端数量比较少的时候，只要系统的业务逻辑是正确的，一般都不会发现有什么问题。但随着用户量 / 客户端数量逐渐增多，高并发带来的问题就会逐渐出现，而脏读是众多问题的其中之一。</p>
 <h1 id="一无并发控制会带来什么问题">一、无并发控制，会带来什么问题？</h1>
 <p>本文以 ThinkPHP5.1.39 的代码作为案例，下面是一个 File Cache 读写操作：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
-    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
-    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
- 
-    <span class="c1">//写入缓存
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
- 
-    <span class="c1">//从缓存中获取值
-</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
- 
-    <span class="c1">//删除缓存
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
- 
-    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>访问这个 function，会输出 OK! 996 。无论你访问几次，结果都是如此，但仅限于单线程的情况（只有你自己一个人在访问这个 function），如果是多个人同时不停的访问这个 function，还会是这样吗？想一想 😛</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//写入缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//从缓存中获取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//删除缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>访问这个 function，会输出 OK! 996 。无论你访问几次，结果都是如此，但仅限于单线程的情况（只有你自己一个人在访问这个 function），如果是多个人同时不停的访问这个 function，还会是这样吗？想一想 😛</p>
 <p>使用 jmeter 测试一下，120 线程测试了十几秒，发现了 3 种不同的返回结果。</p>
 <h2 id="11返回了-ok-996">1.1、返回了 OK! 996</h2>
 <p>与单线程时的结果一致，是正常处理逻辑。</p>
@@ -213,22 +213,22 @@
 <p>显然是 cache 文件夹下的某个缓存文件不存在，所以引起了这个错误。原因是：A 线程在删除缓存后，B 线程也在执行删除缓存的操作。当缓存文件已被删除时，再执行删除缓存文件的操作，自然就报了文件不存在的错误。（实测 120 个线程并发，总计 500 个请求，异常率 0.20%）</p>
 <p>尽管我修改了 File Cache 的 133 行，在删除前判断文件是否存在，虽然异常率降低了，但依然无法从根本上解决问题。可以看到的是，在高并发场景下，问题已经显现出来了。</p>
 <p>下面我们用 redis 缓存试试看：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
-    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
-    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
- 
-    <span class="c1">//写入缓存
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
- 
-    <span class="c1">//从缓存中获取值
-</span><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
- 
-    <span class="c1">//删除缓存
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
- 
-    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>经过测试，与上面的 3 种情况一致。（根据 thinkphp5.1 的官方文档，我使用的是 store 来切换到 redis，但不知道为何，仍然会报 File Cache 驱动的 No such file or directory/unlink 错误，十分诡异）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//写入缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">,</span> <span class="nv">$keyValue</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//从缓存中获取值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$data</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//删除缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$keyName</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s2">&#34;OK! </span><span class="si">$data</span><span class="s2">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>经过测试，与上面的 3 种情况一致。（根据 thinkphp5.1 的官方文档，我使用的是 store 来切换到 redis，但不知道为何，仍然会报 File Cache 驱动的 No such file or directory/unlink 错误，十分诡异）。</p>
 <p>如何解决高并发场景下带来的脏读问题？</p>
 <p>答案是：使用锁机制。</p>
 <h1 id="二关于锁机制">二、关于锁机制</h1>
@@ -265,56 +265,56 @@
 <h1 id="三redis-实现悲观锁">三、Redis 实现悲观锁</h1>
 <p>在商品秒杀活动活动中，流量峰值相对平常时的流量是高出非常多的。使用 Redis 实现悲观锁机制，可以解决商品库存脏读的问题。</p>
 <p>初始化库存：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">stockInit</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="nv">$key</span>       <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
-    <span class="nv">$stockInit</span> <span class="o">=</span> <span class="mi">699</span><span class="p">;</span>
- 
-    <span class="c1">//清空所有缓存
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">clear</span><span class="p">();</span>
-    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
- 
-    <span class="c1">//写入库存初始值
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stockInit</span><span class="p">);</span>
- 
-    <span class="k">echo</span> <span class="s1">&#39;stock Init&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="31悲观锁实现一非最佳实践">3.1、悲观锁实现（一）非最佳实践</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">stockInit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$key</span>       <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$stockInit</span> <span class="o">=</span> <span class="mi">699</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//清空所有缓存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">clear</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//写入库存初始值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stockInit</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s1">&#39;stock Init&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="31悲观锁实现一非最佳实践">3.1、悲观锁实现（一）非最佳实践</h2>
 <p>看似符合逻辑的商品秒杀：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
-    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span>
- 
-    <span class="c1">//判断库存锁是否存在
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">)</span> <span class="o">==</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 存在锁定则等待
-</span><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">200000</span><span class="p">);</span>
-    <span class="p">}</span>
- 
-    <span class="c1">//库存上锁
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
- 
-    <span class="c1">//获取库存值
-</span><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
- 
-    <span class="c1">//减库存
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
-        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">//打开库存锁
-</span><span class="c1"></span>        <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
-        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
- 
-    <span class="c1">//打开库存锁
-</span><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
- 
-    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>实测 150 线程并发，异常率 0%，虽然引用了锁机制，看似符合逻辑的锁机制，但仍会有极低的概率脏读，原因无他，有 N 个线程同时抢到了锁。虽然概率低，但线程一多仍然会脏读。所以需要改用 redis 原生支持的 setnx 来保证只有一个线程抢到了锁。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//判断库存锁是否存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nx">Cache</span><span class="o">::</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">)</span> <span class="o">==</span> <span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 存在锁定则等待
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">200000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//库存上锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取库存值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//减库存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//打开库存锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//打开库存锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">Cache</span><span class="o">::</span><span class="na">store</span><span class="p">(</span><span class="s1">&#39;redis&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="k">false</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>实测 150 线程并发，异常率 0%，虽然引用了锁机制，看似符合逻辑的锁机制，但仍会有极低的概率脏读，原因无他，有 N 个线程同时抢到了锁。虽然概率低，但线程一多仍然会脏读。所以需要改用 redis 原生支持的 setnx 来保证只有一个线程抢到了锁。</p>
 <p>如下，两个线程同时抢到了第 80 个库存：</p>
 <p><img
         class="lazyload"
@@ -327,46 +327,46 @@
 <h2 id="32悲观锁实现二">3.2、悲观锁实现（二）</h2>
 <p>setnx 是 set if not exists 的简写，在 key 不存在时等价于 set，如果 key 存在，则不更新缓存内容，且返回 false。使用这个特性，可以保证锁只有一个线程抢到了。</p>
 <p>使用 redis setnx 实现悲观锁的商品秒杀：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="nv">$redisConifg</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;cache.redis&#39;</span><span class="p">);</span>                  <span class="c1">//获取当前模块下的config文件夹中的cache文件的redis配置数组
-</span><span class="c1"></span>    <span class="nv">$redis</span>       <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">);</span>           <span class="c1">//获取thinkPHP官方封装的Redis Cache对象
-</span><span class="c1"></span>    <span class="nv">$handler</span>     <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">handler</span><span class="p">();</span><span class="c1">//获取php redis扩展原生redis对象 https://github.com/phpredis/phpredis
-</span><span class="c1"></span> 
-    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span><span class="c1">//商品库存缓存名
-</span><span class="c1"></span>    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span><span class="c1">//商品库存锁后缀名
-</span><span class="c1"></span>    <span class="nv">$timeOut</span>    <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>     <span class="c1">//库存锁过期时间
-</span><span class="c1"></span> 
-    <span class="c1">//抢库存锁
-</span><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nv">$handler</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;nx&#39;</span><span class="p">,</span> <span class="s1">&#39;ex&#39;</span> <span class="o">=&gt;</span> <span class="nv">$timeOut</span><span class="p">])</span> <span class="o">==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 没有抢到则等待
-</span><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">20000</span><span class="p">);</span>
-    <span class="p">}</span>
- 
-    <span class="c1">//当前线程抢到库存锁了
-</span><span class="c1"></span> 
-    <span class="c1">//获取库存值
-</span><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
- 
-    <span class="c1">//减库存
-</span><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
-        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="c1">//删除库存锁
-</span><span class="c1"></span>        <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
-        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
-    <span class="p">}</span>
- 
-    <span class="c1">//更新库存值
-</span><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
- 
-    <span class="c1">//删除库存锁
-</span><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
- 
-    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>150 线程并发测试后，并没有发现有异常情况了。根据实际业务需求，可以增加等待超时机制。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">$redisConifg</span> <span class="o">=</span> <span class="nx">config</span><span class="p">(</span><span class="s1">&#39;cache.redis&#39;</span><span class="p">);</span>                  <span class="c1">//获取当前模块下的config文件夹中的cache文件的redis配置数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$redis</span>       <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">);</span>           <span class="c1">//获取thinkPHP官方封装的Redis Cache对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$handler</span>     <span class="o">=</span> <span class="nx">Cache</span><span class="o">::</span><span class="na">connect</span><span class="p">(</span><span class="nv">$redisConifg</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">handler</span><span class="p">();</span><span class="c1">//获取php redis扩展原生redis对象 https://github.com/phpredis/phpredis
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl">    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span><span class="c1">//商品库存缓存名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$lockSuffix</span> <span class="o">=</span> <span class="s2">&#34;_lock&#34;</span><span class="p">;</span><span class="c1">//商品库存锁后缀名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$timeOut</span>    <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>     <span class="c1">//库存锁过期时间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//抢库存锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">while</span> <span class="p">(</span><span class="nv">$handler</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;nx&#39;</span><span class="p">,</span> <span class="s1">&#39;ex&#39;</span> <span class="o">=&gt;</span> <span class="nv">$timeOut</span><span class="p">])</span> <span class="o">==</span> <span class="k">false</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 没有抢到则等待
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nx">usleep</span><span class="p">(</span><span class="mi">20000</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//当前线程抢到库存锁了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//获取库存值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$stock</span> <span class="o">=</span> <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="nv">$key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//减库存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">if</span> <span class="p">(</span><span class="nv">$stock</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$temp</span>  <span class="o">=</span> <span class="nv">$stock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">$stock</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//删除库存锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s2">&#34;已售罄&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//更新库存值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">set</span><span class="p">(</span><span class="nv">$key</span><span class="p">,</span> <span class="nv">$stock</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//删除库存锁
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nv">$redis</span><span class="o">-&gt;</span><span class="na">rm</span><span class="p">(</span><span class="nv">$key</span> <span class="o">.</span> <span class="nv">$lockSuffix</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>150 线程并发测试后，并没有发现有异常情况了。根据实际业务需求，可以增加等待超时机制。</p>
 <h1 id="四ref">四、REF</h1>
 <p><a href="https://redis.io/commands/set" target="_blank" rel="noopener noreffer">https://redis.io/commands/set</a></p>
 <p><a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener noreffer">http://www.redis.cn/commands/set.html</a></p>

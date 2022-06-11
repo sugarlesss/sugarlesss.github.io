@@ -133,15 +133,15 @@
             </div><div class="content" id="content"><p>目前端口扫描可以通过 web 版本的端口扫描进行简单的测试，一次性扫描的端口数量一般也会有限制。通常情况下，如果仅仅是扫描一些常用端口，如上图所示的网页版端口扫描可以满足。如果想折腾一下，或者是对自己的主机进行安全检查之类的，还是使用 Linux 系统下的 nmap 工具进行扫描会比较方便一点。</p>
 <h1 id="一安装-nmap">一、安装 nmap</h1>
 <p>使用 yum 安装 nmap</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#更新一下源</span>
-yum update -y
-
-<span class="c1">#安装</span>
-yum install nmap -y
-</code></pre></div><h1 id="二nmap-命令">二、nmap 命令</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#扫描本机开放的端口「127.0.0.1 一般指代本机」</span>
-nmap 127.0.0.1  -p 1-65535
-</code></pre></div><p>先咕咕咕… 日后再补批量扫 IP 段并将结果写入日志</p></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#更新一下源</span>
+</span></span><span class="line"><span class="cl">yum update -y
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#安装</span>
+</span></span><span class="line"><span class="cl">yum install nmap -y
+</span></span></code></pre></div><h1 id="二nmap-命令">二、nmap 命令</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#扫描本机开放的端口「127.0.0.1 一般指代本机」</span>
+</span></span><span class="line"><span class="cl">nmap 127.0.0.1  -p 1-65535
+</span></span></code></pre></div><p>先咕咕咕… 日后再补批量扫 IP 段并将结果写入日志</p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -27,31 +27,31 @@
 <p>根据自己的服务器架构，选择对应发行版本的文件下载。一般都是 x86 架构，下 linux_amd64.tar.gz 结尾的版本就可以。</p>
 <p>当前最新版本是：0.34.3。</p>
 <p>下载到 /root 目录：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /root <span class="o">&amp;&amp;</span> wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
-</code></pre></div><p>解压到 /usr/local 下，重命名文件夹为 frp：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tar -zxvf frp_0.34.3_linux_amd64.tar.gz --directory<span class="o">=</span>/usr/local/ <span class="o">&amp;&amp;</span> mv frp_0.34.3_linux_amd64 frp
-</code></pre></div><h1 id="二配置-frp-systemd-服务">二、配置 frp systemd 服务</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#创建systemd服务文件</span>
-vim /usr/lib/systemd/system/frp.service
- 
-<span class="c1">#写入以下内容，退出并保存</span>
-<span class="o">[</span>Unit<span class="o">]</span>
-<span class="nv">Description</span><span class="o">=</span>The nginx HTTP and reverse proxy server
-<span class="nv">After</span><span class="o">=</span>network.target remote-fs.target nss-lookup.target
- 
-<span class="o">[</span>Service<span class="o">]</span>
-<span class="nv">Type</span><span class="o">=</span>simple
-<span class="nv">ExecStart</span><span class="o">=</span>/usr/local/frp/frps -c /usr/local/frp/frps.ini
-<span class="nv">KillSignal</span><span class="o">=</span>SIGQUIT
-<span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
-<span class="nv">KillMode</span><span class="o">=</span>process
-<span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
-<span class="nv">StandardOutput</span><span class="o">=</span>syslog
-<span class="nv">StandardError</span><span class="o">=</span>inherit
- 
-<span class="o">[</span>Install<span class="o">]</span>
-<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
-</code></pre></div><p>重载配置文件，使之立即生效。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> /root <span class="o">&amp;&amp;</span> wget https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_linux_amd64.tar.gz
+</span></span></code></pre></div><p>解压到 /usr/local 下，重命名文件夹为 frp：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tar -zxvf frp_0.34.3_linux_amd64.tar.gz --directory<span class="o">=</span>/usr/local/ <span class="o">&amp;&amp;</span> mv frp_0.34.3_linux_amd64 frp
+</span></span></code></pre></div><h1 id="二配置-frp-systemd-服务">二、配置 frp systemd 服务</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#创建systemd服务文件</span>
+</span></span><span class="line"><span class="cl">vim /usr/lib/systemd/system/frp.service
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#写入以下内容，退出并保存</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>The nginx HTTP and reverse proxy server
+</span></span><span class="line"><span class="cl"><span class="nv">After</span><span class="o">=</span>network.target remote-fs.target nss-lookup.target
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>simple
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/local/frp/frps -c /usr/local/frp/frps.ini
+</span></span><span class="line"><span class="cl"><span class="nv">KillSignal</span><span class="o">=</span>SIGQUIT
+</span></span><span class="line"><span class="cl"><span class="nv">TimeoutStopSec</span><span class="o">=</span><span class="m">5</span>
+</span></span><span class="line"><span class="cl"><span class="nv">KillMode</span><span class="o">=</span>process
+</span></span><span class="line"><span class="cl"><span class="nv">PrivateTmp</span><span class="o">=</span><span class="nb">true</span>
+</span></span><span class="line"><span class="cl"><span class="nv">StandardOutput</span><span class="o">=</span>syslog
+</span></span><span class="line"><span class="cl"><span class="nv">StandardError</span><span class="o">=</span>inherit
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span></code></pre></div><p>重载配置文件，使之立即生效。</p>
 <pre tabindex="0"><code>systemctl daemon-reload
 </code></pre><p>systemctl 命令：</p>
 <pre tabindex="0"><code>systemctl start frp #启动
@@ -61,27 +61,27 @@ systemctl status frp #当前状态
 systemctl enable frp #开机自启动
 systemctl disable frp #取消开机自启动
 </code></pre><h1 id="三修改-frp-服务端配置">三、修改 frp 服务端配置</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="c1">#修改frp服务端配置文件</span>
-<span class="na">vim /usr/local/frp/frps.ini</span>
- 
-<span class="c1">#按照以下内容配置，保存并退出</span>
-<span class="k">[common]</span>
-<span class="na">bind_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端端口</span>
-<span class="na">vhost_http_port</span> <span class="o">=</span> <span class="s">8080 #http访问端口</span>
- 
-<span class="na">[web] #[]中的内容可以自己随便起，但不允许重复，只是起备注的功能而已。</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">http #服务类型，可以设为http,https</span>
-<span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #公网域名，记得域名的A记录要解析到外网主机的IP。</span>
-<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
- 
-<span class="na">[ssh] #监听6000端口，外网SSH连接内网机器时，填写的IP即为frp服务端的IP和此处设定的6000端口。</span>
-<span class="na">listen_port</span> <span class="o">=</span> <span class="s">6000</span>
-<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
- 
-<span class="na">[tcp] #监听10889端口，转发消息给客户端。</span>
-<span class="na">listen_port</span> <span class="o">=</span> <span class="s">10889</span>
-<span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
-</code></pre></div><p>修改完 frp 服务端的配置文件后，需要检查服务器端口是否开放，上面的配置文件用到了 6000/7000/8080/10089 这 4 个端口。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="c1">#修改frp服务端配置文件</span>
+</span></span><span class="line"><span class="cl"><span class="na">vim /usr/local/frp/frps.ini</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#按照以下内容配置，保存并退出</span>
+</span></span><span class="line"><span class="cl"><span class="k">[common]</span>
+</span></span><span class="line"><span class="cl"><span class="na">bind_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">vhost_http_port</span> <span class="o">=</span> <span class="s">8080 #http访问端口</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="na">[web] #[]中的内容可以自己随便起，但不允许重复，只是起备注的功能而已。</span>
+</span></span><span class="line"><span class="cl"><span class="na">type</span> <span class="o">=</span> <span class="s">http #服务类型，可以设为http,https</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #公网域名，记得域名的A记录要解析到外网主机的IP。</span>
+</span></span><span class="line"><span class="cl"><span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="na">[ssh] #监听6000端口，外网SSH连接内网机器时，填写的IP即为frp服务端的IP和此处设定的6000端口。</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen_port</span> <span class="o">=</span> <span class="s">6000</span>
+</span></span><span class="line"><span class="cl"><span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="na">[tcp] #监听10889端口，转发消息给客户端。</span>
+</span></span><span class="line"><span class="cl"><span class="na">listen_port</span> <span class="o">=</span> <span class="s">10889</span>
+</span></span><span class="line"><span class="cl"><span class="na">auth_token</span> <span class="o">=</span> <span class="s">123456789</span>
+</span></span></code></pre></div><p>修改完 frp 服务端的配置文件后，需要检查服务器端口是否开放，上面的配置文件用到了 6000/7000/8080/10089 这 4 个端口。</p>
 <p>重启 frp 服务端</p>
 <pre tabindex="0"><code>systemctl restart frp
 </code></pre><p>web 配置项用于向外网提供本地 web 服务、ssh 配置项用于连接本地虚拟机的 shell、tcp 配置项用于转发 10889 端口消息给本机。</p>
@@ -92,32 +92,32 @@ systemctl disable frp #取消开机自启动
 <p>下载地址：<a href="https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_windows_amd64.zip" target="_blank" rel="noopener noreffer">https://github.com/fatedier/frp/releases/download/v0.34.3/frp_0.34.3_windows_amd64.zip</a></p>
 <h1 id="五配置客户端参数">五、配置客户端参数</h1>
 <p>解压后进入目录，修改 frpc.ini 为如下内容：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="k">[common]</span>
-<span class="na">server_addr</span> <span class="o">=</span> <span class="s">xx.xx.xx.xx #部署frp服务端的IP地址</span>
-<span class="na">server_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端的端口</span>
-<span class="na">privilege_token</span> <span class="o">=</span> <span class="s">123456789 #验证token/密码</span>
- 
-<span class="k">[web]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">http</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">5500 #web服务本地端口</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">8080 #frp服务端HTTP端口</span>
-<span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #反代域名</span>
- 
-<span class="c1">#将远程6000端口的tcp流量转发到本地的22端口</span>
-<span class="k">[ssh]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">6000</span>
- 
-<span class="c1">#将远程10889端口的tcp流量转发到本地的10889端口</span>
-<span class="k">[tcp]</span>
-<span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
-<span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
-<span class="na">local_port</span> <span class="o">=</span> <span class="s">10889</span>
-<span class="na">remote_port</span> <span class="o">=</span> <span class="s">10889</span>
-</code></pre></div><p>此处的 web 项配置意为：frp 服务端会把访问 xxx.keyboardman.fun:8080 端口的请求代理至本地的 5500 端口。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[common]</span>
+</span></span><span class="line"><span class="cl"><span class="na">server_addr</span> <span class="o">=</span> <span class="s">xx.xx.xx.xx #部署frp服务端的IP地址</span>
+</span></span><span class="line"><span class="cl"><span class="na">server_port</span> <span class="o">=</span> <span class="s">7000 #frp服务端的端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">privilege_token</span> <span class="o">=</span> <span class="s">123456789 #验证token/密码</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">[web]</span>
+</span></span><span class="line"><span class="cl"><span class="na">type</span> <span class="o">=</span> <span class="s">http</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_port</span> <span class="o">=</span> <span class="s">5500 #web服务本地端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">remote_port</span> <span class="o">=</span> <span class="s">8080 #frp服务端HTTP端口</span>
+</span></span><span class="line"><span class="cl"><span class="na">custom_domains</span> <span class="o">=</span> <span class="s">xxx.keyboardman.fun #反代域名</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#将远程6000端口的tcp流量转发到本地的22端口</span>
+</span></span><span class="line"><span class="cl"><span class="k">[ssh]</span>
+</span></span><span class="line"><span class="cl"><span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_port</span> <span class="o">=</span> <span class="s">22</span>
+</span></span><span class="line"><span class="cl"><span class="na">remote_port</span> <span class="o">=</span> <span class="s">6000</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#将远程10889端口的tcp流量转发到本地的10889端口</span>
+</span></span><span class="line"><span class="cl"><span class="k">[tcp]</span>
+</span></span><span class="line"><span class="cl"><span class="na">type</span> <span class="o">=</span> <span class="s">tcp</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_ip</span> <span class="o">=</span> <span class="s">127.0.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="na">local_port</span> <span class="o">=</span> <span class="s">10889</span>
+</span></span><span class="line"><span class="cl"><span class="na">remote_port</span> <span class="o">=</span> <span class="s">10889</span>
+</span></span></code></pre></div><p>此处的 web 项配置意为：frp 服务端会把访问 xxx.keyboardman.fun:8080 端口的请求代理至本地的 5500 端口。</p>
 <p>ssh 项：将服务端 6000 端口的 tcp 流量转发至本地的 22 端口</p>
 <p>tcp 项：将服务端 10889 端口的 tcp 流量转发至本地的 10889 端口</p>
 <h1 id="六运行本机上运行-frp-客户端并测试效果">六、运行本机上运行 frp 客户端并测试效果</h1>

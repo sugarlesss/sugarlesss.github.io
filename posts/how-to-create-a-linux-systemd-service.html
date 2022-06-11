@@ -142,8 +142,8 @@
             </div><div class="content" id="content"><p>Systemd 服务是一种以 .service 结尾的单元（unit）配置文件，用于控制由 Systemd 控制或监视的进程。简单说，用于后台以守护精灵（daemon）的形式运行程序。Systemd 广泛应用于新版本的 RHEL、SUSE Linux Enterprise、CentOS、Fedora 和 openSUSE 中，用于替代旧有的服务管理器 service。</p>
 <h1 id="一如何创建一个服务">一、如何创建一个服务？</h1>
 <p>这里假设你已经自行编译安装好了 nginx，下面我们来创建一个 nginx.service 文件</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vi /etc/systemd/system/nginx.service
-</code></pre></div><p>内容如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vi /etc/systemd/system/nginx.service
+</span></span></code></pre></div><p>内容如下：</p>
 <pre tabindex="0"><code class="language-conf" data-lang="conf">[Unit]
 Description=Nginx - high performance web server
 After=network.target
@@ -157,21 +157,21 @@ ExecStop=/usr/local/nginx/sbin/nginx -s stop
 [Install]
 WantedBy=multi-user.target
 </code></pre><p>重新加载服务配置文件，使创建的 nginx 服务生效：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl daemon-reload
-</code></pre></div><p>这样我们就可以用 Systemd 的方式来管理 nginx 了，命令如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#启动nginx</span>
-systemctl start nginx
-<span class="c1">#重载nginx</span>
-systemctl reload nginx
-<span class="c1">#停止nginx</span>
-systemctl stop nginx
-<span class="c1">#重启nginx</span>
-systemctl restart nginx
-<span class="c1">#如果需要开机启动</span>
-systemctl <span class="nb">enable</span> nginx
-<span class="c1">#如果需要取消开机启动</span>
-systemctl disable nginx
-</code></pre></div><h1 id="二关于-systemd-服务">二、关于 Systemd 服务</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl daemon-reload
+</span></span></code></pre></div><p>这样我们就可以用 Systemd 的方式来管理 nginx 了，命令如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#启动nginx</span>
+</span></span><span class="line"><span class="cl">systemctl start nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#重载nginx</span>
+</span></span><span class="line"><span class="cl">systemctl reload nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#停止nginx</span>
+</span></span><span class="line"><span class="cl">systemctl stop nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#重启nginx</span>
+</span></span><span class="line"><span class="cl">systemctl restart nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#如果需要开机启动</span>
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> nginx
+</span></span><span class="line"><span class="cl"><span class="c1">#如果需要取消开机启动</span>
+</span></span><span class="line"><span class="cl">systemctl disable nginx
+</span></span></code></pre></div><h1 id="二关于-systemd-服务">二、关于 Systemd 服务</h1>
 <p>Systemd 服务的内容主要分为三个部分，控制单元（unit）的定义、服务（service）的定义、以及安装（install）的定义。</p>
 <h2 id="21控制单元-unit">2.1、控制单元 unit</h2>
 <p>从上面的例子中我们看到 Unit 内容如下：</p>

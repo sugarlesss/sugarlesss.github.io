@@ -173,88 +173,88 @@
 <p><strong>时间复杂度</strong>：O(n)，在序列化和反序列化函数中，我们只访问每个节点一次，因此时间复杂度为 O(n)，其中 n 是节点数，即树的大小。</p>
 <p><strong>空间复杂度</strong>：最差情况下，队列 <code>queue</code> 同时存储 (N+1)/2 个节点，因此使用 O(N) 额外空间。</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Codec</span> <span class="o">{</span>
-    <span class="c1">// 序列化
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">serialize</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 特例处理
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="s">&#34;[]&#34;</span><span class="o">;</span>
-
-        <span class="c1">// 结果
-</span><span class="c1"></span>        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;[&#34;</span><span class="o">);</span>
-        <span class="c1">// 队列 包含根节点 root
-</span><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">add</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
-        <span class="o">}};</span>
-
-        <span class="c1">// 当队列不为空时, 循环处理
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="c1">// 节点出队, 记为 node
-</span><span class="c1"></span>            <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="c1">// 若 node 不为 null
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="c1">// 将 node.val 拼接到结果中
-</span><span class="c1"></span>                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span>
-                <span class="c1">// 将 node 的左, 右子节点加入队列, 等待下一轮处理
-</span><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="c1">// 将 null 拼接到结果中
-</span><span class="c1"></span>                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;null,&#34;</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 删除末尾的 , 号
-</span><span class="c1"></span>        <span class="n">result</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
-        <span class="c1">// 拼接 ] 号
-</span><span class="c1"></span>        <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;]&#34;</span><span class="o">);</span>
-        <span class="c1">// 将 StringBuilder 转为 String
-</span><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 反序列化
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">deserialize</span><span class="o">(</span><span class="n">String</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 特例处理
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;[]&#34;</span><span class="o">))</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-
-        <span class="c1">// 序列化列表 - 先去掉首尾中括号，再用逗号分割为字符串数组
-</span><span class="c1"></span>        <span class="n">String</span><span class="o">[]</span> <span class="n">vals</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">);</span>
-        <span class="c1">// 根节点 root - 值为 vals[0]
-</span><span class="c1"></span>        <span class="n">TreeNode</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">0</span><span class="o">]));</span>
-        <span class="c1">// 队列 - 包含根节点 root
-</span><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">add</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
-        <span class="o">}};</span>
-
-        <span class="c1">// 按层构建, 指针 i
-</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
-        <span class="c1">// 当队列不为空时, 按层循环构建整棵树
-</span><span class="c1"></span>        <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
-            <span class="c1">// 节点出队, 记为 node
-</span><span class="c1"></span>            <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-            <span class="c1">// 若 vals[i] 不为 null
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(!</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 构建 node 的左子节点：node.left 的值为 vals[i]
-</span><span class="c1"></span>                <span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
-                <span class="c1">// 将 node.left 入队
-</span><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-            <span class="o">}</span>
-            <span class="c1">// 下标后移一位
-</span><span class="c1"></span>            <span class="n">i</span><span class="o">++;</span>
-
-            <span class="c1">// 若 vals[i] 不为 null
-</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(!</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">))</span> <span class="o">{</span>
-                <span class="c1">// 构建 node 的右子节点：node.left 的值为 vals[i]
-</span><span class="c1"></span>                <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
-                <span class="c1">// 将 node.left 入队
-</span><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
-            <span class="o">}</span>
-            <span class="c1">// 下标后移一位
-</span><span class="c1"></span>            <span class="n">i</span><span class="o">++;</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Codec</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 序列化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">String</span> <span class="nf">serialize</span><span class="o">(</span><span class="n">TreeNode</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 特例处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span> <span class="s">&#34;[]&#34;</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 结果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">(</span><span class="s">&#34;[&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 队列 包含根节点 root
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 当队列不为空时, 循环处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 节点出队, 记为 node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 若 node 不为 null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">node</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 node.val 拼接到结果中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">val</span> <span class="o">+</span> <span class="s">&#34;,&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 node 的左, 右子节点加入队列, 等待下一轮处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 null 拼接到结果中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;null,&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 删除末尾的 , 号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">result</span><span class="o">.</span><span class="na">deleteCharAt</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 拼接 ] 号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;]&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将 StringBuilder 转为 String
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 反序列化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">TreeNode</span> <span class="nf">deserialize</span><span class="o">(</span><span class="n">String</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 特例处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;[]&#34;</span><span class="o">))</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 序列化列表 - 先去掉首尾中括号，再用逗号分割为字符串数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">String</span><span class="o">[]</span> <span class="n">vals</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="na">substring</span><span class="o">(</span><span class="n">1</span><span class="o">,</span> <span class="n">data</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="n">1</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="s">&#34;,&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 根节点 root - 值为 vals[0]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">TreeNode</span> <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">0</span><span class="o">]));</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 队列 - 包含根节点 root
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Queue</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">TreeNode</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">add</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 按层构建, 指针 i
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">1</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 当队列不为空时, 按层循环构建整棵树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">while</span> <span class="o">(!</span><span class="n">queue</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 节点出队, 记为 node
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">TreeNode</span> <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 若 vals[i] 不为 null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(!</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 构建 node 的左子节点：node.left 的值为 vals[i]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">node</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 node.left 入队
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 下标后移一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">i</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">// 若 vals[i] 不为 null
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="o">(!</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">equals</span><span class="o">(</span><span class="s">&#34;null&#34;</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 构建 node 的右子节点：node.left 的值为 vals[i]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">node</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TreeNode</span><span class="o">(</span><span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">vals</span><span class="o">[</span><span class="n">i</span><span class="o">]));</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">// 将 node.left 入队
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">queue</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 下标后移一位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">i</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/xu-lie-hua-er-cha-shu-lcof/solution/mian-shi-ti-37-xu-lie-hua-er-cha-shu-ceng-xu-bian-/</a></p>
 </div>
 

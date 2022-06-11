@@ -31,32 +31,32 @@
 <p>演示站：<a href="https://try.gogs.io/" target="_blank" rel="noopener noreffer">https://try.gogs.io/</a></p>
 <p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
 <h1 id="一安装-gogs">一、安装 Gogs</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">adduser git <span class="c1">#创建用户 git</span>
-
-passwd git <span class="c1">#设置git用户的密码</span>
-
-groupadd git <span class="c1">#创建用户组 git</span>
-
-usermod -G git git <span class="c1">#将git用户添加到git用户组中</span>
-
-su git <span class="c1">#切换到git用户shell</span>
-
-<span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
-
-wget https://dl.gogs.io/0.12.3/gogs_0.12.3_linux_amd64.zip <span class="c1">#下载gogs</span>
-
-unzip gogs_0.12.3_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
-
-su <span class="c1">#切回root用户</span>
-
-cp /home/git/gogs/scripts/systemd/gogs.service /usr/lib/systemd/system/ <span class="c1">#复制service文件</span>
-
-systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用gogs服务（开机自启）</span>
-
-systemctl start gogs <span class="c1">#启动gogs</span>
-
-systemctl status gogs <span class="c1">#查看gogs运行状态</span>
-</code></pre></div><p>安装完成后，就可以用访问 http://ip:3000 配置 Gogs 了，不过我建议你别急着填下面的配置，先把 SSL 证书搞定，接着往下看吧。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adduser git <span class="c1">#创建用户 git</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">passwd git <span class="c1">#设置git用户的密码</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">groupadd git <span class="c1">#创建用户组 git</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">usermod -G git git <span class="c1">#将git用户添加到git用户组中</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su git <span class="c1">#切换到git用户shell</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~ <span class="c1">#进入/home/git</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">wget https://dl.gogs.io/0.12.3/gogs_0.12.3_linux_amd64.zip <span class="c1">#下载gogs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">unzip gogs_0.12.3_linux_amd64.zip <span class="c1">#解压gogs压缩包</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">su <span class="c1">#切回root用户</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cp /home/git/gogs/scripts/systemd/gogs.service /usr/lib/systemd/system/ <span class="c1">#复制service文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl <span class="nb">enable</span> gogs.service <span class="c1">#启用gogs服务（开机自启）</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl start gogs <span class="c1">#启动gogs</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">systemctl status gogs <span class="c1">#查看gogs运行状态</span>
+</span></span></code></pre></div><p>安装完成后，就可以用访问 http://ip:3000 配置 Gogs 了，不过我建议你别急着填下面的配置，先把 SSL 证书搞定，接着往下看吧。</p>
 <blockquote>
 <p>如果无法访问，说明服务器入方向的 3000 端口没有打开。</p>
 <ul>
@@ -75,19 +75,19 @@ systemctl status gogs <span class="c1">#查看gogs运行状态</span>
 <h1 id="二配置域名与https">二、配置域名与HTTPS</h1>
 <h2 id="21配置域名访问">2.1、配置域名访问</h2>
 <p>将域名解析到服务器 IP 上，在 Nginx 配置文件中新增如下配置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
-<span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
-</span><span class="c1"></span>    
-    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
-    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>这样就可以通过 HTTP 的方式访问 Gogs 了：http://git.yourdomain.com 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这样就可以通过 HTTP 的方式访问 Gogs 了：http://git.yourdomain.com 。</p>
 <p>我们接着配置 SSL 证书，先不急着填写 Gogs 的配置，直接一步到位。</p>
 <a class="lightgallery" href="/post_images/image-20211130232845697.png" title="/post_images/image-20211130232845697.png" data-thumbnail="/post_images/image-20211130232845697.png">
         
@@ -96,42 +96,42 @@ systemctl status gogs <span class="c1">#查看gogs运行状态</span>
 <h2 id="22配置-ssl-证书">2.2、配置 SSL 证书</h2>
 <p>你可以按照下面的 Nginx 配置为模板，来配置你的 Gogs 站点。</p>
 <p>根据你的需求，你可以自由选择是否强制 HTTPS。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">server</span>
-<span class="p">{</span>
-    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
-    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
-    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
-</span><span class="c1"></span>    
-    <span class="kn">ssl_certificate</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
-</span><span class="c1"></span>    <span class="kn">ssl_certificate_key</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
-</span><span class="c1"></span>    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
-    <span class="kn">ssl_ciphers</span> <span class="s">EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5</span><span class="p">;</span>
-    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
-    <span class="kn">ssl_session_cache</span> <span class="s">shared:SSL:10m</span><span class="p">;</span>
-    <span class="kn">ssl_session_timeout</span> <span class="mi">10m</span><span class="p">;</span>
-    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&#34;max-age=31536000&#34;</span><span class="p">;</span>
-	
-    <span class="c1"># HTTP 重定向到 HTTPS
-</span><span class="c1"></span>    <span class="c1"># if ($server_port !~ 443){
-</span><span class="c1"></span>    <span class="c1">#     rewrite ^(/.*)$ https://$host$1 permanent;
-</span><span class="c1"></span>    <span class="c1"># }
-</span><span class="c1"></span>    <span class="c1"># error_page 497  https://$host$request_uri;
-</span><span class="c1"></span>    
-    <span class="c1"># 反向代理
-</span><span class="c1"></span>    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
-        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="c1">#禁止访问的文件或目录
-</span><span class="c1"></span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span>
-    <span class="p">{</span>
-        <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
-    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>配置完成后，你就可以通过 HTTPS 的方式访问 Gogs 了：https://git.yourdomain.com</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span> <span class="s">http2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server_name</span> <span class="s">git.yourdomain.com</span><span class="p">;</span> <span class="c1"># 域名修改为你自己的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_certificate</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">ssl_certificate_key</span>    <span class="s">/xxx/xxx/xxx.pem</span><span class="p">;</span> <span class="c1"># 证书修改为你自己的
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">ssl_protocols</span> <span class="s">TLSv1.1</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_ciphers</span> <span class="s">EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_session_cache</span> <span class="s">shared:SSL:10m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">ssl_session_timeout</span> <span class="mi">10m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">add_header</span> <span class="s">Strict-Transport-Security</span> <span class="s">&#34;max-age=31536000&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="c1"># HTTP 重定向到 HTTPS
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># if ($server_port !~ 443){
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">#     rewrite ^(/.*)$ https://$host$1 permanent;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># }
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># error_page 497  https://$host$request_uri;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 反向代理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">location</span> <span class="s">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">proxy_pass</span> <span class="s">http://localhost:3000</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1">#禁止访问的文件或目录
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">location</span> <span class="p">~</span> <span class="sr">^/(\.user.ini|\.htaccess|\.git|\.svn|\.project|LICENSE|README.md)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kn">access_log</span>  <span class="s">/www/wwwlogs/yourdomain.access.log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">error_log</span>  <span class="s">/www/wwwlogs/yourdomain.error.log</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>配置完成后，你就可以通过 HTTPS 的方式访问 Gogs 了：https://git.yourdomain.com</p>
 <a class="lightgallery" href="/post_images/image-20211130233728858.png" title="/post_images/image-20211130233728858.png" data-thumbnail="/post_images/image-20211130233728858.png">
         
     </a>

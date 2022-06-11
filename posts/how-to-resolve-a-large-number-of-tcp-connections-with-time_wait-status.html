@@ -137,18 +137,18 @@
 <p>高并发可以让服务器在短时间范围内同时占用大量端口，而端口有个 0~65535 的范围，并不是很多，刨除系统和其他服务要用的，剩下的就更少了。</p>
 <p>在这个场景中，短连接表示 “业务处理 + 传输数据的时间 远远小于 TIMEWAIT 超时的时间” 的连接。Linux 默认的 TIME_WAIT 时长一般是 60 秒。</p>
 <h1 id="查看默认-timewait-时长">查看默认 timewait 时长</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat /proc/sys/net/ipv4/tcp_fin_timeout
-</code></pre></div><h1 id="查看连接状态统计">查看连接状态统计</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">netstat -an <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
-</code></pre></div><h1 id="优化内核参数">优化内核参数</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vim /etc/sysctl.conf
-
-<span class="c1">#追加内容</span>
-net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
-net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
-net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
-net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
-</code></pre></div><h1 id="释义">释义</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat /proc/sys/net/ipv4/tcp_fin_timeout
+</span></span></code></pre></div><h1 id="查看连接状态统计">查看连接状态统计</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">netstat -an <span class="p">|</span> awk <span class="s1">&#39;/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}&#39;</span>
+</span></span></code></pre></div><h1 id="优化内核参数">优化内核参数</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim /etc/sysctl.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#追加内容</span>
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_syncookies <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_tw_reuse <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_tw_recycle <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">net.ipv4.tcp_fin_timeout <span class="o">=</span> <span class="m">30</span>
+</span></span></code></pre></div><h1 id="释义">释义</h1>
 <p>开启 SYN Cookies。当出现 SYN 等待队列溢出时，启用 cookies 来处理，可防范少量 SYN 攻击，默认为 0，表示关闭。<br>
 net.ipv4.tcp_syncookies = 1</p>
 <p>开启重用。允许将 TIME-WAIT sockets 重新用于新的 TCP 连接，默认为 0，表示关闭。<br>

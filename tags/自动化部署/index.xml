@@ -85,19 +85,19 @@ git pull;
 </blockquote>
 <h1 id="三配置一键命令">三、配置一键命令</h1>
 <p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
+</span></span></code></pre></div><blockquote>
 <p>使用 alias 即可为一系列命令配置一个别名</p>
 </blockquote>
 <h1 id="四一键部署">四、一键部署</h1>
 <p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">git blog
-</code></pre></div><p>此时系统会自动执行下面的命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git blog
+</span></span></code></pre></div><p>此时系统会自动执行下面的命令：</p>
 <pre tabindex="0"><code>cd D:\\blog\\src
 hugo
 cd D:\\blog\\src\\public
 git add .
-git commit -m 'update'
+git commit -m &#39;update&#39;
 git push
 </code></pre><p>这样就达到了我们的目的：通过一个命令就可以更新博客文件，并自动推送到 github 上。</p>
 <h1 id="补充">补充</h1>

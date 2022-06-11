@@ -132,43 +132,43 @@
 </nav></div>
             </div><div class="content" id="content"><p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>
 <h1 id="一anaconda">一、Anaconda</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看 conda 版本号</span>
-conda --version
-
-<span class="c1"># 查看系统当前已有的 Python 环境</span>
-conda info --envs
-
-<span class="c1"># 添加一个名为 python27，Python 版本为 2.7 的环境</span>
-conda create --name python27 <span class="nv">python</span><span class="o">=</span>2.7
-
-<span class="c1"># 查看当前环境的 Python 版本</span>
-python --version
-
-<span class="c1"># 切换 Python 环境到刚才新添加的 Python2.7</span>
-conda activate python27
-
-<span class="c1"># 切回原来的 Python 环境</span>
-conda deactivate python27
-<span class="c1"># 或</span>
-conda activate base
-
-<span class="c1"># 删除 python27 这个环境</span>
-conda remove --name python27 --all
-
-<span class="c1"># 添加清华源</span>
-conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --set show_channel_urls yes
-
-<span class="c1"># 查看镜像列表</span>
-conda config --show channels
-
-<span class="c1"># 删除某个镜像</span>
-conda config --remove channels   <span class="c1">#如：https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span>
-
-<span class="c1"># 包管理</span>
-conda install &lt;包名&gt; 安装指定包
-conda remove &lt;包名&gt; 移除指定包
-conda update &lt;包名&gt; 更新指定包
-</code></pre></div><h1 id="二pycharm">二、PyCharm</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 conda 版本号</span>
+</span></span><span class="line"><span class="cl">conda --version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统当前已有的 Python 环境</span>
+</span></span><span class="line"><span class="cl">conda info --envs
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加一个名为 python27，Python 版本为 2.7 的环境</span>
+</span></span><span class="line"><span class="cl">conda create --name python27 <span class="nv">python</span><span class="o">=</span>2.7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前环境的 Python 版本</span>
+</span></span><span class="line"><span class="cl">python --version
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切换 Python 环境到刚才新添加的 Python2.7</span>
+</span></span><span class="line"><span class="cl">conda activate python27
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切回原来的 Python 环境</span>
+</span></span><span class="line"><span class="cl">conda deactivate python27
+</span></span><span class="line"><span class="cl"><span class="c1"># 或</span>
+</span></span><span class="line"><span class="cl">conda activate base
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除 python27 这个环境</span>
+</span></span><span class="line"><span class="cl">conda remove --name python27 --all
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加清华源</span>
+</span></span><span class="line"><span class="cl">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/ conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/ conda config --set show_channel_urls yes
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看镜像列表</span>
+</span></span><span class="line"><span class="cl">conda config --show channels
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除某个镜像</span>
+</span></span><span class="line"><span class="cl">conda config --remove channels   <span class="c1">#如：https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 包管理</span>
+</span></span><span class="line"><span class="cl">conda install &lt;包名&gt; 安装指定包
+</span></span><span class="line"><span class="cl">conda remove &lt;包名&gt; 移除指定包
+</span></span><span class="line"><span class="cl">conda update &lt;包名&gt; 更新指定包
+</span></span></code></pre></div><h1 id="二pycharm">二、PyCharm</h1>
 <p><img
         class="lazyload"
         data-src="../post_images/d857951dddff8.png"

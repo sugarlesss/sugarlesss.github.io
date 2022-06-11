@@ -133,33 +133,33 @@
 <p>场景：在 “D:\纪录片\中国通史” 路径下有 100 集视频文件，每个文件都带有固定前缀 “www.baidu.com 出品 微信公众号 xxx” 字样。</p>
 <h1 id="源码">源码</h1>
 <p>RemoveFixedPrefix.py ，因为源码使用了 python fstring 的特性，需要在 python &gt;= 3.6 的版本中使用。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># coding=utf-8</span>
- 
-<span class="kn">import</span> <span class="nn">os</span>
- 
-<span class="c1"># 目标路径</span>
-<span class="n">srcPath</span> <span class="o">=</span> <span class="s2">&#34;D:\纪录片\中国通史&#34;</span>
-<span class="n">fileList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">srcPath</span><span class="p">)</span>
- 
-<span class="c1"># 固定前缀</span>
-<span class="n">FixedPrefix</span> <span class="o">=</span> <span class="s2">&#34;www.baidu.com出品 微信公众号xxx&#34;</span>
- 
-<span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
-    <span class="n">oldFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fileName</span><span class="si">}</span><span class="s2">&#34;</span>
- 
-    <span class="c1"># 跳过目录</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">):</span>
-        <span class="k">continue</span>
- 
-    <span class="n">newFileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">FixedPrefix</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
-    <span class="n">newFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">newFileName</span><span class="si">}</span><span class="s2">&#34;</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">,</span> <span class="n">newFilePath</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
- 
-    <span class="nb">print</span><span class="p">(</span><span class="n">newFileName</span><span class="p">)</span>
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># coding=utf-8</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 目标路径</span>
+</span></span><span class="line"><span class="cl"><span class="n">srcPath</span> <span class="o">=</span> <span class="s2">&#34;D:\纪录片\中国通史&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">fileList</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">srcPath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 固定前缀</span>
+</span></span><span class="line"><span class="cl"><span class="n">FixedPrefix</span> <span class="o">=</span> <span class="s2">&#34;www.baidu.com出品 微信公众号xxx&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">fileList</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">oldFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">fileName</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 跳过目录</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">continue</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="n">newFileName</span> <span class="o">=</span> <span class="n">fileName</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">FixedPrefix</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">newFilePath</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">srcPath</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">newFileName</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">try</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">oldFilePath</span><span class="p">,</span> <span class="n">newFilePath</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">newFileName</span><span class="p">)</span>
+</span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -146,17 +146,17 @@
 <p>首先，安装这个模块。</p>
 <p><code>npm install --save 2fa</code></p>
 <p>然后，生成一个32位字符的密钥。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;2fa&#39;</span><span class="p">);</span>
-
-<span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
-<span class="p">});</span>
-<span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx
-</span></code></pre></div><p>现在就可以生成哈希了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">);</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">);</span> <span class="c1">// 683464
-</span></code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">tfa</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;2fa&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">tfa</span><span class="p">.</span><span class="nx">generateKey</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">key</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// b5jjo0cz87d66mhwa9azplhxiao18zlx
+</span></span></span></code></pre></div><p>现在就可以生成哈希了。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">tc</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">/</span> <span class="mi">30</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">totp</span> <span class="o">=</span> <span class="nx">tfa</span><span class="p">.</span><span class="nx">generateCode</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">tc</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">totp</span><span class="p">);</span> <span class="c1">// 683464
+</span></span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub" target="_blank" rel="noopener noreffer">https://aq.qq.com/cn2/manage/qqtoken/qqtoken_pub</a></p>
 <p><a href="http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html" target="_blank" rel="noopener noreffer">http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html</a></p>]]></description>
 </item></channel>

@@ -133,20 +133,20 @@
 </nav></div>
             </div><div class="content" id="content"><p>结论推导</p>
 <h1 id="一结论">一、结论</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="c1"># 最方便
-</span><span class="c1"></span><span class="k">echo</span> <span class="nx">strtotime</span><span class="p">(</span><span class="s1">&#39;23:59:59&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">time</span><span class="p">();</span>
-
-<span class="c1">#最快
-</span><span class="c1"></span><span class="k">echo</span> <span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">28800</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span><span class="p">;</span>
-</code></pre></div><h1 id="二推导过程">二、推导过程</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="c1"># 最方便
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="nx">strtotime</span><span class="p">(</span><span class="s1">&#39;23:59:59&#39;</span><span class="p">)</span> <span class="o">-</span> <span class="nx">time</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#最快
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">echo</span> <span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">28800</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span><span class="p">;</span>
+</span></span></code></pre></div><h1 id="二推导过程">二、推导过程</h1>
 <p>用 86400 减去今天已经过去了多少秒，即可求得今天还剩多少秒。</p>
 <p>86400=24*3600，即一天的总秒数。</p>
 <p>28800=8*3600，即 8 个小时的总秒数。</p>
 <p>当前时间戳取模 86400 并不是今天已经过去了多少秒，因为时间戳起始时间并不是 0 点，而是 8 点整。所以，如果当前是早上 8 点整，取模 86400 后会等于 0，与我们的本意不符（求今天已经过去了多少秒）。</p>
 <p>因此，要用当前时间戳加上 8 个小时的总秒数后再取模 86400，即可求得今天过去了多少秒。</p>
 <p>结论是由下面的算法简化后得到的：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span>
-</code></pre></div><h1 id="三ref">三、REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="mi">86400</span> <span class="o">-</span> <span class="p">(</span><span class="nx">time</span><span class="p">()</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">%</span> <span class="mi">86400</span>
+</span></span></code></pre></div><h1 id="三ref">三、REF</h1>
 <p><a href="https://segmentfault.com/a/1190000019844608" target="_blank" rel="noopener noreffer">https://segmentfault.com/a/1190000019844608</a></p></div>
 
         <div class="post-footer" id="post-footer">

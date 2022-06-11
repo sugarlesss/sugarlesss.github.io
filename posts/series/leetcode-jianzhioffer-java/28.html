@@ -196,14 +196,14 @@
     </a>
 <!-- raw HTML omitted -->
 <p><strong>中序遍历</strong> 为对二叉树作 “左、根、右” 顺序遍历，递归实现如下：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 打印中序遍历
-</span><span class="c1"></span><span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">Node</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
-    <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">);</span> <span class="c1">// 左
-</span><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span><span class="o">);</span> <span class="c1">// 根
-</span><span class="c1"></span>    <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">);</span> <span class="c1">// 右
-</span><span class="c1"></span><span class="o">}</span>
-</code></pre></div><p>根据以上分析，考虑使用中序遍历访问树的各节点 cur ；并在访问每个节点时构建 cur 和前驱节点 pre 的引用指向；中序遍历完成后，最后构建头节点和尾节点的引用指向即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 打印中序遍历
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">Node</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">left</span><span class="o">);</span> <span class="c1">// 左
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">val</span><span class="o">);</span> <span class="c1">// 根
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">.</span><span class="na">right</span><span class="o">);</span> <span class="c1">// 右
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">}</span>
+</span></span></code></pre></div><p>根据以上分析，考虑使用中序遍历访问树的各节点 cur ；并在访问每个节点时构建 cur 和前驱节点 pre 的引用指向；中序遍历完成后，最后构建头节点和尾节点的引用指向即可。</p>
 <h4 id="算法流程">算法流程</h4>
 <p><strong>dfs(cur): 递归法中序遍历</strong>：</p>
 <ol>
@@ -230,56 +230,56 @@
 <p><strong>时间复杂度</strong>：O(N)，N 为二叉树的节点数，中序遍历需要访问所有节点。</p>
 <p><strong>空间复杂度</strong>：O(N)，最差情况下，即树退化为链表时，递归深度达到 N，系统使用 O(N) 栈空间。</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="n">Node</span> <span class="n">pre</span><span class="o">,</span> <span class="n">head</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">treeToDoublyList</span><span class="o">(</span><span class="n">Node</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 中序遍历, 构建双向链表
-</span><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
-
-        <span class="c1">// 此时中序遍历已经完成, head 指向头节点, pre 指向尾节点
-</span><span class="c1"></span>
-        <span class="c1">// 下面进行头节点和尾节点的相互指向, 这两句的顺序也是可以颠倒的,
-</span><span class="c1"></span>
-        <span class="c1">// 将头结点的 left 指向尾结点
-</span><span class="c1"></span>        <span class="n">head</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">pre</span><span class="o">;</span>
-        <span class="c1">// 将尾结点的 right 指向头结点
-</span><span class="c1"></span>        <span class="n">pre</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
-
-        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">Node</span> <span class="n">cur</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 终止条件：当节点 cur 为空，代表越过叶节点
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">cur</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 直接返回
-</span><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="c1">// 递归左子树
-</span><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
-
-        <span class="c1">// 构建链表
-</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">pre</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 当 pre 不为空时：修改双向节点引用
-</span><span class="c1"></span>            <span class="n">pre</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="c1">// 当 pre 为空时, 代表正在访问链表头节点
-</span><span class="c1"></span>            <span class="n">head</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">cur</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">pre</span><span class="o">;</span>
-        <span class="c1">// 保存 cur ： 更新 pre = cur ，即节点 cur 是后继节点的 pre
-</span><span class="c1"></span>        <span class="n">pre</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
-
-        <span class="c1">// 递归右子树
-</span><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Node</span> <span class="n">pre</span><span class="o">,</span> <span class="n">head</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">Node</span> <span class="nf">treeToDoublyList</span><span class="o">(</span><span class="n">Node</span> <span class="n">root</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 中序遍历, 构建双向链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">root</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 此时中序遍历已经完成, head 指向头节点, pre 指向尾节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 下面进行头节点和尾节点的相互指向, 这两句的顺序也是可以颠倒的,
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将头结点的 left 指向尾结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">head</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">pre</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 将尾结点的 right 指向头结点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">pre</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">dfs</span><span class="o">(</span><span class="n">Node</span> <span class="n">cur</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 终止条件：当节点 cur 为空，代表越过叶节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">cur</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 直接返回
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">return</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 递归左子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 构建链表
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">pre</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 当 pre 不为空时：修改双向节点引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">pre</span><span class="o">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 当 pre 为空时, 代表正在访问链表头节点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">head</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cur</span><span class="o">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">pre</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 保存 cur ： 更新 pre = cur ，即节点 cur 是后继节点的 pre
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">pre</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 递归右子树
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">dfs</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/solution/mian-shi-ti-36-er-cha-sou-suo-shu-yu-shuang-xian-5/</a></p>
 </div>
 

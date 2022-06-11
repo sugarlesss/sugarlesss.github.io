@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
     <title class="pjax-title">26、剑指 Offer 05. 替换空格 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="26、剑指 Offer 05. 替换空格" />
-<meta property="og:description" content="一、题目 剑指 Offer 05. 替换空格 难度简单 请实现一个函数，把字符串 s 中的每个空格替换成&quot;%20&quot;。 示例 1： 输入：s = &quot;We are happy.&quot; 输出：&" />
+<meta property="og:description" content="一、题目 剑指 Offer 05. 替换空格 难度简单 请实现一个函数，把字符串 s 中的每个空格替换成&quot;%20&quot;。 示例 1： 输入：s = &#34;We are happy.&#34; 输出：&" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/26.html" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-30T00:00:00+00:00" />
@@ -15,7 +15,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="26、剑指 Offer 05. 替换空格"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 05. 替换空格 难度简单 请实现一个函数，把字符串 s 中的每个空格替换成&quot;%20&quot;。 示例 1： 输入：s = &quot;We are happy.&quot; 输出：&"/>
+<meta name="twitter:description" content="一、题目 剑指 Offer 05. 替换空格 难度简单 请实现一个函数，把字符串 s 中的每个空格替换成&quot;%20&quot;。 示例 1： 输入：s = &#34;We are happy.&#34; 输出：&"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/26.html"
-        },"genre": "posts","wordcount":  351 ,
+        },"genre": "posts","wordcount":  349 ,
         "url": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/26.html","datePublished": "2021-09-30T00:00:00+00:00","dateModified": "2021-09-30T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -118,7 +118,7 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 351 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-30">2021-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 349 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -153,8 +153,8 @@
 <p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 05. 替换空格</a> 难度简单</p>
 <p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成&quot;%20&quot;。</p>
 <p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;We are happy.&quot;
-输出：&quot;We%20are%20happy.&quot;
+<pre tabindex="0"><code>输入：s = &#34;We are happy.&#34;
+输出：&#34;We%20are%20happy.&#34;
 </code></pre><p><strong>限制：</strong></p>
 <pre tabindex="0"><code>0 &lt;= s 的长度 &lt;= 10000
 </code></pre><h1 id="二解法">二、解法</h1>
@@ -165,34 +165,34 @@
 <p><strong>时间复杂度</strong>：O(N)。遍历使用 O(N)，每轮添加（修改）字符操作使用 O(1)；</p>
 <p><strong>空间复杂度</strong>：O(N)。新建的 StringBuilder 使用了线性大小的额外空间。</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="n">Character</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;%20&#34;</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22string-内置-replace-函数">2.2、String 内置 replace 函数</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">StringBuilder</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="n">Character</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="s">&#34;%20&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">result</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">c</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="22string-内置-replace-函数">2.2、String 内置 replace 函数</h2>
 <h3 id="核心思路-1">核心思路</h3>
 <p>不说了，懂得都懂。</p>
 <h3 id="复杂度分析-1">复杂度分析</h3>
 <p><strong>时间复杂度</strong>：</p>
 <p><strong>空间复杂度</strong>：</p>
 <h3 id="code-1">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">,</span> <span class="s">&#34;%20&#34;</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span> <span class="nf">replaceSpace</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="s">&#34; &#34;</span><span class="o">,</span> <span class="s">&#34;%20&#34;</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/solution/mian-shi-ti-05-ti-huan-kong-ge-ji-jian-qing-xi-tu-/</a></p>
 </div>
 

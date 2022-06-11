@@ -133,72 +133,72 @@
 </nav></div>
             </div><div class="content" id="content"><p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>
 <h1 id="源码">源码</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># -*- coding:utf-8 -*- #</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-
-<span class="k">def</span> <span class="nf">get_headers</span><span class="p">():</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;content-type&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;text/html;&#34;</span>
-    <span class="n">headers</span><span class="p">[</span>
-        <span class="s2">&#34;user-agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&#34;</span>
-    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;host&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;top.baidu.com&#34;</span>
-    <span class="k">return</span> <span class="n">headers</span>
- 
-<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://top.baidu.com/buzz?b=1&#39;</span>
-
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">get_headers</span><span class="p">())</span>
-<span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gbk&#39;</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
- 
-<span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;返回状态码：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="c1"># 调用HTML类进行初始化</span>
-<span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
-
-<span class="c1"># 提取该页面所有标题</span>
-<span class="n">result_all</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&#34;main&#34;]/div[2]/div/table/tr/td[2]/a[1]&#39;</span><span class="p">)</span>
-
-<span class="c1"># 　打印所有提取出的新闻标题</span>
-<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">result_all</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*- #</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">get_headers</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;content-type&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;text/html;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="p">[</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;user-agent&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.70 Safari/537.36&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">headers</span><span class="p">[</span><span class="s2">&#34;host&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;top.baidu.com&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">headers</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://top.baidu.com/buzz?b=1&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">get_headers</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="n">response</span><span class="o">.</span><span class="n">encoding</span> <span class="o">=</span> <span class="s1">&#39;gbk&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;返回状态码：</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调用HTML类进行初始化</span>
+</span></span><span class="line"><span class="cl"><span class="n">html</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 提取该页面所有标题</span>
+</span></span><span class="line"><span class="cl"><span class="n">result_all</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&#34;main&#34;]/div[2]/div/table/tr/td[2]/a[1]&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 　打印所有提取出的新闻标题</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">result_all</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</span></span></code></pre></div><blockquote>
 <p>在开发时遇到一个有意思的坑，如果你测试时使用浏览器复制的热点标题的 title xpath，你会发现获取不到标题。你只需要把 tbody 标签去掉，就可以正常获取到标题了。</p>
 </blockquote>
 <h1 id="输出">输出</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">31省新增本土病例85例:河北82例
-佩洛西:众议院将第二次弹劾特朗普
-河北新增49例本地无症状感染者
-金正恩被推举为朝鲜劳动党总书记
-北京新增1例确诊 4例无症状感染者
-百度宣布组建智能汽车公司
-美发生连环枪击案 一留学生身亡
-日本发现新型变异新冠病毒
-死刑!曾春亮案一审宣判
-青藏高原云南等地降温雨雪来了
-拼多多回应员工匿名发帖被辞退
-石家庄新增确诊曾去过武汉汉正街
-吉林新增4例本土无症状:2对夫妻
-袁咏仪 送包给我是张智霖的福分
-宋小女:这个结局也挺好
-2020年CPI较上年上涨2.5%
-全棉时代道歉疑似打广告
-韩媒:韩军发现朝鲜举行阅兵式迹象
-国会骚乱后特朗普没联系过彭斯
-天津处罚过马路的低头族
-被放生秃鹫赖警局每天伙食费150
-比特币暴跌超10%
-20岁小姐姐当汽车兵驰骋川藏线
-北京乘出租车网约车需扫健康宝
-网上买菜莫名被开通美团月付
-自低风险区返乡要检测?多地出通知
-车厘子价格腰斩
-山东长岛海边现冰冻奇观似鸳鸯锅
-武汉向石家庄捐赠50吨蔬菜
-康辉说和21岁最大差别是脸的宽度
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">31省新增本土病例85例:河北82例
+</span></span><span class="line"><span class="cl">佩洛西:众议院将第二次弹劾特朗普
+</span></span><span class="line"><span class="cl">河北新增49例本地无症状感染者
+</span></span><span class="line"><span class="cl">金正恩被推举为朝鲜劳动党总书记
+</span></span><span class="line"><span class="cl">北京新增1例确诊 4例无症状感染者
+</span></span><span class="line"><span class="cl">百度宣布组建智能汽车公司
+</span></span><span class="line"><span class="cl">美发生连环枪击案 一留学生身亡
+</span></span><span class="line"><span class="cl">日本发现新型变异新冠病毒
+</span></span><span class="line"><span class="cl">死刑!曾春亮案一审宣判
+</span></span><span class="line"><span class="cl">青藏高原云南等地降温雨雪来了
+</span></span><span class="line"><span class="cl">拼多多回应员工匿名发帖被辞退
+</span></span><span class="line"><span class="cl">石家庄新增确诊曾去过武汉汉正街
+</span></span><span class="line"><span class="cl">吉林新增4例本土无症状:2对夫妻
+</span></span><span class="line"><span class="cl">袁咏仪 送包给我是张智霖的福分
+</span></span><span class="line"><span class="cl">宋小女:这个结局也挺好
+</span></span><span class="line"><span class="cl">2020年CPI较上年上涨2.5%
+</span></span><span class="line"><span class="cl">全棉时代道歉疑似打广告
+</span></span><span class="line"><span class="cl">韩媒:韩军发现朝鲜举行阅兵式迹象
+</span></span><span class="line"><span class="cl">国会骚乱后特朗普没联系过彭斯
+</span></span><span class="line"><span class="cl">天津处罚过马路的低头族
+</span></span><span class="line"><span class="cl">被放生秃鹫赖警局每天伙食费150
+</span></span><span class="line"><span class="cl">比特币暴跌超10%
+</span></span><span class="line"><span class="cl">20岁小姐姐当汽车兵驰骋川藏线
+</span></span><span class="line"><span class="cl">北京乘出租车网约车需扫健康宝
+</span></span><span class="line"><span class="cl">网上买菜莫名被开通美团月付
+</span></span><span class="line"><span class="cl">自低风险区返乡要检测?多地出通知
+</span></span><span class="line"><span class="cl">车厘子价格腰斩
+</span></span><span class="line"><span class="cl">山东长岛海边现冰冻奇观似鸳鸯锅
+</span></span><span class="line"><span class="cl">武汉向石家庄捐赠50吨蔬菜
+</span></span><span class="line"><span class="cl">康辉说和21岁最大差别是脸的宽度
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://blog.csdn.net/qq_36523839/article/details/79992002" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_36523839/article/details/79992002</a></p></div>
 
         <div class="post-footer" id="post-footer">

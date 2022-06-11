@@ -13,171 +13,171 @@
     <description><![CDATA[<p>一直学下 Shell 脚本的，借鉴了很多大佬的脚本，靠着 Google 写「Ctrl+C / V」了个 Demo 出来。</p>
 <p>直接放脚本，Mark 一下防止以后忘记…</p>
 <p>复制脚本内容，保存为 *.sh 文件，运行 bash *.sh 结合查看脚本的输出情况来理解命令更佳。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span>:<span class="s">&lt;&lt;EOF
-</span><span class="s">这是多行注释区块
-</span><span class="s">
-</span><span class="s">$0	当前脚本的文件名
-</span><span class="s">$n	传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。
-</span><span class="s">$#	传递给脚本或函数的参数个数。
-</span><span class="s">$*	传递给脚本或函数的所有参数。
-</span><span class="s">$@	传递给脚本或函数的所有参数。被双引号(&#34; &#34;)包含时，与 $* 稍有不同，下面将会讲到。
-</span><span class="s">$?	上个命令的退出状态，或函数的返回值。
-</span><span class="s">$$	当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
-</span><span class="s">
-</span><span class="s">EOF</span>
-
-<span class="nv">str</span><span class="o">=</span><span class="s2">&#34;frist shell script&#34;</span>
-
-<span class="c1">#字符串拼接</span>
-<span class="nb">echo</span> <span class="s2">&#34;1：do u know this is my </span><span class="nv">$str</span><span class="s2">&#34;</span>
-
-<span class="c1">#字符串长度</span>
-<span class="nb">echo</span> <span class="s2">&#34;2：</span><span class="si">${#</span><span class="nv">str</span><span class="si">}</span><span class="s2">&#34;</span>
-
-<span class="c1">#提取子字符串</span>
-<span class="nb">echo</span> <span class="s2">&#34;3：</span><span class="si">${</span><span class="nv">str</span><span class="p">:</span><span class="nv">1</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span><span class="s2">&#34;</span>
-
-<span class="c1">#查找子字符串 查找字符 i 或 s 的位置(哪个字母先出现就计算哪个)</span>
-<span class="nb">echo</span> <span class="s2">&#34;4：`expr index &#34;</span><span class="nv">$str</span><span class="s2">&#34; is`&#34;</span>
-
-
-
-<span class="c1">#数组定义</span>
-<span class="nv">array_test</span><span class="o">=(</span><span class="m">1</span> <span class="s1">&#39;A&#39;</span> <span class="m">2</span> 4<span class="o">)</span>
-
-<span class="c1">#获取数组元素值</span>
-<span class="nb">echo</span> <span class="s2">&#34;5：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;6：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;7：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;8：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
-
-<span class="c1">#获取数组的长度</span>
-<span class="nb">echo</span> <span class="s2">&#34;9：</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
-
-
-<span class="c1">#加法运算</span>
-<span class="nv">val</span><span class="o">=</span><span class="sb">`</span>expr <span class="m">2</span> + 2<span class="sb">`</span>
-<span class="nb">echo</span> <span class="s2">&#34;10：两数之和为 : </span><span class="nv">$val</span><span class="s2">&#34;</span>
-
-<span class="c1">#在当前目录下生成log文件</span>
-<span class="nv">log_path</span><span class="o">=</span><span class="s2">&#34;test.log&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;11：往当前目录下的log文件写入内容,如果文件不存在则自动创建。&#34;</span>
-<span class="c1">#如果不希望文件内容被覆盖，可以使用 &gt;&gt; 追加到文件末尾</span>
-<span class="nb">echo</span> <span class="s2">&#34;It is a test&#34;</span> &gt; <span class="nv">$log_path</span>
-
-<span class="c1">#显示命令执行结果</span>
-<span class="nb">echo</span> <span class="s2">&#34;12：显示命令执行结果 ls&#34;</span>
-<span class="nb">echo</span> <span class="sb">`</span>ls<span class="sb">`</span>
-
-:<span class="s">&lt;&lt;EOF
-</span><span class="s">%s %c %d %f都是格式替代符
-</span><span class="s">
-</span><span class="s">%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐），任何字符都会被显示在10个字符宽的字符内
-</span><span class="s">如果不足则自动以空格填充，超过也会将内容全部显示出来。
-</span><span class="s">
-</span><span class="s">%-4.2f 指格式化为小数，其中.2指保留2位小数。
-</span><span class="s">EOF</span>
-<span class="c1">#printf显示表格</span>
-<span class="nb">echo</span> -e <span class="s2">&#34;13：printf显示表格&#34;</span>
-<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4s\n&#34;</span>   姓名 性别 体重kg  
-<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭靖 男 66.1234 
-<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 杨过 男 48.6543 
-<span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭芙 女 47.9876 
-
-<span class="c1"># 格式只指定了一个参数，但多出的参数仍然会按照该格式输出，format-string 被重用</span>
-<span class="nb">echo</span> -e <span class="s2">&#34;14：format-string 重用&#34;</span>
-<span class="nb">printf</span> <span class="s2">&#34;%s\n&#34;</span> abc df
-<span class="nb">printf</span> <span class="s2">&#34;%s %s %s\n&#34;</span> a b c d e f g h i j
-
-
-
-<span class="c1">#if</span>
-<span class="nb">echo</span> <span class="s2">&#34;14：if语句&#34;</span>
-<span class="nv">a</span><span class="o">=</span><span class="m">102</span>
-<span class="nv">b</span><span class="o">=</span><span class="m">101</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$a</span> -eq <span class="nv">$b</span> <span class="o">]</span>
-<span class="k">then</span>
-    <span class="nb">echo</span> <span class="s1">&#39;两个数相等！&#39;</span>
-<span class="k">elif</span> <span class="o">[</span> <span class="nv">$a</span> -gt <span class="nv">$b</span> <span class="o">]</span>
-<span class="k">then</span>
-    <span class="nb">echo</span> <span class="s1">&#39;a大于b！&#39;</span>
-<span class="k">else</span>
-    <span class="nb">echo</span> <span class="s1">&#39;a小于b！&#39;</span>
-<span class="k">fi</span>
-
-<span class="nv">a</span><span class="o">=</span><span class="m">101</span>
-<span class="nv">b</span><span class="o">=</span><span class="m">101</span>
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$a</span> &gt; <span class="nv">$b</span> <span class="o">||</span> <span class="nv">$a</span> <span class="o">==</span> <span class="nv">$b</span> <span class="o">]]</span>
-<span class="k">then</span>
-	<span class="nb">echo</span> <span class="s1">&#39;c大等于d&#39;</span>
-<span class="k">else</span>
-	<span class="nb">echo</span> <span class="s1">&#39;c小于d&#39;</span>
-<span class="k">fi</span>
-
-<span class="c1">#字符串比较</span>
-<span class="nv">c</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
-<span class="nv">d</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
-<span class="k">if</span> <span class="o">[[</span> <span class="nv">$c</span> <span class="o">==</span> <span class="nv">$d</span> <span class="o">]]</span>
-<span class="k">then</span>
-	<span class="nb">echo</span> <span class="s1">&#39;c和d相等！&#39;</span>
-<span class="k">else</span>
-	<span class="nb">echo</span> <span class="s1">&#39;c和d不相等！&#39;</span>
-<span class="k">fi</span>
-
-<span class="c1">#for循环</span>
-<span class="nb">echo</span> -e <span class="s2">&#34;15：for循环输出数组内的所有元素&#34;</span>
-<span class="k">for</span> vo in <span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$vo</span>
-<span class="k">done</span>
-
-<span class="c1">#while循环</span>
-<span class="nb">echo</span> -e <span class="s2">&#34;15：while循环输出数组内的所有元素&#34;</span>
-<span class="nv">array_length</span><span class="o">=</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
-<span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
-<span class="k">while</span> <span class="o">[</span> <span class="nv">$temp</span> -lt <span class="nv">$array_length</span> <span class="o">]</span>
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$temp</span>
-    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
-<span class="k">done</span>
-
-<span class="c1">#until循环</span>
-<span class="c1">#until 循环执行一系列命令直至条件为 true 时停止。</span>
-<span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
-<span class="nb">echo</span> <span class="s2">&#34;16：until循环输出数组内的所有元素&#34;</span>
-<span class="k">until</span> <span class="o">[</span> <span class="nv">$temp</span> -eq <span class="nv">$array_length</span> <span class="o">]</span>
-<span class="k">do</span>
-    <span class="nb">echo</span> <span class="nv">$temp</span>
-    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
-<span class="k">done</span>
-
-
-<span class="c1">#读取用户输入</span>
-<span class="nb">echo</span> <span class="s2">&#34;17：读取用户输入&#34;</span>
-<span class="nb">echo</span> <span class="o">&amp;&amp;</span> <span class="nb">read</span> -e -p <span class="s2">&#34;请输入数字 [1-4]：&#34;</span> aNum
-<span class="k">case</span> <span class="nv">$aNum</span> in
-    1<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 1&#39;</span>
-    <span class="p">;;</span>
-    2<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 2&#39;</span>
-    <span class="p">;;</span>
-    3<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 3&#39;</span>
-    <span class="p">;;</span>
-    4<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 4&#39;</span>
-    <span class="p">;;</span>
-    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你没有输入 1 到 4 之间的数字&#39;</span>
-    <span class="p">;;</span>
-<span class="k">esac</span>
-
-
-<span class="c1">#函数定义 调用</span>
-<span class="nb">echo</span> <span class="s2">&#34;18：函数定义 调用&#34;</span>
-demoFun<span class="o">(){</span>
-    <span class="nb">echo</span> <span class="s2">&#34;这是我的第一个 shell 函数!&#34;</span>
-<span class="o">}</span>
-<span class="nb">echo</span> <span class="s2">&#34;-----函数开始执行-----&#34;</span>
-demoFun
-<span class="nb">echo</span> <span class="s2">&#34;-----函数执行完毕-----&#34;</span>
-</code></pre></div>]]></description>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>:<span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">这是多行注释区块
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">$0	当前脚本的文件名
+</span></span></span><span class="line"><span class="cl"><span class="s">$n	传递给脚本或函数的参数。n 是一个数字，表示第几个参数。例如，第一个参数是$1，第二个参数是$2。
+</span></span></span><span class="line"><span class="cl"><span class="s">$#	传递给脚本或函数的参数个数。
+</span></span></span><span class="line"><span class="cl"><span class="s">$*	传递给脚本或函数的所有参数。
+</span></span></span><span class="line"><span class="cl"><span class="s">$@	传递给脚本或函数的所有参数。被双引号(&#34; &#34;)包含时，与 $* 稍有不同，下面将会讲到。
+</span></span></span><span class="line"><span class="cl"><span class="s">$?	上个命令的退出状态，或函数的返回值。
+</span></span></span><span class="line"><span class="cl"><span class="s">$$	当前Shell进程ID。对于 Shell 脚本，就是这些脚本所在的进程ID。
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">str</span><span class="o">=</span><span class="s2">&#34;frist shell script&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#字符串拼接</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;1：do u know this is my </span><span class="nv">$str</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#字符串长度</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;2：</span><span class="si">${#</span><span class="nv">str</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#提取子字符串</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;3：</span><span class="si">${</span><span class="nv">str</span><span class="p">:</span><span class="nv">1</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#查找子字符串 查找字符 i 或 s 的位置(哪个字母先出现就计算哪个)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;4：`expr index &#34;</span><span class="nv">$str</span><span class="s2">&#34; is`&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#数组定义</span>
+</span></span><span class="line"><span class="cl"><span class="nv">array_test</span><span class="o">=(</span><span class="m">1</span> <span class="s1">&#39;A&#39;</span> <span class="m">2</span> 4<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#获取数组元素值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;5：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[0]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;6：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[1]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;7：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;8：</span><span class="si">${</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#获取数组的长度</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;9：</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[@]</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#加法运算</span>
+</span></span><span class="line"><span class="cl"><span class="nv">val</span><span class="o">=</span><span class="sb">`</span>expr <span class="m">2</span> + 2<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;10：两数之和为 : </span><span class="nv">$val</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#在当前目录下生成log文件</span>
+</span></span><span class="line"><span class="cl"><span class="nv">log_path</span><span class="o">=</span><span class="s2">&#34;test.log&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;11：往当前目录下的log文件写入内容,如果文件不存在则自动创建。&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#如果不希望文件内容被覆盖，可以使用 &gt;&gt; 追加到文件末尾</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;It is a test&#34;</span> &gt; <span class="nv">$log_path</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#显示命令执行结果</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;12：显示命令执行结果 ls&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="sb">`</span>ls<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">:<span class="s">&lt;&lt;EOF
+</span></span></span><span class="line"><span class="cl"><span class="s">%s %c %d %f都是格式替代符
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">%-10s 指一个宽度为10个字符（-表示左对齐，没有则表示右对齐），任何字符都会被显示在10个字符宽的字符内
+</span></span></span><span class="line"><span class="cl"><span class="s">如果不足则自动以空格填充，超过也会将内容全部显示出来。
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s">%-4.2f 指格式化为小数，其中.2指保留2位小数。
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#printf显示表格</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;13：printf显示表格&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4s\n&#34;</span>   姓名 性别 体重kg  
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭靖 男 66.1234 
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 杨过 男 48.6543 
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%-10s %-8s %-4.2f\n&#34;</span> 郭芙 女 47.9876 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 格式只指定了一个参数，但多出的参数仍然会按照该格式输出，format-string 被重用</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;14：format-string 重用&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%s\n&#34;</span> abc df
+</span></span><span class="line"><span class="cl"><span class="nb">printf</span> <span class="s2">&#34;%s %s %s\n&#34;</span> a b c d e f g h i j
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#if</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;14：if语句&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">a</span><span class="o">=</span><span class="m">102</span>
+</span></span><span class="line"><span class="cl"><span class="nv">b</span><span class="o">=</span><span class="m">101</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="nv">$a</span> -eq <span class="nv">$b</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s1">&#39;两个数相等！&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">elif</span> <span class="o">[</span> <span class="nv">$a</span> -gt <span class="nv">$b</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s1">&#39;a大于b！&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s1">&#39;a小于b！&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">a</span><span class="o">=</span><span class="m">101</span>
+</span></span><span class="line"><span class="cl"><span class="nv">b</span><span class="o">=</span><span class="m">101</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$a</span> &gt; <span class="nv">$b</span> <span class="o">||</span> <span class="nv">$a</span> <span class="o">==</span> <span class="nv">$b</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s1">&#39;c大等于d&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s1">&#39;c小于d&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#字符串比较</span>
+</span></span><span class="line"><span class="cl"><span class="nv">c</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">d</span><span class="o">=</span><span class="s1">&#39;sss&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$c</span> <span class="o">==</span> <span class="nv">$d</span> <span class="o">]]</span>
+</span></span><span class="line"><span class="cl"><span class="k">then</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s1">&#39;c和d相等！&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">	<span class="nb">echo</span> <span class="s1">&#39;c和d不相等！&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#for循环</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;15：for循环输出数组内的所有元素&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> vo in <span class="si">${</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$vo</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#while循环</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s2">&#34;15：while循环输出数组内的所有元素&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">array_length</span><span class="o">=</span><span class="si">${#</span><span class="nv">array_test</span><span class="p">[*]</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl"><span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span> <span class="o">[</span> <span class="nv">$temp</span> -lt <span class="nv">$array_length</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$temp</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#until循环</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#until 循环执行一系列命令直至条件为 true 时停止。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">temp</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;16：until循环输出数组内的所有元素&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">until</span> <span class="o">[</span> <span class="nv">$temp</span> -eq <span class="nv">$array_length</span> <span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="k">do</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="nv">$temp</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">let</span> <span class="s2">&#34;temp++&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#读取用户输入</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;17：读取用户输入&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="o">&amp;&amp;</span> <span class="nb">read</span> -e -p <span class="s2">&#34;请输入数字 [1-4]：&#34;</span> aNum
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="nv">$aNum</span> in
+</span></span><span class="line"><span class="cl">    1<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 1&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    2<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 2&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    3<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 3&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    4<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你选择了 4&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">    *<span class="o">)</span>  <span class="nb">echo</span> <span class="s1">&#39;你没有输入 1 到 4 之间的数字&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">;;</span>
+</span></span><span class="line"><span class="cl"><span class="k">esac</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#函数定义 调用</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;18：函数定义 调用&#34;</span>
+</span></span><span class="line"><span class="cl">demoFun<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;这是我的第一个 shell 函数!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;-----函数开始执行-----&#34;</span>
+</span></span><span class="line"><span class="cl">demoFun
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;-----函数执行完毕-----&#34;</span>
+</span></span></code></pre></div>]]></description>
 </item></channel>
 </rss>

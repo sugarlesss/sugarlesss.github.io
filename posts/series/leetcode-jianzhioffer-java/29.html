@@ -203,16 +203,16 @@
 <li><code>[&quot;12e&quot;, &quot;1a3.14&quot;, &quot;1.2.3&quot;, &quot;+-5&quot;, &quot;12e+5.4&quot;]</code></li>
 </ul>
 <p><strong>示例 1：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;0&quot;
+<pre tabindex="0"><code>输入：s = &#34;0&#34;
 输出：true
 </code></pre><p><strong>示例 2：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;e&quot;
+<pre tabindex="0"><code>输入：s = &#34;e&#34;
 输出：false
 </code></pre><p><strong>示例 3：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;.&quot;
+<pre tabindex="0"><code>输入：s = &#34;.&#34;
 输出：false
 </code></pre><p><strong>示例 4：</strong></p>
-<pre tabindex="0"><code>输入：s = &quot;    .1  &quot;
+<pre tabindex="0"><code>输入：s = &#34;    .1  &#34;
 输出：true
 </code></pre><p><strong>提示：</strong></p>
 <ul>
@@ -273,168 +273,168 @@
 <p><strong>时间复杂度</strong>：O(n)，其中 n 为字符串的长度。我们需要遍历字符串的每个字符，其中状态转移所需的时间复杂度为 O(1)。</p>
 <p><strong>空间复杂度</strong>：O(1)，只需要创建固定大小的状态转移表。</p>
 <h3 id="code">Code：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="c1">// 有限状态集合
-</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">State</span> <span class="o">{</span>
-        <span class="c1">// 起始的空格
-</span><span class="c1"></span>        <span class="n">STATE_INITIAL</span><span class="o">,</span>
-        <span class="c1">// 整数部分符号位
-</span><span class="c1"></span>        <span class="n">STATE_INT_SIGN</span><span class="o">,</span>
-        <span class="c1">// 整数部分
-</span><span class="c1"></span>        <span class="n">STATE_INTEGER</span><span class="o">,</span>
-        <span class="c1">// 左侧有整数的小数点
-</span><span class="c1"></span>        <span class="n">STATE_POINT</span><span class="o">,</span>
-        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
-</span><span class="c1"></span>        <span class="n">STATE_POINT_WITHOUT_INT</span><span class="o">,</span>
-        <span class="c1">// 小数部分
-</span><span class="c1"></span>        <span class="n">STATE_FRACTION</span><span class="o">,</span>
-        <span class="c1">// 字符 e
-</span><span class="c1"></span>        <span class="n">STATE_EXP</span><span class="o">,</span>
-        <span class="c1">// 指数部分的符号位
-</span><span class="c1"></span>        <span class="n">STATE_EXP_SIGN</span><span class="o">,</span>
-        <span class="c1">// 指数部分的整数部分
-</span><span class="c1"></span>        <span class="n">STATE_EXP_NUMBER</span><span class="o">,</span>
-        <span class="c1">// 末尾的空格
-</span><span class="c1"></span>        <span class="n">STATE_END</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 字符类型集合
-</span><span class="c1"></span>    <span class="kd">enum</span> <span class="n">CharType</span> <span class="o">{</span>
-        <span class="c1">// 数字
-</span><span class="c1"></span>        <span class="n">CHAR_NUMBER</span><span class="o">,</span>
-        <span class="c1">// 字符 e
-</span><span class="c1"></span>        <span class="n">CHAR_EXP</span><span class="o">,</span>
-        <span class="c1">// 小数点
-</span><span class="c1"></span>        <span class="n">CHAR_POINT</span><span class="o">,</span>
-        <span class="c1">// 正负号
-</span><span class="c1"></span>        <span class="n">CHAR_SIGN</span><span class="o">,</span>
-        <span class="c1">// 空格
-</span><span class="c1"></span>        <span class="n">CHAR_SPACE</span><span class="o">,</span>
-        <span class="c1">// 非法字符
-</span><span class="c1"></span>        <span class="n">CHAR_ILLEGAL</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="c1">// 状态机
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;</span> <span class="n">transfer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;();</span>
-
-
-        <span class="c1">// 空格（初始状态） 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">initialMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="c1">// 空格
-</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">);</span>
-            <span class="c1">// 整数
-</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
-            <span class="c1">// 小数点
-</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
-            <span class="c1">// 正负号
-</span><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">,</span> <span class="n">initialMap</span><span class="o">);</span>
-
-
-        <span class="c1">// 整数部分符号位 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">intSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">,</span> <span class="n">intSignMap</span><span class="o">);</span>
-
-
-        <span class="c1">// 整数部分 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">integerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">,</span> <span class="n">integerMap</span><span class="o">);</span>
-
-        <span class="c1">// 左侧有整数的小数点 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">,</span> <span class="n">pointMap</span><span class="o">);</span>
-
-        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分) 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointWithoutIntMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">,</span> <span class="n">pointWithoutIntMap</span><span class="o">);</span>
-
-        <span class="c1">// 小数部分
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">fractionMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">,</span> <span class="n">fractionMap</span><span class="o">);</span>
-
-        <span class="c1">// 字符 e 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">,</span> <span class="n">expMap</span><span class="o">);</span>
-
-        <span class="c1">// 指数部分的符号位 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">,</span> <span class="n">expSignMap</span><span class="o">);</span>
-
-        <span class="c1">// 指数部分的整数部分 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expNumberMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">,</span> <span class="n">expNumberMap</span><span class="o">);</span>
-
-        <span class="c1">// 末尾的空格 的所有可转移状态
-</span><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">endMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
-            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
-        <span class="o">}};</span>
-        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">,</span> <span class="n">endMap</span><span class="o">);</span>
-
-
-        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-        <span class="c1">// 初始状态
-</span><span class="c1"></span>        <span class="n">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">;</span>
-
-        <span class="c1">// 循环处理每个字符, 模拟状态转移
-</span><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="c1">// 获取当前字符的类型
-</span><span class="c1"></span>            <span class="n">CharType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">toCharType</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
-
-            <span class="k">if</span> <span class="o">(!</span><span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
-                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="c1">// 获取字符的类型
-</span><span class="c1"></span>    <span class="kd">public</span> <span class="n">CharType</span> <span class="nf">toCharType</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_ILLEGAL</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="22确定有限状态自动机评论区">2.2、确定有限状态自动机（评论区）</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 有限状态集合
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">enum</span> <span class="n">State</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 起始的空格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_INITIAL</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 整数部分符号位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_INT_SIGN</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 整数部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_INTEGER</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左侧有整数的小数点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_POINT</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_POINT_WITHOUT_INT</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 小数部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_FRACTION</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 字符 e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_EXP</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指数部分的符号位
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_EXP_SIGN</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指数部分的整数部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_EXP_NUMBER</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 末尾的空格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">STATE_END</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 字符类型集合
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">enum</span> <span class="n">CharType</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_NUMBER</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 字符 e
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_EXP</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 小数点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_POINT</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 正负号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_SIGN</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 空格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_SPACE</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 非法字符
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">CHAR_ILLEGAL</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 状态机
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;</span> <span class="n">transfer</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">State</span><span class="o">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;&gt;();</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 空格（初始状态） 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">initialMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 空格
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 整数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 小数点
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 正负号
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">,</span> <span class="n">initialMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 整数部分符号位 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">intSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INT_SIGN</span><span class="o">,</span> <span class="n">intSignMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 整数部分 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">integerMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span><span class="o">,</span> <span class="n">integerMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左侧有整数的小数点 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span><span class="o">,</span> <span class="n">pointMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 左侧无整数的小数点（根据前面的第二条额外规则，需要对左侧有无整数的两种小数点做区分) 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">pointWithoutIntMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT_WITHOUT_INT</span><span class="o">,</span> <span class="n">pointWithoutIntMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 小数部分
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">fractionMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span><span class="o">,</span> <span class="n">fractionMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 字符 e 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP</span><span class="o">,</span> <span class="n">expMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指数部分的符号位 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expSignMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_SIGN</span><span class="o">,</span> <span class="n">expSignMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 指数部分的整数部分 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">expNumberMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span><span class="o">,</span> <span class="n">expNumberMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 末尾的空格 的所有可转移状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">Map</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;</span> <span class="n">endMap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;</span><span class="n">CharType</span><span class="o">,</span> <span class="n">State</span><span class="o">&gt;()</span> <span class="o">{{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">put</span><span class="o">(</span><span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">,</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}};</span>
+</span></span><span class="line"><span class="cl">        <span class="n">transfer</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">,</span> <span class="n">endMap</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 初始状态
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">State</span> <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INITIAL</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 循环处理每个字符, 模拟状态转移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// 获取当前字符的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="n">CharType</span> <span class="n">type</span> <span class="o">=</span> <span class="n">toCharType</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(!</span><span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">containsKey</span><span class="o">(</span><span class="n">type</span><span class="o">))</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">state</span> <span class="o">=</span> <span class="n">transfer</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">state</span><span class="o">).</span><span class="na">get</span><span class="o">(</span><span class="n">type</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_INTEGER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_POINT</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_FRACTION</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_EXP_NUMBER</span> <span class="o">||</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="na">STATE_END</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">// 获取字符的类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="n">CharType</span> <span class="nf">toCharType</span><span class="o">(</span><span class="kt">char</span> <span class="n">ch</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_NUMBER</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_EXP</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_POINT</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SIGN</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">ch</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_SPACE</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">CharType</span><span class="o">.</span><span class="na">CHAR_ILLEGAL</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="22确定有限状态自动机评论区">2.2、确定有限状态自动机（评论区）</h2>
 <h3 id="核心思路-1">核心思路</h3>
 <p>本题使用有限状态自动机。根据字符类型和合法数值的特点，先定义状态，再画出状态转移图，最后编写代码即可。</p>
 <p><strong>字符类型</strong>：</p>
@@ -468,34 +468,34 @@
 <p><strong>时间复杂度</strong>：其中 N 为字符串 s 的长度，判断需遍历字符串，每轮状态转移的使用 O(1) 时间。</p>
 <p><strong>空间复杂度</strong>：states 和 p 使用常数大小的额外空间。</p>
 <h3 id="code-1">Code：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">HashMap</span><span class="o">[]</span> <span class="n">states</span> <span class="o">=</span> <span class="o">{</span>
-                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 0. start with &#39;blank&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 1. &#39;sign&#39; before &#39;e&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 2. &#39;digit&#39; before &#39;dot&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>              <span class="c1">// 3. &#39;digit&#39; after &#39;dot&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 4. &#39;digit&#39; after &#39;dot&#39; (‘blank’ before &#39;dot&#39;)
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 5. &#39;e&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 6. &#39;sign&#39; after &#39;e&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 7. &#39;digit&#39; after &#39;e&#39;
-</span><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}}</span>                                         <span class="c1">// 8. end with &#39;blank&#39;
-</span><span class="c1"></span>        <span class="o">};</span>
-        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="kt">char</span> <span class="n">t</span><span class="o">;</span>
-        <span class="k">for</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;d&#39;</span><span class="o">;</span>       <span class="c1">// digit
-</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;s&#39;</span><span class="o">;</span>  <span class="c1">// sign
-</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;e&#39;</span><span class="o">;</span>  <span class="c1">// e or E
-</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>    <span class="c1">// dot, blank
-</span><span class="c1"></span>            <span class="k">else</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;?&#39;</span><span class="o">;</span>                           <span class="c1">// unknown
-</span><span class="c1"></span>            <span class="k">if</span><span class="o">(!</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">containsKey</span><span class="o">(</span><span class="n">t</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">2</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">3</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">7</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">8</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h2 id="23常规解法">2.3、常规解法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">HashMap</span><span class="o">[]</span> <span class="n">states</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">0</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">1</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 0. start with &#39;blank&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">4</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 1. &#39;sign&#39; before &#39;e&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">2</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;.&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span> <span class="c1">// 2. &#39;digit&#39; before &#39;dot&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;e&#39;</span><span class="o">,</span> <span class="n">5</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>              <span class="c1">// 3. &#39;digit&#39; after &#39;dot&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">3</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 4. &#39;digit&#39; after &#39;dot&#39; (‘blank’ before &#39;dot&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;s&#39;</span><span class="o">,</span> <span class="n">6</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 5. &#39;e&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="o">}},</span>                                        <span class="c1">// 6. &#39;sign&#39; after &#39;e&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39;d&#39;</span><span class="o">,</span> <span class="n">7</span><span class="o">);</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}},</span>                           <span class="c1">// 7. &#39;digit&#39; after &#39;e&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">new</span> <span class="n">HashMap</span><span class="o">()</span> <span class="o">{{</span> <span class="n">put</span><span class="o">(</span><span class="sc">&#39; &#39;</span><span class="o">,</span> <span class="n">8</span><span class="o">);</span> <span class="o">}}</span>                                         <span class="c1">// 8. end with &#39;blank&#39;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="o">};</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">t</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="o">(</span><span class="kt">char</span> <span class="n">c</span> <span class="o">:</span> <span class="n">s</span><span class="o">.</span><span class="na">toCharArray</span><span class="o">())</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;d&#39;</span><span class="o">;</span>       <span class="c1">// digit
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;s&#39;</span><span class="o">;</span>  <span class="c1">// sign
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;e&#39;</span><span class="o">;</span>  <span class="c1">// e or E
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span> <span class="n">t</span> <span class="o">=</span> <span class="n">c</span><span class="o">;</span>    <span class="c1">// dot, blank
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">else</span> <span class="n">t</span> <span class="o">=</span> <span class="sc">&#39;?&#39;</span><span class="o">;</span>                           <span class="c1">// unknown
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span><span class="o">(!</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">containsKey</span><span class="o">(</span><span class="n">t</span><span class="o">))</span> <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">states</span><span class="o">[</span><span class="n">p</span><span class="o">].</span><span class="na">get</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">p</span> <span class="o">==</span> <span class="n">2</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">3</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">7</span> <span class="o">||</span> <span class="n">p</span> <span class="o">==</span> <span class="n">8</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="23常规解法">2.3、常规解法</h2>
 <h3 id="核心思路-2">核心思路</h3>
 <blockquote>
 <p>什么有限状态自动机的我不太懂，常规解法可以做就不想搞这种可能只有这道题会用到的解法。</p>
@@ -521,10 +521,10 @@
 <p>然后进入循环，遍历字符串</p>
 <ul>
 <li>如果当前字符 c 是数字：将 hasNum 置为 true ，index 往后移动一直到非数字或遍历到末尾位置；如果已遍历到末尾 ( index == n ) ，结束循环</li>
-<li>如果当前字符 c 是 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ：如果 e 已经出现或者当前 e 之前没有出现过数字，返回 fasle ；否则令 hasE = true ，并且将其他 3 个 flag 全部置为 false ，因为要开始遍历 e 后面的新数字了</li>
+<li>如果当前字符 c 是 &rsquo;e&rsquo; 或 &lsquo;E&rsquo; ：如果 e 已经出现或者当前 e 之前没有出现过数字，返回 fasle ；否则令 hasE = true ，并且将其他 3 个 flag 全部置为 false ，因为要开始遍历 e 后面的新数字了</li>
 <li>如果当前字符 c 是 + 或-：如果已经出现过 + 或 - 或者已经出现过数字或者已经出现过 &lsquo;.&rsquo; ，返回 flase ；否则令 hasSign = true</li>
-<li>如果当前字符 c 是 &lsquo;.&rsquo; ：如果已经出现过 &lsquo;.&rsquo; 或者已经出现过 &lsquo;e&rsquo; 或 &lsquo;E&rsquo; ，返回 false ；否则令 hasDot = true</li>
-<li>如果当前字符 c 是 ' ' ：结束循环，因为可能是末尾的空格了，但也有可能是字符串中间的空格，在循环外继续处理</li>
+<li>如果当前字符 c 是 &lsquo;.&rsquo; ：如果已经出现过 &lsquo;.&rsquo; 或者已经出现过 &rsquo;e&rsquo; 或 &lsquo;E&rsquo; ，返回 false ；否则令 hasDot = true</li>
+<li>如果当前字符 c 是 &rsquo; &rsquo; ：结束循环，因为可能是末尾的空格了，但也有可能是字符串中间的空格，在循环外继续处理</li>
 <li>如果当前字符 c 是除了上面 5 种情况以外的其他字符，直接返回 false</li>
 </ul>
 </li>
@@ -542,52 +542,52 @@
 <p><strong>时间复杂度</strong>：O(n)</p>
 <p><strong>空间复杂度</strong>：O(1)</p>
 <h3 id="code-2">Code：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
-        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-        <span class="kt">boolean</span> <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasE</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="kt">boolean</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
-            <span class="n">index</span><span class="o">++;</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">){</span>
-            <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">){</span>
-                <span class="n">index</span><span class="o">++;</span>
-                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">){</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
-            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">hasE</span> <span class="o">||</span> <span class="o">!</span><span class="n">hasNum</span><span class="o">){</span>
-                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-                <span class="n">hasE</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">hasSign</span> <span class="o">||</span> <span class="n">hasNum</span> <span class="o">||</span> <span class="n">hasDot</span><span class="o">){</span>
-                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-                <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">){</span>
-                <span class="k">if</span><span class="o">(</span><span class="n">hasDot</span> <span class="o">||</span> <span class="n">hasE</span><span class="o">){</span>
-                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-                <span class="o">}</span>
-                <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">){</span>
-                <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
-                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">index</span><span class="o">++;</span>
-        <span class="o">}</span>
-        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
-            <span class="n">index</span><span class="o">++;</span>
-        <span class="k">return</span> <span class="n">hasNum</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNumber</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">length</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasE</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">boolean</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">,</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="sc">&#39;0&#39;</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">index</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;e&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;E&#39;</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">hasE</span> <span class="o">||</span> <span class="o">!</span><span class="n">hasNum</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hasE</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hasNum</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span> <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;+&#39;</span> <span class="o">||</span> <span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;-&#39;</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">hasSign</span> <span class="o">||</span> <span class="n">hasNum</span> <span class="o">||</span> <span class="n">hasDot</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hasSign</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39;.&#39;</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="o">(</span><span class="n">hasDot</span> <span class="o">||</span> <span class="n">hasE</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">                <span class="o">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">hasDot</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span> <span class="k">if</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">){</span>
+</span></span><span class="line"><span class="cl">                <span class="k">break</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span><span class="k">else</span><span class="o">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">index</span><span class="o">)</span> <span class="o">==</span> <span class="sc">&#39; &#39;</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">index</span><span class="o">++;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">hasNum</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">==</span> <span class="n">n</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/biao-shi-shu-zhi-de-zi-fu-chuan-by-leetcode-soluti/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/mian-shi-ti-20-biao-shi-shu-zhi-de-zi-fu-chuan-y-2/</a></p>
 <p><a href="https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/solution/jian-zhi-offer-20-biao-shi-shu-zhi-de-zi-060v/</a></p>

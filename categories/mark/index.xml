@@ -221,37 +221,37 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 
 接口配置文件“Redmi_3FD4_5G”已成功保存在文件“C:\WLAN-Redmi_3FD4_5G.xml”中。
 </code></pre><p>在 <code>C:\WLAN-REBOX-01_5G.xml</code> 配置文件中，<code>keyMaterial</code> 标签中的 <code>rebox1930</code> 就是 WIFI 密码了。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
-<span class="nt">&lt;WLANProfile</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v1&#34;</span><span class="nt">&gt;</span>
-	<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
-	<span class="nt">&lt;SSIDConfig&gt;</span>
-		<span class="nt">&lt;SSID&gt;</span>
-			<span class="nt">&lt;hex&gt;</span>5245424F582D30315F3547<span class="nt">&lt;/hex&gt;</span>
-			<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
-		<span class="nt">&lt;/SSID&gt;</span>
-	<span class="nt">&lt;/SSIDConfig&gt;</span>
-	<span class="nt">&lt;connectionType&gt;</span>ESS<span class="nt">&lt;/connectionType&gt;</span>
-	<span class="nt">&lt;connectionMode&gt;</span>manual<span class="nt">&lt;/connectionMode&gt;</span>
-	<span class="nt">&lt;MSM&gt;</span>
-		<span class="nt">&lt;security&gt;</span>
-			<span class="nt">&lt;authEncryption&gt;</span>
-				<span class="nt">&lt;authentication&gt;</span>WPA2PSK<span class="nt">&lt;/authentication&gt;</span>
-				<span class="nt">&lt;encryption&gt;</span>AES<span class="nt">&lt;/encryption&gt;</span>
-				<span class="nt">&lt;useOneX&gt;</span>false<span class="nt">&lt;/useOneX&gt;</span>
-			<span class="nt">&lt;/authEncryption&gt;</span>
-			<span class="nt">&lt;sharedKey&gt;</span>
-				<span class="nt">&lt;keyType&gt;</span>passPhrase<span class="nt">&lt;/keyType&gt;</span>
-				<span class="nt">&lt;protected&gt;</span>false<span class="nt">&lt;/protected&gt;</span>
-				<span class="nt">&lt;keyMaterial&gt;</span>rebox1930<span class="nt">&lt;/keyMaterial&gt;</span>
-			<span class="nt">&lt;/sharedKey&gt;</span>
-		<span class="nt">&lt;/security&gt;</span>
-	<span class="nt">&lt;/MSM&gt;</span>
-	<span class="nt">&lt;MacRandomization</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v3&#34;</span><span class="nt">&gt;</span>
-		<span class="nt">&lt;enableRandomization&gt;</span>false<span class="nt">&lt;/enableRandomization&gt;</span>
-		<span class="nt">&lt;randomizationSeed&gt;</span>4220620975<span class="nt">&lt;/randomizationSeed&gt;</span>
-	<span class="nt">&lt;/MacRandomization&gt;</span>
-<span class="nt">&lt;/WLANProfile&gt;</span>
-</code></pre></div><h1 id="二小米安卓系统-miui">二、小米安卓系统 MIUI</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;WLANProfile</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;SSIDConfig&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;SSID&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;hex&gt;</span>5245424F582D30315F3547<span class="nt">&lt;/hex&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;name&gt;</span>REBOX-01_5G<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/SSID&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/SSIDConfig&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;connectionType&gt;</span>ESS<span class="nt">&lt;/connectionType&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;connectionMode&gt;</span>manual<span class="nt">&lt;/connectionMode&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;MSM&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;security&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;authEncryption&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;authentication&gt;</span>WPA2PSK<span class="nt">&lt;/authentication&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;encryption&gt;</span>AES<span class="nt">&lt;/encryption&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;useOneX&gt;</span>false<span class="nt">&lt;/useOneX&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/authEncryption&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;sharedKey&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;keyType&gt;</span>passPhrase<span class="nt">&lt;/keyType&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;protected&gt;</span>false<span class="nt">&lt;/protected&gt;</span>
+</span></span><span class="line"><span class="cl">				<span class="nt">&lt;keyMaterial&gt;</span>rebox1930<span class="nt">&lt;/keyMaterial&gt;</span>
+</span></span><span class="line"><span class="cl">			<span class="nt">&lt;/sharedKey&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;/security&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/MSM&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;MacRandomization</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.microsoft.com/networking/WLAN/profile/v3&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;enableRandomization&gt;</span>false<span class="nt">&lt;/enableRandomization&gt;</span>
+</span></span><span class="line"><span class="cl">		<span class="nt">&lt;randomizationSeed&gt;</span>4220620975<span class="nt">&lt;/randomizationSeed&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/MacRandomization&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/WLANProfile&gt;</span>
+</span></span></code></pre></div><h1 id="二小米安卓系统-miui">二、小米安卓系统 MIUI</h1>
 <p>系统设置 -&gt; WLAN，点击分享密码</p>
 <a class="lightgallery" href="/post_images/image-20211214150850666.png" title="/post_images/image-20211214150850666.png" data-thumbnail="/post_images/image-20211214150850666.png">
         
@@ -332,18 +332,18 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
     </figure>
 <!-- raw HTML omitted -->
 <p>下面是上图添加详细配置时用到的命令：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 部署路径（ Target Directory ）</span>
-/www/wwwroot/SpringBootDeployTestJar
-
-<span class="c1"># 部署前执行命令（）</span>
-pkill -f main-0.0.1-SNAPSHOT.jar<span class="p">;</span>
-
-<span class="c1"># 部署后执行命令 （ After deploy ）</span>
-nohup java -jar /www/wwwroot/SpringBootDeployTestJar/main-0.0.1-SNAPSHOT.jar --server.port<span class="o">=</span>18080&gt; /www/wwwroot/SpringBootDeployTestJar/nohup.out 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
-
-<span class="c1"># 实时日志</span>
-tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
-</code></pre></div><p>填写完成后 Apply 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 部署路径（ Target Directory ）</span>
+</span></span><span class="line"><span class="cl">/www/wwwroot/SpringBootDeployTestJar
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 部署前执行命令（）</span>
+</span></span><span class="line"><span class="cl">pkill -f main-0.0.1-SNAPSHOT.jar<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 部署后执行命令 （ After deploy ）</span>
+</span></span><span class="line"><span class="cl">nohup java -jar /www/wwwroot/SpringBootDeployTestJar/main-0.0.1-SNAPSHOT.jar --server.port<span class="o">=</span>18080&gt; /www/wwwroot/SpringBootDeployTestJar/nohup.out 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 实时日志</span>
+</span></span><span class="line"><span class="cl">tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
+</span></span></code></pre></div><p>填写完成后 Apply 。</p>
 <h1 id="三一键部署">三、一键部署</h1>
 <p>切换到一键部署，run。</p>
 <figure><a class="lightgallery" href="/post_images/image-20210806162820768.png" title="/post_images/image-20210806162820768.png" data-thumbnail="/post_images/image-20210806162820768.png" data-sub-html="<h2>一键部署</h2>">
@@ -366,21 +366,21 @@ tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html</guid>
     <description><![CDATA[<p>你还在发起 ajax 请求时在 data 里写上一大堆参数，或是手动拼接参数字符串吗？</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;http://example.com/...&#34;</span><span class="p">;</span>
-<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
-    <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span>
-    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="c1">//使用post方式提交
-</span><span class="c1"></span>    <span class="nx">data</span><span class="o">:</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;form&#34;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span><span class="c1">//使用jQuery选择器获取form标签中的数据，并序列化
-</span><span class="c1"></span>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// ...
-</span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// ...
-</span><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-            <span class="c1">// ...
-</span><span class="c1"></span>        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div><p>jQuery Yes！</p>]]></description>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">&#34;http://example.com/...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">url</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span><span class="c1">//使用post方式提交
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">data</span><span class="o">:</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;form&#34;</span><span class="p">).</span><span class="nx">serialize</span><span class="p">(),</span><span class="c1">//使用jQuery选择器获取form标签中的数据，并序列化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="s1">&#39;code&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></div><p>jQuery Yes！</p>]]></description>
 </item></channel>
 </rss>

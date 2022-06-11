@@ -126,35 +126,35 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><p>自动切割目标目录下的所有 .log 文件，即使新建站点，产生新的日志需要切割，也无需修改脚本。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="c1">#自动版日志切割 无需设置</span>
- 
-<span class="c1">#存放 .log 日志文件的路径</span>
-<span class="nv">log_files_path</span><span class="o">=</span><span class="s2">&#34;/home/wwwlogs&#34;</span>
-<span class="c1">#存放切割后日志的文件夹路径</span>
-<span class="nv">log_files_dir</span><span class="o">=</span><span class="si">${</span><span class="nv">log_files_path</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y&#34;</span><span class="k">)</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%m&#34;</span><span class="k">)</span>
- 
-<span class="c1">#nginx的路径</span>
-<span class="nv">nginx_sbin</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/sbin/nginx&#34;</span>
-<span class="c1">#保存多少天内的日志</span>
-<span class="nv">save_days</span><span class="o">=</span><span class="m">30</span>
- 
-<span class="c1">############################################</span>
-<span class="c1"># 请勿修改此脚本下面的任何内容！！！！！！！！！ #</span>
-<span class="c1">############################################</span>
-mkdir -p <span class="nv">$log_files_dir</span>
- 
-<span class="nb">cd</span> <span class="nv">$log_files_path</span>
-<span class="c1">#cut nginx log files</span>
-<span class="k">for</span> d in <span class="sb">`</span>ls -f *.log<span class="sb">`</span><span class="p">;</span><span class="k">do</span>
-mv <span class="si">${</span><span class="nv">log_files_path</span><span class="si">}${</span><span class="nv">d</span><span class="si">}</span> <span class="si">${</span><span class="nv">log_files_dir</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y%m%d&#34;</span><span class="k">)</span>_<span class="nv">$d</span>
-<span class="k">done</span>
- 
-<span class="c1">#delete 30 days ago nginx log files</span>
-find <span class="nv">$log_files_path</span> -mtime +<span class="nv">$save_days</span> -exec rm -rf <span class="o">{}</span> <span class="se">\;</span>
- 
-<span class="nv">$nginx_sbin</span> -s reload
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">#自动版日志切割 无需设置</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#存放 .log 日志文件的路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">log_files_path</span><span class="o">=</span><span class="s2">&#34;/home/wwwlogs&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#存放切割后日志的文件夹路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">log_files_dir</span><span class="o">=</span><span class="si">${</span><span class="nv">log_files_path</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y&#34;</span><span class="k">)</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%m&#34;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#nginx的路径</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_sbin</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/sbin/nginx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#保存多少天内的日志</span>
+</span></span><span class="line"><span class="cl"><span class="nv">save_days</span><span class="o">=</span><span class="m">30</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">############################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 请勿修改此脚本下面的任何内容！！！！！！！！！ #</span>
+</span></span><span class="line"><span class="cl"><span class="c1">############################################</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="nv">$log_files_dir</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> <span class="nv">$log_files_path</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#cut nginx log files</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> d in <span class="sb">`</span>ls -f *.log<span class="sb">`</span><span class="p">;</span><span class="k">do</span>
+</span></span><span class="line"><span class="cl">mv <span class="si">${</span><span class="nv">log_files_path</span><span class="si">}${</span><span class="nv">d</span><span class="si">}</span> <span class="si">${</span><span class="nv">log_files_dir</span><span class="si">}</span>/<span class="k">$(</span>date -d <span class="s2">&#34;yesterday&#34;</span> +<span class="s2">&#34;%Y%m%d&#34;</span><span class="k">)</span>_<span class="nv">$d</span>
+</span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1">#delete 30 days ago nginx log files</span>
+</span></span><span class="line"><span class="cl">find <span class="nv">$log_files_path</span> -mtime +<span class="nv">$save_days</span> -exec rm -rf <span class="o">{}</span> <span class="se">\;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="nv">$nginx_sbin</span> -s reload
+</span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

@@ -137,101 +137,101 @@
             </div><div class="content" id="content"><p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>
 <h1 id="一生成矩形颜色随机的词云图">一、生成矩形颜色随机的词云图</h1>
 <p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成矩形随机颜色的词云图。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">collections</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">math</span>
- 
-<span class="kn">import</span> <span class="nn">jieba</span>
-<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
- 
-<span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
- 
- 
-<span class="c1"># 创建停用词列表</span>
-<span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
-    <span class="c1"># 按行读入</span>
-    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
- 
-    <span class="c1"># 分割为单个字符（列表解析）</span>
-    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">stopwords</span>
- 
- 
-<span class="c1"># # 指定字符串方式</span>
-<span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
- 
-<span class="c1"># 文件读取方式</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
- 
-<span class="c1"># 生成词云的词频限制，选取前30%</span>
-<span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
- 
-<span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_rectangle.png 文件）</span>
-<span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_rectangle.png&#34;</span>
- 
-<span class="c1"># jieba分词</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
- 
-<span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
- 
-<span class="c1"># 去除标点符号</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
-<span class="c1"># 只取中文</span>
-<span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
- 
-<span class="c1"># 转换为list</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
- 
-<span class="c1"># 过滤空字符和None</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
-<span class="c1"># print(seg)</span>
- 
-<span class="c1"># 创建一个停用词列表</span>
-<span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
-<span class="c1"># print(stopwords)</span>
- 
-<span class="c1"># 过滤停用词（列表解析）</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
-<span class="c1"># print(seg)</span>
- 
-<span class="c1"># 统计词频</span>
-<span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
-<span class="c1"># print(word_counts)</span>
-<span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
- 
-<span class="c1"># # 获取词频降序排列的前30%</span>
-<span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
-<span class="c1"># print(word_counts_top_50_percent)</span>
- 
-<span class="c1"># 生成词云</span>
-<span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
-    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
-    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
-    <span class="c1"># 设置背景宽</span>
-    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="c1"># 设置背景高</span>
-    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
-    <span class="c1"># 最大字体</span>
-    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="c1"># 最小字体</span>
-    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="c1"># 设置字体文件路径，不指定就会出现乱码。</span>
-    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
-    <span class="c1"># 设置背景色</span>
-    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-<span class="p">)</span>
- 
-<span class="c1"># 根据词频产生词云</span>
-<span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
- 
-<span class="c1"># 生成词云图片文件</span>
-<span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
-</code></pre></div><p>效果图：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">collections</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">jieba</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建停用词列表</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 按行读入</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 分割为单个字符（列表解析）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stopwords</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># # 指定字符串方式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 文件读取方式</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云的词频限制，选取前30%</span>
+</span></span><span class="line"><span class="cl"><span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl"><span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_rectangle.png 文件）</span>
+</span></span><span class="line"><span class="cl"><span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_rectangle.png&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># jieba分词</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 去除标点符号</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只取中文</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 转换为list</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤空字符和None</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个停用词列表</span>
+</span></span><span class="line"><span class="cl"><span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(stopwords)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤停用词（列表解析）</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 统计词频</span>
+</span></span><span class="line"><span class="cl"><span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(word_counts)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># # 获取词频降序排列的前30%</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(word_counts_top_50_percent)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置背景宽</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置背景高</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 最大字体</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 最小字体</span>
+</span></span><span class="line"><span class="cl">    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置字体文件路径，不指定就会出现乱码。</span>
+</span></span><span class="line"><span class="cl">    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置背景色</span>
+</span></span><span class="line"><span class="cl">    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据词频产生词云</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云图片文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
+</span></span></code></pre></div><p>效果图：</p>
 <p><img
         class="lazyload"
         data-src="../post_images/c87194e3bad48.png"
@@ -242,139 +242,139 @@
     /></p>
 <h1 id="二根据图片生成规定形状的颜色相近的词云图">二、根据图片生成规定形状的颜色相近的词云图</h1>
 <p>读取本地文件内容，对文本内容进行中文分词，统计词频后，根据背景图片生成规定形状和颜色的词云图。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">collections</span>
-<span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">import</span> <span class="nn">math</span>
-<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
- 
-<span class="kn">import</span> <span class="nn">jieba</span>
-<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
-<span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">ImageColorGenerator</span>
- 
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
- 
-<span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
- 
- 
-<span class="c1"># 创建停用词列表</span>
-<span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
-    <span class="c1"># 按行读入</span>
-    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
- 
-    <span class="c1"># 分割为单个字符（列表解析）</span>
-    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">stopwords</span>
- 
- 
-<span class="c1"># 自定义颜色函数（在绘制词云图时发现有的字颜色为黄色导致看不清因此需要修改整个词云图的色调为冷色调 蓝绿色）</span>
-<span class="k">def</span> <span class="nf">random_color_func</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                      <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="c1"># what is HSL? https://baike.baidu.com/item/HSL/1443144?fr=aladdin</span>
-    <span class="n">H</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
-    <span class="n">S</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="mf">255.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="s2">&#34;hsl(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">%, </span><span class="si">{}</span><span class="s2">%)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
- 
- 
-<span class="c1"># # 指定字符串方式</span>
-<span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
- 
-<span class="c1"># 文件读取方式</span>
-<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
-<span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
- 
-<span class="c1"># 生成词云的词频限制，选取前30%</span>
-<span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
- 
-<span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_arbitrary_shape.png 文件）</span>
-<span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_arbitrary_shape.png&#34;</span>
- 
-<span class="c1"># jieba分词</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
- 
-<span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
- 
-<span class="c1"># 去除标点符号</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
-<span class="c1"># 只取中文</span>
-<span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
- 
-<span class="c1"># 转换为list</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
- 
-<span class="c1"># 过滤空字符和None</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
-<span class="c1"># print(seg)</span>
- 
-<span class="c1"># 创建一个停用词列表</span>
-<span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
-<span class="c1"># print(stopwords)</span>
- 
-<span class="c1"># 过滤停用词（列表解析）</span>
-<span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
-<span class="c1"># print(seg)</span>
- 
-<span class="c1"># 统计词频</span>
-<span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
-<span class="c1"># print(word_counts)</span>
-<span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
- 
-<span class="c1"># # 获取词频降序排列的前30%</span>
-<span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
-<span class="c1"># print(word_counts_top_50_percent)</span>
- 
-<span class="c1"># 词云形状</span>
-<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;./background1.png&#34;</span><span class="p">))</span>
-<span class="c1"># 根据图片颜色设置词云颜色(如果背景图片是纯色背景会报 NotImplementedError: Gray-scale images TODO 错误)</span>
-<span class="n">bg_color_func</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
- 
-<span class="c1"># 生成词云</span>
-<span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
-    <span class="c1"># 词云形状</span>
-    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
-    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
-    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
-    <span class="c1"># 设置图片宽度（单位：像素）</span>
-    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
-    <span class="c1"># 设置图片高度（单位：像素）</span>
-    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
-    <span class="c1"># 最大字体</span>
-    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
-    <span class="c1"># 最小字体</span>
-    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-    <span class="c1"># 字体文件路径，不指定就会出现乱码。（windows系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来）</span>
-    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
-    <span class="c1"># 设置背景色</span>
-    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
-    <span class="c1"># 颜色模式（默认为RBG）当参数为“RGBA”并且background_color为None时，背景为黑色</span>
-    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RGBA&#39;</span><span class="p">,</span>
- 
-    <span class="c1"># 词语水平方向排版出现的频率，默认 0.9 （所以词语垂直方向排版出现频率为 0.1 ）</span>
-    <span class="n">prefer_horizontal</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
-    <span class="c1"># 按照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍</span>
-    <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-    <span class="c1"># 词频和字体大小的关联性</span>
-    <span class="n">relative_scaling</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
-    <span class="c1"># 生成新颜色的函数（默认为None）</span>
-    <span class="c1"># color_func=None,</span>
-    <span class="n">color_func</span><span class="o">=</span><span class="n">bg_color_func</span><span class="p">,</span>
-    <span class="c1"># color_func=random_color_func,</span>
-    <span class="c1"># 给每个单词随机分配颜色，若指定color_func，则忽略该方法</span>
-    <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="c1"># colormap=&#39;pink&#39;,</span>
-<span class="p">)</span>
- 
-<span class="c1"># 根据词频产生词云</span>
-<span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
- 
-<span class="c1"># 生成词云图片文件</span>
-<span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
-</code></pre></div><p>效果图：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">collections</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">math</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">jieba</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">ImageColorGenerator</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">jieba</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建停用词列表</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">stopwordslist</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 按行读入</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;chinsesstop.txt&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;UTF-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 分割为单个字符（列表解析）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">stopwords</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义颜色函数（在绘制词云图时发现有的字颜色为黄色导致看不清因此需要修改整个词云图的色调为冷色调 蓝绿色）</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">random_color_func</span><span class="p">(</span><span class="n">word</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">orientation</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">font_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># what is HSL? https://baike.baidu.com/item/HSL/1443144?fr=aladdin</span>
+</span></span><span class="line"><span class="cl">    <span class="n">H</span> <span class="o">=</span> <span class="n">randint</span><span class="p">(</span><span class="mi">120</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="mf">255.0</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">L</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mf">100.0</span> <span class="o">*</span> <span class="nb">float</span><span class="p">(</span><span class="n">randint</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">120</span><span class="p">))</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;hsl(</span><span class="si">{}</span><span class="s2">, </span><span class="si">{}</span><span class="s2">%, </span><span class="si">{}</span><span class="s2">%)&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># # 指定字符串方式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># text = &#34;collections在python官方文档中的解释是High-performance container datatypes，直接的中文翻译解释高性能容量数据类型。它总共包含五种数据类型&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 文件读取方式</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;./article.txt&#34;</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&#34;utf-8&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">text</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云的词频限制，选取前30%</span>
+</span></span><span class="line"><span class="cl"><span class="n">TopWordFrequencyPercentage</span> <span class="o">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl"><span class="n">TopWordFrequencyPercentage</span> <span class="o">/=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 词云图片生成路径（当前目录下的 wordcloud_arbitrary_shape.png 文件）</span>
+</span></span><span class="line"><span class="cl"><span class="n">PicSavePath</span> <span class="o">=</span> <span class="s2">&#34;./wordcloud_arbitrary_shape.png&#34;</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># jieba分词</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">jieba</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="s2">&#34; &#34;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 去除标点符号</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;[0-9\s+\.\!\/_,$%^*()?;；:-【】+</span><span class="se">\&#34;</span><span class="s2">\&#39;]+|[+——！，;:：。？、~@#￥%……&amp;*（）]+&#34;</span><span class="p">,</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只取中文</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># seg = re.sub(r&#39;[^\u4e00-\u9fa5]&#39;, &#39; &#39;, seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 转换为list</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="n">seg</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34; &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤空字符和None</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">seg</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个停用词列表</span>
+</span></span><span class="line"><span class="cl"><span class="n">stopwords</span> <span class="o">=</span> <span class="n">stopwordslist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(stopwords)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 过滤停用词（列表解析）</span>
+</span></span><span class="line"><span class="cl"><span class="n">seg</span> <span class="o">=</span> <span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">seg</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(seg)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 统计词频</span>
+</span></span><span class="line"><span class="cl"><span class="n">word_counts</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(word_counts)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(math.ceil(len(word_counts) * 0.3))</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># # 获取词频降序排列的前30%</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># word_counts_top_50_percent = word_counts.most_common(math.ceil(len(word_counts) * 0.3))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># print(word_counts_top_50_percent)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 词云形状</span>
+</span></span><span class="line"><span class="cl"><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&#34;./background1.png&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据图片颜色设置词云颜色(如果背景图片是纯色背景会报 NotImplementedError: Gray-scale images TODO 错误)</span>
+</span></span><span class="line"><span class="cl"><span class="n">bg_color_func</span> <span class="o">=</span> <span class="n">ImageColorGenerator</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 词云形状</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 限制词数（根据词频限制，计算个数，向上取整）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_words</span><span class="o">=</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span> <span class="o">*</span> <span class="n">TopWordFrequencyPercentage</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置图片宽度（单位：像素）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置图片高度（单位：像素）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 最大字体</span>
+</span></span><span class="line"><span class="cl">    <span class="n">max_font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 最小字体</span>
+</span></span><span class="line"><span class="cl">    <span class="n">min_font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 字体文件路径，不指定就会出现乱码。（windows系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">font_path</span><span class="o">=</span><span class="s1">&#39;./MSYH.TTC&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 设置背景色</span>
+</span></span><span class="line"><span class="cl">    <span class="n">background_color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 颜色模式（默认为RBG）当参数为“RGBA”并且background_color为None时，背景为黑色</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;RGBA&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 词语水平方向排版出现的频率，默认 0.9 （所以词语垂直方向排版出现频率为 0.1 ）</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prefer_horizontal</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 按照比例进行放大画布，如设置为1.5，则长和宽都是原来画布的1.5倍</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 词频和字体大小的关联性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">relative_scaling</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 生成新颜色的函数（默认为None）</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># color_func=None,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">color_func</span><span class="o">=</span><span class="n">bg_color_func</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># color_func=random_color_func,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 给每个单词随机分配颜色，若指定color_func，则忽略该方法</span>
+</span></span><span class="line"><span class="cl">    <span class="n">colormap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># colormap=&#39;pink&#39;,</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据词频产生词云</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_counts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成词云图片文件</span>
+</span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
+</span></span></code></pre></div><p>效果图：</p>
 <p><img
         class="lazyload"
         data-src="../post_images/6d37a040f0964.png"
@@ -407,117 +407,117 @@ wincertstore==0.2
 wordcloud==1.8.1
 </code></pre><h1 id="四停止词--过滤词chinsesstoptxt">四、停止词 / 过滤词（chinsesstop.txt）</h1>
 <p>这里其实我只对单字过滤了，没有对词组做过滤。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">的地得
-了就在与也为更而之由以把吧巴去过被搞或每及几
-不让到等从人请叫和最当例本
-干拿取说做给靠按受收记
-但又及并另只则既即将
-一二三四五六七八九
-是非
-大小
-时分秒
-前后左右
-东西南北中
-你我他她它们
-年月日
-进出
-新旧
-有无
-对错
-开关
-里外
-多少
-上下
-个头
-</code></pre></div><h1 id="五字体文件msyhttc">五、字体文件（MSYH.TTC）</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">的地得
+</span></span><span class="line"><span class="cl">了就在与也为更而之由以把吧巴去过被搞或每及几
+</span></span><span class="line"><span class="cl">不让到等从人请叫和最当例本
+</span></span><span class="line"><span class="cl">干拿取说做给靠按受收记
+</span></span><span class="line"><span class="cl">但又及并另只则既即将
+</span></span><span class="line"><span class="cl">一二三四五六七八九
+</span></span><span class="line"><span class="cl">是非
+</span></span><span class="line"><span class="cl">大小
+</span></span><span class="line"><span class="cl">时分秒
+</span></span><span class="line"><span class="cl">前后左右
+</span></span><span class="line"><span class="cl">东西南北中
+</span></span><span class="line"><span class="cl">你我他她它们
+</span></span><span class="line"><span class="cl">年月日
+</span></span><span class="line"><span class="cl">进出
+</span></span><span class="line"><span class="cl">新旧
+</span></span><span class="line"><span class="cl">有无
+</span></span><span class="line"><span class="cl">对错
+</span></span><span class="line"><span class="cl">开关
+</span></span><span class="line"><span class="cl">里外
+</span></span><span class="line"><span class="cl">多少
+</span></span><span class="line"><span class="cl">上下
+</span></span><span class="line"><span class="cl">个头
+</span></span></code></pre></div><h1 id="五字体文件msyhttc">五、字体文件（MSYH.TTC）</h1>
 <p>windows 系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来</p>
 <h1 id="六测试文章">六、测试文章</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">戴着眼镜，文质彬彬，我们很难把刘聪和传统印象里的农人联系起来。但实际上，35岁的“新农人”刘聪，已经在重庆田间地头种了近十年的葡萄。
- 
-2009年毕业于西南农业大学，从事的销售工作需要经常出差，漂泊生活无法给刘聪带来安定感。一次偶然，刘聪看了电影《林中漫步》，被影片中祥和宁静的森林景色所打动，于是辞去了原有的工作，和朋友回乡种起了葡萄。
- 
-然而，刘聪理想中田园生活的“美轮美奂”，在现实里被各种鸡飞狗跳替代。因为资金链缺乏、设施落后，在对抗自然灾害、虫害方面抗风险能力较低，导致第一年出品的葡萄品质非常一般。
- 
-不过，刘聪并没有放弃，吸取教训后更认真地钻研葡萄栽培。同时，他着手申请政府的援助项目搭建钢棚，慢慢发展起来后加大投资，又顺利申请到平安普惠惠农贷，获得平安普惠三农服务的帮助，极大缓解了创业前期的资金压力。
- 
-如今，刘聪的“阳光玫瑰”种植面积已经有47亩，靠种葡萄改善了家庭状况。原本反对刘聪回农村搞农业的爸妈，也慢慢开始能够理解他了。
- 
-像刘聪这样“归园田居”的故事，正越来越多地在现实里上演。
- 
-一如国庆档黑马《一点就到家》把“三个合伙人”的创业故事从城市搬到了农村，如今，回家乡早已经不是退路，而是奋斗者的另一种选择。在农村脱贫主旋律下，当代农村的创业故事，远比想象中更精彩。
- 
-走出贫穷的循环，
-辣椒地里开出幸福花
- 
-在《一点就到家》里，回到云南普洱的年轻人种起咖啡，圆了咖啡梦的同时助力家乡脱贫。电影里，咖啡是一开始不被接受的“新事物”，而实际上，云南的咖啡种植历史由来已久。
- 
-咖啡是云南的特色产品。同样，在贵州，也有一群人靠着家乡特色产品辣椒，闯出红火事业。
- 
-20年前，夏可福放弃国家公职人员身份，回到贵州湄潭开始创业。一开始，夏可福差价赚钱，但他意识到光靠转卖鲜辣椒终究不是长远之计，于是他用几年的积蓄租下了一个两万平方的工厂，开始转向辣椒加工。
- 
-如今，公司经过产业转型升级，已发展成为湄潭县辣椒加工及销售的龙头企业，夏可福也成为了黔北一带有名企业家“夏辣椒”。
- 
-夏可福不仅靠卖辣椒闯出红火事业，更带动了本地老百姓增收致富。
- 
-值得一提的是，夏可福的公司采取“公司+基地+农户”的模式，在提供技术指导和肥料补助的基础上，与基地农户签订收购合同，实行保护价、随行就市收购和公司二次分配返还利润的办法，直接带动农民增收，与基地农户建立了紧密合作伙伴关系。
- 
-2019年，通过遵义市农业信贷担保公司，夏可福了解到平安普惠三农服务，认为平安普惠惠农贷这个项目能够给企业和老百姓实实在在的实惠，遂与之展开合作。
- 
-90后单亲妈妈杨胜颖，正是通过收购合作方夏可福的介绍推荐，了解到平安普惠三农服务，获得了100万元贷款资金支持。
- 
-杨胜颖家祖祖辈辈以种辣椒为生，小规模种植只够一家人谋生，一年到最后，基本没剩什么存款。
- 
-直到杨胜颖用这笔钱扩大了辣椒地种植面积，有了帮工，提高了生产的效率，通过自己的努力增加收入，突破了小规模种植的拮据经济状况，让生活变得滋润起来，也为孩子创造了更好的成长环境。
- 
-带妇女走出家庭，
-小镇独立女性的创业路
- 
-在过去，农村女性总是全身心为小家而活，一辈子没走出过厨房，缺少独立意识。而如今，越来越多的女性有了自己的事业，杨胜颖给出了一个不同的答案，张红中又给出了另一个。
- 
-2015年，张红中到甘肃靖远的农投公司上班，一直在党政综合办公室工作。今年疫情稍微有所好转的时候，张红中接到通知，说要让她搞妇女创业项目。
- 
-菌棒生产项目是靖远县人民政府为了解决全县香菇产业菌棒用量大、外购成本高、当地贫困户就业困难等问题而决定实施的重点扶贫项目。从一个“领导要求什么就做什么”的行政岗位，到千人千法的创业，临危受命，张红中一点点学，咬着牙干了起来。
- 
-繁忙的工作让张红中没有太多时间顾及家庭和孩子，但家人们的理解和支持让她能够放心去干。同时，一想到基地上的五六十名女同志，她们也有家庭、孩子，都在为这份事业不断奋斗，她作为领头人也更不能先退缩。
- 
-同样身为女性，张红中更能与妇女们产生共情。菌棒生产车间对技术要求比较高，车间也有挺多妇女的文化水平只是在初中，她们不懂，张红中就自己学来了之后给她们上课，教懂她们一项技能。
- 
-项目落地后，菌棒生产项目获得了平安普惠的80万惠农金，这份灵活的资金，对张红中的经营无疑是雪中送炭。资金被用于原料采购、销售技能培训等方面，妇女们获取劳务收入的同时，也提高了就业技能和致富能力。
- 
-不只是菌棒生产项目，2020年4月，由中国妇女发展基金会与平安普惠合作发起的惠农金项目落地甘肃靖远县，平安普惠为项目提供了400万元资金支持，以扶持靖远县香菇脱贫基地、千亩枸杞园、菌棒生产大棚、日光温室蔬菜大棚、爱心惠民超市等5个项目。每个项目各分配80万元，主要用于生产资料的购置、女性技术及营销技能的培训和工资发放。
- 
-这些项目的落地，实现了近300名女性就近就业。通过技能扶贫，让女性们手握脱贫的“金钥匙”，独立走出家庭，靠自己争取出了一片天。
- 
-不只如此，平安普惠扶贫的脚步一直没有停过，与传承非物质文化遗产相结合，创新设计扶贫也成为平安普惠创新扶贫的重点。
- 
-今年八月，由平安普惠联合平安集团、经济日报报业集团艺术与设计杂志社、中国服饰报社策划的“妈妈的针线活”项目启动仪式在四川凉山西昌举行。
- 
-彝族女孩子们自幼学习刺绣，彝族刺绣工艺独特，是具有悠久历史的非物质文化遗产。“妈妈的针线活” 妇女手工创业扶贫项目，通过旧衣物升级改造的“再生设计”，赋予旧废服饰新生命，在振兴非物质遗产同时，帮助和带动当地贫困妇女就地就业创业，并增加收益，起到精准扶贫的效果。
- 
-拔掉“穷根”，
-平安普惠“造鱼塘”助农
- 
-2020年是精准扶贫、脱贫攻坚的关键之年，平安普惠积极响应国家“十四五”规划和2035年远景目标，在中国平安“三村工程”的指导下，始终怀有强烈的社会责任感和使命感。
- 
-助力扶贫攻坚与乡村振兴，平安普惠以“商业向善”为核心，围绕新农村创新产业发展、妇女创业、商业可持续、文化传承等方向，积极多角度探索创新三农扶贫模式：
- 
-与中国扶贫基金会共同成立“平安产业扶贫公益基金”，用于建设4个扶贫新农人产业发展基地；
- 
-与上海宋庆龄基金会、中国妇女发展基金会合作，为贫困地区农村合作社带头人经营生产，提供免息借款惠农金和创业能力建设服务；
- 
-凭借自身主营业务优势，积极探索解决农村农业发展中“融资难、融资贵、融资慢”的问题，联合多家省级农业担保公司及其他基层机构，为农村创业者提供商业可持续的惠农借贷服务；
- 
-结合凉山非遗传承文化，探索旧衣回收、非遗设计、手工加工、市场销售的全链条闭环扶贫长效机制。
- 
- 
-截至目前，平安普惠累计向农村合作社带头人及农创者提供扶持资金超11880万元，直接扶持超过800户贫困户，覆盖地区包括甘肃、重庆、贵州、陕西、海南、黑龙江、云南等12个省份，覆盖种植业、畜牧业、林业等多种农业类型。
- 
-除了为农户提供资金扶持，平安普惠更充分发挥自身优势扶贫，依托平安的人工智能、云计算和区块链三大核心科技，积极构建多元的扶贫场景，以科技赋能扶贫。
- 
-平安普惠的精准扶贫不只是治标，从提供资金“授人以鱼”，到技术扶贫“授人以渔”，甚至从生产到销售打通全产业链助农，平安普惠更造了个“鱼塘”，给足了农民脱贫路上“放手去干”的安全感。
- 
-扶贫路上，平安普惠始终不忘普惠三农服务的社会责任初衷和决心：聚焦小微、助农惠农、帮助弱势群体，多角度、全方位探索助农模式，为贫困地区农村经济和产业发展注入新鲜动力，助力建档立卡贫困户和小农户脱贫致富。
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">戴着眼镜，文质彬彬，我们很难把刘聪和传统印象里的农人联系起来。但实际上，35岁的“新农人”刘聪，已经在重庆田间地头种了近十年的葡萄。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">2009年毕业于西南农业大学，从事的销售工作需要经常出差，漂泊生活无法给刘聪带来安定感。一次偶然，刘聪看了电影《林中漫步》，被影片中祥和宁静的森林景色所打动，于是辞去了原有的工作，和朋友回乡种起了葡萄。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">然而，刘聪理想中田园生活的“美轮美奂”，在现实里被各种鸡飞狗跳替代。因为资金链缺乏、设施落后，在对抗自然灾害、虫害方面抗风险能力较低，导致第一年出品的葡萄品质非常一般。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">不过，刘聪并没有放弃，吸取教训后更认真地钻研葡萄栽培。同时，他着手申请政府的援助项目搭建钢棚，慢慢发展起来后加大投资，又顺利申请到平安普惠惠农贷，获得平安普惠三农服务的帮助，极大缓解了创业前期的资金压力。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">如今，刘聪的“阳光玫瑰”种植面积已经有47亩，靠种葡萄改善了家庭状况。原本反对刘聪回农村搞农业的爸妈，也慢慢开始能够理解他了。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">像刘聪这样“归园田居”的故事，正越来越多地在现实里上演。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">一如国庆档黑马《一点就到家》把“三个合伙人”的创业故事从城市搬到了农村，如今，回家乡早已经不是退路，而是奋斗者的另一种选择。在农村脱贫主旋律下，当代农村的创业故事，远比想象中更精彩。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">走出贫穷的循环，
+</span></span><span class="line"><span class="cl">辣椒地里开出幸福花
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">在《一点就到家》里，回到云南普洱的年轻人种起咖啡，圆了咖啡梦的同时助力家乡脱贫。电影里，咖啡是一开始不被接受的“新事物”，而实际上，云南的咖啡种植历史由来已久。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">咖啡是云南的特色产品。同样，在贵州，也有一群人靠着家乡特色产品辣椒，闯出红火事业。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">20年前，夏可福放弃国家公职人员身份，回到贵州湄潭开始创业。一开始，夏可福差价赚钱，但他意识到光靠转卖鲜辣椒终究不是长远之计，于是他用几年的积蓄租下了一个两万平方的工厂，开始转向辣椒加工。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">如今，公司经过产业转型升级，已发展成为湄潭县辣椒加工及销售的龙头企业，夏可福也成为了黔北一带有名企业家“夏辣椒”。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">夏可福不仅靠卖辣椒闯出红火事业，更带动了本地老百姓增收致富。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">值得一提的是，夏可福的公司采取“公司+基地+农户”的模式，在提供技术指导和肥料补助的基础上，与基地农户签订收购合同，实行保护价、随行就市收购和公司二次分配返还利润的办法，直接带动农民增收，与基地农户建立了紧密合作伙伴关系。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">2019年，通过遵义市农业信贷担保公司，夏可福了解到平安普惠三农服务，认为平安普惠惠农贷这个项目能够给企业和老百姓实实在在的实惠，遂与之展开合作。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">90后单亲妈妈杨胜颖，正是通过收购合作方夏可福的介绍推荐，了解到平安普惠三农服务，获得了100万元贷款资金支持。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">杨胜颖家祖祖辈辈以种辣椒为生，小规模种植只够一家人谋生，一年到最后，基本没剩什么存款。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">直到杨胜颖用这笔钱扩大了辣椒地种植面积，有了帮工，提高了生产的效率，通过自己的努力增加收入，突破了小规模种植的拮据经济状况，让生活变得滋润起来，也为孩子创造了更好的成长环境。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">带妇女走出家庭，
+</span></span><span class="line"><span class="cl">小镇独立女性的创业路
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">在过去，农村女性总是全身心为小家而活，一辈子没走出过厨房，缺少独立意识。而如今，越来越多的女性有了自己的事业，杨胜颖给出了一个不同的答案，张红中又给出了另一个。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">2015年，张红中到甘肃靖远的农投公司上班，一直在党政综合办公室工作。今年疫情稍微有所好转的时候，张红中接到通知，说要让她搞妇女创业项目。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">菌棒生产项目是靖远县人民政府为了解决全县香菇产业菌棒用量大、外购成本高、当地贫困户就业困难等问题而决定实施的重点扶贫项目。从一个“领导要求什么就做什么”的行政岗位，到千人千法的创业，临危受命，张红中一点点学，咬着牙干了起来。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">繁忙的工作让张红中没有太多时间顾及家庭和孩子，但家人们的理解和支持让她能够放心去干。同时，一想到基地上的五六十名女同志，她们也有家庭、孩子，都在为这份事业不断奋斗，她作为领头人也更不能先退缩。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">同样身为女性，张红中更能与妇女们产生共情。菌棒生产车间对技术要求比较高，车间也有挺多妇女的文化水平只是在初中，她们不懂，张红中就自己学来了之后给她们上课，教懂她们一项技能。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">项目落地后，菌棒生产项目获得了平安普惠的80万惠农金，这份灵活的资金，对张红中的经营无疑是雪中送炭。资金被用于原料采购、销售技能培训等方面，妇女们获取劳务收入的同时，也提高了就业技能和致富能力。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">不只是菌棒生产项目，2020年4月，由中国妇女发展基金会与平安普惠合作发起的惠农金项目落地甘肃靖远县，平安普惠为项目提供了400万元资金支持，以扶持靖远县香菇脱贫基地、千亩枸杞园、菌棒生产大棚、日光温室蔬菜大棚、爱心惠民超市等5个项目。每个项目各分配80万元，主要用于生产资料的购置、女性技术及营销技能的培训和工资发放。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">这些项目的落地，实现了近300名女性就近就业。通过技能扶贫，让女性们手握脱贫的“金钥匙”，独立走出家庭，靠自己争取出了一片天。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">不只如此，平安普惠扶贫的脚步一直没有停过，与传承非物质文化遗产相结合，创新设计扶贫也成为平安普惠创新扶贫的重点。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">今年八月，由平安普惠联合平安集团、经济日报报业集团艺术与设计杂志社、中国服饰报社策划的“妈妈的针线活”项目启动仪式在四川凉山西昌举行。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">彝族女孩子们自幼学习刺绣，彝族刺绣工艺独特，是具有悠久历史的非物质文化遗产。“妈妈的针线活” 妇女手工创业扶贫项目，通过旧衣物升级改造的“再生设计”，赋予旧废服饰新生命，在振兴非物质遗产同时，帮助和带动当地贫困妇女就地就业创业，并增加收益，起到精准扶贫的效果。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">拔掉“穷根”，
+</span></span><span class="line"><span class="cl">平安普惠“造鱼塘”助农
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">2020年是精准扶贫、脱贫攻坚的关键之年，平安普惠积极响应国家“十四五”规划和2035年远景目标，在中国平安“三村工程”的指导下，始终怀有强烈的社会责任感和使命感。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">助力扶贫攻坚与乡村振兴，平安普惠以“商业向善”为核心，围绕新农村创新产业发展、妇女创业、商业可持续、文化传承等方向，积极多角度探索创新三农扶贫模式：
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">与中国扶贫基金会共同成立“平安产业扶贫公益基金”，用于建设4个扶贫新农人产业发展基地；
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">与上海宋庆龄基金会、中国妇女发展基金会合作，为贫困地区农村合作社带头人经营生产，提供免息借款惠农金和创业能力建设服务；
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">凭借自身主营业务优势，积极探索解决农村农业发展中“融资难、融资贵、融资慢”的问题，联合多家省级农业担保公司及其他基层机构，为农村创业者提供商业可持续的惠农借贷服务；
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">结合凉山非遗传承文化，探索旧衣回收、非遗设计、手工加工、市场销售的全链条闭环扶贫长效机制。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">截至目前，平安普惠累计向农村合作社带头人及农创者提供扶持资金超11880万元，直接扶持超过800户贫困户，覆盖地区包括甘肃、重庆、贵州、陕西、海南、黑龙江、云南等12个省份，覆盖种植业、畜牧业、林业等多种农业类型。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">除了为农户提供资金扶持，平安普惠更充分发挥自身优势扶贫，依托平安的人工智能、云计算和区块链三大核心科技，积极构建多元的扶贫场景，以科技赋能扶贫。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">平安普惠的精准扶贫不只是治标，从提供资金“授人以鱼”，到技术扶贫“授人以渔”，甚至从生产到销售打通全产业链助农，平安普惠更造了个“鱼塘”，给足了农民脱贫路上“放手去干”的安全感。
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">扶贫路上，平安普惠始终不忘普惠三农服务的社会责任初衷和决心：聚焦小微、助农惠农、帮助弱势群体，多角度、全方位探索助农模式，为贫困地区农村经济和产业发展注入新鲜动力，助力建档立卡贫困户和小农户脱贫致富。
+</span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

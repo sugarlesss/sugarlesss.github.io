@@ -23,92 +23,92 @@
 <h1 id="三部署网站">三、部署网站</h1>
 <p>测试域名为 t10.com，因此需要在宿主机上将此域名解析到负载均衡主服务器（192.168.150.10）。</p>
 <p>修改宿主机的 hosts 文件（路径：C:\Windows\System32\drivers\etc\hosts），添加以下内容。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain">192.168.150.10 t10.com
-</code></pre></div><p>分别在三台服务器上添加网站后，将 t10.com 这个域名解析到网站上。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">192.168.150.10 t10.com
+</span></span></code></pre></div><p>分别在三台服务器上添加网站后，将 t10.com 这个域名解析到网站上。</p>
 <p>如下图示例</p>
 <p></p>
 <p>在负载均衡主服务器的 server 语法块下，也就是网关的配置文件中加入一条转发规则</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
-    <span class="c1"># 转发至负载均衡服务器
-</span><span class="c1"></span>    <span class="kn">proxy_pass</span> <span class="s">http://fzjh</span><span class="p">;</span>
-    <span class="kn">proxy_connect_timeout</span> <span class="s">2s</span><span class="p">;</span>
-    <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span> 
-    <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span> 
-    <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>在负载均衡主服务器的 nginx 配置文件的 http 语法块下（与 server 同级别）加入规则</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">upstream</span> <span class="s">fzjh</span> <span class="p">{</span>
-    <span class="c1"># least_conn;
-</span><span class="c1"></span>    <span class="c1"># ip_hash;
-</span><span class="c1"></span>    <span class="kn">server</span> <span class="n">192.168.150.20</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
-    <span class="kn">server</span> <span class="n">192.168.150.30</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
-    <span class="c1"># server 192.168.150.30:80 backup;
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><p>保存配置文件后重启 nginx，此时访问 t10.com 时会自动分发至两台业务服务器（192.168.150.20、192.168.150.30）。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1"># 转发至负载均衡服务器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">proxy_pass</span> <span class="s">http://fzjh</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_connect_timeout</span> <span class="s">2s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>在负载均衡主服务器的 nginx 配置文件的 http 语法块下（与 server 同级别）加入规则</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">upstream</span> <span class="s">fzjh</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># least_conn;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1"># ip_hash;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kn">server</span> <span class="n">192.168.150.20</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kn">server</span> <span class="n">192.168.150.30</span><span class="p">:</span><span class="mi">80</span> <span class="s">weight=1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># server 192.168.150.30:80 backup;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><p>保存配置文件后重启 nginx，此时访问 t10.com 时会自动分发至两台业务服务器（192.168.150.20、192.168.150.30）。</p>
 <h1 id="四常用的-nginx-负载均衡算法">四、常用的 nginx 负载均衡算法</h1>
 <h2 id="1轮询默认">1、轮询（默认）</h2>
 <p>轮询即 Round Robin，根据 Nginx 配置文件中的顺序，依次把客户端的 Web 请求分发到不同的后端服务器。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
- <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
- <span class="p">}</span> 
- <span class="k">....</span> 
- <span class="s">server</span><span class="p">{</span> 
-   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
-   <span class="kn">...</span> 
-   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
-    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
-   <span class="p">}</span>  
- <span class="p">}</span> 
-</code></pre></div><h2 id="2least_conn最少连接">2、least_conn（最少连接）</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">....</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">server</span><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">...</span> 
+</span></span><span class="line"><span class="cl">   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span></code></pre></div><h2 id="2least_conn最少连接">2、least_conn（最少连接）</h2>
 <p>Web 请求会被转发到连接数最少的服务器上。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
- <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
-   <span class="kn">least_conn</span><span class="p">;</span>
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
- <span class="p">}</span> 
- <span class="k">....</span> 
- <span class="s">server</span><span class="p">{</span> 
-   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
-   <span class="kn">...</span> 
-   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
-    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
-   <span class="p">}</span>  
- <span class="p">}</span> 
-</code></pre></div><h2 id="3ip_haship-地址哈希">3、ip_hash（IP 地址哈希）</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">least_conn</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">....</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">server</span><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">...</span> 
+</span></span><span class="line"><span class="cl">   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span></code></pre></div><h2 id="3ip_haship-地址哈希">3、ip_hash（IP 地址哈希）</h2>
 <p>前述的两种负载均衡方案中，同一客户端连续的 Web 请求可能会被分发到不同的后端服务器进行处理，因此如果涉及到会话 Session，那么会话会比较复杂。常见的是基于数据库的会话持久化。要克服上面的难题，可以使用基于 IP 地址哈希的负载均衡方案。这样的话，同一客户端连续的 Web 请求都会被分发到同一服务器进行处理。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
- <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
-   <span class="kn">ip_hash</span><span class="p">;</span>
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
-   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
- <span class="p">}</span> 
- <span class="k">....</span> 
- <span class="s">server</span><span class="p">{</span> 
-   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
-   <span class="kn">...</span> 
-   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
-    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
-   <span class="p">}</span>  
- <span class="p">}</span> 
-</code></pre></div><h2 id="4基于权重的负载均衡算法">4、基于权重的负载均衡算法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">ip_hash</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">....</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">server</span><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">...</span> 
+</span></span><span class="line"><span class="cl">   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span></code></pre></div><h2 id="4基于权重的负载均衡算法">4、基于权重的负载均衡算法</h2>
 <p>基于权重的负载均衡即 Weighted Load Balancing，这种方式下，我们可以配置 Nginx 把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">http{</span> 
- <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
-   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
-   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
- <span class="p">}</span> 
- <span class="k">....</span> 
- <span class="s">server</span><span class="p">{</span> 
-   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
-   <span class="kn">...</span> 
-   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
-    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
-   <span class="p">}</span>  
- <span class="p">}</span>
-</code></pre></div><ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"> <span class="p">}</span> 
+</span></span><span class="line"><span class="cl"> <span class="k">....</span> 
+</span></span><span class="line"><span class="cl"> <span class="s">server</span><span class="p">{</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="kn">...</span> 
+</span></span><span class="line"><span class="cl">   <span class="s">location</span> <span class="s">/</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">   <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span></code></pre></div><ul>
 <li>backup 即为备机，当所有业务服务器都宕机时，请求会自动转发至备机；</li>
 <li>多台业务服务器的代码同步可以使用 rsync 解决。</li>
 </ul>]]></description>

@@ -133,22 +133,22 @@
 </nav></div>
             </div><div class="content" id="content"><p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>
 <h1 id="一命令格式及其含义">一、命令格式及其含义</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#语义</span>
-* * * * * <span class="nb">command</span>
-┃ ┃ ┃ ┃ ┃ ┃
-┃ ┃ ┃ ┃ ┃ ┗━需要执行的命令或脚本的路径
-┃ ┃ ┃ ┃ ┗━━━星期 取值范围 0-6
-┃ ┃ ┃ ┗━━━━月份 取值范围 1-12
-┃ ┃ ┗━━━━━ 日   取值范围 1-31
-┃ ┗━━━━━━ 小时 取值范围 0-23
-┗━━━━━━━━ 分钟 取值范围 0-59
-
-<span class="c1">#编辑crontab任务，写入后保存退出生效</span>
-crontab -e
-
-<span class="c1">#列出已经存在的crontab任务</span>
-crontab -l
-</code></pre></div><h1 id="二demo">二、Demo</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#语义</span>
+</span></span><span class="line"><span class="cl">* * * * * <span class="nb">command</span>
+</span></span><span class="line"><span class="cl">┃ ┃ ┃ ┃ ┃ ┃
+</span></span><span class="line"><span class="cl">┃ ┃ ┃ ┃ ┃ ┗━需要执行的命令或脚本的路径
+</span></span><span class="line"><span class="cl">┃ ┃ ┃ ┃ ┗━━━星期 取值范围 0-6
+</span></span><span class="line"><span class="cl">┃ ┃ ┃ ┗━━━━月份 取值范围 1-12
+</span></span><span class="line"><span class="cl">┃ ┃ ┗━━━━━ 日   取值范围 1-31
+</span></span><span class="line"><span class="cl">┃ ┗━━━━━━ 小时 取值范围 0-23
+</span></span><span class="line"><span class="cl">┗━━━━━━━━ 分钟 取值范围 0-59
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#编辑crontab任务，写入后保存退出生效</span>
+</span></span><span class="line"><span class="cl">crontab -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#列出已经存在的crontab任务</span>
+</span></span><span class="line"><span class="cl">crontab -l
+</span></span></code></pre></div><h1 id="二demo">二、Demo</h1>
 <pre tabindex="0"><code class="language-contab" data-lang="contab">#每天7:00重启
 0 7 * * * reboot
 

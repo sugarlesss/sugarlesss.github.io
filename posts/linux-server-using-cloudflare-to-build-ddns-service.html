@@ -143,27 +143,27 @@
 <h1 id="三设置用于-ddns-解析的二级域名">三、设置用于 DDNS 解析的二级域名</h1>
 <p>在 Cloudflare 中新建一个 A 记录，如：ddns.yourdomain.com，指向 1.1.1.1（可随意指定，如 123.123.123.123 等等，主要用于后续查看 DDNS 是否生效）</p>
 <h1 id="四下载-ddns-脚本修改配置">四、下载 DDNS 脚本，修改配置</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
-vim cf-v4-ddns.sh
-</code></pre></div><p>1.CFKEY 就是第一步获取的 global key</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">wget  -N --no-check-certificate https://raw.githubusercontent.com/yulewang/cloudflare-api-v4-ddns/master/cf-v4-ddns.sh
+</span></span><span class="line"><span class="cl">vim cf-v4-ddns.sh
+</span></span></code></pre></div><p>1.CFKEY 就是第一步获取的 global key</p>
 <p>2.CFUSER 是登录 cloudflare 的邮箱</p>
 <p>3.CFZONE_NAME 是你的一级域名</p>
 <p>4.CFRECORD_NAME 则是用于 DDNS 的二级域名</p>
 <p>5.CFTTL 是域名生效的 ttl，默认 120 即可</p>
 <h1 id="五脚本授权并执行">五、脚本授权并执行</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">chmod +x cf-v4-ddns.sh
-./cf-v4-ddns.sh
-</code></pre></div><p>如果脚本相关信息填写正确，输出内容会显示服务器当前 IP，登录 Cloudflare DNS 选项 查看之前设置的 1.1.1.1 已变为当前服务器的 IP。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">chmod +x cf-v4-ddns.sh
+</span></span><span class="line"><span class="cl">./cf-v4-ddns.sh
+</span></span></code></pre></div><p>如果脚本相关信息填写正确，输出内容会显示服务器当前 IP，登录 Cloudflare DNS 选项 查看之前设置的 1.1.1.1 已变为当前服务器的 IP。</p>
 <h1 id="六设置-crontab-定时任务">六、设置 crontab 定时任务</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 编辑定时任务</span>
-crontab -e
-
-<span class="c1"># 将以下内容添加到crontab中</span>
-<span class="c1"># 无日志</span>
-*/2 * * * * /root/cf-v4-ddns.sh &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
-</code></pre></div><p>如果需要日志文件，可将上述代码请替换成下述代码</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 编辑定时任务</span>
+</span></span><span class="line"><span class="cl">crontab -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将以下内容添加到crontab中</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 无日志</span>
+</span></span><span class="line"><span class="cl">*/2 * * * * /root/cf-v4-ddns.sh &gt;/dev/null 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span></code></pre></div><p>如果需要日志文件，可将上述代码请替换成下述代码</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">*/2 * * * * /root/cf-v4-ddns.sh &gt;&gt; /var/log/cf-ddns.log 2&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

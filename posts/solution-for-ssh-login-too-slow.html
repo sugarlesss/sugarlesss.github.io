@@ -128,11 +128,11 @@
             </div><div class="content" id="content"><p>连接国外或内网 centos7 主机时发现会因为 DNS 的问题造成 SSH 连接速度慢。</p>
 <p>SSH 登录太慢可能是 DNS 解析的问题，默认配置下 sshd 初次接受 ssh 客户端连接的时候会自动反向解析客户端 IP 以得到 ssh 客户端的域名或主机名。如果这个时候 DNS 的反向解析不正确，sshd 就会等到 DNS 解析超时后才提供 ssh 连接，这样就造成连接时间过长、ssh 客户端等待的情况，一般为 10-30 秒左右。有个简单的解决办法就是在 sshd 的配置文件（sshd_config）里取消 sshd 的反向 DNS 解析。</p>
 <p>编辑 ssh 配置文件</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">vi /etc/ssh/sshd_config
-</code></pre></div><p>找到 UseDNS 设置为 no</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vi /etc/ssh/sshd_config
+</span></span></code></pre></div><p>找到 UseDNS 设置为 no</p>
 <p>重启 ssh 服务即可</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">systemctl restart sshd
-</code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">systemctl restart sshd
+</span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

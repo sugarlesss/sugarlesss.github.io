@@ -14,27 +14,27 @@
 <p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from = wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
 <h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
 <p>在 nginx 的 http 部分写入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
-<span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
-  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
 <p>这里的 rate 我设为了每秒处理 30 个请求，如果 limit_req 没有设置 burst，则默认为 0。<br>
 rate 支持 r/s 和 r/m 两种模式。</p>
 </blockquote>
 <p>在 server 部分写入：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
-  <span class="c1">#limit_rate 512k;
-</span><span class="c1"></span>  
-  <span class="c1">#宝塔PHP文件处理
-</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
-  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
-  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">limit_req</span> <span class="s">zone=from</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#limit_rate 512k;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  
+</span></span><span class="line"><span class="cl">  <span class="c1">#宝塔PHP文件处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
 <p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
 <h1 id="四原理">四、原理</h1>
 <p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>
@@ -54,32 +54,32 @@ rate 支持 r/s 和 r/m 两种模式。</p>
 <p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
 <h1 id="一编写-location-规则">一、编写 location 规则</h1>
 <p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
 <h1 id="二限制并发量">二、限制并发量</h1>
 <p>在 nginx 的 http 部分添加：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
-<span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
+</span></span></code></pre></div><blockquote>
 <p>$binary_remote_addr 是二进制格式的 IPv4 地址，这个 IP 是请求者的 IP。将远程客户端的 IP 地址作为 zone 的 key，目的是为了对单个客户端做并发限制。<br>
 $server_name 指的是当前站点的名称，将这个作为 zone 的 key，目的是为了对某个站点做总体的并发限制。</p>
 </blockquote>
 <p>稍稍修改一下上面的 location 规则，设置为站点并发量为 300，单个 IP 并发量限制 25：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
-  <span class="kn">limit_conn</span> <span class="s">perserver</span> <span class="mi">300</span><span class="p">;</span>
-  <span class="kn">limit_conn</span> <span class="s">perip</span> <span class="mi">25</span><span class="p">;</span>
-  <span class="kn">limit_rate</span> <span class="mi">128k</span><span class="p">;</span>
-  
-  <span class="c1">#宝塔面板默认的 enable-php-56.conf 规则，对php文件的响应处理
-</span><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
-  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
-  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
-  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">limit_conn</span> <span class="s">perserver</span> <span class="mi">300</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">limit_conn</span> <span class="s">perip</span> <span class="mi">25</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">limit_rate</span> <span class="mi">128k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1">#宝塔面板默认的 enable-php-56.conf 规则，对php文件的响应处理
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_pass</span> <span class="s">unix:/tmp/php-cgi-56.sock</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">fastcgi_index</span> <span class="s">index.php</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><blockquote>
 <p>limit_conn 的作用是，在某个 zone 下的并发限制为多少。<br>
 limit_rate 限制的是 nginx 向客户端传送响应的速率。<br>
 limit_conn 和 limit_req 不能设置在 if 指令中，所以如果针对不同的 URL 进行限流，只能通过不同的 location 实现。<br>

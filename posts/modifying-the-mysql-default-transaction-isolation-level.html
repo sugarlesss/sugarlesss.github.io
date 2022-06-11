@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/modifying-the-mysql-default-transaction-isolation-level.html"
-        },"genre": "posts","wordcount":  713 ,
+        },"genre": "posts","wordcount":  472 ,
         "url": "https:\/\/sugarless.cn\/posts\/modifying-the-mysql-default-transaction-isolation-level.html","datePublished": "2020-11-04T00:00:00+00:00","dateModified": "2020-11-04T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -117,8 +117,8 @@
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/mysql.html"><i class="far fa-folder fa-fw"></i>MySQL</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-04">2020-11-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-11-04">2020-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 713 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-11-04">2020-11-04</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-11-04">2020-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 472 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 1 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>目录</span>
@@ -144,13 +144,13 @@
 </nav></div>
             </div><div class="content" id="content"><p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p>
 <h1 id="一查看当前-mysql-版本号">一、查看当前 MySQL 版本号</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">version</span><span class="p">();</span><span class="w">
-</span></code></pre></div><h1 id="二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">version</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></div><h1 id="二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</h1>
 <h2 id="21mysql56-及其更早的版本">2.1、MySQL5.6 及其更早的版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h2 id="22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">transaction_isolation</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>1、MySQL5.7 引入了 transaction_isolation 用来代替 tx_isolation，并在 MySQL8.0.3 去掉了 tx_isolation，在 MySQL5.7 及更高版本中建议使用 transaction_isolation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">transaction_isolation</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>1、MySQL5.7 引入了 transaction_isolation 用来代替 tx_isolation，并在 MySQL8.0.3 去掉了 tx_isolation，在 MySQL5.7 及更高版本中建议使用 transaction_isolation</p>
 <p>2、若要查看当前会话的事务隔离级别，可以去掉 global. 使用 SELECT @@transaction_isolation。同理，若只想针对当前 session 设置事务隔离级别，可将 global 关键字替换为 session</p>
 <h1 id="三mysql-的四个事务隔离级别">三、MySQL 的四个事务隔离级别</h1>
 <p>|  事务隔离级别   | 脏读  | 不可重复读  | 幻读  |
@@ -161,16 +161,16 @@
 | 串行化（serializable）  | 否 | 否 | 否 |</p>
 <h1 id="四修改-mysql-全局默认事务隔离级别">四、修改 MySQL 全局默认事务隔离级别</h1>
 <h2 id="41mysql56-及其更早的版本">4.1、MySQL5.6 及其更早的版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h2 id="42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
-</span></code></pre></div></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">

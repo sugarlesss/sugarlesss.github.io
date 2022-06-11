@@ -35,10 +35,10 @@
 <p><code>0 1 2 3</code></p>
 <p>从初始化数组可以看出，dp[5,3] 和 dp[4,3] 最终的结果是不一样的。而 dp[5,3] 删掉一个数字后的数组应该是：</p>
 <p><code>3 4 0 1</code></p>
-<p>这个数组咱们给他取名为 dp'[4,3]，它是不是跟 dp[4,3] 有一些联系呢？咱们把他俩的初始数组放在一起比较：</p>
+<p>这个数组咱们给他取名为 dp&rsquo;[4,3]，它是不是跟 dp[4,3] 有一些联系呢？咱们把他俩的初始数组放在一起比较：</p>
 <p>dp[4,3]：<code>0 1 2 3</code></p>
-<p>dp'[4,3]：<code>3 4 0 1</code></p>
-<p>从上面可能还是看不出具体区别，因此我们来看 dp[n-1,m] 和 dp'[n-1,m]的初始数组区别：</p>
+<p>dp&rsquo;[4,3]：<code>3 4 0 1</code></p>
+<p>从上面可能还是看不出具体区别，因此我们来看 dp[n-1,m] 和 dp&rsquo;[n-1,m]的初始数组区别：</p>
 <table>
 <thead>
 <tr>
@@ -67,9 +67,9 @@
 </tr>
 </tbody>
 </table>
-<p>观察上面的表格，我们发现 dp[n-1,m] 和 dp'[n-1,m] 的初始数组有如下规律：</p>
+<p>观察上面的表格，我们发现 dp[n-1,m] 和 dp&rsquo;[n-1,m] 的初始数组有如下规律：</p>
 <p><code>dp'[n-1,m] = ( dp[n-1,m] + m ) % n</code></p>
-<p>因为 dp[n,m] = dp'[n-1,m]，所以咱们就找出了 dp[n,m] 到 dp[n-1,m] 之间的映射关系，也就是：</p>
+<p>因为 dp[n,m] = dp&rsquo;[n-1,m]，所以咱们就找出了 dp[n,m] 到 dp[n-1,m] 之间的映射关系，也就是：</p>
 <p>dp[n,m] = ( dp[n−1,m] + m ) % n</p>
 <p>考虑边界条件，n 肯定是要大于1的；此外当 n=1 时，就只剩下一个数了，那就是 0。因此得出状态转移方程为：</p>
 <p><code>dp[n,m]=0, n=1</code></p>
@@ -80,18 +80,18 @@
 <p><strong>时间复杂度</strong>：O(n)</p>
 <p><strong>空间复杂度</strong>：O(1)</p>
 <h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lastRemaining</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
-
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="n">answer</span> <span class="o">=</span> <span class="o">(</span><span class="n">answer</span> <span class="o">+</span> <span class="n">m</span><span class="o">)</span> <span class="o">%</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-
-        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h1 id="ref">REF</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">lastRemaining</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span> <span class="n">m</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">2</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">answer</span> <span class="o">=</span> <span class="o">(</span><span class="n">answer</span> <span class="o">+</span> <span class="n">m</span><span class="o">)</span> <span class="o">%</span> <span class="n">i</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h1 id="ref">REF</h1>
 <p><a href="https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/solution/tai-jiao-bi-ye-ye-neng-dong-dong-tai-gui-zmwj/</a></p>
 ]]></description>
 </item></channel>

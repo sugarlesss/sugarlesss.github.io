@@ -12,8 +12,8 @@
     </author><guid>https://sugarless.cn/posts/mysql-5.7-recommended-parameter-configuration-for-production-environments.html</guid>
     <description><![CDATA[<p>隐藏在各项配置文件之后的，是 MySQL 的思想和设计方案。</p>
 <p>查看当前所有配置</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h1 id="一表相关">一、表相关</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="n">variables</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h1 id="一表相关">一、表相关</h1>
 <h2 id="表数据独立存储">表数据独立存储</h2>
 <p>表数据既可以存在共享表空间里，也可以是单独的文件。这个行为是由参数 innodb_file_per_table 控制的，从 MySQL 5.6.6 版本开始，它的默认值就是 ON 了。</p>
 <p>这个参数设置为 OFF 表示的是，表的数据放在系统共享表空间，也就是跟数据字典放在一起；</p>
@@ -57,9 +57,9 @@ innodb_log_files_in_group=2
 <p>测试完成后可以得到服务器硬盘的 IOPS，根据这个值来设置：（200 是默认值）</p>
 <pre tabindex="0"><code class="language-conf" data-lang="conf">innodb_io_capacity = 200
 </code></pre><p>centos 安装 fio，测试硬盘 io</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">yum install -y libaio-devel fio
-<span class="nb">cd</span> /<span class="p">;</span>mkdir test<span class="p">;</span><span class="nb">cd</span> /test<span class="p">;</span>touch file<span class="p">;</span>fio -filename<span class="o">=</span>/test/file -direct<span class="o">=</span><span class="m">1</span> -iodepth <span class="m">1</span> -thread -rw<span class="o">=</span>randrw -ioengine<span class="o">=</span>psync -bs<span class="o">=</span>4k -size<span class="o">=</span>500M -numjobs<span class="o">=</span><span class="m">10</span> -runtime<span class="o">=</span><span class="m">10</span> -group_reporting -name<span class="o">=</span>mytest
-</code></pre></div><p>windows 可以使用 AS SSD 软件测试 IOPS</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">yum install -y libaio-devel fio
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> /<span class="p">;</span>mkdir test<span class="p">;</span><span class="nb">cd</span> /test<span class="p">;</span>touch file<span class="p">;</span>fio -filename<span class="o">=</span>/test/file -direct<span class="o">=</span><span class="m">1</span> -iodepth <span class="m">1</span> -thread -rw<span class="o">=</span>randrw -ioengine<span class="o">=</span>psync -bs<span class="o">=</span>4k -size<span class="o">=</span>500M -numjobs<span class="o">=</span><span class="m">10</span> -runtime<span class="o">=</span><span class="m">10</span> -group_reporting -name<span class="o">=</span>mytest
+</span></span></code></pre></div><p>windows 可以使用 AS SSD 软件测试 IOPS</p>
 <h2 id="脏页刷写连坐机制">脏页刷写连坐机制</h2>
 <p>一旦一个查询请求需要在执行过程中先 flush 掉一个脏页时，这个查询就可能要比平时慢了。而 MySQL 中的一个机制，可能让你的查询会更慢：在准备刷一个脏页的时候，如果这个数据页旁边的数据页刚好是脏页，就会把这个 “邻居” 也带着一起刷掉；而且这个把 “邻居” 拖下水的逻辑还可以继续蔓延，也就是对于每个邻居数据页，如果跟它相邻的数据页也还是脏页的话，也会被放到一起刷。在 InnoDB 中，innodb_flush_neighbors 参数就是用来控制这个行为的，值为 1 的时候会有上述的 “连坐” 机制，值为 0 时表示不找邻居，自己刷自己的。</p>
 <p>找 “邻居” 这个优化在机械硬盘时代是很有意义的，可以减少很多随机 IO。机械硬盘的随机 IOPS 一般只有几百，相同的逻辑操作减少随机 IO 就意味着系统性能的大幅度提升。</p>
@@ -119,33 +119,33 @@ innodb_autoinc_lock_mode=2
     <description><![CDATA[<p>在日常开发中遇到的一些问题。</p>
 <h1 id="一查看数据库的各个表占用的文件大小">一、查看数据库的各个表占用的文件大小</h1>
 <p>以查看 test 数据库为例：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">SELECT</span><span class="w">
-</span><span class="w">    </span><span class="n">table_schema</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;数据库&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="k">table_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;表名&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">engine</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;存储引擎&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">table_comment</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;备注&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="n">table_rows</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;记录数&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="p">(</span><span class="n">data_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;数据大小(MB)&#39;</span><span class="p">,</span><span class="w">
-</span><span class="w">    </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="p">(</span><span class="n">index_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;索引大小(MB)&#39;</span><span class="w">
-</span><span class="w"></span><span class="k">FROM</span><span class="w">
-</span><span class="w">    </span><span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span><span class="w">
-</span><span class="w"></span><span class="k">WHERE</span><span class="w">
-</span><span class="w">    </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="w">
-</span><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w">
-</span><span class="w">    </span><span class="n">table_rows</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h1 id="二查找持续时间超过-60s-的事务">二、查找持续时间超过 60s 的事务</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TIME_TO_SEC</span><span class="p">(</span><span class="n">timediff</span><span class="p">(</span><span class="n">now</span><span class="p">(),</span><span class="n">trx_started</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">60</span><span class="w">
-</span></code></pre></div><h1 id="三查看当前线程处理情况">三、查看当前线程处理情况</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">SELECT</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">table_schema</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;数据库&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">table_name</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;表名&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">engine</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;存储引擎&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">table_comment</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;备注&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">table_rows</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;记录数&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="p">(</span><span class="n">data_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;数据大小(MB)&#39;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">TRUNCATE</span><span class="w"> </span><span class="p">(</span><span class="n">index_length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s1">&#39;索引大小(MB)&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">FROM</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">information_schema</span><span class="p">.</span><span class="n">TABLES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">WHERE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">table_schema</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;test&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">table_rows</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h1 id="二查找持续时间超过-60s-的事务">二、查找持续时间超过 60s 的事务</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">innodb_trx</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">TIME_TO_SEC</span><span class="p">(</span><span class="n">timediff</span><span class="p">(</span><span class="n">now</span><span class="p">(),</span><span class="n">trx_started</span><span class="p">))</span><span class="o">&gt;</span><span class="mi">60</span><span class="w">
+</span></span></span></code></pre></div><h1 id="三查看当前线程处理情况">三、查看当前线程处理情况</h1>
 <p>配套 kill 语句可以处理突发事件</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">show</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="n">processlist</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="n">kill</span><span class="w"> </span><span class="n">Id</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h1 id="四优化表">四、优化表</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="n">optimize</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">`</span><span class="n">table_name_A</span><span class="o">`</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>重新组织表数据和相关索引数据的物理存储，以减少存储空间，提高访问表时的 I/O 效率。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">show</span><span class="w"> </span><span class="k">full</span><span class="w"> </span><span class="n">processlist</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="n">kill</span><span class="w"> </span><span class="n">Id</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h1 id="四优化表">四、优化表</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="n">optimize</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="o">`</span><span class="n">table_name_A</span><span class="o">`</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>重新组织表数据和相关索引数据的物理存储，以减少存储空间，提高访问表时的 I/O 效率。</p>
 <p>但此操作会锁表，需要避开业务高峰期。</p>
 <h1 id="五重建表">五、重建表</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>试想一下，如果你现在有一个表 A，需要做空间收缩，为了把表中存在的空洞去掉，你可以怎么做呢？你可以新建一个与表 A 结构相同的表 B，然后按照主键 ID 递增的顺序，把数据一行一行地从表 A 里读出来再插入到表 B 中。由于表 B 是新建的表，所以表 A 主键索引上的空洞，在表 B 中就都不存在了。显然地，表 B 的主键索引更紧凑，数据页的利用率也更高。如果我们把表 B 作为临时表，数据从表 A 导入表 B 的操作完成后，用表 B 替换 A，从效果上看，就起到了收缩表 A 空间的作用。这里，你可以使用 alter table A engine=InnoDB 命令来重建表。在 MySQL 5.5 版本之前，这个命令的执行流程跟我们前面描述的差不多，区别只是这个临时表 B 不需要你自己创建，MySQL 会自动完成转存数据、交换表名、删除旧表的操作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">engine</span><span class="o">=</span><span class="n">InnoDB</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>试想一下，如果你现在有一个表 A，需要做空间收缩，为了把表中存在的空洞去掉，你可以怎么做呢？你可以新建一个与表 A 结构相同的表 B，然后按照主键 ID 递增的顺序，把数据一行一行地从表 A 里读出来再插入到表 B 中。由于表 B 是新建的表，所以表 A 主键索引上的空洞，在表 B 中就都不存在了。显然地，表 B 的主键索引更紧凑，数据页的利用率也更高。如果我们把表 B 作为临时表，数据从表 A 导入表 B 的操作完成后，用表 B 替换 A，从效果上看，就起到了收缩表 A 空间的作用。这里，你可以使用 alter table A engine=InnoDB 命令来重建表。在 MySQL 5.5 版本之前，这个命令的执行流程跟我们前面描述的差不多，区别只是这个临时表 B 不需要你自己创建，MySQL 会自动完成转存数据、交换表名、删除旧表的操作。</p>
 <p>显然，花时间最多的步骤是往临时表插入数据的过程，如果在这个过程中，有新的数据要写入到表 A 的话，就会造成数据丢失。因此，在整个 DDL 过程中，表 A 中不能有更新。也就是说，这个 DDL 不是 Online 的。</p>
 <p>而在 MySQL 5.6 版本开始引入的 Online DDL，对这个操作流程做了优化。</p>
 <p>我给你简单描述一下引入了 Online DDL 之后，重建表的流程：</p>
@@ -176,13 +176,13 @@ innodb_autoinc_lock_mode=2
     </author><guid>https://sugarless.cn/posts/modifying-the-mysql-default-transaction-isolation-level.html</guid>
     <description><![CDATA[<p>MySQL 的四种事务隔离级别 / 如何切换 MySQL 的默认全局事务隔离级别 / 了解 session 和 global 关键字</p>
 <h1 id="一查看当前-mysql-版本号">一、查看当前 MySQL 版本号</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="k">version</span><span class="p">();</span><span class="w">
-</span></code></pre></div><h1 id="二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="k">version</span><span class="p">();</span><span class="w">
+</span></span></span></code></pre></div><h1 id="二查看当前全局事务隔离级别">二、查看当前全局事务隔离级别</h1>
 <h2 id="21mysql56-及其更早的版本">2.1、MySQL5.6 及其更早的版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h2 id="22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">transaction_isolation</span><span class="p">;</span><span class="w">
-</span></code></pre></div><p>1、MySQL5.7 引入了 transaction_isolation 用来代替 tx_isolation，并在 MySQL8.0.3 去掉了 tx_isolation，在 MySQL5.7 及更高版本中建议使用 transaction_isolation</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">tx_isolation</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="22mysql57-及更高版本">2.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">select</span><span class="w"> </span><span class="o">@@</span><span class="k">global</span><span class="p">.</span><span class="n">transaction_isolation</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><p>1、MySQL5.7 引入了 transaction_isolation 用来代替 tx_isolation，并在 MySQL8.0.3 去掉了 tx_isolation，在 MySQL5.7 及更高版本中建议使用 transaction_isolation</p>
 <p>2、若要查看当前会话的事务隔离级别，可以去掉 global. 使用 SELECT @@transaction_isolation。同理，若只想针对当前 session 设置事务隔离级别，可将 global 关键字替换为 session</p>
 <h1 id="三mysql-的四个事务隔离级别">三、MySQL 的四个事务隔离级别</h1>
 <p>|  事务隔离级别   | 脏读  | 不可重复读  | 幻读  |
@@ -193,15 +193,15 @@ innodb_autoinc_lock_mode=2
 | 串行化（serializable）  | 否 | 否 | 否 |</p>
 <h1 id="四修改-mysql-全局默认事务隔离级别">四、修改 MySQL 全局默认事务隔离级别</h1>
 <h2 id="41mysql56-及其更早的版本">4.1、MySQL5.6 及其更早的版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
-</span></code></pre></div><h2 id="42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
-</span><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
-</span></code></pre></div>]]></description>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">tx_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="42mysql57-及更高版本">4.2、MySQL5.7 及更高版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-uncommitted&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;read-committed&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;repeatable-read&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">set</span><span class="w"> </span><span class="k">global</span><span class="w"> </span><span class="n">transaction_isolation</span><span class="o">=</span><span class="s1">&#39;serializable&#39;</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div>]]></description>
 </item></channel>
 </rss>
