@@ -1,0 +1,60 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>思源笔记 - 标签 - 無糖的小宇宙</title>
+        <link>https://sugarless.cn/tags/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0.html</link>
+        <description>思源笔记 - 标签 - 無糖的小宇宙</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>jaded@foxmail.com (無糖)</managingEditor>
+            <webMaster>jaded@foxmail.com (無糖)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 18 Jun 2022 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://sugarless.cn/tags/%E6%80%9D%E6%BA%90%E7%AC%94%E8%AE%B0.html" rel="self" type="application/rss+xml" /><item>
+    <title>如何有效的整理信息？</title>
+    <link>https://sugarless.cn/posts/how-to-organize-information-effectively.html</link>
+    <pubDate>Sat, 18 Jun 2022 00:00:00 &#43;0000</pubDate><author>
+        <name>無糖</name>
+    </author><guid>https://sugarless.cn/posts/how-to-organize-information-effectively.html</guid>
+    <description><![CDATA[<p>看了那么多短视频、知乎和 B 站的你，为什么啥都没学到？</p>
+<p>欢迎来到 <a href="https://sugarless.cn/categories/%e7%a7%91%e6%8a%80%e7%a0%94%e7%a9%b6%e6%89%80.html" target="_blank" rel="noopener noreffer"><strong>折腾工坊</strong></a>，我是無糖，今天我想跟你聊聊我是如何整理信息的。</p>
+<p>大约在一年前，我开始学习某一领域的知识时遇到了一些问题：</p>
+<ul>
+<li>学习路径如此复杂，我究竟学到哪儿了？</li>
+<li>每天都在学，每天都在忘，细节完全想不起来，怎么办？</li>
+<li>逛知乎 / B 站时遇到不错的图文和视频我看完也收藏了，为什么要用的时候想不起来了？</li>
+</ul>
+<h1 id="一笔记和笔记软件的区别">一、笔记和笔记软件的区别</h1>
+<p>我认为上述几个问题的本质原因是由于吸收的知识过于碎片化，无法形成知识网络，所以我既不清楚我学到了哪里，也记不住繁多的细节。所以我开始在网上寻找一些线上笔记应用来尝试解决我遇到的问题。</p>
+<p>在协同办公的浪潮下，许多笔记软件也开始崭露头角，像 Notion、语雀 都是我非常喜欢的产品。在体验了一段时间之后，我觉得数字化笔记也许是一个不错的出路，所以就有了这篇文章。</p>
+<p>如果你想了解一个行业或一个领域，系统化的学习是不可避免的。在这个过程中，如果没有笔记软件的帮助，我想大概率你会碰到文章开头我提到的三个问题。</p>
+<p>为了让你对笔记软件有一个直观的感受，先给你看一下我是怎么做笔记的。下面是我在学习 Java 虚拟机过程中积累下来的笔记：</p>
+<p></p>
+<p>对于学生时代的笔记，我认为有几个缺点：</p>
+<ul>
+<li><strong>难以建立目录，无法快速查找目标知识点</strong>（这几乎是致命缺点）</li>
+<li><strong>信息不够丰富</strong>（不能放图）</li>
+<li><strong>笔记与笔记之间难以形成关联</strong>（在无法建立目录的前提下，笔记与笔记之间就像是孤岛）</li>
+<li><strong>难以修改 / 更正</strong>（你懂得）</li>
+<li>写的急，字迹丑（这点是我的问题）</li>
+</ul>
+<p>上述几点是纸质化笔记天生的劣势，如果你的字迹比较潦草，会进一步加重反复查阅的负担，久而久之记笔记就会成为一种机械性的行为，记完再也不看。</p>
+<p>笔记是为了复习服务的，而学习是需要讲究学习成效的，学习付出和收获不成正比的奇怪现象源自于只注重了付出，却没有重视付出的努力是否有效。</p>
+<p>所以我认为建立一个线上知识库是相当有必要的。你记录下来的笔记，经过反复查阅后自然会沉淀为你的知识。</p>
+<h1 id="二我是如何使用笔记软件的">二、我是如何使用笔记软件的？</h1>
+<p>为了服务于反复查阅这个目标，我认为一个笔记软件至少要有以下几个功能</p>
+<ul>
+<li>知识库目录（为知识分层，将不同方向的知识归类整合）</li>
+<li>文章大纲（让你在10秒内明白这篇文章大概在讲什么？快速跳转到你需要的部分）</li>
+<li>文章主体（正文）</li>
+</ul>
+<p></p>
+<p>这是我心目中最好的三段式布局，也是我如何使用笔记软件的关键。</p>
+<p>有了这样一个线上知识库，你就可以把知乎 / B 站 / 短视频里学习到的内容转移到你的笔记中，在日积月累的反复查阅中，最后成为你真正掌握的的东西。</p>
+<p>你要做的只是为知识分层，然后坚持下来。</p>
+<blockquote>
+<p>演示软件叫语雀，是阿里系的一个笔记产品。</p>
+</blockquote>
+<h1 id="三写在最后">三、写在最后</h1>
+<p>那么作为程序员，不整点活是不可能的。在使用了语雀一年后，我从逐渐担心语雀是否会停止运营，发展到对互联网产品的数据安全备份的不信任，所以我决定使用开源的笔记产品来代替语雀。</p>
+<p>在千挑万选之后，我选择了思源笔记（<a href="https://github.com/siyuan-note/siyuan" target="_blank" rel="noopener noreffer">https://github.com/siyuan-note/siyuan</a>），数据同步我是用 Git 来完成的（我自己有 Git 私服，不需要借助 Github 和 Gitee 这样的在线托管平台）。把数据把握在自己手里，才有安全感。</p>
+<p>我们没有必要追求极致的效率，只是不希望把大量的时间浪费在无谓的事情上，剩下来的时间用来好好生活不是更好吗。</p>
+<p>每种工具和方法的探索都源自于需求，所以我们可能没办法套用别人的经验。我们需要自己做出适当的调整，而如何调整需要我们对自己有更清楚的认知，对工具和方法有深入的了解，很多问题只能在尝试过程中才能理解，在讨论中才能辨明。</p>
+<p>我们常常在一款工具用得不顺手的时候，才能更真切得体会到自己的发力习惯，然后决定去改变自己还是更换工具。</p>
+<p>体会和理解工具的过程，也是调整我们对自己认知的过程，找到自己的节奏就好。</p>]]></description>
+</item></channel>
+</rss>
