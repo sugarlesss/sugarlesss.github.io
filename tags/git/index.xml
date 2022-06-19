@@ -23,9 +23,10 @@
 <p>在协同办公的浪潮下，许多笔记软件也开始崭露头角，像 Notion、语雀 都是我非常喜欢的产品。在体验了一段时间之后，我觉得数字化笔记也许是一个不错的出路，所以就有了这篇文章。</p>
 <p>如果你想了解一个行业或一个领域，系统化的学习是不可避免的。在这个过程中，如果没有笔记软件的帮助，我想大概率你会碰到文章开头我提到的三个问题。</p>
 <p>为了让你对笔记软件有一个直观的感受，先给你看一下我是怎么做笔记的。下面是我在学习 Java 虚拟机过程中积累下来的笔记：</p>
-<a class="lightgallery" href="/post_images/image-20220619150109346.png" title="/post_images/image-20220619150109346.png" data-thumbnail="/post_images/image-20220619150109346.png">
+<figure><a class="lightgallery" href="/post_images/image-20220619150109346.png" title="/post_images/image-20220619150109346.png" data-thumbnail="/post_images/image-20220619150109346.png" data-sub-html="<h2>JVM - 语雀</h2>">
         
-    </a>
+    </a><figcaption class="image-caption">JVM - 语雀</figcaption>
+    </figure>
 <!-- raw HTML omitted -->
 <p>对于学生时代的笔记，我认为有几个缺点：</p>
 <ul>
@@ -45,9 +46,10 @@
 <li>文章大纲（让你在10秒内明白这篇文章大概在讲什么？快速跳转到你需要的部分）</li>
 <li>文章主体（正文）</li>
 </ul>
-<a class="lightgallery" href="/post_images/image-20220619150255671.png" title="/post_images/image-20220619150255671.png" data-thumbnail="/post_images/image-20220619150255671.png">
+<figure><a class="lightgallery" href="/post_images/image-20220619150255671.png" title="/post_images/image-20220619150255671.png" data-thumbnail="/post_images/image-20220619150255671.png" data-sub-html="<h2>JVM - 语雀</h2>">
         
-    </a>
+    </a><figcaption class="image-caption">JVM - 语雀</figcaption>
+    </figure>
 <!-- raw HTML omitted -->
 <p>这是我心目中最好的三段式布局，也是我如何使用笔记软件的关键。</p>
 <p>有了这样一个线上知识库，你就可以把知乎 / B 站 / 短视频里学习到的内容转移到你的笔记中，在日积月累的反复查阅中，最后成为你真正掌握的的东西。</p>
