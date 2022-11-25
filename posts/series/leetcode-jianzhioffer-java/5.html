@@ -187,16 +187,16 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxSubArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 将 nums 的首个元素作为初始最大值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 记录 dp[i-1] 的值，对于dp[0]而言，其前面的dp[-1]=0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">former</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">former</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 记录 dp[i] 的值
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="n">0</span><span class="o">];</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">num</span> <span class="o">:</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">cur</span> <span class="o">=</span> <span class="n">num</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">former</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="n">cur</span> <span class="o">+=</span> <span class="n">former</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">former</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="n">cur</span> <span class="o">+=</span> <span class="n">former</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="o">(</span><span class="n">cur</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span> <span class="n">max</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">former</span> <span class="o">=</span> <span class="n">cur</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>

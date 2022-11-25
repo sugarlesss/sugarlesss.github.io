@@ -180,7 +180,7 @@
 </span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="n">cursor</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 第一次遍历链表,计算总节点数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">cursor</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="o">++;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
@@ -188,7 +188,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 第二次遍历链表,找到倒数第k个元素
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">count</span> <span class="o">-</span> <span class="n">k</span><span class="o">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="o">(</span><span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">head</span> <span class="o">=</span> <span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">            <span class="n">index</span><span class="o">--;</span>
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
@@ -214,7 +214,7 @@
 </span></span><span class="line"><span class="cl">        <span class="n">ListNode</span> <span class="n">former</span> <span class="o">=</span> <span class="n">head</span><span class="o">,</span> <span class="n">latter</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 让指针 1 先走 k 步
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
 </span></span><span class="line"><span class="cl">            <span class="n">former</span> <span class="o">=</span> <span class="n">former</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="c1">// 让指针1 和指针 2 同步移动, 待指针 2 走至链表尾结点时, 指针 1 指向的结点就是符合题意的答案
