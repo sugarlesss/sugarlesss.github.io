@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,8 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">14、剑指 Offer 59 - I. 滑动窗口的最大值 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="14、剑指 Offer 59 - I. 滑动窗口的最大值" />
-<meta property="og:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:" />
+    <title>14、剑指 Offer 59 - I. 滑动窗口的最大值 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="14、剑指 Offer 59 - I. 滑动窗口的最大值" />
+<meta property="og:description" content="一、题目剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/14.html" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-11T00:00:00+00:00" />
@@ -15,15 +17,15 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="14、剑指 Offer 59 - I. 滑动窗口的最大值"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:"/>
+<meta name="twitter:description" content="一、题目剑指 Offer 59 - I. 滑动窗口的最大值 难度困难 给定一个数组 nums 和滑动窗口的大小 k，请找出所有滑动窗口里的最大值。 示例: 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出:"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/14.html" /><link rel="prev" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/13.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/14.html" /><link rel="prev" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/15.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/13.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/color.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -32,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/14.html"
-        },"genre": "posts","wordcount":  1748 ,
+        },"genre": "posts","wordcount":  1745 ,
         "url": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/14.html","datePublished": "2021-09-11T00:00:00+00:00","dateModified": "2021-09-11T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -40,10 +42,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -57,18 +60,18 @@
             <a href="../../../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../../../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../../../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../../../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../../../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../../../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../../../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../../../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../../../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../../../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../../../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../../../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../../../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../../../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../../../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -86,20 +89,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../../../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../../../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../../../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../../../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../../../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../../../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../../../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../../../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../../../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../../../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../../../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../../../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../../../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../../../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -113,12 +116,35 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">14、剑指 Offer 59 - I. 滑动窗口的最大值</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一题目">一、题目</a></li>
+    <li><a href="#二解法">二、解法</a>
+      <ul>
+        <li><a href="#21优先队列">2.1、优先队列</a>
+          <ul>
+            <li><a href="#核心思路">核心思路</a></li>
+            <li><a href="#复杂度分析">复杂度分析</a></li>
+            <li><a href="#code">Code</a></li>
+          </ul>
+        </li>
+        <li><a href="#22单调队列">2.2、单调队列</a>
+          <ul>
+            <li><a href="#核心思路-1">核心思路</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析</a></li>
+            <li><a href="#code-1">Code</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">14、剑指 Offer 59 - I. 滑动窗口的最大值</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1748 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-11">2021-09-11</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1745 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 4 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -149,8 +175,8 @@
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
+            </div><div class="content" id="content"><h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 59 - I. 滑动窗口的最大值</a> 难度困难</p>
 <p>给定一个数组 <code>nums</code> 和滑动窗口的大小 <code>k</code>，请找出所有滑动窗口里的最大值。</p>
 <p><strong>示例:</strong></p>
 <pre tabindex="0"><code>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3
@@ -168,17 +194,17 @@
 </code></pre><p><strong>提示：</strong></p>
 <p>你可以假设 k 总是有效的，在输入数组不为空的情况下，1 ≤ k ≤ 输入数组的大小。</p>
 <p>注意：本题与主站 239 题相同：https://leetcode-cn.com/problems/sliding-window-maximum/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21优先队列">2.1、优先队列</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21优先队列" class="headerLink">
+    <a href="#21%e4%bc%98%e5%85%88%e9%98%9f%e5%88%97" class="header-mark"></a>2.1、优先队列</h2><h3 id="核心思路" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" class="header-mark"></a>核心思路</h3><p>对于「最大值」，我们可以想到一种非常合适的数据结构，那就是优先队列（堆），其中的大根堆可以帮助我们实时维护一系列元素中的最大值。</p>
 <p>对于本题而言，初始时，我们将数组 nums 的前 k 个元素放入优先队列中。每当我们向右移动窗口时，我们就可以把一个新的元素放入优先队列中，此时堆顶的元素就是堆中所有元素的最大值。然而这个最大值可能并不在滑动窗口中，在这种情况下，这个值在数组 nums 中的位置出现在滑动窗口左边界的左侧。因此，当我们后续继续向右移动窗口时，这个值就永远不可能出现在滑动窗口中了，我们可以将其永久地从优先队列中移除。</p>
 <p>我们不断地移除堆顶的元素，直到其确实出现在滑动窗口中。此时，堆顶元素就是滑动窗口中的最大值。为了方便判断堆顶元素与滑动窗口的位置关系，我们可以在优先队列中存储二元组 (num,index)，表示元素 num 在数组中的下标为 index。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：O(n log n)，其中 n 是数组 nums 的长度。在最坏情况下，数组 nums 中的元素单调递增，那么最终优先队列中包含了所有元素，没有元素被移除。由于将一个元素放入优先队列的时间复杂度为 O(log n)，因此总时间复杂度为 O(n log n)。</p>
 <p><strong>空间复杂度</strong>：O(n)，即为优先队列需要使用的空间。<strong>这里所有的空间复杂度分析都不考虑返回的答案需要的 O(n) 空间，只计算额外的空间使用</strong>。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="code" class="headerLink">
+    <a href="#code" class="header-mark"></a>Code</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 边界条件 / 特殊情况
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
@@ -221,26 +247,26 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22单调队列">2.2、单调队列</h2>
-<h3 id="核心思路-1">核心思路</h3>
-<p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
+</span></span></code></pre></div><h2 id="22单调队列" class="headerLink">
+    <a href="#22%e5%8d%95%e8%b0%83%e9%98%9f%e5%88%97" class="header-mark"></a>2.2、单调队列</h2><h3 id="核心思路-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af-1" class="header-mark"></a>核心思路</h3><p>借助一个双端队列，存储单调递减的值，记作 deque。滑动窗口每向右移动一格，实时更新一次这个双端队列。如下图所示：</p>
 <a class="lightgallery" href="../../../post_images/image-20210927225830146.png" title="/post_images/image-20210927225830146.png" data-thumbnail="/post_images/image-20210927225830146.png">
         <img
-            class="lazyload"
-            data-src="../../../post_images/image-20210927225830146.png"
-            data-srcset="../../../post_images/image-20210927225830146.png, ../../../post_images/image-20210927225830146.png 1.5x, ../../../post_images/image-20210927225830146.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210927225830146.png"
-        />
+            
+            loading="lazy"
+            src="../../../post_images/image-20210927225830146.png"
+            srcset="../../../post_images/image-20210927225830146.png, ../../../post_images/image-20210927225830146.png 1.5x, ../../../post_images/image-20210927225830146.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210927225830146.png">
     </a>
 <!-- raw HTML omitted -->
 <p>借助 deque 这个双端队列，我们可以将获取滑动窗口内最大值的时间复杂度从 O(k) 降低至 O(1)，这也是本题的难点。</p>
-<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreffer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
+<p>回忆 <a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof/solution/mian-shi-ti-30-bao-han-minhan-shu-de-zhan-fu-zhu-z/" target="_blank" rel="noopener noreferrer">剑指Offer 30. 包含 min 函数的栈</a> ，其使用 单调栈 实现了随意入栈、出栈情况下的 O(1) 时间获取 “栈内最小值” 。本题同理，不同点在于 “出栈操作” 删除的是 “列表尾部元素” ，而 “窗口滑动” 删除的是 “列表首部元素” 。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：O(n)，其中 n 为数组 nums 长度；线性遍历 nums 占用 O(n) ；每个元素最多仅入队和出队一次，因此单调队列 deque 占用 O(2n) 。</p>
 <p><strong>空间复杂度</strong>：O(k) ，双端队列 deque 中最多同时存储 k 个元素（即窗口大小）。</p>
-<h3 id="code-1">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="code-1" class="headerLink">
+    <a href="#code-1" class="header-mark"></a>Code</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">maxSlidingWindow</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="kt">int</span> <span class="n">k</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 边界条件 / 特殊情况
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">nums</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
@@ -279,9 +305,9 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
-<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/hua-dong-chuang-kou-de-zui-da-zhi-by-lee-ymyo/</a></p>
+<p><a href="https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/hua-dong-chuang-kou-de-zui-da-zhi-lcof/solution/mian-shi-ti-59-i-hua-dong-chuang-kou-de-zui-da-1-6/</a></p>
 </div>
 
         <div class="post-footer" id="post-footer">
@@ -314,6 +340,9 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../../../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -321,7 +350,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../../../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../../../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../../../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../../../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../../../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../../../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../../../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../../../js/katex.min.js" defer></script><script type="text/javascript" src="../../../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -330,11 +360,6 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../lib/katex/katex.min.js"></script><script type="text/javascript" src="../../../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../../../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../../../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

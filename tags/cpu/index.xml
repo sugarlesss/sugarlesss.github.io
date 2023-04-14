@@ -12,12 +12,12 @@
     </author><guid>https://sugarless.cn/posts/about-hyper-threading-technology.html</guid>
     <description><![CDATA[<p>4 核 8 线程，8 核 16 线程是啥意思？</p>
 <p>为什么不是 4 核 4 线程或 8 核 32 线程？</p>
-<h1 id="一关于超线程">一、关于超线程</h1>
-<p>超线程是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
+<h1 id="一关于超线程" class="headerLink">
+    <a href="#%e4%b8%80%e5%85%b3%e4%ba%8e%e8%b6%85%e7%ba%bf%e7%a8%8b" class="header-mark"></a>一、关于超线程</h1><p>超线程是英特尔公司命名的技术（HT, Hyper-Threading），但是这项技术最早起源于 IBM ，学术一些的名字叫同时多线程（SMT,Simulate Multi-Threading）。</p>
 <p>超线程技术其实是把一个 CPU 的物理核模拟成两个虚拟核用，通过此技术，英特尔实现在一个实体 CPU 物理核中，提供两个逻辑线程。让单个物理核心就能使用线程级的并行计算，进而兼容多线程操作系统和软件。超线程技术充分利用空闲 CPU 资源，在相同时间内完成更多工作。</p>
 <p>虽然采用超线程技术能够使得单个物理核心同时执行两个线程，但是当两个线程同时需要某个资源时，其中一个线程必须让出资源暂时挂起，直到这些资源空闲以后才能继续。因此，超线程的性能并不等于两个物理核心的性能。而且，超线程技术的 CPU 需要芯片组、操作系统和应用软件的支持，才能比较理想地发挥该项技术的优势。</p>
-<h1 id="二为什么超线程只虚拟出两个逻辑核">二、为什么超线程只虚拟出两个逻辑核？</h1>
-<p>先说一些耳熟能详的数字：四核八线程、八核十六线程等。这是典型的超线程技术应用，一个物理核心虚拟出两个逻辑核。</p>
+<h1 id="二为什么超线程只虚拟出两个逻辑核" class="headerLink">
+    <a href="#%e4%ba%8c%e4%b8%ba%e4%bb%80%e4%b9%88%e8%b6%85%e7%ba%bf%e7%a8%8b%e5%8f%aa%e8%99%9a%e6%8b%9f%e5%87%ba%e4%b8%a4%e4%b8%aa%e9%80%bb%e8%be%91%e6%a0%b8" class="header-mark"></a>二、为什么超线程只虚拟出两个逻辑核？</h1><p>先说一些耳熟能详的数字：四核八线程、八核十六线程等。这是典型的超线程技术应用，一个物理核心虚拟出两个逻辑核。</p>
 <p>超线程的基本原理，用大白话讲就是：单核心工作量不饱满，给两个线程能提高利用率。就好比有的打工人业余时间能搞个副业一样，但可以压榨的工作量显然是有限的。</p>
 <p>每个 CPU 核心里的 ALU，FPU 这些运算单元的数量是有限的，而超线程的目的之一就是在一个线程用运算单元少的情况下，让另外一个线程跑起来，不让运算单元闲着。但是现在的CPU那么发达，有分支预测乱序执行等技术，内存，IO的频率正在逐渐提高，已经可以让CPU的核处于忙碌状态，2 个已经差不多，无需搞出更多个线程了。</p>
 <p>对于计算密集的程序，超线程甚至会拖累性能。</p>
@@ -32,9 +32,9 @@
 <p>这些多余的晶体管花在SMT上是否值得，拿来提升处理器单线程执行资源的利用率或者堆更多资源提升单线程性能，是不是会有更多收益就变成了一个值得权衡的问题。</p>
 <p>对于Power这种SMT8的怪物，上面两个问题会因为SMT线程数增多而加剧，为了缓解这种情况需要堆更多的资源，这又会增加调度复杂度，需要更多的晶体管，为了解决只好把部分资源按超线程进行直接划分，这部分资源在单线程模式下也会无法利用，导致<strong>单核性能偏弱</strong>，这在很大程度不符合大部分通用应用中的需求(这个其实挺显然，很多时候都能体会到，一部分在于很多程序并没有很好的多线程优化而依赖于单线程性能，同时并行化到最后实际的瓶颈也在单线程。</p>
 </blockquote>
-<h1 id="ref">REF</h1>
-<p><a href="https://www.zhihu.com/question/444841440/answer/1745910660" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/444841440/answer/1745910660</a></p>
-<p><a href="https://www.cnblogs.com/jiading/articles/12588488.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/jiading/articles/12588488.html</a></p>
-<p><a href="https://baike.baidu.com/item/%E8%B6%85%E7%BA%BF%E7%A8%8B" target="_blank" rel="noopener noreffer">https://baike.baidu.com/item/%E8%B6%85%E7%BA%BF%E7%A8%8B</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.zhihu.com/question/444841440/answer/1745910660" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/444841440/answer/1745910660</a></p>
+<p><a href="https://www.cnblogs.com/jiading/articles/12588488.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/jiading/articles/12588488.html</a></p>
+<p><a href="https://baike.baidu.com/item/%E8%B6%85%E7%BA%BF%E7%A8%8B" target="_blank" rel="noopener noreferrer">https://baike.baidu.com/item/%E8%B6%85%E7%BA%BF%E7%A8%8B</a></p>]]></description>
 </item></channel>
 </rss>

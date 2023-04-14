@@ -11,15 +11,15 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-organize-information-effectively.html</guid>
     <description><![CDATA[<p>看了那么多短视频、知乎和 B 站的你，为什么啥都没学到？</p>
-<p>欢迎来到 <a href="https://sugarless.cn/categories/%e6%8a%98%e8%85%be%e5%b7%a5%e5%9d%8a.html" target="_blank" rel="noopener noreffer"><strong>折腾工坊</strong></a>，我是無糖，今天我想跟你聊聊我是如何整理信息的。</p>
+<p>欢迎来到 <a href="https://sugarless.cn/categories/%e6%8a%98%e8%85%be%e5%b7%a5%e5%9d%8a.html" target="_blank" rel="noopener noreferrer"><strong>折腾工坊</strong></a>，我是無糖，今天我想跟你聊聊我是如何整理信息的。</p>
 <p>大约在一年前，我开始学习某一领域的知识时遇到了一些问题：</p>
 <ul>
 <li>学习路径如此复杂，我究竟学到哪儿了？</li>
 <li>每天都在学，每天都在忘，细节完全想不起来，怎么办？</li>
 <li>逛知乎 / B 站时遇到不错的图文和视频我看完也收藏了，为什么要用的时候想不起来了？</li>
 </ul>
-<h1 id="一笔记和笔记软件的区别">一、笔记和笔记软件的区别</h1>
-<p>我认为上述几个问题的本质原因是由于吸收的知识过于碎片化，无法形成知识网络，既不清楚学到了哪里，也记不住繁多的细节。后来我就开始在网上寻找一些线上笔记应用来尝试解决我遇到的问题。</p>
+<h1 id="一笔记和笔记软件的区别" class="headerLink">
+    <a href="#%e4%b8%80%e7%ac%94%e8%ae%b0%e5%92%8c%e7%ac%94%e8%ae%b0%e8%bd%af%e4%bb%b6%e7%9a%84%e5%8c%ba%e5%88%ab" class="header-mark"></a>一、笔记和笔记软件的区别</h1><p>我认为上述几个问题的本质原因是由于吸收的知识过于碎片化，无法形成知识网络，既不清楚学到了哪里，也记不住繁多的细节。后来我就开始在网上寻找一些线上笔记应用来尝试解决我遇到的问题。</p>
 <p>在协同办公的浪潮下，许多笔记软件也开始崭露头角，像 Notion、语雀 都是我非常喜欢的产品。在体验了一段时间之后，我觉得数字化笔记也许是一个不错的出路，所以就有了这篇文章。</p>
 <p>如果你想了解一个行业或一个领域，系统化的学习是不可避免的。在这个过程中，如果没有笔记软件的帮助，我想大概率你会碰到文章开头我提到的三个问题。</p>
 <p>为了让你对笔记软件有一个直观的感受，先给你看一下我是怎么做笔记的。下面是我在学习 Java 虚拟机过程中积累下来的笔记：</p>
@@ -39,8 +39,8 @@
 <p>上述几点是纸质化笔记天生的劣势，如果你的字迹比较潦草，会进一步加重反复查阅的负担，久而久之记笔记就会成为一种机械性的行为，记完再也不看。</p>
 <p>笔记是为了复习服务的，而学习是需要讲究学习成效的，付出和收获不成正比的奇怪现象源自于只注重了付出，却没有重视付出的努力是否有效。</p>
 <p>所以我认为建立一个线上知识库是相当有必要的。你记录下来的笔记，经过反复查阅后自然会沉淀为你的知识。</p>
-<h1 id="二我是如何使用笔记软件的">二、我是如何使用笔记软件的？</h1>
-<p>为了服务于反复查阅这个目标，我认为一个笔记软件至少要有以下几个功能</p>
+<h1 id="二我是如何使用笔记软件的" class="headerLink">
+    <a href="#%e4%ba%8c%e6%88%91%e6%98%af%e5%a6%82%e4%bd%95%e4%bd%bf%e7%94%a8%e7%ac%94%e8%ae%b0%e8%bd%af%e4%bb%b6%e7%9a%84" class="header-mark"></a>二、我是如何使用笔记软件的？</h1><p>为了服务于反复查阅这个目标，我认为一个笔记软件至少要有以下几个功能</p>
 <ul>
 <li>知识库目录（为知识分层，将不同方向的知识归类整合）</li>
 <li>文章大纲（让你在10秒内明白这篇文章大概在讲什么？快速跳转到你需要的部分）</li>
@@ -57,9 +57,9 @@
 <blockquote>
 <p>演示软件叫语雀，是阿里系的一个笔记产品。</p>
 </blockquote>
-<h1 id="三写在最后">三、写在最后</h1>
-<p>那么作为程序员，不整点活是不可能的。在使用了语雀一年后，我从逐渐担心语雀是否会停止运营，发展到对互联网产品的数据安全备份的不信任，所以我决定使用开源的笔记产品来代替语雀。</p>
-<p>在千挑万选之后，我选择了思源笔记（<a href="https://github.com/siyuan-note/siyuan" target="_blank" rel="noopener noreffer">https://github.com/siyuan-note/siyuan</a>），数据同步我是用 Git 来完成的（我自己有 Git 私服，不需要借助 Github 和 Gitee 这样的在线托管平台）。把数据把握在自己手里，才有安全感。</p>
+<h1 id="三写在最后" class="headerLink">
+    <a href="#%e4%b8%89%e5%86%99%e5%9c%a8%e6%9c%80%e5%90%8e" class="header-mark"></a>三、写在最后</h1><p>那么作为程序员，不整点活是不可能的。在使用了语雀一年后，我从逐渐担心语雀是否会停止运营，发展到对互联网产品的数据安全备份的不信任，所以我决定使用开源的笔记产品来代替语雀。</p>
+<p>在千挑万选之后，我选择了思源笔记（<a href="https://github.com/siyuan-note/siyuan" target="_blank" rel="noopener noreferrer">https://github.com/siyuan-note/siyuan</a>），数据同步我是用 Git 来完成的（我自己有 Git 私服，不需要借助 Github 和 Gitee 这样的在线托管平台）。把数据把握在自己手里，才有安全感。</p>
 <p>我们没有必要追求极致的效率，只是不希望把大量的时间浪费在无谓的事情上，剩下来的时间用来好好生活不是更好吗。</p>
 <p>每种工具和方法的探索都源自于需求，所以我们可能没办法套用别人的经验。我们需要自己做出适当的调整，而如何调整需要我们对自己有更清楚的认知，对工具和方法有深入的了解，很多问题只能在尝试过程中才能理解，在讨论中才能辨明。</p>
 <p>我们常常在一款工具用得不顺手的时候，才能更真切得体会到自己的发力习惯，然后决定去改变自己还是更换工具。</p>
@@ -72,12 +72,12 @@
     </author><guid>https://sugarless.cn/posts/how-to-build-a-private-git-server-with-gogs.html</guid>
     <description><![CDATA[<p>自建 Git Server 有什么用？不用再忍受 Github 龟速网、无限数量私有库、数据不用托管在 Github 上，自己说了算。</p>
 <p>本文会以 CentOS7 + Nginx + Gogs 为例，教你如何安装配置，拥有一个属于自己的 “Github” 。</p>
-<h1 id="github-的过去">Github 的过去</h1>
-<p>自从 GitHub 在 2018 年被微软收购后，每个账号都能免费创建 5 个私有库了，当时非常高兴，觉得 Github 有微软在背后站台，未来可期。但 3 年后却发生了一件事，又一次提醒了我，原来 Github 已经被资本收购了。</p>
+<h1 id="github-的过去" class="headerLink">
+    <a href="#github-%e7%9a%84%e8%bf%87%e5%8e%bb" class="header-mark"></a>Github 的过去</h1><p>自从 GitHub 在 2018 年被微软收购后，每个账号都能免费创建 5 个私有库了，当时非常高兴，觉得 Github 有微软在背后站台，未来可期。但 3 年后却发生了一件事，又一次提醒了我，原来 Github 已经被资本收购了。</p>
 <p>2021 年 7 月，由微软、OpenAI、GitHub 联合出品的自动代码生成 AI - Copilot 在推出后的第二天就深陷侵犯版权的质疑声中，惨遭开源社区网友炮轰。为了训练 Copilot ，GitHub 官方确认了他们会使用所有 GitHub 公开代码来训练 Copilot，并且不区分 License 类别。而在之前，明明官方有过 “Copilot是在GPL代码的基础上训练出来的” 这种说法，但之后 GitHub 的 CEO 又表示：&ldquo;每天都有数百名 GitHub 的开发者在使用 Copilot ，如果预览版进展顺利的话，我们将计划在未来某个时候将其扩展为付费产品。&quot;，完全就是一副视 General Public License 如无物的样子。</p>
 <p>富人和大公司带头冲版权，一边冲一边告诉大众，你们要遵守版权，不可以学我。（哄堂大笑</p>
-<h1 id="why-gogs-">Why Gogs ？</h1>
-<p>大公司普遍使用的是内部开发的 Git Server，像我们这样的个人开发者，选择一个开源 Git Server 自行搭建是比较适合的。</p>
+<h1 id="why-gogs-" class="headerLink">
+    <a href="#why-gogs-" class="header-mark"></a>Why Gogs ？</h1><p>大公司普遍使用的是内部开发的 Git Server，像我们这样的个人开发者，选择一个开源 Git Server 自行搭建是比较适合的。</p>
 <p>我知道有几个不错的开源 Git Server 可以考虑：</p>
 <ul>
 <li>GitLab</li>
@@ -87,11 +87,11 @@
 </ul>
 <p>最终，我选择 Gogs 的主要原因是它资源占用极低，你甚至可以用树莓派来搭建一个 Gogs，1C2G 的配置轻轻松松带 Gogs。</p>
 <p>比之 GitLab，Gogs 在资源占用和性能上的优势是非常明显的，因此它非常适合在硬件配置不高的服务器搭建。</p>
-<p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreffer">https://gogs.io</a></p>
-<p>演示站：<a href="https://try.gogs.io/" target="_blank" rel="noopener noreffer">https://try.gogs.io/</a></p>
-<p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreffer">https://github.com/gogs/gogs</a></p>
-<h1 id="一安装-gogs">一、安装 Gogs</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adduser git <span class="c1">#创建用户 git</span>
+<p>官网：<a href="https://gogs.io" target="_blank" rel="noopener noreferrer">https://gogs.io</a></p>
+<p>演示站：<a href="https://try.gogs.io/" target="_blank" rel="noopener noreferrer">https://try.gogs.io/</a></p>
+<p>Github：<a href="https://github.com/gogs/gogs" target="_blank" rel="noopener noreferrer">https://github.com/gogs/gogs</a></p>
+<h1 id="一安装-gogs" class="headerLink">
+    <a href="#%e4%b8%80%e5%ae%89%e8%a3%85-gogs" class="header-mark"></a>一、安装 Gogs</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">adduser git <span class="c1">#创建用户 git</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">passwd git <span class="c1">#设置git用户的密码</span>
 </span></span><span class="line"><span class="cl">
@@ -132,9 +132,9 @@
         
     </a>
 <!-- raw HTML omitted -->
-<h1 id="二配置域名与https">二、配置域名与HTTPS</h1>
-<h2 id="21配置域名访问">2.1、配置域名访问</h2>
-<p>将域名解析到服务器 IP 上，在 Nginx 配置文件中新增如下配置：</p>
+<h1 id="二配置域名与https" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae%e5%9f%9f%e5%90%8d%e4%b8%8ehttps" class="header-mark"></a>二、配置域名与HTTPS</h1><h2 id="21配置域名访问" class="headerLink">
+    <a href="#21%e9%85%8d%e7%bd%ae%e5%9f%9f%e5%90%8d%e8%ae%bf%e9%97%ae" class="header-mark"></a>2.1、配置域名访问</h2><p>将域名解析到服务器 IP 上，在 Nginx 配置文件中新增如下配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
@@ -153,8 +153,8 @@
         
     </a>
 <!-- raw HTML omitted -->
-<h2 id="22配置-ssl-证书">2.2、配置 SSL 证书</h2>
-<p>你可以按照下面的 Nginx 配置为模板，来配置你的 Gogs 站点。</p>
+<h2 id="22配置-ssl-证书" class="headerLink">
+    <a href="#22%e9%85%8d%e7%bd%ae-ssl-%e8%af%81%e4%b9%a6" class="header-mark"></a>2.2、配置 SSL 证书</h2><p>你可以按照下面的 Nginx 配置为模板，来配置你的 Gogs 站点。</p>
 <p>根据你的需求，你可以自由选择是否强制 HTTPS。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">server</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -197,8 +197,8 @@
     </a>
 <!-- raw HTML omitted -->
 <p>现在我们可以开始填写 Gogs 的配置了。</p>
-<h1 id="三配置-gogs">三、配置 Gogs</h1>
-<p>此时我们已经配置好了 HTTPS 访问，那么在配置 Gogs 中有几处域名的设置需要注意。下面是一份样例配置，几处需要注意的域名我用红框标注出来了。</p>
+<h1 id="三配置-gogs" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae-gogs" class="header-mark"></a>三、配置 Gogs</h1><p>此时我们已经配置好了 HTTPS 访问，那么在配置 Gogs 中有几处域名的设置需要注意。下面是一份样例配置，几处需要注意的域名我用红框标注出来了。</p>
 <a class="lightgallery" href="/post_images/image-20211130235300442.png" title="/post_images/image-20211130235300442.png" data-thumbnail="/post_images/image-20211130235300442.png">
         
     </a>
@@ -215,11 +215,11 @@
 <p>完整配置项样例：https://github.com/gogs/gogs/blob/main/conf/app.ini</p>
 <p>旧版本配置文件手册参考（中文）：https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md</p>
 </blockquote>
-<h1 id="ref">REF</h1>
-<p><a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/install_from_binary</a></p>
-<p><a href="https://gogs.io/docs/installation/configuration_and_run" target="_blank" rel="noopener noreffer">https://gogs.io/docs/installation/configuration_and_run</a></p>
-<p><a href="https://www.zhihu.com/question/283143882/answer/434872781" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/283143882/answer/434872781</a></p>
-<p><a href="https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md" target="_blank" rel="noopener noreffer">https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://gogs.io/docs/installation/install_from_binary" target="_blank" rel="noopener noreferrer">https://gogs.io/docs/installation/install_from_binary</a></p>
+<p><a href="https://gogs.io/docs/installation/configuration_and_run" target="_blank" rel="noopener noreferrer">https://gogs.io/docs/installation/configuration_and_run</a></p>
+<p><a href="https://www.zhihu.com/question/283143882/answer/434872781" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/283143882/answer/434872781</a></p>
+<p><a href="https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md" target="_blank" rel="noopener noreferrer">https://www.bookstack.cn/read/gogs_zh/advanced-configuration_cheat_sheet.md</a></p>]]></description>
 </item><item>
     <title>内存盘能为我们带来什么惊喜？</title>
     <link>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</link>
@@ -228,10 +228,10 @@
     </author><guid>https://sugarless.cn/posts/using-ram-disks-to-speed-up-your-system.html</guid>
     <description><![CDATA[<p>作为硬盘来说，SSD 已经很快了，但内存更快。</p>
 <p>本文简单介绍一下使用内存盘为系统加速的几种姿势。</p>
-<h1 id="一内存盘是什么">一、内存盘是什么？</h1>
-<p>内存盘即 RAM Disk，市面上实现 RAM Disk 的软件有很多，其主要功能是通过独特的软件算法将物理内存模拟成一个虚拟硬盘，在这个虚拟硬盘上的读写操作均在内存中完成。由于内存的读写速度远超硬盘（ HDD 与 SSD ），因此这个虚拟硬盘具有非常高的数据读写速度。</p>
-<h1 id="二比-ssd-更优秀的读写性能">二、比 SSD 更优秀的读写性能</h1>
-<p>在使用内存盘为系统加速之前，我想先向你展示一下内存盘（RAM Disk）与固态硬盘（Solid State Disk - SSD）之间的读写速度差距有多大。</p>
+<h1 id="一内存盘是什么" class="headerLink">
+    <a href="#%e4%b8%80%e5%86%85%e5%ad%98%e7%9b%98%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>一、内存盘是什么？</h1><p>内存盘即 RAM Disk，市面上实现 RAM Disk 的软件有很多，其主要功能是通过独特的软件算法将物理内存模拟成一个虚拟硬盘，在这个虚拟硬盘上的读写操作均在内存中完成。由于内存的读写速度远超硬盘（ HDD 与 SSD ），因此这个虚拟硬盘具有非常高的数据读写速度。</p>
+<h1 id="二比-ssd-更优秀的读写性能" class="headerLink">
+    <a href="#%e4%ba%8c%e6%af%94-ssd-%e6%9b%b4%e4%bc%98%e7%a7%80%e7%9a%84%e8%af%bb%e5%86%99%e6%80%a7%e8%83%bd" class="header-mark"></a>二、比 SSD 更优秀的读写性能</h1><p>在使用内存盘为系统加速之前，我想先向你展示一下内存盘（RAM Disk）与固态硬盘（Solid State Disk - SSD）之间的读写速度差距有多大。</p>
 <p>这是三星 970 EVO Plus 1TB 的读写速度：</p>
 <figure><a class="lightgallery" href="/post_images/image-20211120164509057.png" title="/post_images/image-20211120164509057.png" data-thumbnail="/post_images/image-20211120164509057.png" data-sub-html="<h2>三星 970 EVO Plus 1TB</h2>">
         
@@ -257,8 +257,8 @@
 <li>单线程顺序读：提升了 6 倍；</li>
 <li>单线程顺序写：提升了 3 倍；</li>
 </ul>
-<h1 id="三内存盘能用来存什么">三、内存盘能用来存什么？</h1>
-<p>由于内存盘是使用物理内存模拟成一个虚拟硬盘，所以该虚拟硬盘的容量受限于内存大小。你可以根据自己的应用场景来设置内存盘的大小，一般来说 512M ~ 4G 左右较为合适。</p>
+<h1 id="三内存盘能用来存什么" class="headerLink">
+    <a href="#%e4%b8%89%e5%86%85%e5%ad%98%e7%9b%98%e8%83%bd%e7%94%a8%e6%9d%a5%e5%ad%98%e4%bb%80%e4%b9%88" class="header-mark"></a>三、内存盘能用来存什么？</h1><p>由于内存盘是使用物理内存模拟成一个虚拟硬盘，所以该虚拟硬盘的容量受限于内存大小。你可以根据自己的应用场景来设置内存盘的大小，一般来说 512M ~ 4G 左右较为合适。</p>
 <p>你大概率是不可能往内存盘里写入大体积文件的（例如电影或几个 G 大小的压缩包等），因此内存盘的顺序读写性能带来的提升其实你感知不到，所以内存盘其强大的 4K 随机读写性能才是我们应该关注的重点。</p>
 <p>好了，现在我们知道内存盘的特点了：</p>
 <ul>
@@ -269,14 +269,14 @@
 <blockquote>
 <p>需要注意的是，下面的几个应用场景中的附带截图， G 盘是内存盘。</p>
 </blockquote>
-<h2 id="31windows-临时文件">3.1、Windows 临时文件</h2>
-<p>我将 Windows 临时文件夹设置在内存盘中，这样可以直接为操作系统加速。</p>
+<h2 id="31windows-临时文件" class="headerLink">
+    <a href="#31windows-%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6" class="header-mark"></a>3.1、Windows 临时文件</h2><p>我将 Windows 临时文件夹设置在内存盘中，这样可以直接为操作系统加速。</p>
 <a class="lightgallery" href="/post_images/image-20211122003408522.png" title="/post_images/image-20211122003408522.png" data-thumbnail="/post_images/image-20211122003408522.png">
         
     </a>
 <!-- raw HTML omitted -->
-<h2 id="32浏览器缓存">3.2、浏览器缓存</h2>
-<p>浏览器加载页面时会向缓存目录中写入大量小文件，而且浏览器还是日常高频使用的软件，非常适合使用内存盘加速。</p>
+<h2 id="32浏览器缓存" class="headerLink">
+    <a href="#32%e6%b5%8f%e8%a7%88%e5%99%a8%e7%bc%93%e5%ad%98" class="header-mark"></a>3.2、浏览器缓存</h2><p>浏览器加载页面时会向缓存目录中写入大量小文件，而且浏览器还是日常高频使用的软件，非常适合使用内存盘加速。</p>
 <p>如果你使用的是 Chrome 或 Edge ，想要修改缓存目录就有些麻烦了。其他浏览器基本都是支持自定义缓存目录的。</p>
 <p>以 Edge 为例，输入 <code>edge://version/</code> 命令，找到配置文件目录：</p>
 <blockquote>
@@ -291,8 +291,8 @@
         
     </a>
 <!-- raw HTML omitted -->
-<h2 id="33ide">3.3、IDE</h2>
-<p>虽然普通用户会从将浏览器缓存和 Windows 临时文件转移到内存盘中受益，但 IT 专业人士可能会发现内存盘更多的优势。</p>
+<h2 id="33ide" class="headerLink">
+    <a href="#33ide" class="header-mark"></a>3.3、IDE</h2><p>虽然普通用户会从将浏览器缓存和 Windows 临时文件转移到内存盘中受益，但 IT 专业人士可能会发现内存盘更多的优势。</p>
 <p>例如，程序员可以通过将中间编译器输出重定向到内存盘来加速开发过程，数据库管理员可以通过使用内存盘来提高性能，如 tempdb，等等。</p>
 <p>我做 Java 后端开发的，平时使用 jetbrains 家的 IntelliJ IDEA 编译器作为日常开发工具。</p>
 <p>于是乎我直接把整个 idea 装到内存盘里去了&hellip; 无论是启动 idea、编译或运行项目，基本都要比原来快一截。</p>
@@ -313,13 +313,13 @@
         
     </a>
 <!-- raw HTML omitted -->
-<h1 id="四ram-disk-软件推荐">四、RAM Disk 软件推荐</h1>
-<p>我个人比较推荐你使用 SoftPerfect RAM Disk，特点是界面简洁，性能好。</p>
-<p>官网：<a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreffer">https://www.softperfect.com/products/ramdisk/</a></p>
-<p>度盘：<a href="https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w" target="_blank" rel="noopener noreffer">https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w</a> 提取码：kcik</p>
-<h1 id="五测试环境补充">五、测试环境补充</h1>
-<h2 id="51鲁大师硬件参数">5.1、鲁大师硬件参数</h2>
-<a class="lightgallery" href="/post_images/image-20211121233834567.png" title="/post_images/image-20211121233834567.png" data-thumbnail="/post_images/image-20211121233834567.png">
+<h1 id="四ram-disk-软件推荐" class="headerLink">
+    <a href="#%e5%9b%9bram-disk-%e8%bd%af%e4%bb%b6%e6%8e%a8%e8%8d%90" class="header-mark"></a>四、RAM Disk 软件推荐</h1><p>我个人比较推荐你使用 SoftPerfect RAM Disk，特点是界面简洁，性能好。</p>
+<p>官网：<a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreferrer">https://www.softperfect.com/products/ramdisk/</a></p>
+<p>度盘：<a href="https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1z9elPiX103hloTwXj-NW5w</a> 提取码：kcik</p>
+<h1 id="五测试环境补充" class="headerLink">
+    <a href="#%e4%ba%94%e6%b5%8b%e8%af%95%e7%8e%af%e5%a2%83%e8%a1%a5%e5%85%85" class="header-mark"></a>五、测试环境补充</h1><h2 id="51鲁大师硬件参数" class="headerLink">
+    <a href="#51%e9%b2%81%e5%a4%a7%e5%b8%88%e7%a1%ac%e4%bb%b6%e5%8f%82%e6%95%b0" class="header-mark"></a>5.1、鲁大师硬件参数</h2><a class="lightgallery" href="/post_images/image-20211121233834567.png" title="/post_images/image-20211121233834567.png" data-thumbnail="/post_images/image-20211121233834567.png">
         
     </a>
 <!-- raw HTML omitted -->
@@ -327,15 +327,15 @@
         
     </a>
 <!-- raw HTML omitted -->
-<h2 id="52aida64-cache--memory-benchmark">5.2、AIDA64 Cache &amp; Memory Benchmark</h2>
-<a class="lightgallery" href="/post_images/image-20211121233725089.png" title="/post_images/image-20211121233725089.png" data-thumbnail="/post_images/image-20211121233725089.png">
+<h2 id="52aida64-cache--memory-benchmark" class="headerLink">
+    <a href="#52aida64-cache--memory-benchmark" class="header-mark"></a>5.2、AIDA64 Cache &amp; Memory Benchmark</h2><a class="lightgallery" href="/post_images/image-20211121233725089.png" title="/post_images/image-20211121233725089.png" data-thumbnail="/post_images/image-20211121233725089.png">
         
     </a>
 <!-- raw HTML omitted -->
-<h1 id="ref">REF</h1>
-<ul>
-<li><a href="https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html" target="_blank" rel="noopener noreffer">https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html</a></li>
-<li><a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreffer">https://www.softperfect.com/products/ramdisk/</a></li>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><ul>
+<li><a href="https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html" target="_blank" rel="noopener noreferrer">https://www.romexsoftware.com/zh-cn/primo-ramdisk/overview.html</a></li>
+<li><a href="https://www.softperfect.com/products/ramdisk/" target="_blank" rel="noopener noreferrer">https://www.softperfect.com/products/ramdisk/</a></li>
 </ul>]]></description>
 </item><item>
     <title>关于音视频文案提取</title>
@@ -347,21 +347,21 @@
 <p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
 <p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
-</span></span></code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
-<p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
-<h2 id="11讯飞">1.1、讯飞</h2>
-<p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreffer">文档地址</a></p>
+</span></span></code></pre></div><h1 id="一音频转文字究竟有多贵" class="headerLink">
+    <a href="#%e4%b8%80%e9%9f%b3%e9%a2%91%e8%bd%ac%e6%96%87%e5%ad%97%e7%a9%b6%e7%ab%9f%e6%9c%89%e5%a4%9a%e8%b4%b5" class="header-mark"></a>一、音频转文字究竟有多贵？</h1><p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
+<h2 id="11讯飞" class="headerLink">
+    <a href="#11%e8%ae%af%e9%a3%9e" class="header-mark"></a>1.1、讯飞</h2><p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreferrer">文档地址</a></p>
 <ul>
 <li>套餐一（ 20 小时） 168 元 / 单价 8.4</li>
 <li>套餐二（ 200 小时） 980 元 / 单价 4.9</li>
 <li>套餐三（ 1000 小时） 3900 元 / 单价 3.9</li>
 <li>套餐四（ 3000 小时） 10500 元 / 单价 3.5</li>
 </ul>
-<h2 id="12百度云">1.2、百度云</h2>
-<p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<h2 id="12百度云" class="headerLink">
+    <a href="#12%e7%99%be%e5%ba%a6%e4%ba%91" class="header-mark"></a>1.2、百度云</h2><p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreferrer">文档地址</a></p>
 <p>按小时包预付费</p>
 <ul>
 <li>套餐一（ 1000 小时） 1200 元 / 单价 1.2</li>
@@ -373,10 +373,10 @@
 <ul>
 <li>每小时 2 元，系统按用户实际使用，每小时出账单实时扣费，账户内需保留足量余额。</li>
 </ul>
-<h2 id="13腾讯云">1.3、腾讯云</h2>
-<p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/product/asr</a></p>
-<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
-<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://buy.cloud.tencent.com/asr</a></p>
+<h2 id="13腾讯云" class="headerLink">
+    <a href="#13%e8%85%be%e8%ae%af%e4%ba%91" class="header-mark"></a>1.3、腾讯云</h2><p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/product/asr</a></p>
+<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
+<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreferrer">https://buy.cloud.tencent.com/asr</a></p>
 <p>录音文件识别（五小时内出结果）</p>
 <ul>
 <li>套餐一（ 60 小时） 90 元 / 单价 1.5</li>
@@ -405,10 +405,10 @@
 <p>仅支持中文普通话，使用者通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。<br>
 支持100MB以内音频文件的识别</p>
 </blockquote>
-<h2 id="14阿里云">1.4、阿里云</h2>
-<p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
-<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<h2 id="14阿里云" class="headerLink">
+    <a href="#14%e9%98%bf%e9%87%8c%e4%ba%91" class="header-mark"></a>1.4、阿里云</h2><p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreferrer">购买链接</a></p>
+<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreferrer">购买链接</a></p>
 <p>录音文件识别（六小时内出结果）</p>
 <ul>
 <li>套餐一（ 40 小时） 100 元 / 单价 2.5</li>
@@ -425,14 +425,14 @@
 <li>套餐四（ 100000 小时） 117000 元 / 单价 1.17</li>
 <li>套餐五（ 250000 小时） 260000  元 / 单价 1.04</li>
 </ul>
-<h1 id="二对接腾讯云">二、对接腾讯云</h1>
-<p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
+<h1 id="二对接腾讯云" class="headerLink">
+    <a href="#%e4%ba%8c%e5%af%b9%e6%8e%a5%e8%85%be%e8%ae%af%e4%ba%91" class="header-mark"></a>二、对接腾讯云</h1><p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
 <ul>
-<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/developer</a></li>
-<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></li>
+<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/developer</a></li>
+<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/cam/capi</a></li>
 </ul>
-<h2 id="21录音文件识别极速版v2">2.1、录音文件识别极速版（V2）</h2>
-<p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
+<h2 id="21录音文件识别极速版v2" class="headerLink">
+    <a href="#21%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab%e6%9e%81%e9%80%9f%e7%89%88v2" class="header-mark"></a>2.1、录音文件识别极速版（V2）</h2><p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
 <p>极速版仅支持中文普通话，通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。支持100MB以内音频文件的识别。</p>
 <p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
 <p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
@@ -631,19 +631,19 @@
 </span></span><span class="line"><span class="cl">[INFO] channel_id: 0
 </span></span><span class="line"><span class="cl">测试音频转文字内容
 </span></span></code></pre></div><p>如果有特殊需求，根据可选的 params 参数去调整就好了。</p>
-<h2 id="22录音文件识别v3">2.2、录音文件识别（V3）</h2>
-<p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
-<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823</a></p>
-<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37822</a></p>
-<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
-<h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<h2 id="22录音文件识别v3" class="headerLink">
+    <a href="#22%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%abv3" class="header-mark"></a>2.2、录音文件识别（V3）</h2><p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
+<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37823</a></p>
+<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37822</a></p>
+<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
+<h3 id="221安装-python-sdk" class="headerLink">
+    <a href="#221%e5%ae%89%e8%a3%85-python-sdk" class="header-mark"></a>2.2.1、安装 Python SDK</h3><p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade tencentcloud-sdk-python
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 </span></span><span class="line"><span class="cl">pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</span></span></code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
+</span></span></code></pre></div><h3 id="222上传本地录音文件识别" class="headerLink">
+    <a href="#222%e4%b8%8a%e4%bc%a0%e6%9c%ac%e5%9c%b0%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab" class="header-mark"></a>2.2.2、上传本地录音文件识别</h3><p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
 <p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
@@ -740,8 +740,8 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;f1234567-89a4-1234-12d3-d56bdd9aac1a&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>请求成功后，返回的 JSON 中 Data -&gt; TaskId 就是我们此次上传任务的 ID ，需要拿这个 ID 去轮训另一个接口，查询是否成功。</p>
-<h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
+<h3 id="223查询录音文件识别结果" class="headerLink">
+    <a href="#223%e6%9f%a5%e8%af%a2%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab%e7%bb%93%e6%9e%9c" class="header-mark"></a>2.2.3、查询录音文件识别结果</h3><p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
 <p>用 TaskID 查询识别结果。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
@@ -786,17 +786,17 @@
 </span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-1234-1234-1234-b11234567890&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="23一句话识别v3">2.3、一句话识别（V3）</h2>
-<p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/product/1093/35646</a></p>
-<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
-<h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+</span></span></code></pre></div><h2 id="23一句话识别v3" class="headerLink">
+    <a href="#23%e4%b8%80%e5%8f%a5%e8%af%9d%e8%af%86%e5%88%abv3" class="header-mark"></a>2.3、一句话识别（V3）</h2><p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/product/1093/35646</a></p>
+<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
+<h3 id="231安装-python-sdk" class="headerLink">
+    <a href="#231%e5%ae%89%e8%a3%85-python-sdk" class="header-mark"></a>2.3.1、安装 Python SDK</h3><p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade tencentcloud-sdk-python
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 </span></span><span class="line"><span class="cl">pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</span></span></code></pre></div><h3 id="232源码">2.3.2、源码</h3>
-<p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
+</span></span></code></pre></div><h3 id="232源码" class="headerLink">
+    <a href="#232%e6%ba%90%e7%a0%81" class="header-mark"></a>2.3.2、源码</h3><p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
@@ -852,9 +852,9 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;WordList&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-4307-46ae-1234-beb3eb051234&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
-<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/21552953</a></p>
+<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
     <title>Hugo - 如何一键发布新文章？</title>
     <link>https://sugarless.cn/posts/hugo-one-click-deployment.html</link>
@@ -866,10 +866,10 @@
 <p>本文默认你已经掌握了 hugo + Github Pages 的博客搭建。</p>
 <p>我会以 Windows 平台作为演示，其它系统可参照思路，大同小异。</p>
 </blockquote>
-<h1 id="一安装-git">一、安装 Git</h1>
-<p>先安装 git bash ，官网：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreffer">https://git-scm.com/downloads</a></p>
-<h1 id="二使-public-目录成为一个-git-repository">二、使 public 目录成为一个 git repository</h1>
-<p>博客源码存放目录：<code>D:\blog\src</code></p>
+<h1 id="一安装-git" class="headerLink">
+    <a href="#%e4%b8%80%e5%ae%89%e8%a3%85-git" class="header-mark"></a>一、安装 Git</h1><p>先安装 git bash ，官网：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">https://git-scm.com/downloads</a></p>
+<h1 id="二使-public-目录成为一个-git-repository" class="headerLink">
+    <a href="#%e4%ba%8c%e4%bd%bf-public-%e7%9b%ae%e5%bd%95%e6%88%90%e4%b8%ba%e4%b8%80%e4%b8%aa-git-repository" class="header-mark"></a>二、使 public 目录成为一个 git repository</h1><p>博客源码存放目录：<code>D:\blog\src</code></p>
 <pre tabindex="0"><code>D:\blog\src
 │  config.toml
 ├─archetypes 
@@ -886,14 +886,14 @@
 <p>这样 hugo 在 public 文件夹中生成的文件就可以直接使用 git 命令推送到 Github 了。</p>
 <p>如果配合 Github Webhook 使用，就可以把 xxx.github.io 当做源站了。在此基础上，你可以自行购买域名做 CDN 或者在自己的服务器上部署一个镜像站。</p>
 </blockquote>
-<h1 id="三配置一键命令">三、配置一键命令</h1>
-<p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
+<h1 id="三配置一键命令" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae%e4%b8%80%e9%94%ae%e5%91%bd%e4%bb%a4" class="header-mark"></a>三、配置一键命令</h1><p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
 </span></span></code></pre></div><blockquote>
 <p>使用 alias 即可为一系列命令配置一个别名</p>
 </blockquote>
-<h1 id="四一键部署">四、一键部署</h1>
-<p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
+<h1 id="四一键部署" class="headerLink">
+    <a href="#%e5%9b%9b%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" class="header-mark"></a>四、一键部署</h1><p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git blog
 </span></span></code></pre></div><p>此时系统会自动执行下面的命令：</p>
 <pre tabindex="0"><code>cd D:\\blog\\src
@@ -903,8 +903,8 @@ git add .
 git commit -m &#39;update&#39;
 git push
 </code></pre><p>这样就达到了我们的目的：通过一个命令就可以更新博客文件，并自动推送到 github 上。</p>
-<h1 id="补充">补充</h1>
-<p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
+<h1 id="补充" class="headerLink">
+    <a href="#%e8%a1%a5%e5%85%85" class="header-mark"></a>补充</h1><p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
 <p>给你提个醒：<code>git push github</code> ，<code>git push gitee</code> 。</p>
 <p>希望本文能帮到正在使用 hugo 的你。</p>]]></description>
 </item></channel>

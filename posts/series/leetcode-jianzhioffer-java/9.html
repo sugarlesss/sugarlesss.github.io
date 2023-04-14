@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,8 +7,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">9、剑指 Offer 29. 顺时针打印矩阵 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="9、剑指 Offer 29. 顺时针打印矩阵" />
-<meta property="og:description" content="一、题目 剑指 Offer 29. 顺时针打印矩阵 难度简单 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。 示例 1： 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]] 输出：[1" />
+    <title>9、剑指 Offer 29. 顺时针打印矩阵 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="9、剑指 Offer 29. 顺时针打印矩阵" />
+<meta property="og:description" content="一、题目剑指 Offer 29. 顺时针打印矩阵 难度简单 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。 示例 1： 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]] 输出：[1" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/9.html" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-03T00:00:00+00:00" />
@@ -15,15 +17,15 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="9、剑指 Offer 29. 顺时针打印矩阵"/>
-<meta name="twitter:description" content="一、题目 剑指 Offer 29. 顺时针打印矩阵 难度简单 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。 示例 1： 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]] 输出：[1"/>
+<meta name="twitter:description" content="一、题目剑指 Offer 29. 顺时针打印矩阵 难度简单 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。 示例 1： 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]] 输出：[1"/>
 <meta name="application-name" content="無糖的小宇宙">
 <meta name="apple-mobile-web-app-title" content="無糖的小宇宙">
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../../../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../../../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/9.html" /><link rel="prev" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/10.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/8.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../../../apple-touch-icon.png"><link rel="mask-icon" href="../../../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/9.html" /><link rel="prev" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/10.html" /><link rel="next" href="https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/8.html" /><link rel="stylesheet" href="../../../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../../../css/color.css"><link rel="stylesheet" href="../../../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -32,7 +34,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/9.html"
-        },"genre": "posts","wordcount":  1266 ,
+        },"genre": "posts","wordcount":  1273 ,
         "url": "https:\/\/sugarless.cn\/posts\/series\/leetcode-jianzhioffer-java\/9.html","datePublished": "2021-09-03T00:00:00+00:00","dateModified": "2021-09-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -40,10 +42,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -57,18 +60,18 @@
             <a href="../../../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../../../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../../../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../../../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../../../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../../../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../../../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../../../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../../../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../../../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../../../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../../../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../../../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../../../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../../../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -86,20 +89,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../../../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../../../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../../../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../../../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../../../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../../../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../../../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../../../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../../../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../../../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../../../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../../../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../../../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../../../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -113,12 +116,35 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">9、剑指 Offer 29. 顺时针打印矩阵</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一题目">一、题目</a></li>
+    <li><a href="#二解法">二、解法</a>
+      <ul>
+        <li><a href="#21四相边界法">2.1、四相边界法</a>
+          <ul>
+            <li><a href="#核心思想">核心思想：</a></li>
+            <li><a href="#复杂度分析">复杂度分析：</a></li>
+            <li><a href="#代码">代码：</a></li>
+          </ul>
+        </li>
+        <li><a href="#22辅助矩阵法">2.2、辅助矩阵法</a>
+          <ul>
+            <li><a href="#核心思想-1">核心思想：</a></li>
+            <li><a href="#复杂度分析-1">复杂度分析：</a></li>
+            <li><a href="#代码-1">代码：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">9、剑指 Offer 29. 顺时针打印矩阵</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../../../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-series">系列 <a href="../../../series/leetcode-%E5%89%91%E6%8C%87offer-%E7%AC%AC%E4%BA%8C%E7%89%88-java.html"><i class="far fa-list-alt fa-fw"></i>LeetCode-剑指offer-第二版-java</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1266 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1273 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -149,8 +175,8 @@
     <li><a href="#ref">REF</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
+            </div><div class="content" id="content"><h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
 <p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
 <p><strong>示例 1：</strong></p>
 <pre tabindex="0"><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
@@ -164,10 +190,10 @@
 <li><code>0 &lt;= matrix[i].length &lt;= 100</code></li>
 </ul>
 <p>注意：本题与主站 54 题相同：https://leetcode-cn.com/problems/spiral-matrix/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21四相边界法">2.1、四相边界法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>已知顺时针打印矩阵的顺序是 <strong>“从左向右、从上向下、从右向左、从下向上”</strong> 循环，考虑设定矩阵的“左、上、右、下”四个边界，模拟以上矩阵遍历顺序。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21四相边界法" class="headerLink">
+    <a href="#21%e5%9b%9b%e7%9b%b8%e8%be%b9%e7%95%8c%e6%b3%95" class="header-mark"></a>2.1、四相边界法</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>已知顺时针打印矩阵的顺序是 <strong>“从左向右、从上向下、从右向左、从下向上”</strong> 循环，考虑设定矩阵的“左、上、右、下”四个边界，模拟以上矩阵遍历顺序。</p>
 <ul>
 <li>上边界 ( top )、下边界 ( bottom )；</li>
 <li>左边界 ( left )、右边界 ( right )；</li>
@@ -208,11 +234,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(MN)， M, N 分别为矩阵行数和列数。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度</strong>：O(MN)， M, N 分别为矩阵行数和列数。</p>
 <p><strong>空间复杂度</strong>：O(1)， 四个边界 <code>l</code> , <code>r</code> , <code>t</code> , <code>b</code> 使用常数大小的 <strong>额外</strong> 空间（ <code>res</code> 为必须使用的空间）。</p>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -237,16 +263,16 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22辅助矩阵法">2.2、辅助矩阵法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
+</span></span></code></pre></div><h2 id="22辅助矩阵法" class="headerLink">
+    <a href="#22%e8%be%85%e5%8a%a9%e7%9f%a9%e9%98%b5%e6%b3%95" class="header-mark"></a>2.2、辅助矩阵法</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
 <p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵 visited，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将 visited 中的对应位置的元素设为已访问。</p>
 <p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度</strong>：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
 <p><strong>空间复杂度</strong>：O(mn)，需要创建一个大小为 m×n 的矩阵 visited 记录每个位置是否被访问过。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 边界条件
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
@@ -292,9 +318,9 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/</a></p>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/</a></p>
+<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/</a></p>
 </div>
 
         <div class="post-footer" id="post-footer">
@@ -327,6 +353,9 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../../../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -334,7 +363,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../../../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../../../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../../../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../../../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../../../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../../../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../../../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../../../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../../../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../../../js/katex.min.js" defer></script><script type="text/javascript" src="../../../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -343,11 +373,6 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../../../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../../../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../../../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../../../lib/katex/katex.min.js"></script><script type="text/javascript" src="../../../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../../../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../../../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../../../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../../../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

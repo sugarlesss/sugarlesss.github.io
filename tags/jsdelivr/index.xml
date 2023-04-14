@@ -16,14 +16,14 @@
     </a><figcaption class="image-caption">jsdelivr 官网</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<p>然而非常不幸的是，昨天 jsDelivr 在国内的故障，并不是像往常一样的因为 SSL 证书过期导致资源无法访问，而是域名备案被吊销，导致国内 CDN 提供商<a href="https://www.wangsu.com/" target="_blank" rel="noopener noreffer">网宿</a>移除了 jsDelivr 的账号。目前 jsDelivr 国内线路为 <a href="https://fastly.com/" target="_blank" rel="noopener noreffer">Fastly</a>。</p>
-<p>昨天，<a href="https://www.jsdelivr.com/" target="_blank" rel="noopener noreffer">jsDelivr</a> 团队主要负责人 Dmitriy Akulov 在 jsDelivr 官方 <a href="https://github.com/jsdelivr/jsdelivr" target="_blank" rel="noopener noreffer">GitHub 仓库</a>的一条 issue 下发表了以下<a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">说明</a>：</p>
+<p>然而非常不幸的是，昨天 jsDelivr 在国内的故障，并不是像往常一样的因为 SSL 证书过期导致资源无法访问，而是域名备案被吊销，导致国内 CDN 提供商<a href="https://www.wangsu.com/" target="_blank" rel="noopener noreferrer">网宿</a>移除了 jsDelivr 的账号。目前 jsDelivr 国内线路为 <a href="https://fastly.com/" target="_blank" rel="noopener noreferrer">Fastly</a>。</p>
+<p>昨天，<a href="https://www.jsdelivr.com/" target="_blank" rel="noopener noreferrer">jsDelivr</a> 团队主要负责人 Dmitriy Akulov 在 jsDelivr 官方 <a href="https://github.com/jsdelivr/jsdelivr" target="_blank" rel="noopener noreferrer">GitHub 仓库</a>的一条 issue 下发表了以下<a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreferrer">说明</a>：</p>
 <figure><a class="lightgallery" href="/post_images/images-20211222003005456.png" title="/post_images/images-20211222003005456.png" data-thumbnail="/post_images/images-20211222003005456.png" data-sub-html="<h2>官方说明</h2>">
         
     </a><figcaption class="image-caption">官方说明</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<h1 id="ref">REF</h1>
-<p><a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreffer">https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996" target="_blank" rel="noopener noreferrer">https://github.com/jsdelivr/jsdelivr/issues/18348#issuecomment-997777996</a></p>]]></description>
 </item></channel>
 </rss>

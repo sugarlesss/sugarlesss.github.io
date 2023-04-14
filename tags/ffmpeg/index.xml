@@ -14,21 +14,21 @@
 <p>尝遍了市面上各种音频转文字的野鸡产品后，我最终还是选择用大厂提供的 API ，to B 的产品在价格和可定制性上肯定比 to C 的产品更有优势。</p>
 <p>关于如何将视频转音频，手段很多，比如使用 FFmpeg 可以将视频转为音频：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffmpeg -i input.mp4 -vn -acodec copy audio.mp3
-</span></span></code></pre></div><h1 id="一音频转文字究竟有多贵">一、音频转文字究竟有多贵？</h1>
-<p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
-<h2 id="11讯飞">1.1、讯飞</h2>
-<p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreffer">文档地址</a></p>
+</span></span></code></pre></div><h1 id="一音频转文字究竟有多贵" class="headerLink">
+    <a href="#%e4%b8%80%e9%9f%b3%e9%a2%91%e8%bd%ac%e6%96%87%e5%ad%97%e7%a9%b6%e7%ab%9f%e6%9c%89%e5%a4%9a%e8%b4%b5" class="header-mark"></a>一、音频转文字究竟有多贵？</h1><p>参考当前的大型互联网厂商提供的音频转文字服务定价，讯飞最贵、百度云论单价虽然最便宜，但起购门槛金额较高，比较适合商用走量、，腾讯云的价格最合适，而且最关键的是腾讯云每月都有附赠一定量的额度，可以无限白嫖。</p>
+<h2 id="11讯飞" class="headerLink">
+    <a href="#11%e8%ae%af%e9%a3%9e" class="header-mark"></a>1.1、讯飞</h2><p>语音转写：<a href="https://www.xfyun.cn/services/lfasr" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>产品价格：<a href="https://www.xfyun.cn/services/lfasr#anchor4503211" target="_blank" rel="noopener noreferrer">文档地址</a></p>
 <ul>
 <li>套餐一（ 20 小时） 168 元 / 单价 8.4</li>
 <li>套餐二（ 200 小时） 980 元 / 单价 4.9</li>
 <li>套餐三（ 1000 小时） 3900 元 / 单价 3.9</li>
 <li>套餐四（ 3000 小时） 10500 元 / 单价 3.5</li>
 </ul>
-<h2 id="12百度云">1.2、百度云</h2>
-<p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreffer">文档地址</a></p>
+<h2 id="12百度云" class="headerLink">
+    <a href="#12%e7%99%be%e5%ba%a6%e4%ba%91" class="header-mark"></a>1.2、百度云</h2><p>音频文件转写：<a href="https://ai.baidu.com/tech/speech/aasr" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>按小时包预付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e5%b0%8f%e6%97%b6%e5%8c%85%e9%a2%84%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>按调用时长后付费：<a href="https://ai.baidu.com/ai-doc/SPEECH/Jk38lxn2j#%e6%8c%89%e8%b0%83%e7%94%a8%e6%97%b6%e9%95%bf%e5%90%8e%e4%bb%98%e8%b4%b9-1" target="_blank" rel="noopener noreferrer">文档地址</a></p>
 <p>按小时包预付费</p>
 <ul>
 <li>套餐一（ 1000 小时） 1200 元 / 单价 1.2</li>
@@ -40,10 +40,10 @@
 <ul>
 <li>每小时 2 元，系统按用户实际使用，每小时出账单实时扣费，账户内需保留足量余额。</li>
 </ul>
-<h2 id="13腾讯云">1.3、腾讯云</h2>
-<p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/product/asr</a></p>
-<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
-<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreffer">https://buy.cloud.tencent.com/asr</a></p>
+<h2 id="13腾讯云" class="headerLink">
+    <a href="#13%e8%85%be%e8%ae%af%e4%ba%91" class="header-mark"></a>1.3、腾讯云</h2><p>语音识别 ASR：<a href="https://cloud.tencent.com/product/asr" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/product/asr</a></p>
+<p>免费配额：<a href="https://console.cloud.tencent.com/asr/resourcebundle" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/asr/resourcebundle</a></p>
+<p>资源包购买地址：<a href="https://buy.cloud.tencent.com/asr" target="_blank" rel="noopener noreferrer">https://buy.cloud.tencent.com/asr</a></p>
 <p>录音文件识别（五小时内出结果）</p>
 <ul>
 <li>套餐一（ 60 小时） 90 元 / 单价 1.5</li>
@@ -72,10 +72,10 @@
 <p>仅支持中文普通话，使用者通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。<br>
 支持100MB以内音频文件的识别</p>
 </blockquote>
-<h2 id="14阿里云">1.4、阿里云</h2>
-<p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreffer">文档地址</a></p>
-<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
-<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreffer">购买链接</a></p>
+<h2 id="14阿里云" class="headerLink">
+    <a href="#14%e9%98%bf%e9%87%8c%e4%ba%91" class="header-mark"></a>1.4、阿里云</h2><p>录音文件识别：<a href="https://ai.aliyun.com/nls/filetrans?spm=a2c4g.11186623.J_8058803260.284.45d233bfK47pu0" target="_blank" rel="noopener noreferrer">文档地址</a></p>
+<p>录音文件识别资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.4.5076424cS27Oad&amp;commodityCode=nlsfilebag#/buy" target="_blank" rel="noopener noreferrer">购买链接</a></p>
+<p>录音文件识别（极速版）资源包：<a href="https://common-buy.aliyun.com/?spm=5176.12157752.J_5253785160.5.5076424cS27Oad&amp;&amp;commodityCode=nls_rfrhsv_bag#/buy" target="_blank" rel="noopener noreferrer">购买链接</a></p>
 <p>录音文件识别（六小时内出结果）</p>
 <ul>
 <li>套餐一（ 40 小时） 100 元 / 单价 2.5</li>
@@ -92,14 +92,14 @@
 <li>套餐四（ 100000 小时） 117000 元 / 单价 1.17</li>
 <li>套餐五（ 250000 小时） 260000  元 / 单价 1.04</li>
 </ul>
-<h1 id="二对接腾讯云">二、对接腾讯云</h1>
-<p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
+<h1 id="二对接腾讯云" class="headerLink">
+    <a href="#%e4%ba%8c%e5%af%b9%e6%8e%a5%e8%85%be%e8%ae%af%e4%ba%91" class="header-mark"></a>二、对接腾讯云</h1><p>在使用腾讯云 API 之前，你需要先获取三个必要的参数。</p>
 <ul>
-<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/developer</a></li>
-<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/cam/capi</a></li>
+<li>在腾讯云控制台账号信息页面查看账号 APPID：<a href="https://console.cloud.tencent.com/developer" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/developer</a></li>
+<li>访问管理页面获取 SecretID 和 SecretKey：<a href="https://console.cloud.tencent.com/cam/capi" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/cam/capi</a></li>
 </ul>
-<h2 id="21录音文件识别极速版v2">2.1、录音文件识别极速版（V2）</h2>
-<p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
+<h2 id="21录音文件识别极速版v2" class="headerLink">
+    <a href="#21%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab%e6%9e%81%e9%80%9f%e7%89%88v2" class="header-mark"></a>2.1、录音文件识别极速版（V2）</h2><p>极速版演示，目前腾讯云给的免费配额是每月 5 小时。</p>
 <p>极速版仅支持中文普通话，通过 HTTPS POST 方式上传一段音频并在极短时间内同步返回识别结果，可满足音视频字幕、准实时质检等场景下对语音文件识别时效性的要求。支持100MB以内音频文件的识别。</p>
 <p>1）将真实的值填入下方源代码的 APPID、SECRET_ID、SECRET_KEY 这三个参数中；</p>
 <p>2）将源代码中的 audio 参数修改为本地音频文件的相对或绝对路径；</p>
@@ -298,19 +298,19 @@
 </span></span><span class="line"><span class="cl">[INFO] channel_id: 0
 </span></span><span class="line"><span class="cl">测试音频转文字内容
 </span></span></code></pre></div><p>如果有特殊需求，根据可选的 params 参数去调整就好了。</p>
-<h2 id="22录音文件识别v3">2.2、录音文件识别（V3）</h2>
-<p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
-<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823</a></p>
-<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37822</a></p>
-<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
-<h3 id="221安装-python-sdk">2.2.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+<h2 id="22录音文件识别v3" class="headerLink">
+    <a href="#22%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%abv3" class="header-mark"></a>2.2、录音文件识别（V3）</h2><p>录音文件识别演示，目前腾讯云给的免费配额是每月 10 小时。</p>
+<p>录音文件识别请求 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37823" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37823</a></p>
+<p>录音文件识别结果查询 API 文档：<a href="https://cloud.tencent.com/document/api/1093/37822" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37822</a></p>
+<p>腾讯云 API 3.0 提供了配套的开发工具集 SDK：<a href="https://cloud.tencent.com/document/api/1093/37823#SDK" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/api/1093/37823#SDK</a></p>
+<h3 id="221安装-python-sdk" class="headerLink">
+    <a href="#221%e5%ae%89%e8%a3%85-python-sdk" class="header-mark"></a>2.2.1、安装 Python SDK</h3><p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade tencentcloud-sdk-python
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 </span></span><span class="line"><span class="cl">pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</span></span></code></pre></div><h3 id="222上传本地录音文件识别">2.2.2、上传本地录音文件识别</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
+</span></span></code></pre></div><h3 id="222上传本地录音文件识别" class="headerLink">
+    <a href="#222%e4%b8%8a%e4%bc%a0%e6%9c%ac%e5%9c%b0%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab" class="header-mark"></a>2.2.2、上传本地录音文件识别</h3><p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=CreateRecTask&amp;SignVersion=</a></p>
 <p>下面我提供一个自己的 demo ，运行前记得替换三个参数为真实值。其中 audio 是本地录音文件相对路径或绝对路径。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
@@ -407,8 +407,8 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;f1234567-89a4-1234-12d3-d56bdd9aac1a&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>请求成功后，返回的 JSON 中 Data -&gt; TaskId 就是我们此次上传任务的 ID ，需要拿这个 ID 去轮训另一个接口，查询是否成功。</p>
-<h3 id="223查询录音文件识别结果">2.2.3、查询录音文件识别结果</h3>
-<p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
+<h3 id="223查询录音文件识别结果" class="headerLink">
+    <a href="#223%e6%9f%a5%e8%af%a2%e5%bd%95%e9%9f%b3%e6%96%87%e4%bb%b6%e8%af%86%e5%88%ab%e7%bb%93%e6%9e%9c" class="header-mark"></a>2.2.3、查询录音文件识别结果</h3><p>腾讯云提供的 API Explorer 可以很方便的生成代码和参数：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=DescribeTaskStatus&amp;SignVersion=</a></p>
 <p>用 TaskID 查询识别结果。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
@@ -453,17 +453,17 @@
 </span></span><span class="line"><span class="cl">    <span class="p">},</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-1234-1234-1234-b11234567890&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="23一句话识别v3">2.3、一句话识别（V3）</h2>
-<p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreffer">https://cloud.tencent.com/document/product/1093/35646</a></p>
-<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreffer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
-<h3 id="231安装-python-sdk">2.3.1、安装 Python SDK</h3>
-<p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
+</span></span></code></pre></div><h2 id="23一句话识别v3" class="headerLink">
+    <a href="#23%e4%b8%80%e5%8f%a5%e8%af%9d%e8%af%86%e5%88%abv3" class="header-mark"></a>2.3、一句话识别（V3）</h2><p>文档地址：<a href="https://cloud.tencent.com/document/product/1093/35646" target="_blank" rel="noopener noreferrer">https://cloud.tencent.com/document/product/1093/35646</a></p>
+<p>API Explorer：<a href="https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=" target="_blank" rel="noopener noreferrer">https://console.cloud.tencent.com/api/explorer?Product=asr&amp;Version=2019-06-14&amp;Action=SentenceRecognition&amp;SignVersion=</a></p>
+<h3 id="231安装-python-sdk" class="headerLink">
+    <a href="#231%e5%ae%89%e8%a3%85-python-sdk" class="header-mark"></a>2.3.1、安装 Python SDK</h3><p>在使用录音文件识别时，需要通过 pip 方式安装腾讯云提供的 Python 版本 SDK:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip install --upgrade tencentcloud-sdk-python
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 中国大陆地区的用户可以使用国内镜像源提高下载速度</span>
 </span></span><span class="line"><span class="cl">pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade tencentcloud-sdk-python。
-</span></span></code></pre></div><h3 id="232源码">2.3.2、源码</h3>
-<p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
+</span></span></code></pre></div><h3 id="232源码" class="headerLink">
+    <a href="#232%e6%ba%90%e7%a0%81" class="header-mark"></a>2.3.2、源码</h3><p>借助 API Explorer 生成的源码，我修改了一些东西：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">json</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">tencentcloud.common</span> <span class="kn">import</span> <span class="n">credential</span>
@@ -519,9 +519,9 @@
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;WordList&#34;</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nt">&#34;RequestId&#34;</span><span class="p">:</span><span class="s2">&#34;12345678-4307-46ae-1234-beb3eb051234&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/21552953</a></p>
-<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreffer">https://www.zhihu.com/question/420452079</a></p>]]></description>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p>长时间的会议录音如何快速转化成文字：<a href="https://www.zhihu.com/question/21552953" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/21552953</a></p>
+<p>如何用ffmpeg从mkv视频文件中提取音频？：<a href="https://www.zhihu.com/question/420452079" target="_blank" rel="noopener noreferrer">https://www.zhihu.com/question/420452079</a></p>]]></description>
 </item><item>
     <title>如何使用 FFmpeg 下载 ts 流媒体视频</title>
     <link>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</link>
@@ -529,15 +529,23 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626157783973-61c60fcd-e116-45c3-9b25-b856104e3ef7.png" title="img" data-thumbnail="/post_images/1626157783973-61c60fcd-e116-45c3-9b25-b856104e3ef7.png">
+        
+    </a></figure></p>
 <p>文件内容大致像这样：</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626157905910-2bc74724-051d-4fa5-b17c-37db21fba7c1.png" title="img" data-thumbnail="/post_images/1626157905910-2bc74724-051d-4fa5-b17c-37db21fba7c1.png">
+        
+    </a></figure></p>
 <p>如果没有发现独立的 m3u8 文件，有可能每一个 ts 文件的地址中也是含有这个 m3u8 文件的名称的。把这个 m3u8 文件的完整地址截取出来。针对这种情况，我就不具体举例了，因为我还没遇到过。</p>
 <p>到 header tab 里，复制一下这个 m3u8 文件的完整 url ，画红线的这部分就是。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626158094193-0752761b-6ea7-40fb-b5a8-0a36eb8b955e.png" title="img" data-thumbnail="/post_images/1626158094193-0752761b-6ea7-40fb-b5a8-0a36eb8b955e.png">
+        
+    </a></figure></p>
 <p>假设这个地址是：https://xxx.abc.com/xxx/a.m3u8</p>
-<p>可以使用ffmpeg（<a href="https://link.zhihu.com/?target=https%3A//www.ffmpeg.org/" target="_blank" rel="noopener noreffer">FFmpeg</a>）命令下载合并输出为一个视频文件</p>
+<p>可以使用ffmpeg（<a href="https://link.zhihu.com/?target=https%3A//www.ffmpeg.org/" target="_blank" rel="noopener noreferrer">FFmpeg</a>）命令下载合并输出为一个视频文件</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffmpeg -i https://xxx.abc.com/xxx/a.m3u8 -c copy output.mp4
-</span></span></code></pre></div><p></p>]]></description>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/post_images/1626158730542-e4f911d5-9d2d-411c-bda5-618d55306bf0.png" title="img" data-thumbnail="/post_images/1626158730542-e4f911d5-9d2d-411c-bda5-618d55306bf0.png">
+        
+    </a></figure></p>]]></description>
 </item></channel>
 </rss>

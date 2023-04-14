@@ -11,8 +11,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/linux-using-crontab-to-execute-timed-tasks.html</guid>
     <description><![CDATA[<p>crontab 命令常见于 Unix 和类 Unix 的操作系统之中，用于设置周期性被执行的指令。</p>
-<h1 id="一命令格式及其含义">一、命令格式及其含义</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#语义</span>
+<h1 id="一命令格式及其含义" class="headerLink">
+    <a href="#%e4%b8%80%e5%91%bd%e4%bb%a4%e6%a0%bc%e5%bc%8f%e5%8f%8a%e5%85%b6%e5%90%ab%e4%b9%89" class="header-mark"></a>一、命令格式及其含义</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">#语义</span>
 </span></span><span class="line"><span class="cl">* * * * * <span class="nb">command</span>
 </span></span><span class="line"><span class="cl">┃ ┃ ┃ ┃ ┃ ┃
 </span></span><span class="line"><span class="cl">┃ ┃ ┃ ┃ ┃ ┗━需要执行的命令或脚本的路径
@@ -27,8 +27,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">#列出已经存在的crontab任务</span>
 </span></span><span class="line"><span class="cl">crontab -l
-</span></span></code></pre></div><h1 id="二demo">二、Demo</h1>
-<pre tabindex="0"><code class="language-contab" data-lang="contab">#每天7:00重启
+</span></span></code></pre></div><h1 id="二demo" class="headerLink">
+    <a href="#%e4%ba%8cdemo" class="header-mark"></a>二、Demo</h1><pre tabindex="0"><code class="language-contab" data-lang="contab">#每天7:00重启
 0 7 * * * reboot
 
 #每周六凌晨4:00重启
@@ -55,7 +55,7 @@
 
 #每天10:00、16:00执行
 0 10,16 * * * /root/clearLog.sh
-</code></pre><h1 id="ref">REF</h1>
-<p>Linux 计划任务 Crontab 实例详解：<a href="https://www.osyunwei.com/archives/5039.html" target="_blank" rel="noopener noreffer">https://www.osyunwei.com/archives/5039.html</a></p>]]></description>
+</code></pre><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p>Linux 计划任务 Crontab 实例详解：<a href="https://www.osyunwei.com/archives/5039.html" target="_blank" rel="noopener noreferrer">https://www.osyunwei.com/archives/5039.html</a></p>]]></description>
 </item></channel>
 </rss>

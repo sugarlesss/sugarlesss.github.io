@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">如何使用 Github webhook 配合宝塔 webhook 自动化部署 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="如何使用 Github webhook 配合宝塔 webhook 自动化部署" />
+    <title>如何使用 Github webhook 配合宝塔 webhook 自动化部署 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="如何使用 Github webhook 配合宝塔 webhook 自动化部署" />
 <meta property="og:description" content="如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html" /><meta property="article:section" content="posts" />
@@ -20,9 +22,9 @@
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html" /><link rel="prev" href="https://sugarless.cn/posts/bilibili-video-numbering-rules-upgrade.html" /><link rel="next" href="https://sugarless.cn/posts/baidu-seo-submission-tool-developed-using-python.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html" /><link rel="prev" href="https://sugarless.cn/posts/bilibili-video-numbering-rules-upgrade.html" /><link rel="next" href="https://sugarless.cn/posts/baidu-seo-submission-tool-developed-using-python.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/color.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/how-to-use-github-webhook-and-btpanel-webhook.html"
-        },"genre": "posts","keywords": "github, webhook, 宝塔面板, 自动化部署","wordcount":  848 ,
+        },"genre": "posts","keywords": "github, webhook, 宝塔面板, 自动化部署","wordcount":  868 ,
         "url": "https:\/\/sugarless.cn\/posts\/how-to-use-github-webhook-and-btpanel-webhook.html","datePublished": "2021-08-18T00:00:00+00:00","dateModified": "2021-09-03T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -39,10 +41,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -56,18 +59,18 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -85,20 +88,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -112,12 +115,27 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何使用 Github webhook 配合宝塔 webhook 自动化部署</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一关于-webhook">一、关于 webhook</a></li>
+    <li><a href="#二配置宝塔面板-webhook">二、配置宝塔面板 webhook</a>
+      <ul>
+        <li><a href="#1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</a></li>
+        <li><a href="#2添加-webhook">2）添加 WebHook</a></li>
+        <li><a href="#3配置执行命令">3）配置执行命令</a></li>
+        <li><a href="#4获取-webhook-url">4）获取 webhook url</a></li>
+      </ul>
+    </li>
+    <li><a href="#三配置-github-webhook">三、配置 Github webhook</a></li>
+    <li><a href="#注意事项">注意事项</a></li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">如何使用 Github webhook 配合宝塔 webhook 自动化部署</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/how-to-use.html"><i class="far fa-folder fa-fw"></i>How-to-use</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 848 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-18">2021-08-18</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-09-03">2021-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 868 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -141,8 +159,8 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
-<h1 id="一关于-webhook">一、关于 webhook</h1>
-<p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
+<h1 id="一关于-webhook" class="headerLink">
+    <a href="#%e4%b8%80%e5%85%b3%e4%ba%8e-webhook" class="header-mark"></a>一、关于 webhook</h1><p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
 <ul>
 <li>
 <p>你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
@@ -153,84 +171,91 @@
 </ul>
 <p>实际上，你可以把它看做一种事件触发器。当满足某种特定条件时，执行一系列特定操作。其中，一方是事件发起者，另一方是事件接收者。</p>
 <p>以第一个例子来解释，Github 接收到 push 后，发起一个 HTTP(S) 请求，响应者接收到请求后执行特定命令或业务逻辑。Github 是事件发起者，部署了宝塔面板的服务器是事件执行者。</p>
-<h1 id="二配置宝塔面板-webhook">二、配置宝塔面板 webhook</h1>
-<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
+<h1 id="二配置宝塔面板-webhook" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae%e5%ae%9d%e5%a1%94%e9%9d%a2%e6%9d%bf-webhook" class="header-mark"></a>二、配置宝塔面板 webhook</h1><p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
 <p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能 cd 到博客源码目录下执行 git pull 命令，这样就可以从 Github 拉取最新的版本覆盖服务器上当前的版本了，因为是静态资源，所以无需重启什么服务，git pull 完成后即更新完毕。</p>
-<h2 id="1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</h2>
-<p>去软件商店可以找到这玩意儿</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095736324.png"
-        data-srcset="../post_images/image-20210818095736324.png, ../post_images/image-20210818095736324.png 1.5x, ../post_images/image-20210818095736324.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095736324.png"
-        title="image-20210818095736324"
-    /></p>
-<h2 id="2添加-webhook">2）添加 WebHook</h2>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818094731947.png"
-        data-srcset="../post_images/image-20210818094731947.png, ../post_images/image-20210818094731947.png 1.5x, ../post_images/image-20210818094731947.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818094731947.png"
-        title="image-20210818094731947"
-    /></p>
-<h2 id="3配置执行命令">3）配置执行命令</h2>
-<pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
+<h2 id="1安装宝塔-webhook-插件" class="headerLink">
+    <a href="#1%e5%ae%89%e8%a3%85%e5%ae%9d%e5%a1%94-webhook-%e6%8f%92%e4%bb%b6" class="header-mark"></a>1）安装宝塔 WebHook 插件</h2><p>去软件商店可以找到这玩意儿</p>
+<p><figure><a class="lightgallery" href="../post_images/image-20210818095736324.png" title="image-20210818095736324" data-thumbnail="/post_images/image-20210818095736324.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095736324.png"
+            srcset="../post_images/image-20210818095736324.png, ../post_images/image-20210818095736324.png 1.5x, ../post_images/image-20210818095736324.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095736324.png">
+    </a></figure></p>
+<h2 id="2添加-webhook" class="headerLink">
+    <a href="#2%e6%b7%bb%e5%8a%a0-webhook" class="header-mark"></a>2）添加 WebHook</h2><p><figure><a class="lightgallery" href="../post_images/image-20210818094731947.png" title="image-20210818094731947" data-thumbnail="/post_images/image-20210818094731947.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818094731947.png"
+            srcset="../post_images/image-20210818094731947.png, ../post_images/image-20210818094731947.png 1.5x, ../post_images/image-20210818094731947.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818094731947.png">
+    </a></figure></p>
+<h2 id="3配置执行命令" class="headerLink">
+    <a href="#3%e9%85%8d%e7%bd%ae%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4" class="header-mark"></a>3）配置执行命令</h2><pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
 git pull;
-</code></pre><p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095444177.png"
-        data-srcset="../post_images/image-20210818095444177.png, ../post_images/image-20210818095444177.png 1.5x, ../post_images/image-20210818095444177.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095444177.png"
-        title="image-20210818095444177"
-    /></p>
+</code></pre><p><figure><a class="lightgallery" href="../post_images/image-20210818095444177.png" title="image-20210818095444177" data-thumbnail="/post_images/image-20210818095444177.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095444177.png"
+            srcset="../post_images/image-20210818095444177.png, ../post_images/image-20210818095444177.png 1.5x, ../post_images/image-20210818095444177.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095444177.png">
+    </a></figure></p>
 <p>配置完成后，就可以看到一条 webhook 规则了。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095456515.png"
-        data-srcset="../post_images/image-20210818095456515.png, ../post_images/image-20210818095456515.png 1.5x, ../post_images/image-20210818095456515.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095456515.png"
-        title="image-20210818095456515"
-    /></p>
-<h2 id="4获取-webhook-url">4）获取 webhook url</h2>
-<p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095604028.png"
-        data-srcset="../post_images/image-20210818095604028.png, ../post_images/image-20210818095604028.png 1.5x, ../post_images/image-20210818095604028.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095604028.png"
-        title="image-20210818095604028"
-    /></p>
-<h1 id="三配置-github-webhook">三、配置 Github webhook</h1>
-<p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095053784.png"
-        data-srcset="../post_images/image-20210818095053784.png, ../post_images/image-20210818095053784.png 1.5x, ../post_images/image-20210818095053784.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095053784.png"
-        title="image-20210818095053784"
-    /></p>
+<p><figure><a class="lightgallery" href="../post_images/image-20210818095456515.png" title="image-20210818095456515" data-thumbnail="/post_images/image-20210818095456515.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095456515.png"
+            srcset="../post_images/image-20210818095456515.png, ../post_images/image-20210818095456515.png 1.5x, ../post_images/image-20210818095456515.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095456515.png">
+    </a></figure></p>
+<h2 id="4获取-webhook-url" class="headerLink">
+    <a href="#4%e8%8e%b7%e5%8f%96-webhook-url" class="header-mark"></a>4）获取 webhook url</h2><p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
+<p><figure><a class="lightgallery" href="../post_images/image-20210818095604028.png" title="image-20210818095604028" data-thumbnail="/post_images/image-20210818095604028.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095604028.png"
+            srcset="../post_images/image-20210818095604028.png, ../post_images/image-20210818095604028.png 1.5x, ../post_images/image-20210818095604028.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095604028.png">
+    </a></figure></p>
+<h1 id="三配置-github-webhook" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae-github-webhook" class="header-mark"></a>三、配置 Github webhook</h1><p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
+<p><figure><a class="lightgallery" href="../post_images/image-20210818095053784.png" title="image-20210818095053784" data-thumbnail="/post_images/image-20210818095053784.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095053784.png"
+            srcset="../post_images/image-20210818095053784.png, ../post_images/image-20210818095053784.png 1.5x, ../post_images/image-20210818095053784.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095053784.png">
+    </a></figure></p>
 <p>将宝塔提供的 webhook url 填入此处的 Payload URL，并将下方的 Content type 修改为 application/json ，否则 Github 请求此 URL 时，宝塔会返回 403 错误。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/image-20210818095149901.png"
-        data-srcset="../post_images/image-20210818095149901.png, ../post_images/image-20210818095149901.png 1.5x, ../post_images/image-20210818095149901.png 2x"
-        data-sizes="auto"
-        alt="/post_images/image-20210818095149901.png"
-        title="image-20210818095149901"
-    /></p>
-<h1 id="注意事项">注意事项</h1>
-<ul>
+<p><figure><a class="lightgallery" href="../post_images/image-20210818095149901.png" title="image-20210818095149901" data-thumbnail="/post_images/image-20210818095149901.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/image-20210818095149901.png"
+            srcset="../post_images/image-20210818095149901.png, ../post_images/image-20210818095149901.png 1.5x, ../post_images/image-20210818095149901.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210818095149901.png">
+    </a></figure></p>
+<h1 id="注意事项" class="headerLink">
+    <a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="header-mark"></a>注意事项</h1><ul>
 <li>在服务器上生成一对 SSH 秘钥，将公钥配置到你的 Github 账号后，服务器就可以使用 git pull 命令拉取最新版本，不需要输入账号密码了。</li>
 <li>如果在配置 Github webhook 时，Content type 你忘记修改为 application/json ，宝塔会返回 403 错误，你配置的一系列自定义命令就无法执行了。</li>
 </ul>
-<h1 id="ref">REF</h1>
-<p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/blibli/p/11331509.html</a></p></div>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/blibli/p/11331509.html</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -262,6 +287,9 @@ git pull;
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -269,7 +297,8 @@ git pull;
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../js/katex.min.js" defer></script><script type="text/javascript" src="../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -278,11 +307,6 @@ git pull;
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js"></script><script type="text/javascript" src="../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

@@ -10,8 +10,8 @@
     <pubDate>Sun, 15 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/0.html</guid>
-    <description><![CDATA[<h1 id="关于此专栏">关于此专栏</h1>
-<p>此专栏内容为 <code>LeetCode 剑指 Offer （第二版）</code> 的 <code>Java</code> 版本题解，我会按照 LeetCode 官方给题目标注的出现频率由高到低排序。</p>
+    <description><![CDATA[<h1 id="关于此专栏" class="headerLink">
+    <a href="#%e5%85%b3%e4%ba%8e%e6%ad%a4%e4%b8%93%e6%a0%8f" class="header-mark"></a>关于此专栏</h1><p>此专栏内容为 <code>LeetCode 剑指 Offer （第二版）</code> 的 <code>Java</code> 版本题解，我会按照 LeetCode 官方给题目标注的出现频率由高到低排序。</p>
 <p>希望能帮助到更多学习算法的朋友们。</p>
 <p>解题思路与实现代码来源于官方题解、评论区大佬及网络，非 <code>100%</code> 原创内容，此专栏为我在刷题过程中整理的笔记，仅做收录与整理。</p>
 <p>如有侵权，请发送邮件联系我删除相关内容。</p>
@@ -22,8 +22,8 @@
     <pubDate>Wed, 18 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/1.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 24. 反转链表</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 24. 反转链表</a> 难度简单</p>
 <p>定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</p>
 <p><strong>示例:</strong></p>
 <pre tabindex="0"><code>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
@@ -31,17 +31,17 @@
 </code></pre><p><strong>限制：</strong></p>
 <pre tabindex="0"><code>0 &lt;= 节点个数 &lt;= 5000
 </code></pre><p><strong>注意</strong>：本题与主站 206 题相同：https://leetcode-cn.com/problems/reverse-linked-list/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21遍历法双指针">2.1、遍历法（双指针）</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>在访问各节点时修改其 <code>next</code> 引用指向。在此过程中，可借助辅助变量（指针）来保存当前节点的 next ，以此为基础遍历整个链表。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21遍历法双指针" class="headerLink">
+    <a href="#21%e9%81%8d%e5%8e%86%e6%b3%95%e5%8f%8c%e6%8c%87%e9%92%88" class="header-mark"></a>2.1、遍历法（双指针）</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>在访问各节点时修改其 <code>next</code> 引用指向。在此过程中，可借助辅助变量（指针）来保存当前节点的 next ，以此为基础遍历整个链表。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><ul>
 <li><strong>时间复杂度 O(N)</strong>：遍历链表使用线性大小时间。</li>
 <li><strong>空间复杂度 O(1)</strong>： 变量 <code>pre</code> 和 <code>cur</code> 使用常数大小额外空间。</li>
 </ul>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * public class ListNode {
 </span></span></span><span class="line"><span class="cl"><span class="cm"> *     int val;
@@ -72,16 +72,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">prev</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22递归法">2.2、递归法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>使用递归法遍历链表，当越过尾节点后终止递归，在回溯时修改各节点的 <code>next</code> 引用指向。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<ul>
+</span></span></code></pre></div><h2 id="22递归法" class="headerLink">
+    <a href="#22%e9%80%92%e5%bd%92%e6%b3%95" class="header-mark"></a>2.2、递归法</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>使用递归法遍历链表，当越过尾节点后终止递归，在回溯时修改各节点的 <code>next</code> 引用指向。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><ul>
 <li><strong>时间复杂度 O(N)</strong>：遍历链表使用线性大小时间。</li>
 <li><strong>空间复杂度 O(N)</strong>： 遍历链表的递归深度达到 N ，系统使用 O(N) 大小额外空间。</li>
 </ul>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="cm">/**
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * Definition for singly-linked list.
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * public class ListNode {
 </span></span></span><span class="line"><span class="cl"><span class="cm"> * int val;
@@ -110,9 +110,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="n">root</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/fan-zhuan-lian-biao-by-leetcode-solution-jvs5/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/fan-zhuan-lian-biao-by-leetcode-solution-jvs5/</a></p>
-<p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/jian-zhi-offer-24-fan-zhuan-lian-biao-die-dai-di-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/jian-zhi-offer-24-fan-zhuan-lian-biao-die-dai-di-2/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/fan-zhuan-lian-biao-by-leetcode-solution-jvs5/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/fan-zhuan-lian-biao-by-leetcode-solution-jvs5/</a></p>
+<p><a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/jian-zhi-offer-24-fan-zhuan-lian-biao-die-dai-di-2/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/jian-zhi-offer-24-fan-zhuan-lian-biao-die-dai-di-2/</a></p>
 ]]></description>
 </item><item>
     <title>2、剑指 Offer 09. 用两个栈实现队列</title>
@@ -120,8 +120,8 @@
     <pubDate>Fri, 20 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/2.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 09. 用两个栈实现队列</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 09. 用两个栈实现队列</a> 难度简单</p>
 <p>用两个栈实现一个队列。队列的声明如下，请实现它的两个函数 <code>appendTail</code> 和 <code>deleteHead</code> ，分别完成在队列尾部插入整数和在队列头部删除整数的功能。(若队列中没有元素，<code>deleteHead</code> 操作返回 -1 )</p>
 <p><strong>示例 1：</strong></p>
 <pre tabindex="0"><code>输入：
@@ -138,16 +138,16 @@
 <li><code>1 &lt;= values &lt;= 10000</code></li>
 <li><code>最多会对 appendTail、deleteHead 进行 10000 次调用</code></li>
 </ul>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21双栈法">2.1、双栈法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>维护两个栈，第一个栈（正序支持插入操作，第二个栈支持删除操作。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21双栈法" class="headerLink">
+    <a href="#21%e5%8f%8c%e6%a0%88%e6%b3%95" class="header-mark"></a>2.1、双栈法</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>维护两个栈，第一个栈（正序支持插入操作，第二个栈支持删除操作。</p>
 <p>根据栈先进后出的特性，我们每次往第一个栈里插入元素后，第一个栈的底部元素是最后插入的元素，第一个栈的顶部元素是下一个待删除的元素。为了维护队列先进先出的特性，我们引入第二个栈，用第二个栈维护待删除的元素，在执行删除操作的时候我们首先看下第二个栈是否为空。如果为空，我们将第一个栈里的元素一个个弹出插入到第二个栈里，这样第二个栈里元素的顺序就是待删除的元素的顺序，要执行删除操作的时候我们直接弹出第二个栈的元素返回即可。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p>**时间复杂度：**对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会「至多被插入和弹出 <code>stack2</code> 一次」，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><p>**时间复杂度：**对于插入和删除操作，时间复杂度均为 O(1)。插入不多说，对于删除操作，虽然看起来是 O(n) 的时间复杂度，但是仔细考虑下每个元素只会「至多被插入和弹出 <code>stack2</code> 一次」，因此均摊下来每个元素被删除的时间复杂度仍为 O(1)。</p>
 <p><strong>空间复杂度：O(n)</strong>。需要使用两个栈存储已有的元素。</p>
-<h3 id="代码优化前">代码（优化前）：</h3>
-<p>这个是我第一次解题时的写法，因为我是实时维护正序栈与逆序栈的，所以效率比较底下。</p>
+<h3 id="代码优化前" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e4%bc%98%e5%8c%96%e5%89%8d" class="header-mark"></a>代码（优化前）：</h3><p>这个是我第一次解题时的写法，因为我是实时维护正序栈与逆序栈的，所以效率比较底下。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CQueue</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 正序栈 A ：队列正序（栈顶元素即为队列头）
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackA</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -196,8 +196,8 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h3 id="代码优化后">代码（优化后）：</h3>
-<p>此版本为参考官方题解的解题思路与评论区 kd35 大佬的代码，也是本解法中核心思想的实现。</p>
+</span></span></code></pre></div><h3 id="代码优化后" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81%e4%bc%98%e5%8c%96%e5%90%8e" class="header-mark"></a>代码（优化后）：</h3><p>此版本为参考官方题解的解题思路与评论区 kd35 大佬的代码，也是本解法中核心思想的实现。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">CQueue</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 栈 A ：队列正序
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">private</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">stackA</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
@@ -233,8 +233,8 @@
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/solution/mian-shi-ti-09-yong-liang-ge-zhan-shi-xian-dui-l-3/</a></p>
 ]]></description>
 </item><item>
     <title>3、剑指 Offer 03. 数组中重复的数字</title>
@@ -242,8 +242,8 @@
     <pubDate>Sun, 22 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/3.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 03. 数组中重复的数字</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 03. 数组中重复的数字</a> 难度简单</p>
 <p>找出数组中重复的数字。</p>
 <p>在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。</p>
 <p><strong>示例 1：</strong></p>
@@ -252,12 +252,12 @@
 输出：2 或 3 
 </code></pre><p><strong>限制：</strong></p>
 <pre tabindex="0"><code>2 &lt;= n &lt;= 100000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21hashset-遍历法">2.1、HashSet 遍历法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>在遍历过程中使用 HashSet 存储已经遇到的数字，如果遇到的一个数字已经在 HashSet 中，则当前的数字是重复数字。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
+</code></pre><h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21hashset-遍历法" class="headerLink">
+    <a href="#21hashset-%e9%81%8d%e5%8e%86%e6%b3%95" class="header-mark"></a>2.1、HashSet 遍历法</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>在遍历过程中使用 HashSet 存储已经遇到的数字，如果遇到的一个数字已经在 HashSet 中，则当前的数字是重复数字。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><ul>
 <li>
 <p><strong>时间复杂度：O(n)</strong>：遍历数组一遍。使用哈希集合（<code>HashSet</code>），添加元素的时间复杂度为 O(1)<em>O</em>(1)，故总的时间复杂度是 O(n)<em>O</em>(<em>n</em>)。</p>
 </li>
@@ -265,8 +265,8 @@
 <p><strong>空间复杂度：O(n)</strong>：不重复的每个元素都可能存入集合，因此占用 O(n)<em>O</em>(<em>n</em>) 额外空间。</p>
 </li>
 </ul>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// HashSet 法
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">findRepeatNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;();</span>
@@ -282,19 +282,19 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">repeatNumber</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22交换法">2.2、交换法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>题目规定：在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。</p>
+</span></span></code></pre></div><h2 id="22交换法" class="headerLink">
+    <a href="#22%e4%ba%a4%e6%8d%a2%e6%b3%95" class="header-mark"></a>2.2、交换法</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>题目规定：在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。</p>
 <p>说明数组元素的 <strong>索引</strong> 和 <strong>值</strong> 是 <strong>一对多</strong> 的关系。</p>
 <p>因此，可遍历数组并通过交换操作，使元素的 索引 与 值 一一对应（ 即 nums[ i ] = i ）。因而，就能通过索引映射对应的值，起到与字典等价的作用。</p>
 <p>遍历中，第一次遇到数字 xx 时，将其交换至索引 xx 处；而当第二次遇到数字 xx 时，一定有 nums[x] = x ，此时即可得到一组重复数字。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<ul>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><ul>
 <li><strong>时间复杂度 O(N)</strong>： 遍历数组使用 O(N) ，每轮遍历的判断和交换操作使用 O(1) 。</li>
 <li><strong>空间复杂度 O(1)</strong>： 使用常数复杂度的额外空间。</li>
 </ul>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 原地交换
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">findRepeatNumber</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -316,9 +316,9 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-b-4/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-b-4/</a></p>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-b-4/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-b-4/</a></p>
+<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/solution/mian-shi-ti-03-shu-zu-zhong-zhong-fu-de-shu-zi-yua/</a></p>
 ]]></description>
 </item><item>
     <title>4、剑指 Offer 51. 数组中的逆序对</title>
@@ -326,18 +326,18 @@
     <pubDate>Tue, 24 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/4.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 51. 数组中的逆序对</a> 难度困难</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 51. 数组中的逆序对</a> 难度困难</p>
 <p>在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。</p>
 <p><strong>示例 1:</strong></p>
 <pre tabindex="0"><code>输入: [7,5,6,4]
 输出: 5
 </code></pre><p><strong>限制：</strong></p>
 <pre tabindex="0"><code>0 &lt;= 数组长度 &lt;= 50000
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21归并排序统计法">2.1、归并排序统计法</h2>
-<h3 id="核心思路">核心思路：</h3>
-<p>求逆序对和归并排序有什么关系呢？关键就在于「归并」当中「并」的过程。</p>
+</code></pre><h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21归并排序统计法" class="headerLink">
+    <a href="#21%e5%bd%92%e5%b9%b6%e6%8e%92%e5%ba%8f%e7%bb%9f%e8%ae%a1%e6%b3%95" class="header-mark"></a>2.1、归并排序统计法</h2><h3 id="核心思路" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" class="header-mark"></a>核心思路：</h3><p>求逆序对和归并排序有什么关系呢？关键就在于「归并」当中「并」的过程。</p>
 <p>归并排序体现了 “分而治之” 的算法思想，具体为：</p>
 <ul>
 <li><strong>分：</strong> 不断将数组从中点位置划分开（即二分法），将整个数组的排序问题转化为子数组的排序问题；</li>
@@ -359,13 +359,13 @@
         i                          j
 </code></pre><p>以此类推，等合并完这两个已排序的序列后，我们就算出了本轮的逆序对数量。</p>
 <p>因此，本题的关键是使用归并排序中的合并阶段来统计逆序对数量的。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><ul>
 <li><strong>时间复杂度 O(N * log N)：</strong> 其中 N 为数组长度；归并排序使用 O(N * log N) 时间；</li>
 <li><strong>空间复杂度 O(N)*O*(*N*) ：</strong> 辅助数组 tmp 占用 O(N) 大小的额外空间；</li>
 </ul>
-<h3 id="代码">代码：</h3>
-<p>为简化代码，「 当 j = r + 1 时 」 与 「 当 tmp[ i ] &lt;= tmp[ j ] 时 」 两判断项可合并。</p>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><p>为简化代码，「 当 j = r + 1 时 」 与 「 当 tmp[ i ] &lt;= tmp[ j ] 时 」 两判断项可合并。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">,</span> <span class="n">tmp</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
@@ -407,10 +407,10 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p>官方题解：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/</p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p>官方题解：https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/shu-zu-zhong-de-ni-xu-dui-by-leetcode-solution/</p>
 <p>评论区题解：</p>
-<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/</a></p>
+<p><a href="https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shu-zu-zhong-de-ni-xu-dui-lcof/solution/jian-zhi-offer-51-shu-zu-zhong-de-ni-xu-pvn2h/</a></p>
 ]]></description>
 </item><item>
     <title>5、剑指 Offer 42. 连续子数组的最大和</title>
@@ -418,8 +418,8 @@
     <pubDate>Thu, 26 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/5.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 42. 连续子数组的最大和</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 42. 连续子数组的最大和</a> 难度简单</p>
 <p>输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。</p>
 <p>要求时间复杂度为O(n)。</p>
 <p><strong>示例1:</strong></p>
@@ -432,10 +432,10 @@
 <li><code>-100 &lt;= arr[i] &lt;= 100</code></li>
 </ul>
 <p>注意：本题与主站 53 题相同：https://leetcode-cn.com/problems/maximum-subarray/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21动态规划">2.1、动态规划</h2>
-<h3 id="核心思路">核心思路</h3>
-<p><strong>状态定义</strong>：设动态规划列表 dp ，dp[i] 代表以元素 nums[i] 为结尾的连续子数组最大和。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21动态规划" class="headerLink">
+    <a href="#21%e5%8a%a8%e6%80%81%e8%a7%84%e5%88%92" class="header-mark"></a>2.1、动态规划</h2><h3 id="核心思路" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" class="header-mark"></a>核心思路</h3><p><strong>状态定义</strong>：设动态规划列表 dp ，dp[i] 代表以元素 nums[i] 为结尾的连续子数组最大和。</p>
 <ul>
 <li>为何定义最大和 dp[i] 中必须包含元素 nums[i] ：保证 dp[i] 递推到 dp[i+1] 的正确性；如果不包含 nums[i] ，递推时则不满足题目的 连续子数组 要求。</li>
 </ul>
@@ -450,11 +450,11 @@
 <a class="lightgallery" href="/post_images/image-20211007095730456.png" title="/post_images/image-20211007095730456.png" data-thumbnail="/post_images/image-20211007095730456.png">
         
     </a>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：O(N)，线性遍历数组 nums 即可获得结果，使用 O(N) 时间。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：O(N)，线性遍历数组 nums 即可获得结果，使用 O(N) 时间。</p>
 <p><strong>空间复杂度</strong>：O(1)，使用常数大小的额外空间。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="code" class="headerLink">
+    <a href="#code" class="header-mark"></a>Code</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">maxSubArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">nums</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 将 nums 的首个元素作为初始最大值
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">nums</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
@@ -473,8 +473,8 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">max</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/solution/mian-shi-ti-42-lian-xu-zi-shu-zu-de-zui-da-he-do-2/</a></p>
 ]]></description>
 </item><item>
     <title>6、剑指 Offer 38. 字符串的排列</title>
@@ -482,8 +482,8 @@
     <pubDate>Sat, 28 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/6.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 38. 字符串的排列</a></p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 38. 字符串的排列</a></p>
 <p>难度中等403收藏分享切换为英文接收动态反馈</p>
 <p>输入一个字符串，打印出该字符串中字符的所有排列。</p>
 <p>你可以以任意顺序返回这个字符串数组，但里面不能有重复元素。</p>
@@ -492,18 +492,22 @@
 输出：[&#34;abc&#34;,&#34;acb&#34;,&#34;bac&#34;,&#34;bca&#34;,&#34;cab&#34;,&#34;cba&#34;]
 </code></pre><p><strong>限制：</strong></p>
 <pre tabindex="0"><code>1 &lt;= s 的长度 &lt;= 8
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21回溯---dfs--剪枝">2.1、回溯  / DFS + 剪枝</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>我们将这个问题看作有 n 个排列成一行的空位，我们需要从左往右依次填入题目给定的 n 个字符，每个字符只能使用一次。首先可以想到穷举的算法，即从左往右每一个空位都依次尝试填入一个字符，看是否能填完这 n 个空位，编程实现时，我们可以用「回溯法」来模拟这个过程，也就是 DFS 。</p>
+</code></pre><h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21回溯---dfs--剪枝" class="headerLink">
+    <a href="#21%e5%9b%9e%e6%ba%af---dfs--%e5%89%aa%e6%9e%9d" class="header-mark"></a>2.1、回溯  / DFS + 剪枝</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>我们将这个问题看作有 n 个排列成一行的空位，我们需要从左往右依次填入题目给定的 n 个字符，每个字符只能使用一次。首先可以想到穷举的算法，即从左往右每一个空位都依次尝试填入一个字符，看是否能填完这 n 个空位，编程实现时，我们可以用「回溯法」来模拟这个过程，也就是 DFS 。</p>
 <p>按照题目中给定的要求，生成字符串的所有排列之后，里面不能有重复元素，也就是说我们需要按照这个规则来进行剪枝，减少不必要的运算。</p>
 <p>对于一个长度为 n 的字符串（假设字符互不重复），其排列方案数共有：n×(n−1)×(n−2)…×2×1</p>
 <p><strong>排列方案的生成：</strong></p>
 <p>通过字符交换，先固定第 1 位字符（ n 种情况）、再固定第 2 位字符（ n-1 种情况）、&hellip; 、最后固定第 n 位字符（ 1 种情况）。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1599403497-KXKQcp-Picture1.png" title="Picture1.png" data-thumbnail="/post_images/1599403497-KXKQcp-Picture1.png">
+        
+    </a></figure></p>
 <p><strong>重复排列方案与剪枝：</strong></p>
 <p>当字符串存在重复字符时，排列方案中也存在重复的排列方案。为排除重复方案，需在固定某位字符时，保证 “每种字符只在此位固定一次” ，即遇到重复字符时不交换，直接跳过。从 DFS 角度看，此操作称为 “剪枝” 。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1599403497-GATdFr-Picture2.png" title="Picture2.png" data-thumbnail="/post_images/1599403497-GATdFr-Picture2.png">
+        
+    </a></figure></p>
 <p><strong>递归解析：</strong></p>
 <ul>
 <li>终止条件： 当 x = len(chars) - 1 时，代表所有位已固定（最后一位只有 11 种情况），则将当前组合 chars 转化为字符串并加入 result ，并返回；</li>
@@ -518,13 +522,13 @@
 </ul>
 </li>
 </ul>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<ul>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><ul>
 <li>时间复杂度 O(N!N)： N 为字符串 s 的长度；时间复杂度和字符串排列的方案数成线性关系，方案数为 N×(N−1)×(N−2)…×2×1 ，即复杂度为 O(N!) ；字符串拼接操作 join() 使用 O(N) ；因此总体时间复杂度为 O(N! × N) 。</li>
 <li>空间复杂度 O(N^2) ： 全排列的递归深度为 N ，系统累计使用栈空间大小为 O(N)；递归中辅助 Set 累计存储的字符数量最多为 N+(N−1)+&hellip;+2+1=(N+1)N/2 ，即占用 O(N^2) 的额外空间。</li>
 </ul>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 回溯法 / dfs + 剪枝
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="c1">// 回溯法 / dfs + 剪枝
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;&gt;();</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">char</span><span class="o">[]</span> <span class="n">chars</span><span class="o">;</span>
@@ -556,17 +560,17 @@
 </span></span><span class="line"><span class="cl">        <span class="n">chars</span><span class="o">[</span><span class="n">b</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22下一个排列">2.2、下一个排列</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>我们可以这样思考：当我们已知了当前的一个排列，我们能不能快速得到字典序中下一个更大的排列呢？</p>
+</span></span></code></pre></div><h2 id="22下一个排列" class="headerLink">
+    <a href="#22%e4%b8%8b%e4%b8%80%e4%b8%aa%e6%8e%92%e5%88%97" class="header-mark"></a>2.2、下一个排列</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>我们可以这样思考：当我们已知了当前的一个排列，我们能不能快速得到字典序中下一个更大的排列呢？</p>
 <p>答案是肯定的，参见「31. 下一个排列的官方题解」，当我们已知了当前的一个排列，我们可以在 O(n)O(n) 的时间内计算出字典序下一个中更大的排列。这与 C++ 中的 next_permutation 函数功能相同。</p>
 <p>具体地，我们首先对给定的字符串中的字符进行排序，即可得到当前字符串的第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
 <p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p>**时间复杂度：**O(n×n!)，其中 n 为给定字符串的长度。我们需要 O(nlogn) 的时间得到第一个排列，nextPermutation 函数的时间复杂度为 O(n)，我们至多执行该函数 O(n!) 次，因此总时间复杂度为 O(n×n!+nlogn)=O(n×n!)。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><p>**时间复杂度：**O(n×n!)，其中 n 为给定字符串的长度。我们需要 O(nlogn) 的时间得到第一个排列，nextPermutation 函数的时间复杂度为 O(n)，我们至多执行该函数 O(n!) 次，因此总时间复杂度为 O(n×n!+nlogn)=O(n×n!)。</p>
 <p>**空间复杂度：**O(1)，注意返回值不计入空间复杂度。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="nf">permutation</span><span class="o">(</span><span class="n">String</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 存储所有排列的变量
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">ret</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
@@ -631,9 +635,9 @@
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="三解法补充说明">三、解法补充说明</h1>
-<h2 id="dfs--剪枝">DFS + 剪枝</h2>
-<p>以 DFS+剪枝 这个解法来说，实际上你可以把问题分解为两个：</p>
+</span></span></code></pre></div><h1 id="三解法补充说明" class="headerLink">
+    <a href="#%e4%b8%89%e8%a7%a3%e6%b3%95%e8%a1%a5%e5%85%85%e8%af%b4%e6%98%8e" class="header-mark"></a>三、解法补充说明</h1><h2 id="dfs--剪枝" class="headerLink">
+    <a href="#dfs--%e5%89%aa%e6%9e%9d" class="header-mark"></a>DFS + 剪枝</h2><p>以 DFS+剪枝 这个解法来说，实际上你可以把问题分解为两个：</p>
 <ul>
 <li>如何列出字符串的全排列？</li>
 <li>如何对全排列去重？</li>
@@ -679,12 +683,12 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>此时在这个基础上进行改造，做剪枝处理，也就得到了最终的答案。</p>
-<h2 id="下一个排列">下一个排列</h2>
-<p>先给字符串进行排序，就可以得到第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
+<h2 id="下一个排列" class="headerLink">
+    <a href="#%e4%b8%8b%e4%b8%80%e4%b8%aa%e6%8e%92%e5%88%97" class="header-mark"></a>下一个排列</h2><p>先给字符串进行排序，就可以得到第一个排列，然后我们不断地计算当前字符串的字典序中下一个更大的排列，直到不存在更大的排列为止即可。</p>
 <p>这个方案的优秀之处在于，我们得到的所有排列都不可能重复，这样我们就无需进行去重的操作。同时因为无需使用回溯法，没有栈的开销，算法时间复杂度的常数较小。</p>
-<h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/</a></p>
-<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/</a></p>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/zi-fu-chuan-de-pai-lie-by-leetcode-solut-hhvs/</a></p>
+<p><a href="https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/solution/mian-shi-ti-38-zi-fu-chuan-de-pai-lie-hui-su-fa-by/</a></p>
 ]]></description>
 </item><item>
     <title>7、剑指 Offer 22. 链表中倒数第k个节点</title>
@@ -692,27 +696,27 @@
     <pubDate>Sun, 29 Aug 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/7.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 22. 链表中倒数第k个节点</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 22. 链表中倒数第k个节点</a> 难度简单</p>
 <p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。</p>
 <p>例如，一个链表有 <code>6</code> 个节点，从头节点开始，它们的值依次是 <code>1、2、3、4、5、6</code>。这个链表的倒数第 <code>3</code> 个节点是值为 <code>4</code> 的节点。</p>
 <p><strong>示例：</strong></p>
 <pre tabindex="0"><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k = 2.
 
 返回链表 4-&gt;5.
-</code></pre><h1 id="二解法">二、解法</h1>
-<h2 id="21双指针二次遍历">2.1、双指针二次遍历</h2>
-<h3 id="核心思路">核心思路：</h3>
-<ol>
+</code></pre><h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21双指针二次遍历" class="headerLink">
+    <a href="#21%e5%8f%8c%e6%8c%87%e9%92%88%e4%ba%8c%e6%ac%a1%e9%81%8d%e5%8e%86" class="header-mark"></a>2.1、双指针二次遍历</h2><h3 id="核心思路" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" class="header-mark"></a>核心思路：</h3><ol>
 <li>先遍历统计链表长度，记为 count ；</li>
 <li>设置一个指针走 (n-k) 步，即可找到链表倒数第 k 个节点。</li>
 </ol>
 <p>这也是最容易想到的解法</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p>时间复杂度 O(N) ： 需要两次遍历，因此至多为 2N 。
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><p>时间复杂度 O(N) ： 需要两次遍历，因此至多为 2N 。
 空间复杂度 O(1) ： 需要一个辅助指针，使用常数大小的额外空间。</p>
-<h3 id="代码">代码：</h3>
-<p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
 <ol>
 <li>head为空指针；</li>
 <li>k大于链表的长度；</li>
@@ -739,14 +743,14 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">head</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22双指针单次遍历">2.2、双指针单次遍历</h2>
-<h3 id="核心思路-1">核心思路：</h3>
-<p>不需要知道链表长度，指针 1 先走 k-1 步，然后指针 2 和指针 1 同时前进，当指针 1 指向链表最后一个元素时，指针 2 即为所求。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p>时间复杂度 O(N) ： N 为链表长度；总体看， 指针 1 走了 N 步， 指针 走了 (N-k)(N−k) 步。
+</span></span></code></pre></div><h2 id="22双指针单次遍历" class="headerLink">
+    <a href="#22%e5%8f%8c%e6%8c%87%e9%92%88%e5%8d%95%e6%ac%a1%e9%81%8d%e5%8e%86" class="header-mark"></a>2.2、双指针单次遍历</h2><h3 id="核心思路-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af-1" class="header-mark"></a>核心思路：</h3><p>不需要知道链表长度，指针 1 先走 k-1 步，然后指针 2 和指针 1 同时前进，当指针 1 指向链表最后一个元素时，指针 2 即为所求。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><p>时间复杂度 O(N) ： N 为链表长度；总体看， 指针 1 走了 N 步， 指针 走了 (N-k)(N−k) 步。
 空间复杂度 O(1)： 双指针 former , latter 使用常数大小的额外空间。</p>
-<h3 id="代码-1">代码：</h3>
-<p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><p>需要注意的是，此解法没有考虑以下几种特殊情况。</p>
 <ol>
 <li>head为空指针；</li>
 <li>k大于链表的长度；</li>
@@ -769,8 +773,8 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">latter</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/solution/mian-shi-ti-22-lian-biao-zhong-dao-shu-di-kge-j-11/</a></p>
 ]]></description>
 </item><item>
     <title>8、剑指 Offer 11. 旋转数组的最小数字</title>
@@ -778,8 +782,8 @@
     <pubDate>Wed, 01 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/8.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 11. 旋转数组的最小数字</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 11. 旋转数组的最小数字</a> 难度简单</p>
 <p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 <code>[3,4,5,1,2]</code> 为 <code>[1,2,3,4,5]</code> 的一个旋转，该数组的最小值为1。</p>
 <p><strong>示例 1：</strong></p>
 <pre tabindex="0"><code>输入：[3,4,5,1,2]
@@ -788,15 +792,15 @@
 <pre tabindex="0"><code>输入：[2,2,2,0,1]
 输出：0
 </code></pre><p>注意：本题与主站 154 题相同：https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21遍历求最小值不推荐">2.1、遍历求最小值（不推荐）</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>遍历数组，求最小值。</p>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(N) 。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21遍历求最小值不推荐" class="headerLink">
+    <a href="#21%e9%81%8d%e5%8e%86%e6%b1%82%e6%9c%80%e5%b0%8f%e5%80%bc%e4%b8%8d%e6%8e%a8%e8%8d%90" class="header-mark"></a>2.1、遍历求最小值（不推荐）</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>遍历数组，求最小值。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度</strong>：O(N) 。</p>
 <p><strong>空间复杂度</strong>：O(1)。min 变量使用常数大小的额外空间。</p>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">
@@ -809,19 +813,19 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">min</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22二分法推荐">2.2、二分法（推荐）</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>排序数组的查找问题首先考虑使用 <strong>二分法</strong> 解决，其可将 <strong>遍历法</strong> 的 <strong>线性级别</strong> 时间复杂度降低至 <strong>对数级别</strong> 。</p>
+</span></span></code></pre></div><h2 id="22二分法推荐" class="headerLink">
+    <a href="#22%e4%ba%8c%e5%88%86%e6%b3%95%e6%8e%a8%e8%8d%90" class="header-mark"></a>2.2、二分法（推荐）</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>排序数组的查找问题首先考虑使用 <strong>二分法</strong> 解决，其可将 <strong>遍历法</strong> 的 <strong>线性级别</strong> 时间复杂度降低至 <strong>对数级别</strong> 。</p>
 <p>寻找旋转数组的最小元素即为寻找 <strong>右排序数组</strong> 的首个元素 nums[ x ] ，称 x 为 旋转点。</p>
 <ul>
 <li>右排序数组：在 [ 3, 4, 5, 1, 2 ] 序列中，我们将 [ 1, 2 ] 称为右排序数组；</li>
 <li>旋转点：在 [ 3, 4, 5, 1, 2 ] 序列中，我们将右排序数组的首个元素称为旋转点；</li>
 </ul>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度：</strong> O(log₂N) 。在特例情况下（例如 [ 1,1,1,1 ]），会退化到 O(N)。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度：</strong> O(log₂N) 。在特例情况下（例如 [ 1,1,1,1 ]），会退化到 O(N)。</p>
 <p><strong>空间复杂度：</strong> O(1)。i， j，mid 变量使用常数大小的额外空间。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">minArray</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">numbers</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">numbers</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">
@@ -843,8 +847,8 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">numbers</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/solution/mian-shi-ti-11-xuan-zhuan-shu-zu-de-zui-xiao-shu-3/</a></p>
 ]]></description>
 </item><item>
     <title>9、剑指 Offer 29. 顺时针打印矩阵</title>
@@ -852,8 +856,8 @@
     <pubDate>Fri, 03 Sep 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/9.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 29. 顺时针打印矩阵</a> 难度简单</p>
 <p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
 <p><strong>示例 1：</strong></p>
 <pre tabindex="0"><code>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
@@ -867,10 +871,10 @@
 <li><code>0 &lt;= matrix[i].length &lt;= 100</code></li>
 </ul>
 <p>注意：本题与主站 54 题相同：https://leetcode-cn.com/problems/spiral-matrix/</p>
-<h1 id="二解法">二、解法</h1>
-<h2 id="21四相边界法">2.1、四相边界法</h2>
-<h3 id="核心思想">核心思想：</h3>
-<p>已知顺时针打印矩阵的顺序是 <strong>“从左向右、从上向下、从右向左、从下向上”</strong> 循环，考虑设定矩阵的“左、上、右、下”四个边界，模拟以上矩阵遍历顺序。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><h2 id="21四相边界法" class="headerLink">
+    <a href="#21%e5%9b%9b%e7%9b%b8%e8%be%b9%e7%95%8c%e6%b3%95" class="header-mark"></a>2.1、四相边界法</h2><h3 id="核心思想" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3" class="header-mark"></a>核心思想：</h3><p>已知顺时针打印矩阵的顺序是 <strong>“从左向右、从上向下、从右向左、从下向上”</strong> 循环，考虑设定矩阵的“左、上、右、下”四个边界，模拟以上矩阵遍历顺序。</p>
 <ul>
 <li>上边界 ( top )、下边界 ( bottom )；</li>
 <li>左边界 ( left )、右边界 ( right )；</li>
@@ -911,11 +915,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="复杂度分析">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(MN)， M, N 分别为矩阵行数和列数。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度</strong>：O(MN)， M, N 分别为矩阵行数和列数。</p>
 <p><strong>空间复杂度</strong>：O(1)， 四个边界 <code>l</code> , <code>r</code> , <code>t</code> , <code>b</code> 使用常数大小的 <strong>额外</strong> 空间（ <code>res</code> 为必须使用的空间）。</p>
-<h3 id="代码">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -940,16 +944,16 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">res</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22辅助矩阵法">2.2、辅助矩阵法</h2>
-<h3 id="核心思想-1">核心思想：</h3>
-<p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
+</span></span></code></pre></div><h2 id="22辅助矩阵法" class="headerLink">
+    <a href="#22%e8%be%85%e5%8a%a9%e7%9f%a9%e9%98%b5%e6%b3%95" class="header-mark"></a>2.2、辅助矩阵法</h2><h3 id="核心思想-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e6%83%b3-1" class="header-mark"></a>核心思想：</h3><p>可以模拟打印矩阵的路径。初始位置是矩阵的左上角，初始方向是向右，当路径超出界限或者进入之前访问过的位置时，顺时针旋转，进入下一个方向。</p>
 <p>判断路径是否进入之前访问过的位置需要使用一个与输入矩阵大小相同的辅助矩阵 visited，其中的每个元素表示该位置是否被访问过。当一个元素被访问时，将 visited 中的对应位置的元素设为已访问。</p>
 <p>如何判断路径是否结束？由于矩阵中的每个元素都被访问一次，因此路径的长度即为矩阵中的元素数量，当路径的长度达到矩阵中的元素数量时即为完整路径，将该路径返回。</p>
-<h3 id="复杂度分析-1">复杂度分析：</h3>
-<p><strong>时间复杂度</strong>：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析：</h3><p><strong>时间复杂度</strong>：O(mn)，其中 m 和 n 分别是输入矩阵的行数和列数。矩阵中的每个元素都要被访问一次。</p>
 <p><strong>空间复杂度</strong>：O(mn)，需要创建一个大小为 m×n 的矩阵 visited 记录每个位置是否被访问过。</p>
-<h3 id="代码-1">代码：</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="代码-1" class="headerLink">
+    <a href="#%e4%bb%a3%e7%a0%81-1" class="header-mark"></a>代码：</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">spiralOrder</span><span class="o">(</span><span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">// 边界条件
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">matrix</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">matrix</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="na">length</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
@@ -995,9 +999,9 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/</a></p>
-<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/shun-shi-zhen-da-yin-ju-zhen-by-leetcode-solution/</a></p>
+<p><a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof/solution/mian-shi-ti-29-shun-shi-zhen-da-yin-ju-zhen-she-di/</a></p>
 ]]></description>
 </item></channel>
 </rss>

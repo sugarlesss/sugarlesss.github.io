@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">ThinkPHP5.1 如何使用 Redis 实现悲观锁 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="ThinkPHP5.1 如何使用 Redis 实现悲观锁" />
+    <title>ThinkPHP5.1 如何使用 Redis 实现悲观锁 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="ThinkPHP5.1 如何使用 Redis 实现悲观锁" />
 <meta property="og:description" content="ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" /><meta property="article:section" content="posts" />
@@ -20,9 +22,9 @@
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" /><link rel="prev" href="https://sugarless.cn/posts/load-balancing-based-on-nginx.html" /><link rel="next" href="https://sugarless.cn/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html" /><link rel="prev" href="https://sugarless.cn/posts/load-balancing-based-on-nginx.html" /><link rel="next" href="https://sugarless.cn/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/color.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html"
-        },"genre": "posts","keywords": "悲观锁","wordcount":  2590 ,
+        },"genre": "posts","keywords": "悲观锁","wordcount":  2624 ,
         "url": "https:\/\/sugarless.cn\/posts\/thinkphp-5.1-how-to-implement-pessimistic-locking-using-redis.html","datePublished": "2020-08-30T00:00:00+00:00","dateModified": "2020-08-30T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -39,10 +41,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -56,18 +59,18 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -85,20 +88,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -112,12 +115,38 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ThinkPHP5.1 如何使用 Redis 实现悲观锁</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一无并发控制会带来什么问题">一、无并发控制，会带来什么问题？</a>
+      <ul>
+        <li><a href="#11返回了-ok-996">1.1、返回了 OK! 996</a></li>
+        <li><a href="#12只返回了-ok而不是-ok-996">1.2、只返回了 OK！而不是 OK! 996</a></li>
+        <li><a href="#13返回了一个-500-错误">1.3、返回了一个 500 错误</a></li>
+      </ul>
+    </li>
+    <li><a href="#二关于锁机制">二、关于锁机制</a>
+      <ul>
+        <li><a href="#21单机锁">2.1、单机锁</a></li>
+        <li><a href="#22分布式锁">2.2、分布式锁</a></li>
+        <li><a href="#23悲观锁">2.3、悲观锁</a></li>
+        <li><a href="#24乐观锁">2.4、乐观锁</a></li>
+        <li><a href="#25如何选择悲观--乐观锁">2.5、如何选择悲观 / 乐观锁？</a></li>
+      </ul>
+    </li>
+    <li><a href="#三redis-实现悲观锁">三、Redis 实现悲观锁</a>
+      <ul>
+        <li><a href="#31悲观锁实现一非最佳实践">3.1、悲观锁实现（一）非最佳实践</a></li>
+        <li><a href="#32悲观锁实现二">3.2、悲观锁实现（二）</a></li>
+      </ul>
+    </li>
+    <li><a href="#四ref">四、REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ThinkPHP5.1 如何使用 Redis 实现悲观锁</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/php.html"><i class="far fa-folder fa-fw"></i>PHP</a>&nbsp;<a href="../categories/redis.html"><i class="far fa-folder fa-fw"></i>Redis</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-08-30">2020-08-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-08-30">2020-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2590 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-08-30">2020-08-30</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-08-30">2020-08-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2624 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -153,8 +182,8 @@
 </nav></div>
             </div><div class="content" id="content"><p>ThinkPHP 如何使用 Redis 实现悲观锁解决高并发情况下读写带来的脏读问题 / ThinkPHP5.1 / Redis Cache / File Cache 测试。</p>
 <p>在用户量 / 客户端数量比较少的时候，只要系统的业务逻辑是正确的，一般都不会发现有什么问题。但随着用户量 / 客户端数量逐渐增多，高并发带来的问题就会逐渐出现，而脏读是众多问题的其中之一。</p>
-<h1 id="一无并发控制会带来什么问题">一、无并发控制，会带来什么问题？</h1>
-<p>本文以 ThinkPHP5.1.39 的代码作为案例，下面是一个 File Cache 读写操作：</p>
+<h1 id="一无并发控制会带来什么问题" class="headerLink">
+    <a href="#%e4%b8%80%e6%97%a0%e5%b9%b6%e5%8f%91%e6%8e%a7%e5%88%b6%e4%bc%9a%e5%b8%a6%e6%9d%a5%e4%bb%80%e4%b9%88%e9%97%ae%e9%a2%98" class="header-mark"></a>一、无并发控制，会带来什么问题？</h1><p>本文以 ThinkPHP5.1.39 的代码作为案例，下面是一个 File Cache 读写操作：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">fileCacheCase</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$keyName</span>  <span class="o">=</span> <span class="s2">&#34;test&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$keyValue</span> <span class="o">=</span> <span class="mi">996</span><span class="p">;</span>
@@ -172,44 +201,48 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>访问这个 function，会输出 OK! 996 。无论你访问几次，结果都是如此，但仅限于单线程的情况（只有你自己一个人在访问这个 function），如果是多个人同时不停的访问这个 function，还会是这样吗？想一想 😛</p>
 <p>使用 jmeter 测试一下，120 线程测试了十几秒，发现了 3 种不同的返回结果。</p>
-<h2 id="11返回了-ok-996">1.1、返回了 OK! 996</h2>
-<p>与单线程时的结果一致，是正常处理逻辑。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/bdc04eb4177a4.png"
-        data-srcset="../post_images/bdc04eb4177a4.png, ../post_images/bdc04eb4177a4.png 1.5x, ../post_images/bdc04eb4177a4.png 2x"
-        data-sizes="auto"
-        alt="/post_images/bdc04eb4177a4.png"
-        title="img"
-    /></p>
-<h2 id="12只返回了-ok而不是-ok-996">1.2、只返回了 OK！而不是 OK! 996</h2>
-<p><img
-        class="lazyload"
-        data-src="../post_images/cc3c9a95bf72b.png"
-        data-srcset="../post_images/cc3c9a95bf72b.png, ../post_images/cc3c9a95bf72b.png 1.5x, ../post_images/cc3c9a95bf72b.png 2x"
-        data-sizes="auto"
-        alt="/post_images/cc3c9a95bf72b.png"
-        title="img"
-    /></p>
+<h2 id="11返回了-ok-996" class="headerLink">
+    <a href="#11%e8%bf%94%e5%9b%9e%e4%ba%86-ok-996" class="header-mark"></a>1.1、返回了 OK! 996</h2><p>与单线程时的结果一致，是正常处理逻辑。</p>
+<p><figure><a class="lightgallery" href="../post_images/bdc04eb4177a4.png" title="img" data-thumbnail="/post_images/bdc04eb4177a4.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/bdc04eb4177a4.png"
+            srcset="../post_images/bdc04eb4177a4.png, ../post_images/bdc04eb4177a4.png 1.5x, ../post_images/bdc04eb4177a4.png 2x"
+            sizes="auto"
+            alt="/post_images/bdc04eb4177a4.png">
+    </a></figure></p>
+<h2 id="12只返回了-ok而不是-ok-996" class="headerLink">
+    <a href="#12%e5%8f%aa%e8%bf%94%e5%9b%9e%e4%ba%86-ok%e8%80%8c%e4%b8%8d%e6%98%af-ok-996" class="header-mark"></a>1.2、只返回了 OK！而不是 OK! 996</h2><p><figure><a class="lightgallery" href="../post_images/cc3c9a95bf72b.png" title="img" data-thumbnail="/post_images/cc3c9a95bf72b.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/cc3c9a95bf72b.png"
+            srcset="../post_images/cc3c9a95bf72b.png, ../post_images/cc3c9a95bf72b.png 1.5x, ../post_images/cc3c9a95bf72b.png 2x"
+            sizes="auto"
+            alt="/post_images/cc3c9a95bf72b.png">
+    </a></figure></p>
 <p>说明缓存不存在，原因是：在 A 线程将 996 写入缓存后，B 线程将缓存删除了。此时 A 线程从缓存中读出来的数据为 null，所以 A 线程输出了 OK! ，而不是 OK! 996。</p>
-<h2 id="13返回了一个-500-错误">1.3、返回了一个 500 错误</h2>
-<p><img
-        class="lazyload"
-        data-src="../post_images/78bfc39eab147.png"
-        data-srcset="../post_images/78bfc39eab147.png, ../post_images/78bfc39eab147.png 1.5x, ../post_images/78bfc39eab147.png 2x"
-        data-sizes="auto"
-        alt="/post_images/78bfc39eab147.png"
-        title="img"
-    /></p>
+<h2 id="13返回了一个-500-错误" class="headerLink">
+    <a href="#13%e8%bf%94%e5%9b%9e%e4%ba%86%e4%b8%80%e4%b8%aa-500-%e9%94%99%e8%af%af" class="header-mark"></a>1.3、返回了一个 500 错误</h2><p><figure><a class="lightgallery" href="../post_images/78bfc39eab147.png" title="img" data-thumbnail="/post_images/78bfc39eab147.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/78bfc39eab147.png"
+            srcset="../post_images/78bfc39eab147.png, ../post_images/78bfc39eab147.png 1.5x, ../post_images/78bfc39eab147.png 2x"
+            sizes="auto"
+            alt="/post_images/78bfc39eab147.png">
+    </a></figure></p>
 <p>报错的内容是： file_get_contents（…）No such file or directory。</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/9ba81b1e7e36f.png"
-        data-srcset="../post_images/9ba81b1e7e36f.png, ../post_images/9ba81b1e7e36f.png 1.5x, ../post_images/9ba81b1e7e36f.png 2x"
-        data-sizes="auto"
-        alt="/post_images/9ba81b1e7e36f.png"
-        title="img"
-    /></p>
+<p><figure><a class="lightgallery" href="../post_images/9ba81b1e7e36f.png" title="img" data-thumbnail="/post_images/9ba81b1e7e36f.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/9ba81b1e7e36f.png"
+            srcset="../post_images/9ba81b1e7e36f.png, ../post_images/9ba81b1e7e36f.png 1.5x, ../post_images/9ba81b1e7e36f.png 2x"
+            sizes="auto"
+            alt="/post_images/9ba81b1e7e36f.png">
+    </a></figure></p>
 <p>显然是 cache 文件夹下的某个缓存文件不存在，所以引起了这个错误。原因是：A 线程在删除缓存后，B 线程也在执行删除缓存的操作。当缓存文件已被删除时，再执行删除缓存文件的操作，自然就报了文件不存在的错误。（实测 120 个线程并发，总计 500 个请求，异常率 0.20%）</p>
 <p>尽管我修改了 File Cache 的 133 行，在删除前判断文件是否存在，虽然异常率降低了，但依然无法从根本上解决问题。可以看到的是，在高并发场景下，问题已经显现出来了。</p>
 <p>下面我们用 redis 缓存试试看：</p>
@@ -231,17 +264,17 @@
 </span></span></code></pre></div><p>经过测试，与上面的 3 种情况一致。（根据 thinkphp5.1 的官方文档，我使用的是 store 来切换到 redis，但不知道为何，仍然会报 File Cache 驱动的 No such file or directory/unlink 错误，十分诡异）。</p>
 <p>如何解决高并发场景下带来的脏读问题？</p>
 <p>答案是：使用锁机制。</p>
-<h1 id="二关于锁机制">二、关于锁机制</h1>
-<p>根据锁的控制范围，可分为单机锁 / 分布式锁 2 种。根据锁的实现思想，可分为悲观锁 / 乐观锁 2 种。</p>
-<h2 id="21单机锁">2.1、单机锁</h2>
-<p>即为单机环境的锁，无分布式设计。</p>
+<h1 id="二关于锁机制" class="headerLink">
+    <a href="#%e4%ba%8c%e5%85%b3%e4%ba%8e%e9%94%81%e6%9c%ba%e5%88%b6" class="header-mark"></a>二、关于锁机制</h1><p>根据锁的控制范围，可分为单机锁 / 分布式锁 2 种。根据锁的实现思想，可分为悲观锁 / 乐观锁 2 种。</p>
+<h2 id="21单机锁" class="headerLink">
+    <a href="#21%e5%8d%95%e6%9c%ba%e9%94%81" class="header-mark"></a>2.1、单机锁</h2><p>即为单机环境的锁，无分布式设计。</p>
 <p>常用的实现工具：</p>
 <ul>
 <li>Redis</li>
 <li>Memcached</li>
 </ul>
-<h2 id="22分布式锁">2.2、分布式锁</h2>
-<p>为了防止分布式系统中的多个进程之间相互干扰，我们需要一种分布式协调技术来对这些进程进行调度。而这个分布式协调技术的核心就是来实现这个分布式锁。</p>
+<h2 id="22分布式锁" class="headerLink">
+    <a href="#22%e5%88%86%e5%b8%83%e5%bc%8f%e9%94%81" class="header-mark"></a>2.2、分布式锁</h2><p>为了防止分布式系统中的多个进程之间相互干扰，我们需要一种分布式协调技术来对这些进程进行调度。而这个分布式协调技术的核心就是来实现这个分布式锁。</p>
 <ul>
 <li>在分布式系统环境下，一个方法在同一时间只能被一个机器的一个线程执行</li>
 <li>高可用的获取锁与释放锁</li>
@@ -256,14 +289,14 @@
 <li>Memcached</li>
 <li>Chubby</li>
 </ul>
-<h2 id="23悲观锁">2.3、悲观锁</h2>
-<p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java 中 synchronized 和 ReentrantLock 等独占锁就是悲观锁思想的实现。</p>
-<h2 id="24乐观锁">2.4、乐观锁</h2>
-<p>总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和 CAS 算法实现。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于 write_condition 机制，其实都是提供的乐观锁。在 Java 中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。</p>
-<h2 id="25如何选择悲观--乐观锁">2.5、如何选择悲观 / 乐观锁？</h2>
-<p>从上面对两种锁的介绍，我们知道两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下（多读场景），即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果是多写的情况，一般会经常产生冲突，这就会导致上层应用会不断的进行 retry，这样反倒是降低了性能，所以一般多写的场景下用悲观锁就比较合适。</p>
-<h1 id="三redis-实现悲观锁">三、Redis 实现悲观锁</h1>
-<p>在商品秒杀活动活动中，流量峰值相对平常时的流量是高出非常多的。使用 Redis 实现悲观锁机制，可以解决商品库存脏读的问题。</p>
+<h2 id="23悲观锁" class="headerLink">
+    <a href="#23%e6%82%b2%e8%a7%82%e9%94%81" class="header-mark"></a>2.3、悲观锁</h2><p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会阻塞直到它拿到锁（共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。传统的关系型数据库里边就用到了很多这种锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java 中 synchronized 和 ReentrantLock 等独占锁就是悲观锁思想的实现。</p>
+<h2 id="24乐观锁" class="headerLink">
+    <a href="#24%e4%b9%90%e8%a7%82%e9%94%81" class="header-mark"></a>2.4、乐观锁</h2><p>总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号机制和 CAS 算法实现。乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于 write_condition 机制，其实都是提供的乐观锁。在 Java 中 java.util.concurrent.atomic 包下面的原子变量类就是使用了乐观锁的一种实现方式 CAS 实现的。</p>
+<h2 id="25如何选择悲观--乐观锁" class="headerLink">
+    <a href="#25%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9%e6%82%b2%e8%a7%82--%e4%b9%90%e8%a7%82%e9%94%81" class="header-mark"></a>2.5、如何选择悲观 / 乐观锁？</h2><p>从上面对两种锁的介绍，我们知道两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下（多读场景），即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。但如果是多写的情况，一般会经常产生冲突，这就会导致上层应用会不断的进行 retry，这样反倒是降低了性能，所以一般多写的场景下用悲观锁就比较合适。</p>
+<h1 id="三redis-实现悲观锁" class="headerLink">
+    <a href="#%e4%b8%89redis-%e5%ae%9e%e7%8e%b0%e6%82%b2%e8%a7%82%e9%94%81" class="header-mark"></a>三、Redis 实现悲观锁</h1><p>在商品秒杀活动活动中，流量峰值相对平常时的流量是高出非常多的。使用 Redis 实现悲观锁机制，可以解决商品库存脏读的问题。</p>
 <p>初始化库存：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">stockInit</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -279,8 +312,8 @@
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">    <span class="k">echo</span> <span class="s1">&#39;stock Init&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h2 id="31悲观锁实现一非最佳实践">3.1、悲观锁实现（一）非最佳实践</h2>
-<p>看似符合逻辑的商品秒杀：</p>
+</span></span></code></pre></div><h2 id="31悲观锁实现一非最佳实践" class="headerLink">
+    <a href="#31%e6%82%b2%e8%a7%82%e9%94%81%e5%ae%9e%e7%8e%b0%e4%b8%80%e9%9d%9e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" class="header-mark"></a>3.1、悲观锁实现（一）非最佳实践</h2><p>看似符合逻辑的商品秒杀：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">$key</span>        <span class="o">=</span> <span class="s2">&#34;stock&#34;</span><span class="p">;</span>
@@ -316,16 +349,17 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>实测 150 线程并发，异常率 0%，虽然引用了锁机制，看似符合逻辑的锁机制，但仍会有极低的概率脏读，原因无他，有 N 个线程同时抢到了锁。虽然概率低，但线程一多仍然会脏读。所以需要改用 redis 原生支持的 setnx 来保证只有一个线程抢到了锁。</p>
 <p>如下，两个线程同时抢到了第 80 个库存：</p>
-<p><img
-        class="lazyload"
-        data-src="../post_images/7074e955cf805.png"
-        data-srcset="../post_images/7074e955cf805.png, ../post_images/7074e955cf805.png 1.5x, ../post_images/7074e955cf805.png 2x"
-        data-sizes="auto"
-        alt="/post_images/7074e955cf805.png"
-        title="img"
-    /></p>
-<h2 id="32悲观锁实现二">3.2、悲观锁实现（二）</h2>
-<p>setnx 是 set if not exists 的简写，在 key 不存在时等价于 set，如果 key 存在，则不更新缓存内容，且返回 false。使用这个特性，可以保证锁只有一个线程抢到了。</p>
+<p><figure><a class="lightgallery" href="../post_images/7074e955cf805.png" title="img" data-thumbnail="/post_images/7074e955cf805.png">
+        <img
+            
+            loading="lazy"
+            src="../post_images/7074e955cf805.png"
+            srcset="../post_images/7074e955cf805.png, ../post_images/7074e955cf805.png 1.5x, ../post_images/7074e955cf805.png 2x"
+            sizes="auto"
+            alt="/post_images/7074e955cf805.png">
+    </a></figure></p>
+<h2 id="32悲观锁实现二" class="headerLink">
+    <a href="#32%e6%82%b2%e8%a7%82%e9%94%81%e5%ae%9e%e7%8e%b0%e4%ba%8c" class="header-mark"></a>3.2、悲观锁实现（二）</h2><p>setnx 是 set if not exists 的简写，在 key 不存在时等价于 set，如果 key 存在，则不更新缓存内容，且返回 false。使用这个特性，可以保证锁只有一个线程抢到了。</p>
 <p>使用 redis setnx 实现悲观锁的商品秒杀：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-php" data-lang="php"><span class="line"><span class="cl"><span class="k">public</span> <span class="k">function</span> <span class="nf">flashSale</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">{</span>
@@ -367,12 +401,12 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="s2">&#34;恭喜，您抢到了第 </span><span class="si">{</span><span class="nv">$temp</span><span class="si">}</span><span class="s2">个库存！&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>150 线程并发测试后，并没有发现有异常情况了。根据实际业务需求，可以增加等待超时机制。</p>
-<h1 id="四ref">四、REF</h1>
-<p><a href="https://redis.io/commands/set" target="_blank" rel="noopener noreffer">https://redis.io/commands/set</a></p>
-<p><a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener noreffer">http://www.redis.cn/commands/set.html</a></p>
-<p><a href="https://github.com/phpredis/phpredis#set" target="_blank" rel="noopener noreffer">https://github.com/phpredis/phpredis#set</a></p>
-<p><a href="https://www.jianshu.com/p/a1ebab8ce78a" target="_blank" rel="noopener noreffer">https://www.jianshu.com/p/a1ebab8ce78a</a></p>
-<p><a href="https://blog.csdn.net/qq_34337272/article/details/81072874" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_34337272/article/details/81072874</a></p></div>
+<h1 id="四ref" class="headerLink">
+    <a href="#%e5%9b%9bref" class="header-mark"></a>四、REF</h1><p><a href="https://redis.io/commands/set" target="_blank" rel="noopener noreferrer">https://redis.io/commands/set</a></p>
+<p><a href="http://www.redis.cn/commands/set.html" target="_blank" rel="noopener noreferrer">http://www.redis.cn/commands/set.html</a></p>
+<p><a href="https://github.com/phpredis/phpredis#set" target="_blank" rel="noopener noreferrer">https://github.com/phpredis/phpredis#set</a></p>
+<p><a href="https://www.jianshu.com/p/a1ebab8ce78a" target="_blank" rel="noopener noreferrer">https://www.jianshu.com/p/a1ebab8ce78a</a></p>
+<p><a href="https://blog.csdn.net/qq_34337272/article/details/81072874" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_34337272/article/details/81072874</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -404,6 +438,9 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -411,7 +448,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../js/katex.min.js" defer></script><script type="text/javascript" src="../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -420,11 +458,6 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js"></script><script type="text/javascript" src="../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

@@ -10,8 +10,8 @@
     <pubDate>Fri, 01 Oct 2021 00:00:00 &#43;0000</pubDate><author>
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/series/leetcode-jianzhioffer-java/27.html</guid>
-    <description><![CDATA[<h1 id="一题目">一、题目</h1>
-<p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/" target="_blank" rel="noopener noreffer">剑指 Offer 17. 打印从1到最大的n位数</a> 难度简单</p>
+    <description><![CDATA[<h1 id="一题目" class="headerLink">
+    <a href="#%e4%b8%80%e9%a2%98%e7%9b%ae" class="header-mark"></a>一、题目</h1><p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/" target="_blank" rel="noopener noreferrer">剑指 Offer 17. 打印从1到最大的n位数</a> 难度简单</p>
 <p>输入数字 <code>n</code>，按顺序打印出从 1 到最大的 n 位十进制数。比如输入 3，则打印出 1、2、3 一直到最大的 3 位数 999。</p>
 <p><strong>示例 1:</strong></p>
 <pre tabindex="0"><code>输入: n = 1
@@ -21,17 +21,17 @@
 <li>用返回一个整数列表来代替打印</li>
 <li>n 为正整数</li>
 </ul>
-<h1 id="二解法">二、解法</h1>
-<p>这道题在面试环节时，基本都要考察大数情况的。</p>
-<h2 id="21迭代法">2.1、迭代法</h2>
-<h3 id="核心思路">核心思路</h3>
-<p>由于本题要求返回 int 类型数组，相当于默认所有数字都在 int32 整型取值范围内，因此不考虑大数越界问题。</p>
+<h1 id="二解法" class="headerLink">
+    <a href="#%e4%ba%8c%e8%a7%a3%e6%b3%95" class="header-mark"></a>二、解法</h1><p>这道题在面试环节时，基本都要考察大数情况的。</p>
+<h2 id="21迭代法" class="headerLink">
+    <a href="#21%e8%bf%ad%e4%bb%a3%e6%b3%95" class="header-mark"></a>2.1、迭代法</h2><h3 id="核心思路" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af" class="header-mark"></a>核心思路</h3><p>由于本题要求返回 int 类型数组，相当于默认所有数字都在 int32 整型取值范围内，因此不考虑大数越界问题。</p>
 <p>只需定义区间 $[1, 10^n - 1]$ 和步长 1 ，通过 for 循环生成结果列表并返回即可。</p>
-<h3 id="复杂度分析">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
+<h3 id="复杂度分析" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90" class="header-mark"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
 <p><strong>空间复杂度</strong>： $O(1)$，建立列表需使用 $O(1)$ 大小的额外空间（ 列表作为返回结果，不计入额外空间 ）。</p>
-<h3 id="code">Code</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
+<h3 id="code" class="headerLink">
+    <a href="#code" class="header-mark"></a>Code</h3><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">printNumbers</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">pow</span><span class="o">(</span><span class="mi">10</span><span class="o">,</span> <span class="n">n</span><span class="o">)</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">        <span class="kt">int</span><span class="o">[]</span> <span class="n">answer</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">end</span><span class="o">];</span>
@@ -41,9 +41,9 @@
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">answer</span><span class="o">;</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h2 id="22大数打印解法">2.2、大数打印解法</h2>
-<h3 id="核心思路-1">核心思路</h3>
-<p>实际上，本题的主要考点是大数越界情况下的打印。需要解决以下三个问题：</p>
+</span></span></code></pre></div><h2 id="22大数打印解法" class="headerLink">
+    <a href="#22%e5%a4%a7%e6%95%b0%e6%89%93%e5%8d%b0%e8%a7%a3%e6%b3%95" class="header-mark"></a>2.2、大数打印解法</h2><h3 id="核心思路-1" class="headerLink">
+    <a href="#%e6%a0%b8%e5%bf%83%e6%80%9d%e8%b7%af-1" class="header-mark"></a>核心思路</h3><p>实际上，本题的主要考点是大数越界情况下的打印。需要解决以下三个问题：</p>
 <ol>
 <li>
 <p>表示大数的变量类型
@@ -126,11 +126,11 @@
 </li>
 </ol>
 <p>通过上述两个步骤，即可解决上述的两个问题。</p>
-<h3 id="复杂度分析-1">复杂度分析</h3>
-<p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
+<h3 id="复杂度分析-1" class="headerLink">
+    <a href="#%e5%a4%8d%e6%9d%82%e5%ba%a6%e5%88%86%e6%9e%90-1" class="header-mark"></a>复杂度分析</h3><p><strong>时间复杂度</strong>：$O(10^n)$，生成长度为 $10^n$ 的列表需使用 $O(10^n)$ 时间。</p>
 <p><strong>空间复杂度</strong>： $O(10^n)$，结果列表的长度为 $10^n-1$ ，各数字字符串的长度区间为 $1, 2, &hellip;, n$ ，因此占用 $O(10^n)$ 大小的额外空间。</p>
-<h3 id="code-1">Code</h3>
-<p>为 <strong>正确表示大数</strong> ，以下代码的返回值为数字字符串集拼接而成的长字符串。</p>
+<h3 id="code-1" class="headerLink">
+    <a href="#code-1" class="header-mark"></a>Code</h3><p>为 <strong>正确表示大数</strong> ，以下代码的返回值为数字字符串集拼接而成的长字符串。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">class</span> <span class="nc">Solution</span> <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">// 解
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">StringBuilder</span> <span class="n">answer</span><span class="o">;</span>
@@ -223,8 +223,8 @@
 </span></span><span class="line"><span class="cl">        <span class="o">}</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/" target="_blank" rel="noopener noreffer">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/</a></p>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/" target="_blank" rel="noopener noreferrer">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof/solution/mian-shi-ti-17-da-yin-cong-1-dao-zui-da-de-n-wei-2/</a></p>
 ]]></description>
 </item></channel>
 </rss>

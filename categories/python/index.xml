@@ -14,9 +14,11 @@
 <p>百度提交页面：https://ziyuan.baidu.com/linksubmit/index</p>
 <p>通过此页面可以向百度搜索主动推送资源，同时百度也提供了 API 提交接口，这样可以缩短爬虫发现网站链接的时间，但百度不保证收录和展现效果。</p>
 <p>以本站为例，百度提供了 API 提交的样例参数。</p>
-<p></p>
-<h1 id="源码">源码</h1>
-<p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210831123142418.png" title="image-20210831123142418" data-thumbnail="/post_images/image-20210831123142418.png">
+        
+    </a></figure></p>
+<h1 id="源码" class="headerLink">
+    <a href="#%e6%ba%90%e7%a0%81" class="header-mark"></a>源码</h1><p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
 <p>使用前需要注意替换真实参数：</p>
 <ul>
 <li>site</li>
@@ -125,8 +127,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">pusher</span> <span class="o">=</span> <span class="n">Pusher</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pusher</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
 </item><item>
     <title>Python 批量去除文件固定前缀</title>
     <link>https://sugarless.cn/posts/batch-file-fixed-prefix-removal-using-python.html</link>
@@ -135,8 +137,8 @@
     </author><guid>https://sugarless.cn/posts/batch-file-fixed-prefix-removal-using-python.html</guid>
     <description><![CDATA[<p>问题：有些批量下载的视频会带固定前缀，在视频播放器的播放列表里显示非常不友好。</p>
 <p>场景：在 “D:\纪录片\中国通史” 路径下有 100 集视频文件，每个文件都带有固定前缀 “www.baidu.com 出品 微信公众号 xxx” 字样。</p>
-<h1 id="源码">源码</h1>
-<p>RemoveFixedPrefix.py ，因为源码使用了 python fstring 的特性，需要在 python &gt;= 3.6 的版本中使用。</p>
+<h1 id="源码" class="headerLink">
+    <a href="#%e6%ba%90%e7%a0%81" class="header-mark"></a>源码</h1><p>RemoveFixedPrefix.py ，因为源码使用了 python fstring 的特性，需要在 python &gt;= 3.6 的版本中使用。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># coding=utf-8</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
@@ -171,8 +173,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/python-get-baidu-live-hotspot.html</guid>
     <description><![CDATA[<p>此前写过一篇基于 BeautifulSoup 库开发的 demo，这次用 xpath 写。</p>
-<h1 id="源码">源码</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*- #</span>
+<h1 id="源码" class="headerLink">
+    <a href="#%e6%ba%90%e7%a0%81" class="header-mark"></a>源码</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding:utf-8 -*- #</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">requests</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
 </span></span><span class="line"><span class="cl">
@@ -206,8 +208,8 @@
 </span></span></code></pre></div><blockquote>
 <p>在开发时遇到一个有意思的坑，如果你测试时使用浏览器复制的热点标题的 title xpath，你会发现获取不到标题。你只需要把 tbody 标签去掉，就可以正常获取到标题了。</p>
 </blockquote>
-<h1 id="输出">输出</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">31省新增本土病例85例:河北82例
+<h1 id="输出" class="headerLink">
+    <a href="#%e8%be%93%e5%87%ba" class="header-mark"></a>输出</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">31省新增本土病例85例:河北82例
 </span></span><span class="line"><span class="cl">佩洛西:众议院将第二次弹劾特朗普
 </span></span><span class="line"><span class="cl">河北新增49例本地无症状感染者
 </span></span><span class="line"><span class="cl">金正恩被推举为朝鲜劳动党总书记
@@ -237,8 +239,8 @@
 </span></span><span class="line"><span class="cl">山东长岛海边现冰冻奇观似鸳鸯锅
 </span></span><span class="line"><span class="cl">武汉向石家庄捐赠50吨蔬菜
 </span></span><span class="line"><span class="cl">康辉说和21岁最大差别是脸的宽度
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://blog.csdn.net/qq_36523839/article/details/79992002" target="_blank" rel="noopener noreffer">https://blog.csdn.net/qq_36523839/article/details/79992002</a></p>]]></description>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://blog.csdn.net/qq_36523839/article/details/79992002" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/qq_36523839/article/details/79992002</a></p>]]></description>
 </item><item>
     <title>Python 中文分词，根据词频和背景图片生成词云</title>
     <link>https://sugarless.cn/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</link>
@@ -246,8 +248,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/split-words-generate-word-clouds-based-on-word-frequency-and-background-images.html</guid>
     <description><![CDATA[<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成词云图。</p>
-<h1 id="一生成矩形颜色随机的词云图">一、生成矩形颜色随机的词云图</h1>
-<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成矩形随机颜色的词云图。</p>
+<h1 id="一生成矩形颜色随机的词云图" class="headerLink">
+    <a href="#%e4%b8%80%e7%94%9f%e6%88%90%e7%9f%a9%e5%bd%a2%e9%a2%9c%e8%89%b2%e9%9a%8f%e6%9c%ba%e7%9a%84%e8%af%8d%e4%ba%91%e5%9b%be" class="header-mark"></a>一、生成矩形颜色随机的词云图</h1><p>读取本地文件内容，对文本内容进行中文分词，统计词频后，生成矩形随机颜色的词云图。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">collections</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
@@ -343,9 +345,11 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 生成词云图片文件</span>
 </span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
 </span></span></code></pre></div><p>效果图：</p>
-<p></p>
-<h1 id="二根据图片生成规定形状的颜色相近的词云图">二、根据图片生成规定形状的颜色相近的词云图</h1>
-<p>读取本地文件内容，对文本内容进行中文分词，统计词频后，根据背景图片生成规定形状和颜色的词云图。</p>
+<p><figure><a class="lightgallery" href="/post_images/c87194e3bad48.png" title="img" data-thumbnail="/post_images/c87194e3bad48.png">
+        
+    </a></figure></p>
+<h1 id="二根据图片生成规定形状的颜色相近的词云图" class="headerLink">
+    <a href="#%e4%ba%8c%e6%a0%b9%e6%8d%ae%e5%9b%be%e7%89%87%e7%94%9f%e6%88%90%e8%a7%84%e5%ae%9a%e5%bd%a2%e7%8a%b6%e7%9a%84%e9%a2%9c%e8%89%b2%e7%9b%b8%e8%bf%91%e7%9a%84%e8%af%8d%e4%ba%91%e5%9b%be" class="header-mark"></a>二、根据图片生成规定形状的颜色相近的词云图</h1><p>读取本地文件内容，对文本内容进行中文分词，统计词频后，根据背景图片生成规定形状和颜色的词云图。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">logging</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">collections</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span>
@@ -479,11 +483,15 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 生成词云图片文件</span>
 </span></span><span class="line"><span class="cl"><span class="n">wc</span><span class="o">.</span><span class="n">to_file</span><span class="p">(</span><span class="n">PicSavePath</span><span class="p">)</span>
 </span></span></code></pre></div><p>效果图：</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/6d37a040f0964.png" title="img" data-thumbnail="/post_images/6d37a040f0964.png">
+        
+    </a></figure></p>
 <p>原背景图：</p>
-<p></p>
-<h1 id="三版本依赖-requirementstxt">三、版本依赖 requirements.txt</h1>
-<pre tabindex="0"><code class="language-conf" data-lang="conf">certifi==2020.6.20
+<p><figure><a class="lightgallery" href="/post_images/64bc996b78a5f.png" title="img" data-thumbnail="/post_images/64bc996b78a5f.png">
+        
+    </a></figure></p>
+<h1 id="三版本依赖-requirementstxt" class="headerLink">
+    <a href="#%e4%b8%89%e7%89%88%e6%9c%ac%e4%be%9d%e8%b5%96-requirementstxt" class="header-mark"></a>三、版本依赖 requirements.txt</h1><pre tabindex="0"><code class="language-conf" data-lang="conf">certifi==2020.6.20
 cycler==0.10.0
 jieba==0.42.1
 kiwisolver==1.3.1
@@ -495,8 +503,8 @@ python-dateutil==2.8.1
 six==1.15.0
 wincertstore==0.2
 wordcloud==1.8.1
-</code></pre><h1 id="四停止词--过滤词chinsesstoptxt">四、停止词 / 过滤词（chinsesstop.txt）</h1>
-<p>这里其实我只对单字过滤了，没有对词组做过滤。</p>
+</code></pre><h1 id="四停止词--过滤词chinsesstoptxt" class="headerLink">
+    <a href="#%e5%9b%9b%e5%81%9c%e6%ad%a2%e8%af%8d--%e8%bf%87%e6%bb%a4%e8%af%8dchinsesstoptxt" class="header-mark"></a>四、停止词 / 过滤词（chinsesstop.txt）</h1><p>这里其实我只对单字过滤了，没有对词组做过滤。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">的地得
 </span></span><span class="line"><span class="cl">了就在与也为更而之由以把吧巴去过被搞或每及几
 </span></span><span class="line"><span class="cl">不让到等从人请叫和最当例本
@@ -519,10 +527,10 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl">多少
 </span></span><span class="line"><span class="cl">上下
 </span></span><span class="line"><span class="cl">个头
-</span></span></code></pre></div><h1 id="五字体文件msyhttc">五、字体文件（MSYH.TTC）</h1>
-<p>windows 系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来</p>
-<h1 id="六测试文章">六、测试文章</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">戴着眼镜，文质彬彬，我们很难把刘聪和传统印象里的农人联系起来。但实际上，35岁的“新农人”刘聪，已经在重庆田间地头种了近十年的葡萄。
+</span></span></code></pre></div><h1 id="五字体文件msyhttc" class="headerLink">
+    <a href="#%e4%ba%94%e5%ad%97%e4%bd%93%e6%96%87%e4%bb%b6msyhttc" class="header-mark"></a>五、字体文件（MSYH.TTC）</h1><p>windows 系统字体文件路径：C:\Windows\Fonts，可以从这里拷贝出来</p>
+<h1 id="六测试文章" class="headerLink">
+    <a href="#%e5%85%ad%e6%b5%8b%e8%af%95%e6%96%87%e7%ab%a0" class="header-mark"></a>六、测试文章</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">戴着眼镜，文质彬彬，我们很难把刘聪和传统印象里的农人联系起来。但实际上，35岁的“新农人”刘聪，已经在重庆田间地头种了近十年的葡萄。
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl">2009年毕业于西南农业大学，从事的销售工作需要经常出差，漂泊生活无法给刘聪带来安定感。一次偶然，刘聪看了电影《林中漫步》，被影片中祥和宁静的森林景色所打动，于是辞去了原有的工作，和朋友回乡种起了葡萄。
 </span></span><span class="line"><span class="cl"> 
@@ -644,8 +652,8 @@ wordcloud==1.8.1
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/pycharm-using-anaconda-to-manage-multi-version-python-environments.html</guid>
     <description><![CDATA[<p>安装完 anaconda 后，打开 Anaconda Powershell Prompt (anaconda3) 执行命令。</p>
-<h1 id="一anaconda">一、Anaconda</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 conda 版本号</span>
+<h1 id="一anaconda" class="headerLink">
+    <a href="#%e4%b8%80anaconda" class="header-mark"></a>一、Anaconda</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 conda 版本号</span>
 </span></span><span class="line"><span class="cl">conda --version
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看系统当前已有的 Python 环境</span>
@@ -681,8 +689,10 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl">conda install &lt;包名&gt; 安装指定包
 </span></span><span class="line"><span class="cl">conda remove &lt;包名&gt; 移除指定包
 </span></span><span class="line"><span class="cl">conda update &lt;包名&gt; 更新指定包
-</span></span></code></pre></div><h1 id="二pycharm">二、PyCharm</h1>
-<p></p>]]></description>
+</span></span></code></pre></div><h1 id="二pycharm" class="headerLink">
+    <a href="#%e4%ba%8cpycharm" class="header-mark"></a>二、PyCharm</h1><p><figure><a class="lightgallery" href="/post_images/d857951dddff8.png" title="img" data-thumbnail="/post_images/d857951dddff8.png">
+        
+    </a></figure></p>]]></description>
 </item><item>
     <title>Python 如何创建一个 Excel 文件并向其写入内容？</title>
     <link>https://sugarless.cn/posts/create-an-excel-file-and-write-to-it-using-python.html</link>
@@ -690,8 +700,8 @@ wordcloud==1.8.1
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/create-an-excel-file-and-write-to-it-using-python.html</guid>
     <description><![CDATA[<p>先说结论：推荐使用 openyxl 库，而不是 xlwt 库。使用 xlwt 库创建并向 .xls 文件写入内容时，其单个 sheet 限制最大行数为 65535。而使用 openpyxl 库创建并向 .xlsx 文件写入内容时，其单个 sheet 限制最大行数为 1048576，最大列数为 16384。</p>
-<h1 id="一openpyxl-库">一、openpyxl 库</h1>
-<p>openyxl 库文档地址：https://openpyxl.readthedocs.io/en/stable/usage.html  /  <a href="https://pypi.org/project/openpyxl" target="_blank" rel="noopener noreffer">https://pypi.org/project/openpyxl</a></p>
+<h1 id="一openpyxl-库" class="headerLink">
+    <a href="#%e4%b8%80openpyxl-%e5%ba%93" class="header-mark"></a>一、openpyxl 库</h1><p>openyxl 库文档地址：https://openpyxl.readthedocs.io/en/stable/usage.html  /  <a href="https://pypi.org/project/openpyxl" target="_blank" rel="noopener noreferrer">https://pypi.org/project/openpyxl</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">openpyxl</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="n">ExeclFileSavePath</span> <span class="o">=</span> <span class="s2">&#34;./test.xlsx&#34;</span>
@@ -717,8 +727,8 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="c1"># 保存文件</span>
 </span></span><span class="line"><span class="cl"><span class="n">wb</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">ExeclFileSavePath</span><span class="p">)</span>
-</span></span></code></pre></div><h1 id="二xlwt-库">二、xlwt 库</h1>
-<p>xlwt 库文档地址：https://xlwt.readthedocs.io/en/latest  /  <a href="https://pypi.org/project/xlwt" target="_blank" rel="noopener noreffer">https://pypi.org/project/xlwt</a></p>
+</span></span></code></pre></div><h1 id="二xlwt-库" class="headerLink">
+    <a href="#%e4%ba%8cxlwt-%e5%ba%93" class="header-mark"></a>二、xlwt 库</h1><p>xlwt 库文档地址：https://xlwt.readthedocs.io/en/latest  /  <a href="https://pypi.org/project/xlwt" target="_blank" rel="noopener noreferrer">https://pypi.org/project/xlwt</a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">xlwt</span>
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="n">ExeclFileSavePath</span> <span class="o">=</span> <span class="s2">&#34;./test.xls&#34;</span>
@@ -747,10 +757,10 @@ wordcloud==1.8.1
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/i-spent-a-day-stealing-50w-user-information-from-netease-cloud-music.html</guid>
     <description><![CDATA[<p>没有多进程，没有任何黑科技的裸爬虫。练手用，爬虫获取到的数据皆为非敏感且公开的用户信息。</p>
-<h1 id="一思路">一、思路</h1>
-<p>在 GitHub 上已经有网易云音乐的 node.js API（GitHub：https://github.com/Binaryify/NeteaseCloudMusicApi）。根据这个库提供的信息，可以很轻易的获取到网易云音乐获取某个用户的粉丝信息接口的参数（接口限制只能获取 100 个），进而继续获取这 100 个粉丝的粉丝… 简单的几层循环嵌套就能很轻易的拿到十万级到百万级的用户数据（非敏感用户信息）。</p>
-<h1 id="二参数加密流程分析">二、参数加密流程分析</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">__getFormData(data, __get_random_str()) 
+<h1 id="一思路" class="headerLink">
+    <a href="#%e4%b8%80%e6%80%9d%e8%b7%af" class="header-mark"></a>一、思路</h1><p>在 GitHub 上已经有网易云音乐的 node.js API（GitHub：https://github.com/Binaryify/NeteaseCloudMusicApi）。根据这个库提供的信息，可以很轻易的获取到网易云音乐获取某个用户的粉丝信息接口的参数（接口限制只能获取 100 个），进而继续获取这 100 个粉丝的粉丝… 简单的几层循环嵌套就能很轻易的拿到十万级到百万级的用户数据（非敏感用户信息）。</p>
+<h1 id="二参数加密流程分析" class="headerLink">
+    <a href="#%e4%ba%8c%e5%8f%82%e6%95%b0%e5%8a%a0%e5%af%86%e6%b5%81%e7%a8%8b%e5%88%86%e6%9e%90" class="header-mark"></a>二、参数加密流程分析</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">__getFormData(data, __get_random_str()) 
 </span></span><span class="line"><span class="cl">    参数1：data是dict数据，包含了表单的各个字段和数据 
 </span></span><span class="line"><span class="cl">    参数2：16位的随机字符串 
 </span></span><span class="line"><span class="cl">    最终return的是一个dict，包含了params和encSecKey两个参数 
@@ -778,9 +788,9 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl">        固定参数arg2 
 </span></span><span class="line"><span class="cl">        固定参数arg3 
 </span></span><span class="line"><span class="cl">        通过固定算法，使用随机16位的字符串random16str与这两个固定参数产生encSecKey
-</span></span></code></pre></div><h1 id="三源码">三、源码</h1>
-<h2 id="commonpy-需要用到的函数">common.py （需要用到的函数）</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
+</span></span></code></pre></div><h1 id="三源码" class="headerLink">
+    <a href="#%e4%b8%89%e6%ba%90%e7%a0%81" class="header-mark"></a>三、源码</h1><h2 id="commonpy-需要用到的函数" class="headerLink">
+    <a href="#commonpy-%e9%9c%80%e8%a6%81%e7%94%a8%e5%88%b0%e7%9a%84%e5%87%bd%e6%95%b0" class="header-mark"></a>common.py （需要用到的函数）</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">base64</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">Crypto.Cipher</span> <span class="kn">import</span> <span class="n">AES</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">random</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">codecs</span>
@@ -854,8 +864,8 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl">        <span class="c1"># print(one.get(&#39;userId&#39;))</span>
 </span></span><span class="line"><span class="cl">        <span class="c1"># print(str(one))</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">userDict</span>
-</span></span></code></pre></div><h2 id="mainpy-主程序">main.py （主程序）</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
+</span></span></code></pre></div><h2 id="mainpy-主程序" class="headerLink">
+    <a href="#mainpy-%e4%b8%bb%e7%a8%8b%e5%ba%8f" class="header-mark"></a>main.py （主程序）</h2><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># -*- coding: utf-8 -*-</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">common</span>
 </span></span><span class="line"><span class="cl"><span class="n">AllData</span> <span class="o">=</span> <span class="p">{}</span>
 </span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">=</span> <span class="n">common</span><span class="o">.</span><span class="n">__getFans</span><span class="p">(</span><span class="mi">6177307</span><span class="p">)</span>
@@ -877,8 +887,8 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="n">one</span> <span class="ow">in</span> <span class="n">AllData</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
 </span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">one</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">one</span><span class="p">))</span>
-</span></span></code></pre></div><h1 id="四数据">四、数据</h1>
-<p>我把 main.py 放到了服务器上运行，跑到程序结束大概用了 24 小时左右后看了一下存储的文本有 50W 左右的用户数据（不含敏感信息），如下。</p>
+</span></span></code></pre></div><h1 id="四数据" class="headerLink">
+    <a href="#%e5%9b%9b%e6%95%b0%e6%8d%ae" class="header-mark"></a>四、数据</h1><p>我把 main.py 放到了服务器上运行，跑到程序结束大概用了 24 小时左右后看了一下存储的文本有 50W 左右的用户数据（不含敏感信息），如下。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="p">(</span><span class="mi">83543823</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;mjdtjst&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1510758264852</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">83543823</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;名劍動天倦收天&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/uocXBF145t-_V0pLWDwv0w==/3272146604393759.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">13</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;天下若倾，尚有儒门一手擎天！&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">305937375</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;ttqsunny&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1510751111003</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">305937375</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;甜甜圈sunny&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/v9iyq-6I1WC96R7SlbKvXQ==/3420580709664324.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;associator&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;vipCode&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;rights&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span> <span class="s1">&#39;musicPackage&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;redVipAnnualCount&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">},</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
 </span></span><span class="line"><span class="cl"><span class="p">(</span><span class="mi">359743222</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;py&#39;</span><span class="p">:</span> <span class="s1">&#39;xxwmhjl-_&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="mi">1509411979309</span><span class="p">,</span> <span class="s1">&#39;userId&#39;</span><span class="p">:</span> <span class="mi">359743222</span><span class="p">,</span> <span class="s1">&#39;mutual&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;followed&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;accountStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;nickname&#39;</span><span class="p">:</span> <span class="s1">&#39;醒醒我们回家了-_&#39;</span><span class="p">,</span> <span class="s1">&#39;avatarUrl&#39;</span><span class="p">:</span> <span class="s1">&#39;http://p1.music.126.net/KcAVTPDSC8MrKaFB9_Vd9g==/109951163985306640.jpg&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;expertTags&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;experts&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;followeds&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;remarkName&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;follows&#39;</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;authStatus&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;userType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;vipType&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;signature&#39;</span><span class="p">:</span> <span class="s1">&#39;身邪不怕影子正&#39;</span><span class="p">,</span> <span class="s1">&#39;vipRights&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;eventCount&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;playlistCount&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">})</span>
@@ -935,14 +945,14 @@ wordcloud==1.8.1
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/manipulating-configuration-files-with-the-python-configparser-library.html</guid>
     <description><![CDATA[<p>在写脚本的过程中无法避免的需要一些配置性的信息，但是又不想写死在 python 文件中，刚好 python 的 configparser 模块实现了以上的功能，可以用来操作 .ini 配置文件。</p>
-<h1 id="一新建配置文件">一、新建配置文件</h1>
-<p>在 python 项目中新建一个 conf 文件夹，并在此文件夹下创建一个 conf.ini 的文件用于存储配置信息。</p>
+<h1 id="一新建配置文件" class="headerLink">
+    <a href="#%e4%b8%80%e6%96%b0%e5%bb%ba%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6" class="header-mark"></a>一、新建配置文件</h1><p>在 python 项目中新建一个 conf 文件夹，并在此文件夹下创建一个 conf.ini 的文件用于存储配置信息。</p>
 <p>文件路径：./conf/conf.ini</p>
 <p>文件内容：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ini" data-lang="ini"><span class="line"><span class="cl"><span class="k">[EditionInfo]</span>
 </span></span><span class="line"><span class="cl"><span class="na">version</span> <span class="o">=</span> <span class="s">1.0.0</span>
-</span></span></code></pre></div><h1 id="二源码">二、源码</h1>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">configparser</span>
+</span></span></code></pre></div><h1 id="二源码" class="headerLink">
+    <a href="#%e4%ba%8c%e6%ba%90%e7%a0%81" class="header-mark"></a>二、源码</h1><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">configparser</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
 </span></span><span class="line"><span class="cl"> 
@@ -982,9 +992,9 @@ wordcloud==1.8.1
 </span></span><span class="line"><span class="cl"> 
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
 </span></span></code></pre></div><p>可能有心人会注意到 get_path 的方法有点怪异，那是因为在写 python 程序中，有可能需要获取当前运行脚本的路径。打包成 exe 的脚本和直接运行地脚本在获取路径上稍微有点不同。</p>
-<p>get_path 的方法参考了这篇博客：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>
-<h1 id="ref">REF</h1>
-<p>python中获取打包成执行文件(exe)和脚本运行文件的路径
-：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>]]></description>
+<p>get_path 的方法参考了这篇博客：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p>python中获取打包成执行文件(exe)和脚本运行文件的路径
+：<a href="https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/pzxbc/archive/2012/03/18/2404695.html</a></p>]]></description>
 </item></channel>
 </rss>

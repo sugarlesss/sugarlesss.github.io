@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目" />
+    <title>IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目" />
 <meta property="og:description" content="Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/how-to-use-alibaba-cloud-toolkit.html" /><meta property="article:section" content="posts" />
@@ -20,9 +22,9 @@
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/how-to-use-alibaba-cloud-toolkit.html" /><link rel="prev" href="https://sugarless.cn/posts/spring-boot-configuration-file-chinese-encoding-error.html" /><link rel="next" href="https://sugarless.cn/posts/bilibili-video-numbering-rules-upgrade.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/how-to-use-alibaba-cloud-toolkit.html" /><link rel="prev" href="https://sugarless.cn/posts/spring-boot-configuration-file-chinese-encoding-error.html" /><link rel="next" href="https://sugarless.cn/posts/bilibili-video-numbering-rules-upgrade.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/color.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/how-to-use-alibaba-cloud-toolkit.html"
-        },"genre": "posts","keywords": "Java, IDEA, Cloud Toolkit, Spring Boot, 一键部署","wordcount":  612 ,
+        },"genre": "posts","keywords": "Java, IDEA, Cloud Toolkit, Spring Boot, 一键部署","wordcount":  611 ,
         "url": "https:\/\/sugarless.cn\/posts\/how-to-use-alibaba-cloud-toolkit.html","datePublished": "2021-08-06T00:00:00+00:00","dateModified": "2021-08-06T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -39,10 +41,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -56,18 +59,18 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -85,20 +88,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -112,12 +115,24 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</a></li>
+    <li><a href="#二配置">二、配置</a>
+      <ul>
+        <li><a href="#21添加远程服务器">2.1、添加远程服务器</a></li>
+        <li><a href="#22添加详细配置">2.2、添加详细配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#三一键部署">三、一键部署</a></li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">IDEA 使用 Alibaba Cloud Toolkit 插件一键部署 Spring Boot 项目</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/mark.html"><i class="far fa-folder fa-fw"></i>Mark</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 612 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2021-08-06">2021-08-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 611 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -140,9 +155,9 @@
             </div><div class="content" id="content"><p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>
 <p>内置终端 Terminal：在 IDE 内，开发者可通过内置终端 Terminal 快速登录远程服务器，减少频繁切换的烦恼。 不仅支持阿里云服务器 ECS，也可以用于所有支持标准 SSH 协议的机器。</p>
 <p>文件上传：Cloud Toolkit 帮助开发者在 IDE 内，一键将本地或远程 URL 文件上传至服务器指定目录。 简化繁琐的上传环节，无需各种 FTP、SCP 工具频繁切换。 更为重要的是，文件上传完毕后，还支持文件解压缩、程序启动等命令执行。</p>
-<p>cloud toolkit 官网：<a href="https://www.aliyun.com/product/cloudtoolkit" target="_blank" rel="noopener noreffer">https://www.aliyun.com/product/cloudtoolkit</a></p>
-<h1 id="一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</h1>
-<ul>
+<p>cloud toolkit 官网：<a href="https://www.aliyun.com/product/cloudtoolkit" target="_blank" rel="noopener noreferrer">https://www.aliyun.com/product/cloudtoolkit</a></p>
+<h1 id="一安装-alibaba-cloud-toolkit" class="headerLink">
+    <a href="#%e4%b8%80%e5%ae%89%e8%a3%85-alibaba-cloud-toolkit" class="header-mark"></a>一、安装 Alibaba Cloud Toolkit</h1><ul>
 <li>
 <p>确保 IntelliJ IDEA 在 2018.1 或更高版本；</p>
 </li>
@@ -155,85 +170,85 @@
 </ul>
 <figure><a class="lightgallery" href="../post_images/image-20210806140925036.png" title="/post_images/image-20210806140925036.png" data-thumbnail="/post_images/image-20210806140925036.png" data-sub-html="<h2>Alibaba Cloud Toolkit</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806140925036.png"
-            data-srcset="../post_images/image-20210806140925036.png, ../post_images/image-20210806140925036.png 1.5x, ../post_images/image-20210806140925036.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806140925036.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806140925036.png"
+            srcset="../post_images/image-20210806140925036.png, ../post_images/image-20210806140925036.png 1.5x, ../post_images/image-20210806140925036.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806140925036.png">
     </a><figcaption class="image-caption">Alibaba Cloud Toolkit</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<h1 id="二配置">二、配置</h1>
-<h2 id="21添加远程服务器">2.1、添加远程服务器</h2>
-<p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
+<h1 id="二配置" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae" class="header-mark"></a>二、配置</h1><h2 id="21添加远程服务器" class="headerLink">
+    <a href="#21%e6%b7%bb%e5%8a%a0%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>2.1、添加远程服务器</h2><p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
 <figure><a class="lightgallery" href="../post_images/image-20210806144136679.png" title="/post_images/image-20210806144136679.png" data-thumbnail="/post_images/image-20210806144136679.png" data-sub-html="<h2>Add Host</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806144136679.png"
-            data-srcset="../post_images/image-20210806144136679.png, ../post_images/image-20210806144136679.png 1.5x, ../post_images/image-20210806144136679.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806144136679.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806144136679.png"
+            srcset="../post_images/image-20210806144136679.png, ../post_images/image-20210806144136679.png 1.5x, ../post_images/image-20210806144136679.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806144136679.png">
     </a><figcaption class="image-caption">Add Host</figcaption>
     </figure>
 <!-- raw HTML omitted -->
 <p>输入服务器的 IP 及 SSH 连接信息，我使用的是账号密码式。</p>
 <figure><a class="lightgallery" href="../post_images/image-20210806144248501.png" title="/post_images/image-20210806144248501.png" data-thumbnail="/post_images/image-20210806144248501.png" data-sub-html="<h2>配置 IP 和 SSH 连接信息</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806144248501.png"
-            data-srcset="../post_images/image-20210806144248501.png, ../post_images/image-20210806144248501.png 1.5x, ../post_images/image-20210806144248501.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806144248501.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806144248501.png"
+            srcset="../post_images/image-20210806144248501.png, ../post_images/image-20210806144248501.png 1.5x, ../post_images/image-20210806144248501.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806144248501.png">
     </a><figcaption class="image-caption">配置 IP 和 SSH 连接信息</figcaption>
     </figure>
 <!-- raw HTML omitted -->
 <p>Edit Configurations
 <figure><a class="lightgallery" href="../post_images/image-20210806144651404.png" title="/post_images/image-20210806144651404.png" data-thumbnail="/post_images/image-20210806144651404.png" data-sub-html="<h2>Edit Configurations</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806144651404.png"
-            data-srcset="../post_images/image-20210806144651404.png, ../post_images/image-20210806144651404.png 1.5x, ../post_images/image-20210806144651404.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806144651404.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806144651404.png"
+            srcset="../post_images/image-20210806144651404.png, ../post_images/image-20210806144651404.png 1.5x, ../post_images/image-20210806144651404.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806144651404.png">
     </a><figcaption class="image-caption">Edit Configurations</figcaption>
     </figure></p>
 <!-- raw HTML omitted -->
 <p>选择 Deploy to Host
 <figure><a class="lightgallery" href="../post_images/image-20210806144741977.png" title="/post_images/image-20210806144741977.png" data-thumbnail="/post_images/image-20210806144741977.png" data-sub-html="<h2>Deploy to Host</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806144741977.png"
-            data-srcset="../post_images/image-20210806144741977.png, ../post_images/image-20210806144741977.png 1.5x, ../post_images/image-20210806144741977.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806144741977.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806144741977.png"
+            srcset="../post_images/image-20210806144741977.png, ../post_images/image-20210806144741977.png 1.5x, ../post_images/image-20210806144741977.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806144741977.png">
     </a><figcaption class="image-caption">Deploy to Host</figcaption>
     </figure></p>
 <!-- raw HTML omitted -->
-<h2 id="22添加详细配置">2.2、添加详细配置</h2>
-<figure><a class="lightgallery" href="../post_images/image-20210806145217900.png" title="/post_images/image-20210806145217900.png" data-thumbnail="/post_images/image-20210806145217900.png" data-sub-html="<h2>详细配置1</h2>">
+<h2 id="22添加详细配置" class="headerLink">
+    <a href="#22%e6%b7%bb%e5%8a%a0%e8%af%a6%e7%bb%86%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.2、添加详细配置</h2><figure><a class="lightgallery" href="../post_images/image-20210806145217900.png" title="/post_images/image-20210806145217900.png" data-thumbnail="/post_images/image-20210806145217900.png" data-sub-html="<h2>详细配置1</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806145217900.png"
-            data-srcset="../post_images/image-20210806145217900.png, ../post_images/image-20210806145217900.png 1.5x, ../post_images/image-20210806145217900.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806145217900.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806145217900.png"
+            srcset="../post_images/image-20210806145217900.png, ../post_images/image-20210806145217900.png 1.5x, ../post_images/image-20210806145217900.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806145217900.png">
     </a><figcaption class="image-caption">详细配置1</figcaption>
     </figure>
 <!-- raw HTML omitted -->
 <figure><a class="lightgallery" href="../post_images/image-20210806162619853.png" title="/post_images/image-20210806162619853.png" data-thumbnail="/post_images/image-20210806162619853.png" data-sub-html="<h2>详细配置2</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806162619853.png"
-            data-srcset="../post_images/image-20210806162619853.png, ../post_images/image-20210806162619853.png 1.5x, ../post_images/image-20210806162619853.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806162619853.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806162619853.png"
+            srcset="../post_images/image-20210806162619853.png, ../post_images/image-20210806162619853.png 1.5x, ../post_images/image-20210806162619853.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806162619853.png">
     </a><figcaption class="image-caption">详细配置2</figcaption>
     </figure>
 <!-- raw HTML omitted -->
@@ -250,33 +265,33 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 实时日志</span>
 </span></span><span class="line"><span class="cl">tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
 </span></span></code></pre></div><p>填写完成后 Apply 。</p>
-<h1 id="三一键部署">三、一键部署</h1>
-<p>切换到一键部署，run。</p>
+<h1 id="三一键部署" class="headerLink">
+    <a href="#%e4%b8%89%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" class="header-mark"></a>三、一键部署</h1><p>切换到一键部署，run。</p>
 <figure><a class="lightgallery" href="../post_images/image-20210806162820768.png" title="/post_images/image-20210806162820768.png" data-thumbnail="/post_images/image-20210806162820768.png" data-sub-html="<h2>一键部署</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806162820768.png"
-            data-srcset="../post_images/image-20210806162820768.png, ../post_images/image-20210806162820768.png 1.5x, ../post_images/image-20210806162820768.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806162820768.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806162820768.png"
+            srcset="../post_images/image-20210806162820768.png, ../post_images/image-20210806162820768.png 1.5x, ../post_images/image-20210806162820768.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806162820768.png">
     </a><figcaption class="image-caption">一键部署</figcaption>
     </figure>
 <!-- raw HTML omitted -->
 <p>此时 idea 会自动连接上服务器的 shell ，使用上面配置的命令查看实时日志。</p>
 <figure><a class="lightgallery" href="../post_images/image-20210806162947112.png" title="/post_images/image-20210806162947112.png" data-thumbnail="/post_images/image-20210806162947112.png" data-sub-html="<h2>控制台实时日志</h2>">
         <img
-            class="lazyload"
-            data-src="../post_images/image-20210806162947112.png"
-            data-srcset="../post_images/image-20210806162947112.png, ../post_images/image-20210806162947112.png 1.5x, ../post_images/image-20210806162947112.png 2x"
-            data-sizes="auto"
-            alt="/post_images/image-20210806162947112.png"
-        />
+            
+            loading="lazy"
+            src="../post_images/image-20210806162947112.png"
+            srcset="../post_images/image-20210806162947112.png, ../post_images/image-20210806162947112.png 1.5x, ../post_images/image-20210806162947112.png 2x"
+            sizes="auto"
+            alt="/post_images/image-20210806162947112.png">
     </a><figcaption class="image-caption">控制台实时日志</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<h1 id="ref">REF</h1>
-<p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreffer">https://www.bilibili.com/video/BV1ga4y1474K</a></p></div>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1ga4y1474K</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -308,6 +323,9 @@
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -315,7 +333,8 @@
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../js/katex.min.js" defer></script><script type="text/javascript" src="../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -324,11 +343,6 @@
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js"></script><script type="text/javascript" src="../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

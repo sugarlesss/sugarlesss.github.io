@@ -11,8 +11,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/setting-up-windows-ip-dns-using-bat-scripts.html</guid>
     <description><![CDATA[<p>在调试设备的时候需要来回切换笔记本电脑无线网卡的静态 IP 地址，非常麻烦。所以写了两个 .bat 的批处理脚本，希望对你有帮助。</p>
-<h1 id="一dhcp">一、DHCP</h1>
-<p>将如下内容保存为 set_WLAN_DHCP.bat 文件</p>
+<h1 id="一dhcp" class="headerLink">
+    <a href="#%e4%b8%80dhcp" class="header-mark"></a>一、DHCP</h1><p>将如下内容保存为 set_WLAN_DHCP.bat 文件</p>
 <p>设置为自动获取IP/DNS</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
 </span></span><span class="line"><span class="cl">%
@@ -26,8 +26,8 @@
 </span></span><span class="line"><span class="cl">netsh interface ip set dnsservers <span class="s2">&#34;WLAN&#34;</span> source=dhcp
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 完成
 </span></span><span class="line"><span class="cl"><span class="k">pause</span>
-</span></span></code></pre></div><h1 id="二静态-ip">二、静态 IP</h1>
-<p>将如下内容保存为 set_WLAN_StaticIP.bat 文件</p>
+</span></span></code></pre></div><h1 id="二静态-ip" class="headerLink">
+    <a href="#%e4%ba%8c%e9%9d%99%e6%80%81-ip" class="header-mark"></a>二、静态 IP</h1><p>将如下内容保存为 set_WLAN_StaticIP.bat 文件</p>
 <p>设置为静态IP/DNS</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bat" data-lang="bat"><span class="line"><span class="cl"><span class="p">@</span><span class="k">echo</span> off
 </span></span><span class="line"><span class="cl">%
@@ -44,6 +44,8 @@
 </span></span><span class="line"><span class="cl"><span class="k">echo</span> 完成
 </span></span><span class="line"><span class="cl"><span class="k">pause</span>
 </span></span></code></pre></div><p>PS：两个脚本中的 “WLAN” 是因为我的笔记本无线网卡名称为 WLAN</p>
-<p></p>]]></description>
+<p><figure><a class="lightgallery" href="/post_images/ede80d0e6e082.png" title="img" data-thumbnail="/post_images/ede80d0e6e082.png">
+        
+    </a></figure></p>]]></description>
 </item></channel>
 </rss>

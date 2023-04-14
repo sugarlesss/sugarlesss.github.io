@@ -12,8 +12,8 @@
     </author><guid>https://sugarless.cn/posts/nginx-limits-flow-based-on-specific-request-parameters.html</guid>
     <description><![CDATA[<p>我们知道，在 nginx 的 if 中是不能写 limit_req 和 limit_conn 的。也就是说在 nginx 的配置文件中，我们无法通过 if 对请求参数做逻辑判断，从而实现对复杂请求参数的精准限流。</p>
 <p>应用场景：针对某一个流量特别大的入口的某一个特定 GET 请求参数做限流，比如来自微信小程序的 API 请求入口（https://example.com/app/index.php?i=99&amp;v=9.9.9&amp;m=xxxx&amp;from=wxapp），我希望 from = wxapp 时进行限流，若 from 不等于 wxapp 则不进行限流。</p>
-<h1 id="二使用-map-针对请求参数限流">二、使用 map 针对请求参数限流</h1>
-<p>在 nginx 的 http 部分写入：</p>
+<h1 id="二使用-map-针对请求参数限流" class="headerLink">
+    <a href="#%e4%ba%8c%e4%bd%bf%e7%94%a8-map-%e9%92%88%e5%af%b9%e8%af%b7%e6%b1%82%e5%8f%82%e6%95%b0%e9%99%90%e6%b5%81" class="header-mark"></a>二、使用 map 针对请求参数限流</h1><p>在 nginx 的 http 部分写入：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">limit_req_zone</span> <span class="nv">$paramFrom</span> <span class="s">zone=from:10m</span> <span class="s">rate=30r/s</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">map</span> <span class="nv">$arg_from</span> <span class="nv">$paramFrom</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kn">wxapp</span> <span class="s">wxapp</span><span class="p">;</span>
@@ -34,10 +34,10 @@ rate 支持 r/s 和 r/m 两种模式。</p>
 </span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">fastcgi.conf</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="kn">include</span> <span class="s">pathinfo.conf</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><h1 id="三关于-nginx-的-map-模块">三、关于 Nginx 的 map 模块</h1>
-<p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
-<h1 id="四原理">四、原理</h1>
-<p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>
+</span></span></code></pre></div><h1 id="三关于-nginx-的-map-模块" class="headerLink">
+    <a href="#%e4%b8%89%e5%85%b3%e4%ba%8e-nginx-%e7%9a%84-map-%e6%a8%a1%e5%9d%97" class="header-mark"></a>三、关于 Nginx 的 map 模块</h1><p>使用 map 模块，可以根据一个或多个变量组合成一个新的变量。通过判断新的变量，我们可以处理非常复杂的业务逻辑。本文是以 map 模块用于限流为示例，简单展示一下 map 的使用方法。</p>
+<h1 id="四原理" class="headerLink">
+    <a href="#%e5%9b%9b%e5%8e%9f%e7%90%86" class="header-mark"></a>四、原理</h1><p>http_limit_req_module 和 http_limit_conn_module 两个模块是在 nginx 的 preaccess 阶段对请求做拦截，也就是说使用 limit_req_zone 或是 limit_conn_zone 对请求都是可以的。</p>
 <p>但两者有本质上的区别，request 和 connection 是不同的，在实际应用中应注意区别。</p>
 <ul>
 <li>connection 是连接，即常说的 tcp 连接，通过三次握手而建立的。</li>
@@ -52,14 +52,14 @@ rate 支持 r/s 和 r/m 两种模式。</p>
     </author><guid>https://sugarless.cn/posts/nginx-limits-flow-to-specific-paths-or-entry-files.html</guid>
     <description><![CDATA[<p>使用 nginx 的 http_limit_conn_module 模块可以在 nginx 的 preaccess 阶段对请求的并发做拦截。限制的有效性取决于 key 的设计，通常使用 realip 模块获取到的客户端 IP。</p>
 <p>应用场景：假如你只希望限流用户的访问入口，但不希望管理后台也被纳入限流的范围内，因为在操作管理后台时，用户访问量激增，nginx 会频繁返回 503，那么管理后台将处于不可操作的状态。</p>
-<h1 id="一编写-location-规则">一、编写 location 规则</h1>
-<p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
+<h1 id="一编写-location-规则" class="headerLink">
+    <a href="#%e4%b8%80%e7%bc%96%e5%86%99-location-%e8%a7%84%e5%88%99" class="header-mark"></a>一、编写 location 规则</h1><p>假设我需要对 /app/index.php 这个路径做并发量的控制（例如：https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap），首先要确定的事情就是编写的 location 规则是否能被正确匹配到。下面是 nginx location 的写法：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/app/index.php</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="kn">return</span> <span class="mi">404</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>加上这条 location 规则后，如果访问（https://example.com/app/index.php?i=99&amp;t=0&amp;v=5.5.5&amp;from=wxap）这样的链接，nginx 会直接返回 404 错误。那么说明这段 location 是能够匹配到的。</p>
-<h1 id="二限制并发量">二、限制并发量</h1>
-<p>在 nginx 的 http 部分添加：</p>
+<h1 id="二限制并发量" class="headerLink">
+    <a href="#%e4%ba%8c%e9%99%90%e5%88%b6%e5%b9%b6%e5%8f%91%e9%87%8f" class="header-mark"></a>二、限制并发量</h1><p>在 nginx 的 http 部分添加：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">limit_conn_zone</span> <span class="nv">$binary_remote_addr</span> <span class="s">zone=perip:10m</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">limit_conn_zone</span> <span class="nv">$server_name</span> <span class="s">zone=perserver:10m</span><span class="p">;</span>
 </span></span></code></pre></div><blockquote>

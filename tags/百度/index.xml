@@ -14,9 +14,11 @@
 <p>百度提交页面：https://ziyuan.baidu.com/linksubmit/index</p>
 <p>通过此页面可以向百度搜索主动推送资源，同时百度也提供了 API 提交接口，这样可以缩短爬虫发现网站链接的时间，但百度不保证收录和展现效果。</p>
 <p>以本站为例，百度提供了 API 提交的样例参数。</p>
-<p></p>
-<h1 id="源码">源码</h1>
-<p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210831123142418.png" title="image-20210831123142418" data-thumbnail="/post_images/image-20210831123142418.png">
+        
+    </a></figure></p>
+<h1 id="源码" class="headerLink">
+    <a href="#%e6%ba%90%e7%a0%81" class="header-mark"></a>源码</h1><p>解析站点当前的 sitemap.xml 文件内容，向百度批量提交 url 。</p>
 <p>使用前需要注意替换真实参数：</p>
 <ul>
 <li>site</li>
@@ -125,7 +127,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="n">pusher</span> <span class="o">=</span> <span class="n">Pusher</span><span class="p">(</span><span class="n">site</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">sitemap_path</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">pusher</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
-</span></span></code></pre></div><h1 id="ref">REF</h1>
-<p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreffer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
+</span></span></code></pre></div><h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://blog.csdn.net/minge89/article/details/108031025" target="_blank" rel="noopener noreferrer">https://blog.csdn.net/minge89/article/details/108031025</a></p>]]></description>
 </item></channel>
 </rss>

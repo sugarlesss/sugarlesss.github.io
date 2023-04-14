@@ -11,15 +11,23 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-use-ffmpeg-download-ts-streaming-video.html</guid>
     <description><![CDATA[<p>有些网页上的视频是分成多个 ts 片段的，无法被 chrome的 各种嗅探器插件捕获，但通过 F12 开发工具监测网络（Network）时，在过滤器中输入 m3u8，可以发现一个独立的 m3u8 文件，这个文件就是记录了所有 ts 文件片段的一个播放列表。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626157783973-61c60fcd-e116-45c3-9b25-b856104e3ef7.png" title="img" data-thumbnail="/post_images/1626157783973-61c60fcd-e116-45c3-9b25-b856104e3ef7.png">
+        
+    </a></figure></p>
 <p>文件内容大致像这样：</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626157905910-2bc74724-051d-4fa5-b17c-37db21fba7c1.png" title="img" data-thumbnail="/post_images/1626157905910-2bc74724-051d-4fa5-b17c-37db21fba7c1.png">
+        
+    </a></figure></p>
 <p>如果没有发现独立的 m3u8 文件，有可能每一个 ts 文件的地址中也是含有这个 m3u8 文件的名称的。把这个 m3u8 文件的完整地址截取出来。针对这种情况，我就不具体举例了，因为我还没遇到过。</p>
 <p>到 header tab 里，复制一下这个 m3u8 文件的完整 url ，画红线的这部分就是。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/1626158094193-0752761b-6ea7-40fb-b5a8-0a36eb8b955e.png" title="img" data-thumbnail="/post_images/1626158094193-0752761b-6ea7-40fb-b5a8-0a36eb8b955e.png">
+        
+    </a></figure></p>
 <p>假设这个地址是：https://xxx.abc.com/xxx/a.m3u8</p>
-<p>可以使用ffmpeg（<a href="https://link.zhihu.com/?target=https%3A//www.ffmpeg.org/" target="_blank" rel="noopener noreffer">FFmpeg</a>）命令下载合并输出为一个视频文件</p>
+<p>可以使用ffmpeg（<a href="https://link.zhihu.com/?target=https%3A//www.ffmpeg.org/" target="_blank" rel="noopener noreferrer">FFmpeg</a>）命令下载合并输出为一个视频文件</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ffmpeg -i https://xxx.abc.com/xxx/a.m3u8 -c copy output.mp4
-</span></span></code></pre></div><p></p>]]></description>
+</span></span></code></pre></div><p><figure><a class="lightgallery" href="/post_images/1626158730542-e4f911d5-9d2d-411c-bda5-618d55306bf0.png" title="img" data-thumbnail="/post_images/1626158730542-e4f911d5-9d2d-411c-bda5-618d55306bf0.png">
+        
+    </a></figure></p>]]></description>
 </item></channel>
 </rss>

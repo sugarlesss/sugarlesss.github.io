@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 
@@ -5,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noodp" />
-    <title class="pjax-title">SSH 远程会话管理工具 – screen 使用教程 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="SSH 远程会话管理工具 – screen 使用教程" />
+    <title>SSH 远程会话管理工具 – screen 使用教程 - 無糖的小宇宙</title><meta name="Description" content="無糖的博客，一个知识网络沉淀，日常生活观察者的小宇宙。"><meta property="og:title" content="SSH 远程会话管理工具 – screen 使用教程" />
 <meta property="og:description" content="刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html" /><meta property="article:section" content="posts" />
@@ -20,9 +22,9 @@
 
 <meta name="theme-color" content="#f8f8f8"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="../favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html" /><link rel="prev" href="https://sugarless.cn/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html" /><link rel="next" href="https://sugarless.cn/posts/nginx-log-auto-chunk-script.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
-    <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
-    <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png"><link rel="mask-icon" href="../safari-pinned-tab.svg" color="#5bbad5"><link rel="canonical" href="https://sugarless.cn/posts/ssh-remote-session-management-tool-screen-tutorial.html" /><link rel="prev" href="https://sugarless.cn/posts/how-to-gracefully-launch-an-ajax-request-with-jquery.html" /><link rel="next" href="https://sugarless.cn/posts/nginx-log-auto-chunk-script.html" /><link rel="stylesheet" href="../lib/normalize/normalize.min.css"><link rel="stylesheet" href="../css/color.css"><link rel="stylesheet" href="../css/style.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/fontawesome-free/all.min.css">
+        <noscript><link rel="stylesheet" href="../lib/fontawesome-free/all.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/animate/animate.min.css">
+        <noscript><link rel="stylesheet" href="../lib/animate/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/sugarless.cn\/posts\/ssh-remote-session-management-tool-screen-tutorial.html"
-        },"genre": "posts","keywords": "screen","wordcount":  793 ,
+        },"genre": "posts","keywords": "screen","wordcount":  802 ,
         "url": "https:\/\/sugarless.cn\/posts\/ssh-remote-session-management-tool-screen-tutorial.html","datePublished": "2020-03-28T00:00:00+00:00","dateModified": "2020-03-28T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
             "@type": "Organization",
             "name": "無糖"},"author": {
@@ -39,10 +41,11 @@
                 "name": "無糖"
             },"description": ""
     }
-    </script></head>
+    </script><script src="//instant.page/5.1.1" defer type="module" integrity="sha384-MWfCL6g1OTGsbSwfuMHc8+8J2u71/LA8dzlIN3ycajckxuZZmF+DNjdm7O6H3PSq"></script>
+</head>
 
 <body header-desktop="" header-mobile=""><script type="text/javascript">
-        function setTheme(theme) {document.body.setAttribute('theme', theme);}
+        function setTheme(theme) {document.body.setAttribute('theme', theme); document.documentElement.style.setProperty('color-scheme', theme === 'light' ? 'light' : 'dark'); window.theme = theme; }
         function saveTheme(theme) {window.localStorage && localStorage.setItem('theme', theme);}
         function getMeta(metaName) {const metas = document.getElementsByTagName('meta'); for (let i = 0; i < metas.length; i++) if (metas[i].getAttribute('name') === metaName) return metas[i]; return '';}
         if (window.localStorage && localStorage.getItem('theme')) {let theme = localStorage.getItem('theme');theme === 'light' || theme === 'dark' || theme === 'black' ? setTheme(theme) : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light')); } else { if ('dark' === 'light' || 'dark' === 'dark' || 'dark' === 'black') setTheme('dark'), saveTheme('dark'); else saveTheme('auto'), window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? setTheme('dark') : setTheme('light');}
@@ -56,18 +59,18 @@
             <a href="../" title="無糖的小宇宙">無糖的小宇宙</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+            <div class="menu-inner"><a class="menu-item" href="../posts.html"><i class='fas fa-clock fa-fw'></i> 归档 </a><a class="menu-item" href="../categories.html"><i class='fas fa-folder-open fa-fw'></i> 分类 </a><a class="menu-item" href="../tags.html"><i class='fas fa-tags fa-fw'></i> 标签 </a><a class="menu-item" href="../special.html"><i class='fas fa-book fa-fw'></i> 专栏 </a><a class="menu-item" href="../series.html"><i class='fas fa-book fa-fw'></i> 系列 </a><a class="menu-item" href="../friends.html"><i class='fas fa-link fa-fw'></i> 友链 </a><a class="menu-item" href="../about.html"><i class='fas fa-hand-peace fa-fw'></i> 关于 </a><a class="menu-item" href="https://github.com/sugarlesss" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-desktop" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-desktop">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
-                    </span><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                    </span><a href="#" class="menu-item theme-switch" title="切换主题">
                     <i class="fas fa-adjust fa-fw"></i>
                 </a></div>
         </div>
@@ -85,20 +88,20 @@
         <div class="menu" id="menu-mobile"><div class="search-wrapper">
                     <div class="search mobile" id="search-mobile">
                         <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
-                        <a href="#" onclick="return false;" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                        <a href="#" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
-                        <a href="#" onclick="return false;" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                        <a href="#" class="search-button search-clear" id="search-clear-mobile" title="清空">
                             <i class="fas fa-times-circle fa-fw"></i>
                         </a>
                         <span class="search-button search-loading" id="search-loading-mobile">
                             <i class="fas fa-spinner fa-fw fa-spin"></i>
                         </span>
                     </div>
-                    <a href="#" onclick="return false;" class="search-cancel" id="search-cancel-mobile">
+                    <a href="#" class="search-cancel" id="search-cancel-mobile">
                         取消
                     </a>
-                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" onclick="return false;" class="menu-item theme-switch" title="切换主题">
+                </div><a class="menu-item" href="../posts.html" title=""><i class='fas fa-clock fa-fw'></i>归档</a><a class="menu-item" href="../categories.html" title=""><i class='fas fa-folder-open fa-fw'></i>分类</a><a class="menu-item" href="../tags.html" title=""><i class='fas fa-tags fa-fw'></i>标签</a><a class="menu-item" href="../special.html" title=""><i class='fas fa-book fa-fw'></i>专栏</a><a class="menu-item" href="../series.html" title=""><i class='fas fa-book fa-fw'></i>系列</a><a class="menu-item" href="../friends.html" title=""><i class='fas fa-link fa-fw'></i>友链</a><a class="menu-item" href="../about.html" title=""><i class='fas fa-hand-peace fa-fw'></i>关于</a><a class="menu-item" href="https://github.com/sugarlesss" title="" rel="noopener noreferrer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="#" class="menu-item theme-switch" title="切换主题">
                 <i class="fas fa-adjust fa-fw"></i>
             </a></div>
     </div>
@@ -112,12 +115,28 @@
 <main class="main">
             <div class="container"><div class="toc" id="toc-auto">
         <h2 class="toc-title">目录</h2>
-        <div class="toc-content always-active" id="toc-content-auto"></div>
-    </div><script>document.getElementsByTagName("main")[0].setAttribute("pageStyle", "wide")</script><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SSH 远程会话管理工具 – screen 使用教程</h1><div class="post-meta">
+        <div class="toc-content always-active" id="toc-content-auto"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一screen-是什么">一、screen 是什么？</a></li>
+    <li><a href="#二如何安装-screen-命令">二、如何安装 screen 命令？</a></li>
+    <li><a href="#三screen-命令使用方法">三、screen 命令使用方法？</a>
+      <ul>
+        <li><a href="#31-创建-screen-会话">3.1 创建 screen 会话</a></li>
+        <li><a href="#32-暂时离开保留-screen-会话中的任务或程序">3.2 暂时离开，保留 screen 会话中的任务或程序</a></li>
+        <li><a href="#33-恢复-screen-会话">3.3 恢复 screen 会话</a></li>
+        <li><a href="#34-关闭-screen-的会话">3.4 关闭 screen 的会话</a></li>
+      </ul>
+    </li>
+    <li><a href="#四远程演示">四、远程演示</a></li>
+    <li><a href="#五常用快捷键">五、常用快捷键</a></li>
+    <li><a href="#ref">REF</a></li>
+  </ul>
+</nav></div>
+    </div><script>document.getElementsByTagName("main")[0].setAttribute("autoTOC", "true")</script><article class="page single"><h1 class="single-title animate__animated animate__flipInX">SSH 远程会话管理工具 – screen 使用教程</h1><div class="post-meta">
             <div class="post-meta-line">
                 <span class="post-author"><i class="author fas fa-user-circle fa-fw"></i><a href="../" title="Author" rel=" author" class="author">無糖</a>
                 </span>&nbsp;<span class="post-category">收录于 </span>&nbsp;<span class="post-category">类别 <a href="../categories/linux.html"><i class="far fa-folder fa-fw"></i>Linux</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-28">2020-03-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-03-28">2020-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 793 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-03-28">2020-03-28</time>&nbsp;<i class="far fa-edit fa-fw"></i>&nbsp;<time datetime="2020-03-28">2020-03-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 802 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 2 分钟&nbsp;</div>
         </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
@@ -142,10 +161,10 @@
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>刚接触 Linux 时最怕的就是 SSH 远程登录 Linux VPS 编译安装程序时（比如安装 lnmp）网络突然断开，或者其他情况导致不得不与远程 SSH 服务器链接断开，远程执行的命令也被迫停止，只能重新连接，重新运行。使用 screen 可以解决这个问题。</p>
-<h1 id="一screen-是什么">一、screen 是什么？</h1>
-<p>Screen 是一个可以在多个进程之间多路复用一个物理终端的全屏窗口管理器。Screen 中有会话的概念，用户可以在一个 screen 会话中创建多个 screen 窗口，在每一个 screen 窗口中就像操作一个真实的 telnet/SSH 连接窗口那样。</p>
-<h1 id="二如何安装-screen-命令">二、如何安装 screen 命令？</h1>
-<p>除部分精简的系统或者定制的系统大部分都安装了 screen 命令，如果没有安装，CentOS 系统可以执行：yum install screen ；</p>
+<h1 id="一screen-是什么" class="headerLink">
+    <a href="#%e4%b8%80screen-%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>一、screen 是什么？</h1><p>Screen 是一个可以在多个进程之间多路复用一个物理终端的全屏窗口管理器。Screen 中有会话的概念，用户可以在一个 screen 会话中创建多个 screen 窗口，在每一个 screen 窗口中就像操作一个真实的 telnet/SSH 连接窗口那样。</p>
+<h1 id="二如何安装-screen-命令" class="headerLink">
+    <a href="#%e4%ba%8c%e5%a6%82%e4%bd%95%e5%ae%89%e8%a3%85-screen-%e5%91%bd%e4%bb%a4" class="header-mark"></a>二、如何安装 screen 命令？</h1><p>除部分精简的系统或者定制的系统大部分都安装了 screen 命令，如果没有安装，CentOS 系统可以执行：yum install screen ；</p>
 <p>CentOS 8 上移除了 screen，需要安装 epel 后安装 screen 执行：<code>yum install screen</code></p>
 <pre tabindex="0"><code># 安装 epel
 yum install epel-release
@@ -161,28 +180,28 @@ rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 # CentOS/RHEL 7 ：
 rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 </code></pre><p>Debian/Ubuntu 系统执行：<code>apt-get install screen</code></p>
-<h1 id="三screen-命令使用方法">三、screen 命令使用方法？</h1>
-<h2 id="31-创建-screen-会话">3.1 创建 screen 会话</h2>
-<p>可以先执行：<code>screen -S lnmp</code>  ，screen 就会创建一个名字为 lnmp 的会话。</p>
-<h2 id="32-暂时离开保留-screen-会话中的任务或程序">3.2 暂时离开，保留 screen 会话中的任务或程序</h2>
-<p>当需要临时离开时（会话中的程序不会关闭，仍在运行）可以用快捷键 Ctrl+a d (即按住 Ctrl，依次再按 a,d)</p>
-<h2 id="33-恢复-screen-会话">3.3 恢复 screen 会话</h2>
-<p>当回来时可以再执行执行：<code>screen -r lnmp</code>  即可恢复到离开前创建的 lnmp 会话的工作界面。如果忘记了，或者当时没有指定会话名，可以执行：<code>screen -ls screen</code>  会列出当前存在的会话列表。</p>
+<h1 id="三screen-命令使用方法" class="headerLink">
+    <a href="#%e4%b8%89screen-%e5%91%bd%e4%bb%a4%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" class="header-mark"></a>三、screen 命令使用方法？</h1><h2 id="31-创建-screen-会话" class="headerLink">
+    <a href="#31-%e5%88%9b%e5%bb%ba-screen-%e4%bc%9a%e8%af%9d" class="header-mark"></a>3.1 创建 screen 会话</h2><p>可以先执行：<code>screen -S lnmp</code>  ，screen 就会创建一个名字为 lnmp 的会话。</p>
+<h2 id="32-暂时离开保留-screen-会话中的任务或程序" class="headerLink">
+    <a href="#32-%e6%9a%82%e6%97%b6%e7%a6%bb%e5%bc%80%e4%bf%9d%e7%95%99-screen-%e4%bc%9a%e8%af%9d%e4%b8%ad%e7%9a%84%e4%bb%bb%e5%8a%a1%e6%88%96%e7%a8%8b%e5%ba%8f" class="header-mark"></a>3.2 暂时离开，保留 screen 会话中的任务或程序</h2><p>当需要临时离开时（会话中的程序不会关闭，仍在运行）可以用快捷键 Ctrl+a d (即按住 Ctrl，依次再按 a,d)</p>
+<h2 id="33-恢复-screen-会话" class="headerLink">
+    <a href="#33-%e6%81%a2%e5%a4%8d-screen-%e4%bc%9a%e8%af%9d" class="header-mark"></a>3.3 恢复 screen 会话</h2><p>当回来时可以再执行执行：<code>screen -r lnmp</code>  即可恢复到离开前创建的 lnmp 会话的工作界面。如果忘记了，或者当时没有指定会话名，可以执行：<code>screen -ls screen</code>  会列出当前存在的会话列表。</p>
 <blockquote>
 <p>如果因为某种异常情况，但你断开了 SSH 连接，但 screen 状态为 Attached 时，可以使用 <code>screen -D -r lnmp</code> ，先踢掉前一用户，再登陆。</p>
 </blockquote>
-<h2 id="34-关闭-screen-的会话">3.4 关闭 screen 的会话</h2>
-<p>执行：<code>exit</code>  ，会提示：[screen is terminating]，表示已经成功退出 screen 会话。</p>
-<h1 id="四远程演示">四、远程演示</h1>
-<p>首先演示者先在服务器上执行 <code>screen -S test</code>  创建一个 screen 会话，观众可以链接到远程服务器上执行 <code>screen -x test</code>  观众屏幕上就会出现和演示者同步。</p>
-<h1 id="五常用快捷键">五、常用快捷键</h1>
-<p>Ctrl+a c ：在当前 screen 会话中创建窗口
+<h2 id="34-关闭-screen-的会话" class="headerLink">
+    <a href="#34-%e5%85%b3%e9%97%ad-screen-%e7%9a%84%e4%bc%9a%e8%af%9d" class="header-mark"></a>3.4 关闭 screen 的会话</h2><p>执行：<code>exit</code>  ，会提示：[screen is terminating]，表示已经成功退出 screen 会话。</p>
+<h1 id="四远程演示" class="headerLink">
+    <a href="#%e5%9b%9b%e8%bf%9c%e7%a8%8b%e6%bc%94%e7%a4%ba" class="header-mark"></a>四、远程演示</h1><p>首先演示者先在服务器上执行 <code>screen -S test</code>  创建一个 screen 会话，观众可以链接到远程服务器上执行 <code>screen -x test</code>  观众屏幕上就会出现和演示者同步。</p>
+<h1 id="五常用快捷键" class="headerLink">
+    <a href="#%e4%ba%94%e5%b8%b8%e7%94%a8%e5%bf%ab%e6%8d%b7%e9%94%ae" class="header-mark"></a>五、常用快捷键</h1><p>Ctrl+a c ：在当前 screen 会话中创建窗口
 Ctrl+a w ：窗口列表
 Ctrl+a n ：下一个窗口
 Ctrl+a p ：上一个窗口
 Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>
-<h1 id="ref">REF</h1>
-<p><a href="https://www.vpser.net/manage/screen.html" target="_blank" rel="noopener noreffer">https://www.vpser.net/manage/screen.html</a></p></div>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.vpser.net/manage/screen.html" target="_blank" rel="noopener noreferrer">https://www.vpser.net/manage/screen.html</a></p></div>
 
         <div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -214,6 +233,9 @@ Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>
         </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">此间风雨 无需多言 | <a href="https://sugarless.top/sitemap.xml" target="_blank"> sitemap </a></div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="../" target="_blank" rel="noopener noreferrer">無糖</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span><span class="icp-splitter">&nbsp;|&nbsp;</span><br class="icp-br"/>
                     <span class="icp"><a href="https://beian.miit.gov.cn" target="_blank">闽ICP备18012374号</a></span></div>
+            <div class="footer-line"></div>
+            <div class="footer-line">
+            </div>
         </div></footer></div>
 
     <div id="fixed-buttons"><a href="#back-to-top" id="back-to-top-button" class="fixed-button" title="回到顶部">
@@ -221,7 +243,8 @@ Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>
         </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
             <i class="fas fa-comment fa-fw"></i>
         </a>
-    </div><div class="assets"><script type="text/javascript" src="../lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="../lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="../lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="../lib/topbar/topbar.min.js"></script><script type="text/javascript" src="../lib/pjax/pjax.min.js"></script><script type="text/javascript" src="../js/theme.min.js"></script><script>
+    </div><div class="assets"><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"><link rel="stylesheet" href="../lib/katex/katex.min.css"><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
+        <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js" defer></script><script type="text/javascript" src="../lib/katex/auto-render.min.js" defer></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js" defer></script><script type="text/javascript" src="../lib/katex/mhchem.min.js" defer></script><script type="text/javascript" src="../js/katex.min.js" defer></script><script type="text/javascript" src="../js/theme.min.js" defer></script><script>
 			var _hmt = _hmt || [];
 			(function() {
 			  var hm = document.createElement("script");
@@ -230,11 +253,6 @@ Ctrl+a 0-9 ：在第 0 个窗口和第 9 个窗口之间切换</p>
 			  s.parentNode.insertBefore(hm, s);
 			})();
 		</script></div>
-
-<div class="pjax-assets"><script type="text/javascript" src="../lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-thumbnail.min.js"></script><script type="text/javascript" src="../lib/lightgallery/lg-zoom.min.js"></script><script type="text/javascript" src="../lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="../lib/katex/katex.min.js"></script><script type="text/javascript" src="../lib/katex/auto-render.min.js"></script><script type="text/javascript" src="../lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="../lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":3000},"comment":{},"lightGallery":{"actualSize":false,"exThumbImage":"data-thumbnail","hideBarsDelay":2000,"selector":".lightgallery","speed":400,"thumbContHeight":80,"thumbWidth":80,"thumbnail":true},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"PYZOVP13G3","algoliaIndex":"sugarless","algoliaSearchKey":"d2dbf990b720c668d6e94fd88f01ea01","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":500,"type":"algolia"}};</script><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/lightgallery/lightgallery.min.css">
-    <noscript><link rel="stylesheet" href="../lib/lightgallery/lightgallery.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/katex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/katex.min.css"></noscript><link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="../lib/katex/copy-tex.min.css">
-    <noscript><link rel="stylesheet" href="../lib/katex/copy-tex.min.css"></noscript></div>
 </body>
 
 </html>

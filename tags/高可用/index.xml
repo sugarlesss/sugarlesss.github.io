@@ -12,21 +12,23 @@
     </author><guid>https://sugarless.cn/posts/load-balancing-based-on-nginx.html</guid>
     <description><![CDATA[<p>负载均衡是高可用网络基础架构的关键组件，通常用于将工作负载分布到多个服务器来提高网站、应用、数据库或其他服务的性能和可靠性。</p>
 <p>如果手上没有足够数量的公网云服务器，本地使用虚拟机环境搭建集群做负载均衡测试是最省钱的做法，也方便做快照恢复。</p>
-<h1 id="一准备工作">一、准备工作</h1>
-<p>我使用 VMware 在本地部署了 3 台 CentOS 服务器作为测试环境，统一安装宝塔编译环境（LNMP）。虚拟机的网络配置不是本文的重点，就不再赘述了。</p>
-<h1 id="二检查环境">二、检查环境</h1>
-<p>这 3 台 CentOS 服务器编译好环境之后分别添加一个网站，检查 web 服务是否正常，并修改其中 2 台的默认模板文件，方便在测试负载均衡效果时区分是哪台服务器提供的 web 服务。</p>
+<h1 id="一准备工作" class="headerLink">
+    <a href="#%e4%b8%80%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c" class="header-mark"></a>一、准备工作</h1><p>我使用 VMware 在本地部署了 3 台 CentOS 服务器作为测试环境，统一安装宝塔编译环境（LNMP）。虚拟机的网络配置不是本文的重点，就不再赘述了。</p>
+<h1 id="二检查环境" class="headerLink">
+    <a href="#%e4%ba%8c%e6%a3%80%e6%9f%a5%e7%8e%af%e5%a2%83" class="header-mark"></a>二、检查环境</h1><p>这 3 台 CentOS 服务器编译好环境之后分别添加一个网站，检查 web 服务是否正常，并修改其中 2 台的默认模板文件，方便在测试负载均衡效果时区分是哪台服务器提供的 web 服务。</p>
 <p>本次测试的三台服务器 IP 地址分别为</p>
 <p>192.168.150.10（负载均衡 主服务器）
 192.168.150.20（业务服务器）
 192.168.150.30（业务服务器）</p>
-<h1 id="三部署网站">三、部署网站</h1>
-<p>测试域名为 t10.com，因此需要在宿主机上将此域名解析到负载均衡主服务器（192.168.150.10）。</p>
+<h1 id="三部署网站" class="headerLink">
+    <a href="#%e4%b8%89%e9%83%a8%e7%bd%b2%e7%bd%91%e7%ab%99" class="header-mark"></a>三、部署网站</h1><p>测试域名为 t10.com，因此需要在宿主机上将此域名解析到负载均衡主服务器（192.168.150.10）。</p>
 <p>修改宿主机的 hosts 文件（路径：C:\Windows\System32\drivers\etc\hosts），添加以下内容。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-plain" data-lang="plain"><span class="line"><span class="cl">192.168.150.10 t10.com
 </span></span></code></pre></div><p>分别在三台服务器上添加网站后，将 t10.com 这个域名解析到网站上。</p>
 <p>如下图示例</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/cf37a55ead5bc.png" title="img" data-thumbnail="/post_images/cf37a55ead5bc.png">
+        
+    </a></figure></p>
 <p>在负载均衡主服务器的 server 语法块下，也就是网关的配置文件中加入一条转发规则</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">/</span> <span class="p">{</span> 
 </span></span><span class="line"><span class="cl">    <span class="c1"># 转发至负载均衡服务器
@@ -45,9 +47,9 @@
 </span></span><span class="line"><span class="cl">    <span class="c1"># server 192.168.150.30:80 backup;
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></div><p>保存配置文件后重启 nginx，此时访问 t10.com 时会自动分发至两台业务服务器（192.168.150.20、192.168.150.30）。</p>
-<h1 id="四常用的-nginx-负载均衡算法">四、常用的 nginx 负载均衡算法</h1>
-<h2 id="1轮询默认">1、轮询（默认）</h2>
-<p>轮询即 Round Robin，根据 Nginx 配置文件中的顺序，依次把客户端的 Web 请求分发到不同的后端服务器。</p>
+<h1 id="四常用的-nginx-负载均衡算法" class="headerLink">
+    <a href="#%e5%9b%9b%e5%b8%b8%e7%94%a8%e7%9a%84-nginx-%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e7%ae%97%e6%b3%95" class="header-mark"></a>四、常用的 nginx 负载均衡算法</h1><h2 id="1轮询默认" class="headerLink">
+    <a href="#1%e8%bd%ae%e8%af%a2%e9%bb%98%e8%ae%a4" class="header-mark"></a>1、轮询（默认）</h2><p>轮询即 Round Robin，根据 Nginx 配置文件中的顺序，依次把客户端的 Web 请求分发到不同的后端服务器。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
 </span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span><span class="p">;</span> 
@@ -61,8 +63,8 @@
 </span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"> <span class="p">}</span> 
-</span></span></code></pre></div><h2 id="2least_conn最少连接">2、least_conn（最少连接）</h2>
-<p>Web 请求会被转发到连接数最少的服务器上。</p>
+</span></span></code></pre></div><h2 id="2least_conn最少连接" class="headerLink">
+    <a href="#2least_conn%e6%9c%80%e5%b0%91%e8%bf%9e%e6%8e%a5" class="header-mark"></a>2、least_conn（最少连接）</h2><p>Web 请求会被转发到连接数最少的服务器上。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
 </span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
 </span></span><span class="line"><span class="cl">   <span class="kn">least_conn</span><span class="p">;</span>
@@ -77,8 +79,8 @@
 </span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"> <span class="p">}</span> 
-</span></span></code></pre></div><h2 id="3ip_haship-地址哈希">3、ip_hash（IP 地址哈希）</h2>
-<p>前述的两种负载均衡方案中，同一客户端连续的 Web 请求可能会被分发到不同的后端服务器进行处理，因此如果涉及到会话 Session，那么会话会比较复杂。常见的是基于数据库的会话持久化。要克服上面的难题，可以使用基于 IP 地址哈希的负载均衡方案。这样的话，同一客户端连续的 Web 请求都会被分发到同一服务器进行处理。</p>
+</span></span></code></pre></div><h2 id="3ip_haship-地址哈希" class="headerLink">
+    <a href="#3ip_haship-%e5%9c%b0%e5%9d%80%e5%93%88%e5%b8%8c" class="header-mark"></a>3、ip_hash（IP 地址哈希）</h2><p>前述的两种负载均衡方案中，同一客户端连续的 Web 请求可能会被分发到不同的后端服务器进行处理，因此如果涉及到会话 Session，那么会话会比较复杂。常见的是基于数据库的会话持久化。要克服上面的难题，可以使用基于 IP 地址哈希的负载均衡方案。这样的话，同一客户端连续的 Web 请求都会被分发到同一服务器进行处理。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
 </span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span> 
 </span></span><span class="line"><span class="cl">   <span class="kn">ip_hash</span><span class="p">;</span>
@@ -93,8 +95,8 @@
 </span></span><span class="line"><span class="cl">    <span class="kn">proxy_pass</span> <span class="s">http://sampleapp</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">   <span class="p">}</span>  
 </span></span><span class="line"><span class="cl"> <span class="p">}</span> 
-</span></span></code></pre></div><h2 id="4基于权重的负载均衡算法">4、基于权重的负载均衡算法</h2>
-<p>基于权重的负载均衡即 Weighted Load Balancing，这种方式下，我们可以配置 Nginx 把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。</p>
+</span></span></code></pre></div><h2 id="4基于权重的负载均衡算法" class="headerLink">
+    <a href="#4%e5%9f%ba%e4%ba%8e%e6%9d%83%e9%87%8d%e7%9a%84%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1%e7%ae%97%e6%b3%95" class="header-mark"></a>4、基于权重的负载均衡算法</h2><p>基于权重的负载均衡即 Weighted Load Balancing，这种方式下，我们可以配置 Nginx 把请求更多地分发到高配置的后端服务器上，把相对较少的请求分发到低配服务器。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">http{</span> 
 </span></span><span class="line"><span class="cl"> <span class="s">upstream</span> <span class="s">sampleapp</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">   <span class="kn">server</span> <span class="s">...</span> <span class="s">weight=1</span><span class="p">;</span> 

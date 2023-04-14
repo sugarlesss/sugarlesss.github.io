@@ -13,9 +13,9 @@
     <description><![CDATA[<p>Cloud Toolkit 帮助开发者将本地应用程序一键部署到任意服务器。 修改完代码后，无需重复「打包-上传-登录服务器-替换-部署-重启」的繁琐流程。</p>
 <p>内置终端 Terminal：在 IDE 内，开发者可通过内置终端 Terminal 快速登录远程服务器，减少频繁切换的烦恼。 不仅支持阿里云服务器 ECS，也可以用于所有支持标准 SSH 协议的机器。</p>
 <p>文件上传：Cloud Toolkit 帮助开发者在 IDE 内，一键将本地或远程 URL 文件上传至服务器指定目录。 简化繁琐的上传环节，无需各种 FTP、SCP 工具频繁切换。 更为重要的是，文件上传完毕后，还支持文件解压缩、程序启动等命令执行。</p>
-<p>cloud toolkit 官网：<a href="https://www.aliyun.com/product/cloudtoolkit" target="_blank" rel="noopener noreffer">https://www.aliyun.com/product/cloudtoolkit</a></p>
-<h1 id="一安装-alibaba-cloud-toolkit">一、安装 Alibaba Cloud Toolkit</h1>
-<ul>
+<p>cloud toolkit 官网：<a href="https://www.aliyun.com/product/cloudtoolkit" target="_blank" rel="noopener noreferrer">https://www.aliyun.com/product/cloudtoolkit</a></p>
+<h1 id="一安装-alibaba-cloud-toolkit" class="headerLink">
+    <a href="#%e4%b8%80%e5%ae%89%e8%a3%85-alibaba-cloud-toolkit" class="header-mark"></a>一、安装 Alibaba Cloud Toolkit</h1><ul>
 <li>
 <p>确保 IntelliJ IDEA 在 2018.1 或更高版本；</p>
 </li>
@@ -31,9 +31,9 @@
     </a><figcaption class="image-caption">Alibaba Cloud Toolkit</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<h1 id="二配置">二、配置</h1>
-<h2 id="21添加远程服务器">2.1、添加远程服务器</h2>
-<p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
+<h1 id="二配置" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae" class="header-mark"></a>二、配置</h1><h2 id="21添加远程服务器" class="headerLink">
+    <a href="#21%e6%b7%bb%e5%8a%a0%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>2.1、添加远程服务器</h2><p>在 idea 底部有一个 tab 是 Alibaba Cloud View ，右上角 Add Host</p>
 <figure><a class="lightgallery" href="/post_images/image-20210806144136679.png" title="/post_images/image-20210806144136679.png" data-thumbnail="/post_images/image-20210806144136679.png" data-sub-html="<h2>Add Host</h2>">
         
     </a><figcaption class="image-caption">Add Host</figcaption>
@@ -57,8 +57,8 @@
     </a><figcaption class="image-caption">Deploy to Host</figcaption>
     </figure></p>
 <!-- raw HTML omitted -->
-<h2 id="22添加详细配置">2.2、添加详细配置</h2>
-<figure><a class="lightgallery" href="/post_images/image-20210806145217900.png" title="/post_images/image-20210806145217900.png" data-thumbnail="/post_images/image-20210806145217900.png" data-sub-html="<h2>详细配置1</h2>">
+<h2 id="22添加详细配置" class="headerLink">
+    <a href="#22%e6%b7%bb%e5%8a%a0%e8%af%a6%e7%bb%86%e9%85%8d%e7%bd%ae" class="header-mark"></a>2.2、添加详细配置</h2><figure><a class="lightgallery" href="/post_images/image-20210806145217900.png" title="/post_images/image-20210806145217900.png" data-thumbnail="/post_images/image-20210806145217900.png" data-sub-html="<h2>详细配置1</h2>">
         
     </a><figcaption class="image-caption">详细配置1</figcaption>
     </figure>
@@ -81,8 +81,8 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 实时日志</span>
 </span></span><span class="line"><span class="cl">tail -f /www/wwwroot/SpringBootDeployTestJar/nohup.out -n500
 </span></span></code></pre></div><p>填写完成后 Apply 。</p>
-<h1 id="三一键部署">三、一键部署</h1>
-<p>切换到一键部署，run。</p>
+<h1 id="三一键部署" class="headerLink">
+    <a href="#%e4%b8%89%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" class="header-mark"></a>三、一键部署</h1><p>切换到一键部署，run。</p>
 <figure><a class="lightgallery" href="/post_images/image-20210806162820768.png" title="/post_images/image-20210806162820768.png" data-thumbnail="/post_images/image-20210806162820768.png" data-sub-html="<h2>一键部署</h2>">
         
     </a><figcaption class="image-caption">一键部署</figcaption>
@@ -94,7 +94,7 @@
     </a><figcaption class="image-caption">控制台实时日志</figcaption>
     </figure>
 <!-- raw HTML omitted -->
-<h1 id="ref">REF</h1>
-<p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreffer">https://www.bilibili.com/video/BV1ga4y1474K</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.bilibili.com/video/BV1ga4y1474K" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1ga4y1474K</a></p>]]></description>
 </item></channel>
 </rss>

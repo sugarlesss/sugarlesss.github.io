@@ -11,8 +11,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html</guid>
     <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
-<h1 id="一关于-webhook">一、关于 webhook</h1>
-<p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
+<h1 id="一关于-webhook" class="headerLink">
+    <a href="#%e4%b8%80%e5%85%b3%e4%ba%8e-webhook" class="header-mark"></a>一、关于 webhook</h1><p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
 <ul>
 <li>
 <p>你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
@@ -23,34 +23,48 @@
 </ul>
 <p>实际上，你可以把它看做一种事件触发器。当满足某种特定条件时，执行一系列特定操作。其中，一方是事件发起者，另一方是事件接收者。</p>
 <p>以第一个例子来解释，Github 接收到 push 后，发起一个 HTTP(S) 请求，响应者接收到请求后执行特定命令或业务逻辑。Github 是事件发起者，部署了宝塔面板的服务器是事件执行者。</p>
-<h1 id="二配置宝塔面板-webhook">二、配置宝塔面板 webhook</h1>
-<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
+<h1 id="二配置宝塔面板-webhook" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae%e5%ae%9d%e5%a1%94%e9%9d%a2%e6%9d%bf-webhook" class="header-mark"></a>二、配置宝塔面板 webhook</h1><p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
 <p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能 cd 到博客源码目录下执行 git pull 命令，这样就可以从 Github 拉取最新的版本覆盖服务器上当前的版本了，因为是静态资源，所以无需重启什么服务，git pull 完成后即更新完毕。</p>
-<h2 id="1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</h2>
-<p>去软件商店可以找到这玩意儿</p>
-<p></p>
-<h2 id="2添加-webhook">2）添加 WebHook</h2>
-<p></p>
-<h2 id="3配置执行命令">3）配置执行命令</h2>
-<pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
+<h2 id="1安装宝塔-webhook-插件" class="headerLink">
+    <a href="#1%e5%ae%89%e8%a3%85%e5%ae%9d%e5%a1%94-webhook-%e6%8f%92%e4%bb%b6" class="header-mark"></a>1）安装宝塔 WebHook 插件</h2><p>去软件商店可以找到这玩意儿</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095736324.png" title="image-20210818095736324" data-thumbnail="/post_images/image-20210818095736324.png">
+        
+    </a></figure></p>
+<h2 id="2添加-webhook" class="headerLink">
+    <a href="#2%e6%b7%bb%e5%8a%a0-webhook" class="header-mark"></a>2）添加 WebHook</h2><p><figure><a class="lightgallery" href="/post_images/image-20210818094731947.png" title="image-20210818094731947" data-thumbnail="/post_images/image-20210818094731947.png">
+        
+    </a></figure></p>
+<h2 id="3配置执行命令" class="headerLink">
+    <a href="#3%e9%85%8d%e7%bd%ae%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4" class="header-mark"></a>3）配置执行命令</h2><pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
 git pull;
-</code></pre><p></p>
+</code></pre><p><figure><a class="lightgallery" href="/post_images/image-20210818095444177.png" title="image-20210818095444177" data-thumbnail="/post_images/image-20210818095444177.png">
+        
+    </a></figure></p>
 <p>配置完成后，就可以看到一条 webhook 规则了。</p>
-<p></p>
-<h2 id="4获取-webhook-url">4）获取 webhook url</h2>
-<p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
-<p></p>
-<h1 id="三配置-github-webhook">三、配置 Github webhook</h1>
-<p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095456515.png" title="image-20210818095456515" data-thumbnail="/post_images/image-20210818095456515.png">
+        
+    </a></figure></p>
+<h2 id="4获取-webhook-url" class="headerLink">
+    <a href="#4%e8%8e%b7%e5%8f%96-webhook-url" class="header-mark"></a>4）获取 webhook url</h2><p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095604028.png" title="image-20210818095604028" data-thumbnail="/post_images/image-20210818095604028.png">
+        
+    </a></figure></p>
+<h1 id="三配置-github-webhook" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae-github-webhook" class="header-mark"></a>三、配置 Github webhook</h1><p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095053784.png" title="image-20210818095053784" data-thumbnail="/post_images/image-20210818095053784.png">
+        
+    </a></figure></p>
 <p>将宝塔提供的 webhook url 填入此处的 Payload URL，并将下方的 Content type 修改为 application/json ，否则 Github 请求此 URL 时，宝塔会返回 403 错误。</p>
-<p></p>
-<h1 id="注意事项">注意事项</h1>
-<ul>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095149901.png" title="image-20210818095149901" data-thumbnail="/post_images/image-20210818095149901.png">
+        
+    </a></figure></p>
+<h1 id="注意事项" class="headerLink">
+    <a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="header-mark"></a>注意事项</h1><ul>
 <li>在服务器上生成一对 SSH 秘钥，将公钥配置到你的 Github 账号后，服务器就可以使用 git pull 命令拉取最新版本，不需要输入账号密码了。</li>
 <li>如果在配置 Github webhook 时，Content type 你忘记修改为 application/json ，宝塔会返回 403 错误，你配置的一系列自定义命令就无法执行了。</li>
 </ul>
-<h1 id="ref">REF</h1>
-<p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
 </item></channel>
 </rss>

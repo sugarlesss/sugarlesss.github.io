@@ -11,8 +11,8 @@
         <name>無糖</name>
     </author><guid>https://sugarless.cn/posts/how-to-use-github-webhook-and-btpanel-webhook.html</guid>
     <description><![CDATA[<p>如果你提交版本后需要手动进入服务器 shell 去 git pull ，那么本文或许对你有些帮助。</p>
-<h1 id="一关于-webhook">一、关于 webhook</h1>
-<p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
+<h1 id="一关于-webhook" class="headerLink">
+    <a href="#%e4%b8%80%e5%85%b3%e4%ba%8e-webhook" class="header-mark"></a>一、关于 webhook</h1><p>为了让你直观的了解到 webhook 能做什么，我例举了两个比较常见的应用场景：</p>
 <ul>
 <li>
 <p>你在 Github 上开源了一个项目，你希望在 git push 提交新版本到 Github 后，部署了宝塔面板的服务器能自动执行 git pull 命令，从 Github 拉取最新版本代码。</p>
@@ -23,35 +23,49 @@
 </ul>
 <p>实际上，你可以把它看做一种事件触发器。当满足某种特定条件时，执行一系列特定操作。其中，一方是事件发起者，另一方是事件接收者。</p>
 <p>以第一个例子来解释，Github 接收到 push 后，发起一个 HTTP(S) 请求，响应者接收到请求后执行特定命令或业务逻辑。Github 是事件发起者，部署了宝塔面板的服务器是事件执行者。</p>
-<h1 id="二配置宝塔面板-webhook">二、配置宝塔面板 webhook</h1>
-<p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
+<h1 id="二配置宝塔面板-webhook" class="headerLink">
+    <a href="#%e4%ba%8c%e9%85%8d%e7%bd%ae%e5%ae%9d%e5%a1%94%e9%9d%a2%e6%9d%bf-webhook" class="header-mark"></a>二、配置宝塔面板 webhook</h1><p>我的博客部署在腾讯云的服务器上，因为博客框架用的是 hugo ，所以生成的站点源码就是纯静态网页。（之所以不直接白嫖 Github pages 服务，是因为百度 spider 被 Github ban 了）。</p>
 <p>所以我希望在写完文章后 push 给 Github 后，部署了宝塔面板的腾讯云服务器能 cd 到博客源码目录下执行 git pull 命令，这样就可以从 Github 拉取最新的版本覆盖服务器上当前的版本了，因为是静态资源，所以无需重启什么服务，git pull 完成后即更新完毕。</p>
-<h2 id="1安装宝塔-webhook-插件">1）安装宝塔 WebHook 插件</h2>
-<p>去软件商店可以找到这玩意儿</p>
-<p></p>
-<h2 id="2添加-webhook">2）添加 WebHook</h2>
-<p></p>
-<h2 id="3配置执行命令">3）配置执行命令</h2>
-<pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
+<h2 id="1安装宝塔-webhook-插件" class="headerLink">
+    <a href="#1%e5%ae%89%e8%a3%85%e5%ae%9d%e5%a1%94-webhook-%e6%8f%92%e4%bb%b6" class="header-mark"></a>1）安装宝塔 WebHook 插件</h2><p>去软件商店可以找到这玩意儿</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095736324.png" title="image-20210818095736324" data-thumbnail="/post_images/image-20210818095736324.png">
+        
+    </a></figure></p>
+<h2 id="2添加-webhook" class="headerLink">
+    <a href="#2%e6%b7%bb%e5%8a%a0-webhook" class="header-mark"></a>2）添加 WebHook</h2><p><figure><a class="lightgallery" href="/post_images/image-20210818094731947.png" title="image-20210818094731947" data-thumbnail="/post_images/image-20210818094731947.png">
+        
+    </a></figure></p>
+<h2 id="3配置执行命令" class="headerLink">
+    <a href="#3%e9%85%8d%e7%bd%ae%e6%89%a7%e8%a1%8c%e5%91%bd%e4%bb%a4" class="header-mark"></a>3）配置执行命令</h2><pre tabindex="0"><code>cd /www/wwwroot/sugarlesss.github.io;
 git pull;
-</code></pre><p></p>
+</code></pre><p><figure><a class="lightgallery" href="/post_images/image-20210818095444177.png" title="image-20210818095444177" data-thumbnail="/post_images/image-20210818095444177.png">
+        
+    </a></figure></p>
 <p>配置完成后，就可以看到一条 webhook 规则了。</p>
-<p></p>
-<h2 id="4获取-webhook-url">4）获取 webhook url</h2>
-<p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
-<p></p>
-<h1 id="三配置-github-webhook">三、配置 Github webhook</h1>
-<p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
-<p></p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095456515.png" title="image-20210818095456515" data-thumbnail="/post_images/image-20210818095456515.png">
+        
+    </a></figure></p>
+<h2 id="4获取-webhook-url" class="headerLink">
+    <a href="#4%e8%8e%b7%e5%8f%96-webhook-url" class="header-mark"></a>4）获取 webhook url</h2><p>点击查看秘钥，蓝色选中的部分就是宝塔面板提供的 webhook url ，当链接被访问时，就会执行我们上一步配置的命令，自动 git pull 了。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095604028.png" title="image-20210818095604028" data-thumbnail="/post_images/image-20210818095604028.png">
+        
+    </a></figure></p>
+<h1 id="三配置-github-webhook" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae-github-webhook" class="header-mark"></a>三、配置 Github webhook</h1><p>还是以我的博客仓库为例，在仓库的 Settings -&gt; Webhooks 页面右上角 add webhook 。</p>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095053784.png" title="image-20210818095053784" data-thumbnail="/post_images/image-20210818095053784.png">
+        
+    </a></figure></p>
 <p>将宝塔提供的 webhook url 填入此处的 Payload URL，并将下方的 Content type 修改为 application/json ，否则 Github 请求此 URL 时，宝塔会返回 403 错误。</p>
-<p></p>
-<h1 id="注意事项">注意事项</h1>
-<ul>
+<p><figure><a class="lightgallery" href="/post_images/image-20210818095149901.png" title="image-20210818095149901" data-thumbnail="/post_images/image-20210818095149901.png">
+        
+    </a></figure></p>
+<h1 id="注意事项" class="headerLink">
+    <a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="header-mark"></a>注意事项</h1><ul>
 <li>在服务器上生成一对 SSH 秘钥，将公钥配置到你的 Github 账号后，服务器就可以使用 git pull 命令拉取最新版本，不需要输入账号密码了。</li>
 <li>如果在配置 Github webhook 时，Content type 你忘记修改为 application/json ，宝塔会返回 403 错误，你配置的一系列自定义命令就无法执行了。</li>
 </ul>
-<h1 id="ref">REF</h1>
-<p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreffer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
+<h1 id="ref" class="headerLink">
+    <a href="#ref" class="header-mark"></a>REF</h1><p><a href="https://www.cnblogs.com/blibli/p/11331509.html" target="_blank" rel="noopener noreferrer">https://www.cnblogs.com/blibli/p/11331509.html</a></p>]]></description>
 </item><item>
     <title>Hugo - 如何一键发布新文章？</title>
     <link>https://sugarless.cn/posts/hugo-one-click-deployment.html</link>
@@ -63,10 +77,10 @@ git pull;
 <p>本文默认你已经掌握了 hugo + Github Pages 的博客搭建。</p>
 <p>我会以 Windows 平台作为演示，其它系统可参照思路，大同小异。</p>
 </blockquote>
-<h1 id="一安装-git">一、安装 Git</h1>
-<p>先安装 git bash ，官网：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreffer">https://git-scm.com/downloads</a></p>
-<h1 id="二使-public-目录成为一个-git-repository">二、使 public 目录成为一个 git repository</h1>
-<p>博客源码存放目录：<code>D:\blog\src</code></p>
+<h1 id="一安装-git" class="headerLink">
+    <a href="#%e4%b8%80%e5%ae%89%e8%a3%85-git" class="header-mark"></a>一、安装 Git</h1><p>先安装 git bash ，官网：<a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer">https://git-scm.com/downloads</a></p>
+<h1 id="二使-public-目录成为一个-git-repository" class="headerLink">
+    <a href="#%e4%ba%8c%e4%bd%bf-public-%e7%9b%ae%e5%bd%95%e6%88%90%e4%b8%ba%e4%b8%80%e4%b8%aa-git-repository" class="header-mark"></a>二、使 public 目录成为一个 git repository</h1><p>博客源码存放目录：<code>D:\blog\src</code></p>
 <pre tabindex="0"><code>D:\blog\src
 │  config.toml
 ├─archetypes 
@@ -83,14 +97,14 @@ git pull;
 <p>这样 hugo 在 public 文件夹中生成的文件就可以直接使用 git 命令推送到 Github 了。</p>
 <p>如果配合 Github Webhook 使用，就可以把 xxx.github.io 当做源站了。在此基础上，你可以自行购买域名做 CDN 或者在自己的服务器上部署一个镜像站。</p>
 </blockquote>
-<h1 id="三配置一键命令">三、配置一键命令</h1>
-<p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
+<h1 id="三配置一键命令" class="headerLink">
+    <a href="#%e4%b8%89%e9%85%8d%e7%bd%ae%e4%b8%80%e9%94%ae%e5%91%bd%e4%bb%a4" class="header-mark"></a>三、配置一键命令</h1><p>我决定将 <code>git blog</code>  这个命令作为以后日常一键部署的命令。输入以下命令即可完成配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global alias.blog <span class="s1">&#39;!cd D:\\blog\\src;hugo;cd D:\\blog\\src\\public;git add .;git commit -m &#39;</span>update<span class="s1">&#39;;git push&#39;</span>
 </span></span></code></pre></div><blockquote>
 <p>使用 alias 即可为一系列命令配置一个别名</p>
 </blockquote>
-<h1 id="四一键部署">四、一键部署</h1>
-<p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
+<h1 id="四一键部署" class="headerLink">
+    <a href="#%e5%9b%9b%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" class="header-mark"></a>四、一键部署</h1><p>当你写好文章之后，就可以在任意目录执行这个命令：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git blog
 </span></span></code></pre></div><p>此时系统会自动执行下面的命令：</p>
 <pre tabindex="0"><code>cd D:\\blog\\src
@@ -100,8 +114,8 @@ git add .
 git commit -m &#39;update&#39;
 git push
 </code></pre><p>这样就达到了我们的目的：通过一个命令就可以更新博客文件，并自动推送到 github 上。</p>
-<h1 id="补充">补充</h1>
-<p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreffer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
+<h1 id="补充" class="headerLink">
+    <a href="#%e8%a1%a5%e5%85%85" class="header-mark"></a>补充</h1><p>如果你同时使用了 <code>Github Pages</code>  和 <code>Gitee Pages</code>  服务，并且还希望能一条命令同时推送到 Github 和 Gitee，那么你可以参考 <a href="https://zhuanlan.zhihu.com/p/341272233" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/341272233</a>，修改 <code>git blog</code>  对应的命令即可。</p>
 <p>给你提个醒：<code>git push github</code> ，<code>git push gitee</code> 。</p>
 <p>希望本文能帮到正在使用 hugo 的你。</p>]]></description>
 </item></channel>
