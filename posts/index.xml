@@ -39,9 +39,9 @@
 <p>中文官网：<a href="https://flarum.org.cn" target="_blank" rel="noopener noreffer">https://flarum.org.cn</a></p>
 <p>Github：<a href="https://github.com/flarum/flarum" target="_blank" rel="noopener noreffer">https://github.com/flarum/flarum</a></p>
 <h2 id="命令行工具">命令行工具</h2>
-<h3 id="1annie">1、annie</h3>
+<h3 id="1luxannie">1、lux（annie）</h3>
 <p>基于 Go 开发的一款命令行视频下载器，支持的平台很多，包括 MacOS、Windows、Linux 等。目前支持 bilibili 和 youtube 的播放列表批量下载，其他网站只支持单个视频下载。</p>
-<p>Github：<a href="https://github.com/iawia002/annie" target="_blank" rel="noopener noreffer">https://github.com/iawia002/annie</a></p>
+<p>Github：<a href="https://github.com/iawia002/lux" target="_blank" rel="noopener noreffer">https://github.com/iawia002/lux</a></p>
 <h3 id="2youtube-dl">2、youtube-dl</h3>
 <p>下载 youtube 视频的神器
 Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="noopener noreffer">https://github.com/ytdl-org/youtube-dl</a>
@@ -133,6 +133,10 @@ Github：<a href="https://github.com/ytdl-org/youtube-dl" target="_blank" rel="n
 <p>Github：<a href="https://github.com/siyuan-note/siyuan" target="_blank" rel="noopener noreffer">https://github.com/siyuan-note/siyuan</a></p>
 <p>官网：<a href="https://b3log.org/siyuan/" target="_blank" rel="noopener noreffer">https://b3log.org/siyuan/</a></p>
 <h1 id="工具站点">工具站点</h1>
+<h2 id="ai">AI</h2>
+<h3 id="1chatmind">1、chatmind</h3>
+<p>输入问题/文章/数据，一键生成思维导图，支持上下文改写扩充对话，例如：新产品上线推广流程</p>
+<p>官网：https://www.chatmind.tech</p>
 <h2 id="开发">开发</h2>
 <h3 id="1requestcatchercom">1、requestcatcher.com</h3>
 <p>Debug web hooks, http clients, etc.</p>
